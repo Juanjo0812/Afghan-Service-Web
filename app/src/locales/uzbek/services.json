@@ -1,0 +1,31 @@
+{
+  "sectionLabel": "[UZ] Our Services",
+  "heading": "[UZ] How We Can Help",
+  "cards": {
+    "immigration": {
+      "title": "[UZ] Immigration Help",
+      "description": "[UZ] Free legal consultations for asylum, work permits, TPS, green cards, and family reunification."
+    },
+    "housing": {
+      "title": "[UZ] Housing",
+      "description": "[UZ] Connect with housing resources, rental assistance, and shelter referrals in the Phoenix area."
+    },
+    "healthcare": {
+      "title": "[UZ] Healthcare",
+      "description": "[UZ] Find low-cost clinics, mental health services, and health insurance enrollment assistance."
+    },
+    "education": {
+      "title": "[UZ] Education & ESL",
+      "description": "[UZ] English classes, GED programs, and school enrollment support for children and adults."
+    },
+    "employment": {
+      "title": "[UZ] Employment",
+      "description": "[UZ] Job search assistance, resume help, interview preparation, and career training programs."
+    },
+    "legal": {
+      "title": "[UZ] Legal Aid",
+      "description": "[UZ] Free or low-cost legal services for immigration, family law, and civil matters."
+    }
+  },
+  "learnMore": "[UZ] Learn More"
+}

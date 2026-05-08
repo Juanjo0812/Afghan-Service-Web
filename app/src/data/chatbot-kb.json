@@ -1,0 +1,269 @@
+[
+  {
+    "id": "asylum",
+    "keywords_en": ["asylum", "refugee", "political asylum", "persecution", "afraid to return"],
+    "keywords_dari": ["پناهندگی", "پناهنده", "سیاسی"],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Asylum may be available if you fear persecution in your home country. Our legal partners can help you understand the process and prepare your application. This information is for educational purposes only.",
+    "response_dari": "اگر از بازگشت به کشور خود می‌ترسید، ممکن است واجد شرایط پناهندگی باشید. شرکای حقوقی ما می‌توانند به شما در درک روند کار کمک کنند. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Legal Resources", "href": "#services" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "work-permit",
+    "keywords_en": ["work permit", "employment authorization", "EAD", "job", "work legally"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Employment Authorization Documents (EAD) allow you to work legally in the United States. We can connect you with organizations that help with work permit applications. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Immigration Help", "href": "#services" },
+      { "label": "Employment Resources", "href": "#resources" }
+    ]
+  },
+  {
+    "id": "tps",
+    "keywords_en": ["TPS", "temporary protected status", "protection"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Temporary Protected Status (TPS) provides protection from deportation and work authorization for eligible individuals. Our team can help you check if you qualify and guide you through renewal deadlines. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Legal Resources", "href": "#services" }
+    ]
+  },
+  {
+    "id": "green-card",
+    "keywords_en": ["green card", "permanent residence", "LPR", "family reunification", "petition"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Lawful Permanent Residence (green card) can be obtained through family sponsorship, employment, or other pathways. We can help you explore your options and connect you with trusted legal assistance. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Legal Resources", "href": "#services" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "afghan-adjustment-act",
+    "keywords_en": ["Afghan Adjustment Act", "AAA", "adjustment of status"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "The Afghan Adjustment Act aims to provide a pathway to permanent residence for certain Afghan evacuees. Stay informed about legislative updates and how they may affect your case. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Legal Resources", "href": "#services" },
+      { "label": "Events", "href": "#events" }
+    ]
+  },
+  {
+    "id": "know-your-rights-police",
+    "keywords_en": ["police", "stopped by police", "rights", "remain silent", "warrant"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "You have the right to remain silent and the right to refuse consent to a search without a warrant. Keep a know-your-rights card with you at all times. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "rights",
+    "actions": [
+      { "label": "Know Your Rights", "href": "#rights" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "know-your-rights-ice",
+    "keywords_en": ["ICE", "immigration", "immigration agent", "ICE at home", "deportation"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "You have the right to remain silent, the right to refuse entry without a warrant, and the right to speak with an attorney. Do not open the door unless ICE shows a judicial warrant. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "rights",
+    "actions": [
+      { "label": "Know Your Rights", "href": "#rights" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "documents",
+    "keywords_en": ["documents", "passport", "papers", "carry documents", "copies"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Always carry copies of important documents, not originals. Keep a folder with your passport, immigration papers, and emergency contacts in a safe place. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "rights",
+    "actions": [
+      { "label": "Know Your Rights", "href": "#rights" }
+    ]
+  },
+  {
+    "id": "esl",
+    "keywords_en": ["ESL", "English", "English classes", "learn English", "language"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Free and low-cost English classes are available through local community colleges, libraries, and nonprofit organizations. Learning English can help with employment and daily life. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "resources",
+    "actions": [
+      { "label": "Community Resources", "href": "#resources" }
+    ]
+  },
+  {
+    "id": "healthcare",
+    "keywords_en": ["healthcare", "doctor", "medical", "clinic", "health insurance"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Several community health centers in Phoenix provide care regardless of immigration status or ability to pay. We can help you find a clinic near you. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "resources",
+    "actions": [
+      { "label": "Community Resources", "href": "#resources" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "food",
+    "keywords_en": ["food", "food bank", "hungry", "meals", "groceries"],
+    "keywords_dari": ["غذا", "خوراک", "گرسنه"],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Food banks and meal programs throughout Phoenix offer free groceries and hot meals. No ID or proof of income is required at most locations. This information is for educational purposes only.",
+    "response_dari": "بانک‌های غذا و برنامه‌های وعده غذایی در سراسر فینیکس مواد غذایی و وعده‌های گرم رایگان ارائه می‌دهند. در اکثر مکان‌ها نیاز به شناسنامه یا اثبات درآمد نیست. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "resources",
+    "actions": [
+      { "label": "Community Resources", "href": "#resources" }
+    ]
+  },
+  {
+    "id": "housing",
+    "keywords_en": ["housing", "shelter", "rent", "apartment", "homeless"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Emergency shelter, transitional housing, and rental assistance programs are available in Maricopa County. Our team can connect you with housing navigators. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "resources",
+    "actions": [
+      { "label": "Community Resources", "href": "#resources" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "employment",
+    "keywords_en": ["employment", "job", "work", "career", "resume"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Local workforce development centers offer job training, resume assistance, and interview preparation. Many programs are free and open to all. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "resources",
+    "actions": [
+      { "label": "Community Resources", "href": "#resources" }
+    ]
+  },
+  {
+    "id": "events",
+    "keywords_en": ["events", "workshop", "clinic legal", "citizenship", "cultural"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "events",
+    "actions": [
+      { "label": "Events", "href": "#events" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "contact",
+    "keywords_en": ["contact", "phone", "call", "email", "help", "speak to someone"],
+    "keywords_dari": ["تماس", "تلفن", "ایمیل", "کمک"],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "You can reach us by phone at +1 (602) 666-6170, by email, or by visiting our office. Our team is here to help connect you with the resources you need. This information is for educational purposes only.",
+    "response_dari": "می‌توانید با ما از طریق تلفن یا ایمیل تماس بگیرید. تیم ما برای کمک به شما در دسترس است. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "contact",
+    "actions": [
+      { "label": "Contact Us", "href": "#contact" },
+      { "label": "Speak to Someone", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "legal-aid",
+    "keywords_en": ["legal aid", "lawyer", "attorney", "legal help", "immigration lawyer"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "Free and low-cost legal aid is available for immigration matters, family law, and tenant rights. We partner with trusted attorneys who understand the Afghan community's needs. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "services",
+    "actions": [
+      { "label": "Legal Resources", "href": "#services" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  },
+  {
+    "id": "general-help",
+    "keywords_en": ["help", "general", "information", "support", "assistance"],
+    "keywords_dari": [],
+    "keywords_pashto": [],
+    "keywords_uzbek": [],
+    "response_en": "We are here to support Afghan families in Phoenix with immigration resources, community connections, and cultural programs. Please explore the topics below or contact us directly. This information is for educational purposes only.",
+    "response_dari": "",
+    "response_pashto": "",
+    "response_uzbek": "",
+    "section": "contact",
+    "actions": [
+      { "label": "Quick Access", "href": "#services" },
+      { "label": "Contact Us", "href": "#contact" }
+    ]
+  }
+]

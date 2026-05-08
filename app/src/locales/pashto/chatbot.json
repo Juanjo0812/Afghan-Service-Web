@@ -1,0 +1,46 @@
+{
+  "welcome": "[PS] Welcome to Afghan Support. Select a topic below or type your question.",
+  "title": "[PS] CC-AZ Assistant",
+  "status": "[PS] Online",
+  "closeChat": "[PS] Close chat",
+  "inputPlaceholder": "[PS] Type your message...",
+  "inputAriaLabel": "[PS] Type your question",
+  "sendAriaLabel": "[PS] Send message",
+  "openAssistant": "[PS] Open chat assistant",
+  "closeAssistant": "[PS] Close chat assistant",
+  "quickTopics": "[PS] Quick topics",
+  "multiCandidate": "[PS] I found a few things that might help. Which one were you looking for?",
+  "fallback": "[PS] Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170.",
+  "actions": {
+    "immigration": {
+      "label": "[PS] Immigration Help",
+      "response": "[PS] We provide immigration support services including case management, legal referrals, and document assistance for Afghan families in Phoenix. Our team can help you navigate the immigration process and connect you with trusted legal professionals.",
+      "cta": "[PS] View Services"
+    },
+    "community": {
+      "label": "[PS] Community Resources",
+      "response": "[PS] Connect with local food banks, healthcare providers, housing assistance, and other essential services in the Phoenix area. We maintain a curated list of community partners ready to help Afghan families.",
+      "cta": "[PS] Explore Resources"
+    },
+    "rights": {
+      "label": "[PS] Know Your Rights",
+      "response": "[PS] Learn about your rights as an immigrant, refugee, or asylum seeker. Access know-your-rights materials in Dari, Pashto, and English. This information is for educational purposes only and does not constitute legal advice.",
+      "cta": "[PS] Read More"
+    },
+    "events": {
+      "label": "[PS] Events",
+      "response": "[PS] We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration.",
+      "cta": "[PS] See Events"
+    },
+    "contact": {
+      "label": "[PS] Contact Info",
+      "response": "[PS] Reach our team by phone, email, or WhatsApp. Our office is located at 5151 N 19th Ave, Phoenix AZ 85015. We respond to all inquiries within 1–2 business days.",
+      "cta": "[PS] Contact Us"
+    },
+    "speak": {
+      "label": "[PS] Speak to Someone",
+      "response": "[PS] Our caseworkers are available to speak with you in Dari, Pashto, or English. Whether you need guidance, emotional support, or just someone to listen, we are here for you.",
+      "cta": "[PS] Get in Touch"
+    }
+  }
+}

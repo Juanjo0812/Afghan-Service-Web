@@ -1,0 +1,16 @@
+{
+  "label": "[FA] Community Voices",
+  "heading": "[FA] Stories That Inspire",
+  "description": "[FA] Hear from the families and community leaders whose lives were changed through our support.",
+  "aria": {
+    "viewTestimonial": "[FA] View testimonial from {{name}}",
+    "closeTestimonial": "[FA] Close testimonial",
+    "modalLabel": "[FA] Testimonial from {{name}}",
+    "previous": "[FA] Previous",
+    "previousTestimonial": "[FA] Previous testimonial",
+    "next": "[FA] Next",
+    "nextTestimonial": "[FA] Next testimonial",
+    "scrollLeft": "[FA] Scroll testimonials left",
+    "scrollRight": "[FA] Scroll testimonials right"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "logo": "[FA] Afghan Support",
+    "home": "[FA] Home",
+    "immigrationHelp": "[FA] Immigration Help",
+    "communityResources": "[FA] Community Resources",
+    "knowYourRights": "[FA] Know Your Rights",
+    "events": "[FA] Events",
+    "contact": "[FA] Contact",
+    "getHelp": "[FA] Get Help",
+    "openMenu": "[FA] Open menu",
+    "closeMenu": "[FA] Close menu"
+  },
+  "footer": {
+    "logo": "[FA] Afghan Support",
+    "tagline": "[FA] Serving Afghan families in Phoenix since 2021.",
+    "quickLinks": "[FA] Quick Links",
+    "home": "[FA] Home",
+    "immigrationHelp": "[FA] Immigration Help",
+    "resources": "[FA] Resources",
+    "events": "[FA] Events",
+    "contact": "[FA] Contact",
+    "languages": "[FA] Languages",
+    "english": "[FA] English",
+    "dari": "[FA] دری (Dari)",
+    "pashto": "[FA] پښتو (Pashto)",
+    "uzbek": "[FA] O'zbek (Uzbek)",
+    "copyright": "[FA] © 2026 Afghan Support. All rights reserved."
+  },
+  "skipLink": "[FA] Skip to main content",
+  "chatbotFallback": "[FA] Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
+}

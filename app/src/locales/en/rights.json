@@ -1,0 +1,14 @@
+{
+  "label": "Know Your Rights",
+  "heading": "You Have Rights Here",
+  "description": "Regardless of your immigration status, you have rights in the United States. Learn what to do if approached by immigration officials, how to prepare your family, and where to find legal help.",
+  "rights": [
+    "You have the right to remain silent. You do not have to answer questions about your immigration status.",
+    "You have the right to refuse a search of yourself, your home, or your belongings without a warrant signed by a judge.",
+    "You have the right to speak to a lawyer before answering any questions or signing any documents.",
+    "If ICE agents come to your home, do not open the door. Ask them to show you a warrant signed by a judge through the window or under the door.",
+    "You have the right to carry copies of your documents — keep originals in a safe place at home."
+  ],
+  "imageAlt": "Passport and immigration documents",
+  "downloadButton": "Download Rights Guide (PDF)"
+}

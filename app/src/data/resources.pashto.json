@@ -1,0 +1,62 @@
+[
+  {
+    "num": "[PS] 01",
+    "title": "[PS] Healthcare",
+    "links": [
+      "[PS] Valleywise Community Health Center",
+      "[PS] Phoenix VA Healthcare",
+      "[PS] Mountain Park Health Center",
+      "[PS] Immigrant Health Access"
+    ]
+  },
+  {
+    "num": "[PS] 02",
+    "title": "[PS] Housing & Shelter",
+    "links": [
+      "[PS] Arizona Housing Coalition",
+      "[PS] HOM Inc. Housing Services",
+      "[PS] Central Arizona Shelter Services",
+      "[PS] Tenant Rights Hotline"
+    ]
+  },
+  {
+    "num": "[PS] 03",
+    "title": "[PS] Food Assistance",
+    "links": [
+      "[PS] St. Mary's Food Bank",
+      "[PS] United Food Bank",
+      "[PS] Desert Mission Food Pantry",
+      "[PS] WIC Nutrition Program"
+    ]
+  },
+  {
+    "num": "[PS] 04",
+    "title": "[PS] Education & ESL",
+    "links": [
+      "[PS] Rio Salado College ESL",
+      "[PS] Literacy Volunteers of Maricopa",
+      "[PS] Phoenix Public Library Classes",
+      "[PS] Arizona State University Outreach"
+    ]
+  },
+  {
+    "num": "[PS] 05",
+    "title": "[PS] Employment",
+    "links": [
+      "[PS] Arizona@Work Job Centers",
+      "[PS] Refugee Employment Services",
+      "[PS] Goodwill Career Services",
+      "[PS] Local Chamber of Commerce"
+    ]
+  },
+  {
+    "num": "[PS] 06",
+    "title": "[PS] Legal Services",
+    "links": [
+      "[PS] Florence Immigrant & Refugee Rights",
+      "[PS] Arizona Justice Project",
+      "[PS] Community Legal Services",
+      "[PS] ACLU of Arizona"
+    ]
+  }
+]

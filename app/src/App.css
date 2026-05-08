@@ -1,0 +1,53 @@
+/* Reduced motion: respect OS-level accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* RTL font overrides — applied when html lang is set to fa (Dari) or ps (Pashto) */
+:lang(fa),
+:lang(ps) {
+  font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+}
+
+/* Logical property helpers for inline-style fallbacks */
+.logical-start-0 {
+  inset-inline-start: 0;
+}
+.logical-end-0 {
+  inset-inline-end: 0;
+}
+.logical-text-start {
+  text-align: start;
+}
+.logical-text-end {
+  text-align: end;
+}
+
+/* Directional gradient utilities with RTL reversal */
+.gradient-fade-end {
+  background: linear-gradient(to right, #faf5ef 40%, transparent);
+}
+[dir="rtl"] .gradient-fade-end {
+  background: linear-gradient(to left, #faf5ef 40%, transparent);
+}
+
+.gradient-fade-start {
+  background: linear-gradient(to left, #faf5ef 40%, transparent);
+}
+[dir="rtl"] .gradient-fade-start {
+  background: linear-gradient(to right, #faf5ef 40%, transparent);
+}
+
+/* RTL border-radius swap for asymmetric corners (e.g. chat bubbles) */
+[dir="rtl"] .rounded-tail-user {
+  border-radius: 16px 16px 16px 4px;
+}
+[dir="rtl"] .rounded-tail-bot {
+  border-radius: 16px 16px 4px 16px;
+}

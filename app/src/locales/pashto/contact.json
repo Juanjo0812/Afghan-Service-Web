@@ -1,0 +1,62 @@
+{
+  "label": "[PS] Get in Touch",
+  "heading": "[PS] We're Here to Help",
+  "description": "[PS] Reach out in Dari, Pashto, or English. All conversations are confidential.",
+  "details": {
+    "phone": {
+      "label": "[PS] Phone",
+      "value": "[PS] 480.416.2333"
+    },
+    "whatsapp": {
+      "label": "[PS] WhatsApp",
+      "value": "[PS] +1 480.416.2333"
+    },
+    "email": {
+      "label": "[PS] Email",
+      "value": "[PS] Dpeshtaz@cc-az.org"
+    },
+    "address": {
+      "label": "[PS] Address",
+      "value": "[PS] 5151 N 19th Ave, Phoenix AZ 85015"
+    }
+  },
+  "mapCaption": "[PS] CC-AZ Office Location",
+  "mapTitle": "[PS] CC-AZ Office Location",
+  "form": {
+    "name": {
+      "label": "[PS] Your Name",
+      "placeholder": "[PS] Your Name"
+    },
+    "phone": {
+      "label": "[PS] Phone Number",
+      "placeholder": "[PS] Phone Number"
+    },
+    "email": {
+      "label": "[PS] Email Address",
+      "placeholder": "[PS] Email Address"
+    },
+    "message": {
+      "label": "[PS] Your Message",
+      "placeholder": "[PS] Your Message"
+    },
+    "submit": "[PS] Send Message",
+    "submitting": "[PS] Sending..."
+  },
+  "validation": {
+    "nameMin": "[PS] Name must be at least 2 characters",
+    "phoneRequired": "[PS] Phone is required",
+    "phoneInvalid": "[PS] Please enter a valid phone number",
+    "emailInvalid": "[PS] Please enter a valid email address",
+    "messageMin": "[PS] Message must be at least 10 characters",
+    "messageMax": "[PS] Message must be at most 2000 characters"
+  },
+  "toast": {
+    "rateLimit": "[PS] Too many submissions. Please try again later.",
+    "error": "[PS] Failed to send. Please try again or call us.",
+    "success": "[PS] Thank you for your message. We will get back to you soon."
+  },
+  "success": {
+    "title": "[PS] Thank You",
+    "message": "[PS] Your message has been sent. We'll get back to you soon."
+  }
+}
