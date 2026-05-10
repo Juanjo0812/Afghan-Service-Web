@@ -24,10 +24,6 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    setMobileOpen(false)
-  }, [location.pathname])
-
-  useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -164,6 +160,7 @@ export default function Header() {
                     <Link
                       key={item.path}
                       to={item.path}
+                      onClick={() => setMobileOpen(false)}
                       className={`px-4 py-3 text-lg font-semibold rounded-md transition-colors block ${
                         isActive
                           ? 'text-amber bg-forest'
