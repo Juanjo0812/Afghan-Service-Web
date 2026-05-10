@@ -16,6 +16,7 @@ interface Story {
   id: number
   type: StoryFilter
   image?: string
+  videoUrl?: string
   title?: string
   quote?: string
   name?: string
@@ -33,12 +34,15 @@ const stories: Story[] = [
   {
     id: 1,
     type: 'clients',
-    isFeatured: true,
-    title: 'Community Stories Coming Soon',
-    quote:
-      'We are collecting and reviewing stories from Afghan families and community leaders. Check back soon to hear real experiences from our community. If you would like to share your story, please contact us.',
-    name: 'Afghan Support Phoenix',
-    context: 'Community Program — Catholic Charities',
+    isTextOnly: true,
+    reviews: [
+      {
+        quote:
+          'We are collecting and reviewing stories from Afghan families and community leaders. Check back soon to hear real experiences from our community. If you would like to share your story, please contact us.',
+        name: 'Afghan Support Phoenix',
+        context: 'Community Program — Catholic Charities',
+      },
+    ],
   },
 ]
 
@@ -327,19 +331,30 @@ export default function StoriesPage() {
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+              {selectedVideo.videoUrl ? (
+                <video
+                  src={selectedVideo.videoUrl}
+                  className="absolute inset-0 w-full h-full object-contain"
+                  controls
+                  autoPlay
+                />
+              ) : (
+                <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+              )}
               
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between text-white/80 text-sm">
-                <div className="flex items-center gap-4">
-                  <Play className="w-5 h-5 fill-current" />
-                  <span>0:00</span>
+              {!selectedVideo.videoUrl && (
+                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between text-white/80 text-sm">
+                  <div className="flex items-center gap-4">
+                    <Play className="w-5 h-5 fill-current" />
+                    <span>0:00</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Volume2 className="w-5 h-5 cursor-pointer hover:text-white" />
+                    <Maximize className="w-5 h-5 cursor-pointer hover:text-white" />
+                    <MoreVertical className="w-5 h-5 cursor-pointer hover:text-white" />
+                  </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <Volume2 className="w-5 h-5 cursor-pointer hover:text-white" />
-                  <Maximize className="w-5 h-5 cursor-pointer hover:text-white" />
-                  <MoreVertical className="w-5 h-5 cursor-pointer hover:text-white" />
-                </div>
-              </div>
+              )}
             </div>
             
             <div className="p-6 md:p-8 overflow-y-auto">
