@@ -1,61 +1,15 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
 import { Link } from 'react-router'
 import { FadeIn } from '../components/FadeIn'
-
-const rightsSections = [
-  {
-    id: 'police',
-    title: 'When Interacting with Police or Immigration Agents',
-    bullets: [
-      'You have the right to remain silent. You do not have to answer questions about your immigration status.',
-      'You have the right to refuse a search of yourself, your car, or your home without a warrant.',
-      'You have the right to ask for a lawyer. Say: "I want to speak with a lawyer."',
-      'You have the right to refuse to sign any documents without speaking to a lawyer first.',
-      'Do not run away, lie, or provide false documents. Stay calm and polite.',
-      'If you are arrested, you have the right to make a phone call.',
-    ],
-  },
-  {
-    id: 'ice',
-    title: 'If ICE Comes to Your Home',
-    bullets: [
-      'ICE cannot enter your home without a warrant signed by a judge. Ask them to slide the warrant under the door.',
-      'You have the right to remain silent. Do not open the door unless they show a valid judicial warrant.',
-      'Do not sign any documents without speaking to a lawyer first.',
-      'If ICE enters without permission, say: "I do not consent to this search."',
-      'Prepare a family safety plan: Know who will care for children if a family member is detained.',
-      'Keep important documents in a safe, accessible place.',
-      'Memorize important phone numbers, including your lawyer\'s number.',
-    ],
-  },
-  {
-    id: 'documents',
-    title: 'Carrying Documents Safely',
-    bullets: [
-      'Carry copies of your important documents, not originals. Keep originals in a safe place at home.',
-      'Important documents include: passport, I-94, work permit, driver\'s license, court papers.',
-      'Make digital copies and store them securely (cloud storage, email to trusted family).',
-      'Do not carry false documents — this can lead to serious legal consequences.',
-      'If you have a valid work permit or driver\'s license, carry it with you.',
-      'Consider carrying a "Know Your Rights" card (download below) to hand to officers.',
-    ],
-  },
-]
-
-const downloadCards = [
-  { label: 'English', lang: 'en' },
-  { label: 'دری (Dari)', lang: 'dari', dir: 'rtl' as const },
-  { label: 'پښتو (Pashto)', lang: 'pashto', dir: 'rtl' as const },
-  { label: 'ازبکی (Uzbek)', lang: 'uzbek' },
-]
 
 function AccordionItem({
   section,
   isOpen,
   onToggle,
 }: {
-  section: (typeof rightsSections)[0]
+  section: { id: string; title: string; bullets: string[] }
   isOpen: boolean
   onToggle: () => void
 }) {
@@ -97,8 +51,56 @@ function AccordionItem({
 }
 
 export default function RightsPage() {
+  const { t } = useTranslation('rights')
   const [openSection, setOpenSection] = useState<string>('police')
   const [playingVideo, setPlayingVideo] = useState<string | null>(null)
+
+  const rightsSections = [
+    {
+      id: 'police',
+      title: t('sections.police.title'),
+      bullets: [
+        t('sections.police.bullet1'),
+        t('sections.police.bullet2'),
+        t('sections.police.bullet3'),
+        t('sections.police.bullet4'),
+        t('sections.police.bullet5'),
+        t('sections.police.bullet6'),
+      ],
+    },
+    {
+      id: 'ice',
+      title: t('sections.ice.title'),
+      bullets: [
+        t('sections.ice.bullet1'),
+        t('sections.ice.bullet2'),
+        t('sections.ice.bullet3'),
+        t('sections.ice.bullet4'),
+        t('sections.ice.bullet5'),
+        t('sections.ice.bullet6'),
+        t('sections.ice.bullet7'),
+      ],
+    },
+    {
+      id: 'documents',
+      title: t('sections.documents.title'),
+      bullets: [
+        t('sections.documents.bullet1'),
+        t('sections.documents.bullet2'),
+        t('sections.documents.bullet3'),
+        t('sections.documents.bullet4'),
+        t('sections.documents.bullet5'),
+        t('sections.documents.bullet6'),
+      ],
+    },
+  ]
+
+  const downloadCards = [
+    { label: 'English', lang: 'en' },
+    { label: 'دری (Dari)', lang: 'dari', dir: 'rtl' as const },
+    { label: 'پښتو (Pashto)', lang: 'pashto', dir: 'rtl' as const },
+    { label: 'ازبکی (Uzbek)', lang: 'uzbek' },
+  ]
 
   return (
     <>
@@ -120,12 +122,12 @@ export default function RightsPage() {
         </div>
         <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">EMPOWERMENT</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              Know Your Rights
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/85 max-w-2xl">
-              Understanding your rights is the first step toward protecting yourself and your family.
+              {t('description')}
             </p>
           </div>
         </div>
@@ -136,10 +138,10 @@ export default function RightsPage() {
         <div className="container-main max-w-4xl">
           <div className="mb-8">
             <h2 id="rights-heading" className="font-display text-heading-1 text-forest mb-2">
-              Your Rights in Key Situations
+              {t('accordionHeading')}
             </h2>
             <p className="text-body text-forest-light">
-              Click each topic to learn more about your rights
+              {t('accordionSubtext')}
             </p>
           </div>
 
@@ -165,10 +167,10 @@ export default function RightsPage() {
         <div className="container-main">
           <div className="text-center mb-8">
             <h2 id="download-heading" className="font-display text-heading-1 text-forest mb-2">
-              Download Your Rights Cards
+              {t('downloads.heading')}
             </h2>
             <p className="text-body text-forest-light max-w-xl mx-auto">
-              Wallet-size cards you can carry with you. Available in multiple languages.
+              {t('downloads.subtext')}
             </p>
           </div>
 
@@ -183,11 +185,11 @@ export default function RightsPage() {
                     {card.label}
                   </h3>
                   <p className="text-sm text-forest-light">
-                    Download cards coming soon. Please check back or{' '}
+                    {t('downloads.comingSoon')}{' '}
                     <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors underline underline-offset-4">
-                      contact us
+                      {t('downloads.contactUs')}
                     </Link>{' '}
-                    for a copy.
+                    {t('downloads.forCopy')}
                   </p>
                 </div>
               </FadeIn>
@@ -201,10 +203,10 @@ export default function RightsPage() {
         <div className="container-main">
           <div className="mb-8">
             <h2 id="video-heading" className="font-display text-heading-1 text-forest mb-2">
-              Video Resources
+              {t('videos.heading')}
             </h2>
             <p className="text-body text-forest-light">
-              Learn from community leaders and those who have been through the process
+              {t('videos.subtext')}
             </p>
           </div>
 
@@ -221,7 +223,7 @@ export default function RightsPage() {
                   <button
                     onClick={() => setPlayingVideo(playingVideo === 'community' ? null : 'community')}
                     className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label={playingVideo === 'community' ? 'Pause video' : 'Play community leaders video'}
+                    aria-label={playingVideo === 'community' ? t('videos.pauseCommunity') : t('videos.playCommunity')}
                   >
                     {playingVideo === 'community' ? (
                       <Pause className="w-6 h-6 text-white" aria-hidden="true" />
@@ -232,10 +234,10 @@ export default function RightsPage() {
                 </div>
                 <div className="p-5 md:p-6 flex-grow">
                   <h3 className="font-semibold text-heading-4 text-forest mb-1">
-                    Community Leaders Speak
+                    {t('videos.community.title')}
                   </h3>
                   <p className="text-body-sm text-forest-light">
-                    Hear from Afghan community leaders about your rights and resources in Phoenix.
+                    {t('videos.community.desc')}
                   </p>
                 </div>
               </div>
@@ -253,7 +255,7 @@ export default function RightsPage() {
                   <button
                     onClick={() => setPlayingVideo(playingVideo === 'clients' ? null : 'clients')}
                     className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label={playingVideo === 'clients' ? 'Pause video' : 'Play client stories video'}
+                    aria-label={playingVideo === 'clients' ? t('videos.pauseClients') : t('videos.playClients')}
                   >
                     {playingVideo === 'clients' ? (
                       <Pause className="w-6 h-6 text-white" aria-hidden="true" />
@@ -264,10 +266,10 @@ export default function RightsPage() {
                 </div>
                 <div className="p-5 md:p-6 flex-grow">
                   <h3 className="font-semibold text-heading-4 text-forest mb-1">
-                    Client Experiences
+                    {t('videos.clients.title')}
                   </h3>
                   <p className="text-body-sm text-forest-light">
-                    Learn how understanding their rights helped these families build a new life.
+                    {t('videos.clients.desc')}
                   </p>
                 </div>
               </div>
@@ -283,7 +285,7 @@ export default function RightsPage() {
             <Info className="w-5 h-5 text-amber flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="text-body-sm text-forest-light leading-relaxed">
-                This information is for educational purposes only and does not constitute legal advice. Every situation is different. Please consult with a qualified immigration attorney for advice about your specific circumstances.
+                {t('disclaimer')}
               </p>
             </div>
           </div>

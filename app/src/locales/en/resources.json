@@ -1,5 +1,32 @@
 {
-  "label": "Community Resources",
-  "heading": "Find the Support You Need",
-  "description": "Free and low-cost services available to Afghan families in the Phoenix area."
+  "label": "RESOURCES",
+  "heading": "Community Resources",
+  "description": "Essential services and programs to support you and your family in Phoenix.",
+  "getHelp": "Get Help",
+  "contactUs": "Contact Us",
+  "categories": {
+    "english": {
+      "tag": "Education",
+      "title": "English Classes",
+      "desc": "ESL programs, GED prep, and school enrollment help for children and adults.",
+      "item1": "ESL programs for all levels",
+      "item2": "GED preparation classes",
+      "item3": "School enrollment help"
+    },
+    "mental": {
+      "tag": "Wellness",
+      "title": "Mental Health & Wellness",
+      "desc": "Counseling, support groups, and trauma-informed care for individuals and families."
+    },
+    "food": {
+      "tag": "Basic Needs",
+      "title": "Food Banks",
+      "desc": "Food bank locations, SNAP enrollment assistance, and halal food resources."
+    },
+    "health": {
+      "tag": "Healthcare",
+      "title": "Health Clinics",
+      "desc": "Free and low-cost clinics, AHCCCS enrollment assistance, and dental care referrals."
+    }
+  }
 }

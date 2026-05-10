@@ -1,62 +1,62 @@
 {
-  "label": "[PS] Get in Touch",
-  "heading": "[PS] We're Here to Help",
-  "description": "[PS] Reach out in Dari, Pashto, or English. All conversations are confidential.",
+  "label": "Get in Touch",
+  "heading": "We're Here to Help",
+  "description": "Reach out in Dari, Pashto, or English. All conversations are confidential.",
   "details": {
     "phone": {
-      "label": "[PS] Phone",
-      "value": "[PS] 480.416.2333"
+      "label": "Phone",
+      "value": "480.416.2333"
     },
     "whatsapp": {
-      "label": "[PS] WhatsApp",
-      "value": "[PS] +1 480.416.2333"
+      "label": "WhatsApp",
+      "value": "+1 480.416.2333"
     },
     "email": {
-      "label": "[PS] Email",
-      "value": "[PS] Dpeshtaz@cc-az.org"
+      "label": "Email",
+      "value": "Dpeshtaz@cc-az.org"
     },
     "address": {
-      "label": "[PS] Address",
-      "value": "[PS] 5151 N 19th Ave, Phoenix AZ 85015"
+      "label": "Address",
+      "value": "5151 N 19th Ave, Phoenix AZ 85015"
     }
   },
-  "mapCaption": "[PS] CC-AZ Office Location",
-  "mapTitle": "[PS] CC-AZ Office Location",
+  "mapCaption": "CC-AZ Office Location",
+  "mapTitle": "CC-AZ Office Location",
   "form": {
     "name": {
-      "label": "[PS] Your Name",
-      "placeholder": "[PS] Your Name"
+      "label": "Your Name",
+      "placeholder": "Your Name"
     },
     "phone": {
-      "label": "[PS] Phone Number",
-      "placeholder": "[PS] Phone Number"
+      "label": "Phone Number",
+      "placeholder": "Phone Number"
     },
     "email": {
-      "label": "[PS] Email Address",
-      "placeholder": "[PS] Email Address"
+      "label": "Email Address",
+      "placeholder": "Email Address"
     },
     "message": {
-      "label": "[PS] Your Message",
-      "placeholder": "[PS] Your Message"
+      "label": "Your Message",
+      "placeholder": "Your Message"
     },
-    "submit": "[PS] Send Message",
-    "submitting": "[PS] Sending..."
+    "submit": "Send Message",
+    "submitting": "Sending..."
   },
   "validation": {
-    "nameMin": "[PS] Name must be at least 2 characters",
-    "phoneRequired": "[PS] Phone is required",
-    "phoneInvalid": "[PS] Please enter a valid phone number",
-    "emailInvalid": "[PS] Please enter a valid email address",
-    "messageMin": "[PS] Message must be at least 10 characters",
-    "messageMax": "[PS] Message must be at most 2000 characters"
+    "nameMin": "Name must be at least 2 characters",
+    "phoneRequired": "Phone is required",
+    "phoneInvalid": "Please enter a valid phone number",
+    "emailInvalid": "Please enter a valid email address",
+    "messageMin": "Message must be at least 10 characters",
+    "messageMax": "Message must be at most 2000 characters"
   },
   "toast": {
-    "rateLimit": "[PS] Too many submissions. Please try again later.",
-    "error": "[PS] Failed to send. Please try again or call us.",
-    "success": "[PS] Thank you for your message. We will get back to you soon."
+    "rateLimit": "Too many submissions. Please try again later.",
+    "error": "Failed to send. Please try again or call us.",
+    "success": "Thank you for your message. We will get back to you soon."
   },
   "success": {
-    "title": "[PS] Thank You",
-    "message": "[PS] Your message has been sent. We'll get back to you soon."
+    "title": "Thank You",
+    "message": "Your message has been sent. We'll get back to you soon."
   }
 }

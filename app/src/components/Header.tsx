@@ -1,21 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Menu, X, Phone } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 
-const navItems = [
-  { label: 'Immigration Help', path: '/immigration' },
-  { label: 'Community Resources', path: '/resources' },
-  { label: 'Know Your Rights', path: '/rights' },
-  { label: 'Events', path: '/events' },
-  { label: 'Stories', path: '/stories' },
-  { label: 'Contact', path: '/contact' },
-]
-
 export default function Header() {
+  const { t } = useTranslation('common')
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+
+  const navItems = [
+    { label: t('nav.immigrationHelp'), path: '/immigration' },
+    { label: t('nav.communityResources'), path: '/resources' },
+    { label: t('nav.knowYourRights'), path: '/rights' },
+    { label: t('nav.events'), path: '/events' },
+    { label: t('nav.stories'), path: '/stories' },
+    { label: t('nav.contact'), path: '/contact' },
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -35,7 +37,7 @@ export default function Header() {
   return (
     <>
       <a href="#main-content" className="skip-link">
-        Skip to main content
+        {t('skipLink')}
       </a>
       <header
         className={`fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-500 ease-in-out ${
@@ -111,7 +113,7 @@ export default function Header() {
                 }`}
               >
                 <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
-                Get Help Now
+                {t('nav.getHelp')}
               </Link>
 
               {/* Mobile menu button */}
@@ -122,7 +124,7 @@ export default function Header() {
                 }`}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
-                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-label={mobileOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               >
                 {mobileOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
               </button>
@@ -146,14 +148,14 @@ export default function Header() {
             <button
               onClick={() => setMobileOpen(false)}
               className="absolute top-5 right-5 p-2 text-cream hover:text-amber transition-colors focus:outline-none focus:ring-2 focus:ring-amber rounded-md"
-              aria-label="Close menu"
+              aria-label={t('nav.closeMenu')}
             >
               <X className="w-6 h-6" />
             </button>
 
             <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
               <div className="mb-4">
-                <p className="text-cream/50 text-xs font-semibold uppercase tracking-wider mb-2 px-4">Navigation</p>
+                <p className="text-cream/50 text-xs font-semibold uppercase tracking-wider mb-2 px-4">{t('mobileNavigation')}</p>
                 {navItems.map((item) => {
                   const isActive = location.pathname === item.path
                   return (
@@ -176,7 +178,7 @@ export default function Header() {
             </nav>
 
             <div className="mt-6 pt-6 border-t border-forest-light/30">
-              <p className="text-cream/60 text-sm mb-3">Select Language</p>
+              <p className="text-cream/60 text-sm mb-3">{t('selectLanguage')}</p>
               <LanguageSwitcher variant="dark" />
             </div>
 
@@ -186,7 +188,7 @@ export default function Header() {
               onClick={() => setMobileOpen(false)}
             >
               <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-              Get Help Now
+              {t('nav.getHelp')}
             </Link>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Quote, X, Play, Volume2, Maximize, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router'
 import { FadeIn } from '../components/FadeIn'
@@ -44,12 +45,6 @@ const stories: Story[] = [
       },
     ],
   },
-]
-
-const filters: { label: string; value: StoryFilter }[] = [
-  { label: 'All Stories', value: 'all' },
-  { label: 'Client Stories', value: 'clients' },
-  { label: 'Community Leaders', value: 'leaders' },
 ]
 
 function TextStoryCarousel({ story }: { story: Story }) {
@@ -204,6 +199,7 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
 }
 
 export default function StoriesPage() {
+  const { t } = useTranslation('testimonials')
   const [activeFilter, setActiveFilter] = useState<StoryFilter>('all')
   const [selectedVideo, setSelectedVideo] = useState<Story | null>(null)
   
@@ -247,12 +243,12 @@ export default function StoriesPage() {
         </div>
         <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">STORIES</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              Community Impact
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/85 max-w-2xl">
-              Real stories from Afghan families who have found support and success in Phoenix.
+              {t('description')}
             </p>
           </div>
         </div>
@@ -262,18 +258,18 @@ export default function StoriesPage() {
       <section className="pt-8 pb-4 bg-cream">
         <div className="container-main">
           <div className="flex flex-wrap gap-3 justify-center" role="group" aria-label="Story filters">
-            {filters.map((filter) => (
+            {(['all', 'clients', 'leaders'] as StoryFilter[]).map((filter) => (
               <button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value)}
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
                 className={`px-5 py-2.5 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-amber ${
-                  activeFilter === filter.value
+                  activeFilter === filter
                     ? 'bg-amber text-white'
                     : 'bg-white text-forest border border-warm-sand/60 hover:bg-cream-dark'
                 }`}
-                aria-pressed={activeFilter === filter.value}
+                aria-pressed={activeFilter === filter}
               >
-                {filter.label}
+                {t(`filters.${filter}`)}
               </button>
             ))}
           </div>
@@ -302,17 +298,17 @@ export default function StoriesPage() {
       <section className="section-padding bg-forest text-center" aria-label="Get help">
         <div className="container-main max-w-2xl">
           <h2 className="font-display text-heading-1 md:text-heading-1 text-white mb-4">
-            Be Part of Our Story
+            {t('bottomCta.heading')}
           </h2>
           <p className="text-body-lg text-white/80 mb-8">
-            Whether you need help or want to support our community, we'd love to hear from you.
+            {t('bottomCta.text')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="btn-primary">
-              Get Help Now
+              {t('bottomCta.primary')}
             </Link>
             <Link to="/contact" className="btn-white-outline">
-              Contact Us
+              {t('bottomCta.secondary')}
             </Link>
           </div>
         </div>

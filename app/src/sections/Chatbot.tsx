@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router'
 import { MessageCircle, X, User, Send } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useChatbotKB } from '../hooks/useChatbotKB'
@@ -22,6 +23,7 @@ interface Message {
 export default function Chatbot() {
   const { t } = useTranslation('chatbot')
   const { lang } = useLanguage()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     { text: t('welcome'), from: 'bot' },
@@ -38,37 +40,37 @@ export default function Chatbot() {
     () => [
       {
         label: t('actions.immigration.label'),
-        section: '#services',
+        section: '/immigration',
         response: t('actions.immigration.response'),
         ctaLabel: t('actions.immigration.cta'),
       },
       {
         label: t('actions.community.label'),
-        section: '#resources',
+        section: '/resources',
         response: t('actions.community.response'),
         ctaLabel: t('actions.community.cta'),
       },
       {
         label: t('actions.rights.label'),
-        section: '#rights',
+        section: '/rights',
         response: t('actions.rights.response'),
         ctaLabel: t('actions.rights.cta'),
       },
       {
         label: t('actions.events.label'),
-        section: '#events',
+        section: '/events',
         response: t('actions.events.response'),
         ctaLabel: t('actions.events.cta'),
       },
       {
         label: t('actions.contact.label'),
-        section: '#contact',
+        section: '/contact',
         response: t('actions.contact.response'),
         ctaLabel: t('actions.contact.cta'),
       },
       {
         label: t('actions.speak.label'),
-        section: '#contact',
+        section: '/contact',
         response: t('actions.speak.response'),
         ctaLabel: t('actions.speak.cta'),
       },
@@ -105,8 +107,7 @@ export default function Chatbot() {
 
   const handleKBAction = (href: string) => {
     setOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    navigate(href)
   }
 
   const handleCandidateSelect = (scoredEntry: ScoredEntry) => {

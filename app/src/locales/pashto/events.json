@@ -1,10 +1,10 @@
 {
-  "label": "[PS] Upcoming Events",
-  "heading": "[PS] Events & Gatherings",
+  "label": "Upcoming Events",
+  "heading": "Events & Gatherings",
   "categories": {
-    "workshop": "[PS] Workshop",
-    "legal": "[PS] Legal Clinic",
-    "cultural": "[PS] Cultural",
-    "holiday": "[PS] Holiday"
+    "workshop": "Workshop",
+    "legal": "Legal Clinic",
+    "cultural": "Cultural",
+    "holiday": "Holiday"
   }
 }

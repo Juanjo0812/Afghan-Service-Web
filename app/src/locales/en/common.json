@@ -9,10 +9,14 @@
     "contact": "Contact",
     "getHelp": "Get Help Now",
     "openMenu": "Open menu",
+    "stories": "Stories",
     "closeMenu": "Close menu"
   },
+  "mobileNavigation": "Navigation",
+  "selectLanguage": "Select Language",
   "footer": {
     "logo": "Afghan Support",
+    "organization": "A program of Catholic Charities Community Services, Arizona",
     "tagline": "Serving Afghan families in Phoenix since 2021.",
     "quickLinks": "Quick Links",
     "home": "Home",
@@ -20,19 +24,33 @@
     "resources": "Resources",
     "events": "Events",
     "contact": "Contact",
+    "stories": "Stories",
     "languages": "Languages",
     "english": "English",
     "dari": "دری (Dari)",
     "pashto": "پښتو (Pashto)",
     "uzbek": "O'zbek (Uzbek)",
+    "resourcesHeading": "Resources",
+    "legal": "Legal",
+    "legalDisclaimer": "This information is for educational purposes only and does not constitute legal advice.",
+    "bottomText": "Catholic Charities AZ — Serving Arizona since 1933",
     "copyright": "© 2026 Afghan Support. All rights reserved."
   },
   "quickAccess": {
     "immigrationHelp": "Immigration Help",
     "knowYourRights": "Know Your Rights",
     "findResources": "Find Resources",
-    "upcomingEvents": "Upcoming Events"
+    "upcomingEvents": "Upcoming Events",
+    "immigrationDesc": "Free assistance with asylum, work permits, and legal status",
+    "rightsDesc": "Learn your rights when interacting with police or ICE",
+    "resourcesDesc": "English classes, food banks, health clinics, and more",
+    "eventsDesc": "Workshops, legal clinics, and cultural gatherings"
   },
+  "home": {
+    "howCanWeHelp": "How Can We Help?",
+    "freeServices": "Free services and support for Afghan families"
+  },
+  "learnMore": "Learn more",
   "skipLink": "Skip to main content",
   "chatbotFallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
 }

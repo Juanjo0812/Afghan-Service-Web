@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
@@ -24,39 +25,40 @@ function useScrollReveal() {
   return ref
 }
 
-const quickCards = [
-  {
-    icon: Briefcase,
-    title: 'Immigration Help',
-    description: 'Free assistance with asylum, work permits, and legal status',
-    path: '/immigration',
-  },
-  {
-    icon: Shield,
-    title: 'Know Your Rights',
-    description: 'Learn your rights when interacting with police or ICE',
-    path: '/rights',
-  },
-  {
-    icon: Compass,
-    title: 'Find Resources',
-    description: 'English classes, food banks, health clinics, and more',
-    path: '/resources',
-  },
-  {
-    icon: Calendar,
-    title: 'Upcoming Events',
-    description: 'Workshops, legal clinics, and cultural gatherings',
-    path: '/events',
-  },
-]
-
 export default function HomePage() {
+  const { t } = useTranslation(['common', 'hero', 'about', 'events'])
   const heroRef = useScrollReveal()
   const cardsRef = useScrollReveal()
   const aboutRef = useScrollReveal()
   const eventRef = useScrollReveal()
   const ctaRef = useScrollReveal()
+
+  const quickCards = [
+    {
+      icon: Briefcase,
+      title: t('quickAccess.immigrationHelp', { ns: 'common' }),
+      description: t('quickAccess.immigrationDesc', { ns: 'common' }),
+      path: '/immigration',
+    },
+    {
+      icon: Shield,
+      title: t('quickAccess.knowYourRights', { ns: 'common' }),
+      description: t('quickAccess.rightsDesc', { ns: 'common' }),
+      path: '/rights',
+    },
+    {
+      icon: Compass,
+      title: t('quickAccess.findResources', { ns: 'common' }),
+      description: t('quickAccess.resourcesDesc', { ns: 'common' }),
+      path: '/resources',
+    },
+    {
+      icon: Calendar,
+      title: t('quickAccess.upcomingEvents', { ns: 'common' }),
+      description: t('quickAccess.eventsDesc', { ns: 'common' }),
+      path: '/events',
+    },
+  ]
 
   return (
     <>
@@ -90,23 +92,23 @@ export default function HomePage() {
           <div className="max-w-3xl flex flex-col items-center">
             <FadeIn delay={300} duration={1200}>
               <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight">
-                Welcome Home
+                {t('title', { ns: 'hero' })}
               </h1>
             </FadeIn>
             <FadeIn delay={1000} duration={1000}>
               <p className="text-lg md:text-xl text-white/90 mb-2 font-arabic" dir="rtl">
-                به خانه خوش آمدید — خوش آمدید به فینکس
+                {t('dariTitle', { ns: 'hero' })} — خوش آمدید به فینکس
               </p>
             </FadeIn>
             <FadeIn delay={1700} duration={1000}>
               <p className="text-body-lg text-white/80 mb-8 max-w-lg">
-                Free, confidential support for Afghan families in Phoenix
+                {t('subtitle', { ns: 'hero' })}
               </p>
             </FadeIn>
             <FadeIn delay={2400} duration={1000}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
                 <Link to="/rights" className="btn-primary text-center">
-                  Learn About Your Rights
+                  {t('ctaRights', { ns: 'hero' })}
                 </Link>
               </div>
             </FadeIn>
@@ -119,10 +121,10 @@ export default function HomePage() {
         <div className="container-main opacity-0" ref={cardsRef}>
           <div className="text-center mb-10 md:mb-12">
             <h2 id="quick-access-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-3">
-              How Can We Help?
+              {t('home.howCanWeHelp', { ns: 'common' })}
             </h2>
             <p className="text-body-lg text-forest-light max-w-xl mx-auto">
-              Free services and support for Afghan families
+              {t('home.freeServices', { ns: 'common' })}
             </p>
           </div>
 
@@ -145,7 +147,7 @@ export default function HomePage() {
                       {card.description}
                     </p>
                     <span className="inline-flex items-center gap-1 mt-4 text-amber text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      Learn more <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                      {t('learnMore', { ns: 'common' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
                     </span>
                   </Link>
                 </FadeIn>
@@ -160,18 +162,18 @@ export default function HomePage() {
         <div className="container-main opacity-0" ref={aboutRef}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <span className="label-text block mb-3">WHO WE ARE</span>
+              <span className="label-text block mb-3">{t('label', { ns: 'about' })}</span>
               <h2 id="about-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-5">
-                Supporting Afghan Families in Phoenix
+                {t('homeHeadline', { ns: 'about' })}
               </h2>
               <p className="text-body-lg text-forest-light mb-4 leading-relaxed">
-                We support Afghan individuals and families through legal services, community resources, and integration support. Our team speaks your language and understands your journey. All services are free and confidential.
+                {t('body1', { ns: 'about' })}
               </p>
               <p className="text-body text-forest-light mb-6 leading-relaxed">
-                A program of Catholic Charities Community Services, Arizona &mdash; serving our community with dignity and compassion since 1933.
+                {t('body2', { ns: 'about' })}
               </p>
               <Link to="/immigration" className="text-link inline-flex items-center gap-1">
-                Learn More About Our Services <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                {t('learnMoreServices', { ns: 'about' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
             <div className="relative hidden lg:block">
@@ -202,7 +204,7 @@ export default function HomePage() {
       <section className="section-padding bg-cream" aria-labelledby="event-heading">
         <div className="container-main max-w-3xl opacity-0" ref={eventRef}>
           <div className="text-center mb-10">
-            <span className="label-text">UPCOMING EVENT</span>
+            <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
           </div>
           <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
             {/* Decorative blob */}
@@ -215,7 +217,7 @@ export default function HomePage() {
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
                 <span className="text-label font-bold uppercase tracking-wider text-amber">
-                  Featured Event
+                  {t('featuredBadge', { ns: 'events' })}
                 </span>
               </div>
 
@@ -259,7 +261,7 @@ export default function HomePage() {
                 to="/events"
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border-2 border-forest text-forest font-semibold rounded-md transition-all duration-250 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2 min-h-[48px] text-base"
               >
-                Register for Workshop
+                {t('registerCta', { ns: 'events' })}
               </Link>
             </div>
           </div>
@@ -270,16 +272,16 @@ export default function HomePage() {
       <section className="section-padding bg-forest text-center" aria-label="Get help">
         <div className="container-main max-w-2xl opacity-0" ref={ctaRef}>
           <h2 className="font-display text-heading-1 md:text-display-l text-white mb-4">
-            Need help? We are here for you.
+            {t('ctaText', { ns: 'hero' })}
           </h2>
           <p className="text-body-lg text-white/80 mb-8">
-            Our team speaks Dari, Pashto, and Uzbek. All services are free and confidential.
+            {t('ctaSubtext', { ns: 'hero' })}
           </p>
           <Link to="/contact" className="btn-primary text-lg px-10 py-4 inline-flex">
-            Get Help Now
+            {t('cta', { ns: 'hero' })}
           </Link>
           <p className="mt-5 text-body text-white/70">
-            Or call us:{" "}
+            {t('orCallUs', { ns: 'hero' })}{' '}
             <a href="tel:4804162333" className="text-amber hover:underline focus:outline-none focus:ring-2 focus:ring-amber rounded-md px-1">
               480.416.2333
             </a>

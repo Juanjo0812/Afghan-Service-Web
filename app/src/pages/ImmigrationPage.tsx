@@ -1,42 +1,40 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Shield, Briefcase, Clock, CreditCard, Landmark, Phone, Mail, Clock3 } from 'lucide-react'
 
-const services = [
-  {
-    icon: Shield,
-    title: 'Asylum applications',
-    description:
-      'We provide legal assistance for asylum seekers, including application preparation, documentation support, and representation guidance. Our experienced team will walk you through every step of the process.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Work permit assistance',
-    description:
-      'Get help applying for and renewing work permits (EAD). We assist with Form I-765 preparation, required documentation, and filing procedures to help you obtain authorization to work legally.',
-  },
-  {
-    icon: Clock,
-    title: 'TPS (Temporary Protected Ptatus)',
-    description:
-      'Assistance with Temporary Protected Status applications and renewals. We help you understand eligibility requirements, prepare forms, and meet deadlines to maintain your protected status.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Green card & family reunification',
-    description:
-      'Support for green card applications and family reunification petitions. We guide you through the complex process of bringing family members to the United States.',
-  },
-  {
-    icon: Landmark,
-    title: 'Afghan adjustment act assistance',
-    description:
-      'Specialized assistance for Afghan Adjustment Act applications. We help eligible Afghan nationals navigate this pathway to lawful permanent residence.',
-  },
-]
-
-const languages = ['English', 'پښتو (Pashto)', 'دری (Dari)', 'ازبکی (Uzbek)']
-
 export default function ImmigrationPage() {
+  const { t } = useTranslation('immigration-help')
+
+  const services = [
+    {
+      icon: Shield,
+      titleKey: 'services.asylum.title',
+      descriptionKey: 'services.asylum.description',
+    },
+    {
+      icon: Briefcase,
+      titleKey: 'services.workPermit.title',
+      descriptionKey: 'services.workPermit.description',
+    },
+    {
+      icon: Clock,
+      titleKey: 'services.tps.title',
+      descriptionKey: 'services.tps.description',
+    },
+    {
+      icon: CreditCard,
+      titleKey: 'services.greenCard.title',
+      descriptionKey: 'services.greenCard.description',
+    },
+    {
+      icon: Landmark,
+      titleKey: 'services.adjustmentAct.title',
+      descriptionKey: 'services.adjustmentAct.description',
+    },
+  ]
+
+  const languages = ['English', 'پښتو (Pashto)', 'دری (Dari)', 'ازبکی (Uzbek)']
+
   return (
     <>
       {/* Page Header */}
@@ -57,12 +55,12 @@ export default function ImmigrationPage() {
         </div>
         <div className="relative container-main pt-36 pb-8 lg:pt-48 lg:pb-10">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">FREE SERVICES</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              Free Immigration Assistance for Afghan Families in Phoenix
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/85 max-w-2xl">
-              All services are free, confidential, and available in Dari, Pashto, Uzbek, and English.
+              {t('subtitle')}
             </p>
           </div>
         </div>
@@ -73,10 +71,10 @@ export default function ImmigrationPage() {
         <div className="container-main">
           <div className="mb-10">
             <h2 id="services-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-2">
-              Our Services
+              {t('servicesHeading')}
             </h2>
             <p className="text-body text-forest-light">
-              Click on any service to learn more or request assistance
+              {t('servicesSubtext')}
             </p>
           </div>
 
@@ -85,7 +83,7 @@ export default function ImmigrationPage() {
               const Icon = service.icon
               return (
                 <div
-                  key={service.title}
+                  key={service.titleKey}
                   className="w-full md:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)] bg-white rounded-xl p-6 md:p-8 shadow-card border border-warm-sand/50 border-l-4 border-l-amber transition-all duration-300 ease-out hover:bg-cream-dark hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] hover:border-l-8 hover:-translate-y-2 cursor-pointer"
                 >
                   <div className="flex items-center gap-3 mb-4">
@@ -93,11 +91,11 @@ export default function ImmigrationPage() {
                       <Icon className="w-5 h-5 text-forest" aria-hidden="true" />
                     </div>
                     <h3 className="font-display text-heading-3 text-forest">
-                      {service.title}
+                      {t(service.titleKey)}
                     </h3>
                   </div>
                   <p className="text-body text-forest-light leading-relaxed">
-                    {service.description}
+                    {t(service.descriptionKey)}
                   </p>
                 </div>
               )
@@ -113,7 +111,7 @@ export default function ImmigrationPage() {
             {/* Languages */}
             <div>
               <h2 id="contact-heading" className="font-display text-heading-2 text-forest mb-5">
-                Languages Available
+                {t('languagesHeading')}
               </h2>
               <div className="flex flex-wrap gap-3 mb-5">
                 {languages.map((lang) => (
@@ -126,18 +124,18 @@ export default function ImmigrationPage() {
                 ))}
               </div>
               <p className="text-body text-forest-light leading-relaxed">
-                Our staff speaks your language. Interpretation services are also available.
+                {t('languagesSubtext')}
               </p>
             </div>
 
             {/* Contact Card */}
             <div className="bg-white rounded-xl p-6 md:p-8 shadow-card border border-warm-sand/50">
               <h2 className="font-display text-heading-2 text-forest mb-5">
-                Contact Our Immigration Team
+                {t('contactHeading')}
               </h2>
               <div className="space-y-5">
                 <div>
-                  <p className="font-semibold text-forest mb-1">Daoud &mdash; Immigration Case Manager</p>
+                  <p className="font-semibold text-forest mb-1">{t('contact.name')} &mdash; {t('contact.role')}</p>
                 </div>
                 <a
                   href="tel:4804162333"
@@ -155,10 +153,10 @@ export default function ImmigrationPage() {
                 </a>
                 <div className="flex items-center gap-3 text-forest-light">
                   <Clock3 className="w-5 h-5 text-olive" aria-hidden="true" />
-                  <span className="text-body-sm">Monday&ndash;Friday, 9:00 AM&ndash;5:00 PM</span>
+                  <span className="text-body-sm">{t('contact.hours')}</span>
                 </div>
                 <Link to="/contact" className="btn-primary w-full text-center mt-2">
-                  Request a Call Back
+                  {t('contact.cta')}
                 </Link>
               </div>
             </div>

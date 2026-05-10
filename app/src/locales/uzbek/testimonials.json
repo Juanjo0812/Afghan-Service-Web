@@ -1,16 +1,16 @@
 {
-  "label": "[UZ] Community Voices",
-  "heading": "[UZ] Stories That Inspire",
-  "description": "[UZ] Hear from the families and community leaders whose lives were changed through our support.",
+  "label": "Community Voices",
+  "heading": "Stories That Inspire",
+  "description": "Hear from the families and community leaders whose lives were changed through our support.",
   "aria": {
-    "viewTestimonial": "[UZ] View testimonial from {{name}}",
-    "closeTestimonial": "[UZ] Close testimonial",
-    "modalLabel": "[UZ] Testimonial from {{name}}",
-    "previous": "[UZ] Previous",
-    "previousTestimonial": "[UZ] Previous testimonial",
-    "next": "[UZ] Next",
-    "nextTestimonial": "[UZ] Next testimonial",
-    "scrollLeft": "[UZ] Scroll testimonials left",
-    "scrollRight": "[UZ] Scroll testimonials right"
+    "viewTestimonial": "View testimonial from {{name}}",
+    "closeTestimonial": "Close testimonial",
+    "modalLabel": "Testimonial from {{name}}",
+    "previous": "Previous",
+    "previousTestimonial": "Previous testimonial",
+    "next": "Next",
+    "nextTestimonial": "Next testimonial",
+    "scrollLeft": "Scroll testimonials left",
+    "scrollRight": "Scroll testimonials right"
   }
 }

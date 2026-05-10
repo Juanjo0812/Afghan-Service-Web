@@ -1,7 +1,12 @@
 {
-  "label": "Immigration Services",
+  "label": "FREE SERVICES",
   "heading": "Free Immigration Assistance for Afghan Families in Phoenix",
-  "subtitle": "We provide free and confidential immigration legal support for Afghan individuals and families.",
+  "subtitle": "All services are free, confidential, and available in Dari, Pashto, Uzbek, and English.",
+  "servicesHeading": "Our Services",
+  "servicesSubtext": "Click on any service to learn more or request assistance",
+  "languagesHeading": "Languages Available",
+  "languagesSubtext": "Our staff speaks your language. Interpretation services are also available.",
+  "contactHeading": "Contact Our Immigration Team",
   "services": {
     "asylum": {
       "title": "Asylum Applications",
@@ -32,6 +37,8 @@
     "email": "Dpeshtaz@cc-az.org",
     "location": "Phoenix office — in-person or phone appointments",
     "hours": "Monday–Friday | 9 AM – 5 PM",
-    "cta": "Request a Call Back"
+    "cta": "Request a Call Back",
+    "name": "Daoud",
+    "role": "Immigration Case Manager"
   }
 }

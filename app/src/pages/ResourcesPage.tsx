@@ -1,8 +1,11 @@
 import { BookOpen, Heart, Utensils, Stethoscope, Check, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { FadeIn } from '../components/FadeIn'
 
 export default function ResourcesPage() {
+  const { t } = useTranslation('resources')
+
   return (
     <>
       {/* Page Header */}
@@ -23,12 +26,12 @@ export default function ResourcesPage() {
         </div>
         <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">RESOURCES</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              Community Resources
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/85 max-w-2xl">
-              Essential services and programs to support you and your family in Phoenix.
+              {t('description')}
             </p>
           </div>
         </div>
@@ -45,28 +48,28 @@ export default function ResourcesPage() {
                 <div className="p-6 md:p-8 w-full md:w-3/5 flex flex-col">
                   <div className="flex items-center gap-2 mb-3">
                     <BookOpen className="w-5 h-5 text-amber" />
-                    <span className="text-xs font-semibold text-amber uppercase tracking-wider">Education</span>
+                    <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.english.tag')}</span>
                   </div>
-                  <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">English Classes</h2>
+                  <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">{t('categories.english.title')}</h2>
                   <p className="text-forest-light mb-6 flex-grow">
-                    ESL programs, GED prep, and school enrollment help for children and adults.
+                    {t('categories.english.desc')}
                   </p>
                   <div className="space-y-3 mb-8">
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">ESL programs for all levels</span>
+                      <span className="text-sm">{t('categories.english.item1')}</span>
                     </div>
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">GED preparation classes</span>
+                      <span className="text-sm">{t('categories.english.item2')}</span>
                     </div>
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">School enrollment help</span>
+                      <span className="text-sm">{t('categories.english.item3')}</span>
                     </div>
                   </div>
                   <Link to="/contact" className="btn-primary w-full md:w-auto mt-auto">
-                    Get Help
+                    {t('getHelp')}
                   </Link>
                 </div>
               </div>
@@ -77,15 +80,15 @@ export default function ResourcesPage() {
               <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
                 <div className="flex items-center gap-2 mb-3">
                   <Heart className="w-5 h-5 text-amber" />
-                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">Wellness</span>
+                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.mental.tag')}</span>
                 </div>
-                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">Mental Health & Wellness</h3>
+                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.mental.title')}</h3>
                 <p className="text-forest-light mb-6 flex-grow">
-                  Counseling, support groups, and trauma-informed care for individuals and families.
+                  {t('categories.mental.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
                   <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    Contact Us <ArrowRight className="w-4 h-4" />
+                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -96,15 +99,15 @@ export default function ResourcesPage() {
               <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
                 <div className="flex items-center gap-2 mb-3">
                   <Utensils className="w-5 h-5 text-amber" />
-                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">Basic Needs</span>
+                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.food.tag')}</span>
                 </div>
-                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">Food Banks</h3>
+                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.food.title')}</h3>
                 <p className="text-forest-light mb-6 flex-grow">
-                  Food bank locations, SNAP enrollment assistance, and halal food resources.
+                  {t('categories.food.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
                   <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    Contact Us <ArrowRight className="w-4 h-4" />
+                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -115,15 +118,15 @@ export default function ResourcesPage() {
               <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
                 <div className="flex items-center gap-2 mb-3">
                   <Stethoscope className="w-5 h-5 text-amber" />
-                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">Healthcare</span>
+                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.health.tag')}</span>
                 </div>
-                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">Health Clinics</h3>
+                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.health.title')}</h3>
                 <p className="text-forest-light mb-6 flex-grow">
-                  Free and low-cost clinics, AHCCCS enrollment assistance, and dental care referrals.
+                  {t('categories.health.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
                   <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    Contact Us <ArrowRight className="w-4 h-4" />
+                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>

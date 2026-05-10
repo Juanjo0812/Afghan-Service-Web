@@ -1,43 +1,68 @@
 {
-  "label": "Know Your Rights",
+  "label": "EMPOWERMENT",
   "heading": "Know Your Rights",
-  "description": "Understanding your rights is the first step to protecting yourself and your family.",
-  "scenarios": {
+  "description": "Understanding your rights is the first step toward protecting yourself and your family.",
+  "accordionHeading": "Your Rights in Key Situations",
+  "accordionSubtext": "Click each topic to learn more about your rights",
+  "sections": {
     "police": {
       "title": "When Interacting with Police or Immigration Agents",
-      "items": [
-        "You do not have to answer questions about your immigration status.",
-        "You may say: \"I want to remain silent.\"",
-        "You have the right to refuse a search without a warrant.",
-        "Ask for a lawyer before signing anything."
-      ]
+      "bullet1": "You have the right to remain silent. You do not have to answer questions about your immigration status.",
+      "bullet2": "You have the right to refuse a search of yourself, your car, or your home without a warrant.",
+      "bullet3": "You have the right to ask for a lawyer. Say: \"I want to speak with a lawyer.\"",
+      "bullet4": "You have the right to refuse to sign any documents without speaking to a lawyer first.",
+      "bullet5": "Do not run away, lie, or provide false documents. Stay calm and polite.",
+      "bullet6": "If you are arrested, you have the right to make a phone call."
     },
     "ice": {
       "title": "If ICE Comes to Your Home",
-      "items": [
-        "Do NOT open the door without a signed warrant.",
-        "Ask to see it through the window or under the door.",
-        "You have the right to remain silent.",
-        "Have a family safety plan."
-      ]
+      "bullet1": "ICE cannot enter your home without a warrant signed by a judge. Ask them to slide the warrant under the door.",
+      "bullet2": "You have the right to remain silent. Do not open the door unless they show a valid judicial warrant.",
+      "bullet3": "Do not sign any documents without speaking to a lawyer first.",
+      "bullet4": "If ICE enters without permission, say: \"I do not consent to this search.\"",
+      "bullet5": "Prepare a family safety plan: Know who will care for children if a family member is detained.",
+      "bullet6": "Keep important documents in a safe, accessible place.",
+      "bullet7": "Memorize important phone numbers, including your lawyer's number."
     },
     "documents": {
       "title": "Carrying Documents Safely",
-      "items": [
-        "Carry copies, not originals.",
-        "Avoid carrying your passport unless advised.",
-        "Store important documents safely at home."
-      ]
+      "bullet1": "Carry copies of your important documents, not originals. Keep originals in a safe place at home.",
+      "bullet2": "Important documents include: passport, I-94, work permit, driver's license, court papers.",
+      "bullet3": "Make digital copies and store them securely (cloud storage, email to trusted family).",
+      "bullet4": "Do not carry false documents — this can lead to serious legal consequences.",
+      "bullet5": "If you have a valid work permit or driver's license, carry it with you.",
+      "bullet6": "Consider carrying a \"Know Your Rights\" card (download below) to hand to officers."
     }
   },
-  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
+  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. Every situation is different. Please consult with a qualified immigration attorney for advice about your specific circumstances.",
   "lastReviewed": "Last reviewed: May 2026",
   "downloads": {
+    "heading": "Download Your Rights Cards",
+    "subtext": "Wallet-size cards you can carry with you. Available in multiple languages.",
+    "comingSoon": "Download cards coming soon. Please check back or",
+    "contactUs": "contact us",
+    "forCopy": "for a copy.",
     "title": "Know Your Rights Cards",
     "subtitle": "Download wallet-size cards",
     "english": "Download (English)",
     "dari": "Download (Dari)",
     "pashto": "Download (Pashto)",
     "uzbek": "Download (Uzbek)"
+  },
+  "videos": {
+    "heading": "Video Resources",
+    "subtext": "Learn from community leaders and those who have been through the process",
+    "playCommunity": "Play community leaders video",
+    "pauseCommunity": "Pause video",
+    "playClients": "Play client stories video",
+    "pauseClients": "Pause video",
+    "community": {
+      "title": "Community Leaders Speak",
+      "desc": "Hear from Afghan community leaders about your rights and resources in Phoenix."
+    },
+    "clients": {
+      "title": "Client Experiences",
+      "desc": "Learn how understanding their rights helped these families build a new life."
+    }
   }
 }

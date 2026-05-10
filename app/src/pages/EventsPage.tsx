@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
@@ -93,14 +94,6 @@ const events: Event[] = [
     cta: 'Details',
     ctaType: 'text',
   },
-]
-
-const filters: { label: string; value: EventCategory }[] = [
-  { label: 'All Events', value: 'all' },
-  { label: 'Immigration Workshops', value: 'immigration' },
-  { label: 'Legal Clinics', value: 'legal' },
-  { label: 'Cultural Gatherings', value: 'cultural' },
-  { label: 'Afghan Holidays', value: 'holiday' },
 ]
 
 const categoryColors: Record<EventCategory, string> = {
@@ -232,8 +225,17 @@ function CalendarView({ filteredEvents }: { filteredEvents: Event[] }) {
 }
 
 export default function EventsPage() {
+  const { t } = useTranslation('events')
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [activeFilter, setActiveFilter] = useState<EventCategory>('all')
+
+  const filters: { label: string; value: EventCategory }[] = [
+    { label: t('filters.all'), value: 'all' },
+    { label: t('filters.immigration'), value: 'immigration' },
+    { label: t('filters.legal'), value: 'legal' },
+    { label: t('filters.cultural'), value: 'cultural' },
+    { label: t('filters.holiday'), value: 'holiday' },
+  ]
 
   const filteredEvents = activeFilter === 'all' ? events : events.filter((e) => e.category === activeFilter)
 
@@ -257,12 +259,12 @@ export default function EventsPage() {
         </div>
         <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">EVENTS</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              Events Calendar
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/85 max-w-2xl">
-              Join us for workshops, legal clinics, cultural gatherings, and community events.
+              {t('description')}
             </p>
           </div>
         </div>
@@ -282,7 +284,7 @@ export default function EventsPage() {
                 aria-pressed={viewMode === 'list'}
               >
                 <List className="w-4 h-4" aria-hidden="true" />
-                List View
+                {t('listView')}
               </button>
               <button
                 onClick={() => setViewMode('calendar')}
@@ -292,7 +294,7 @@ export default function EventsPage() {
                 aria-pressed={viewMode === 'calendar'}
               >
                 <LayoutGrid className="w-4 h-4" aria-hidden="true" />
-                Calendar View
+                {t('calendarView')}
               </button>
             </div>
           </div>
@@ -330,7 +332,7 @@ export default function EventsPage() {
                 ))
               ) : (
                 <div className="text-center py-12 text-forest-light">
-                  No events found for this category.
+                  {t('noEvents')}
                 </div>
               )}
             </div>

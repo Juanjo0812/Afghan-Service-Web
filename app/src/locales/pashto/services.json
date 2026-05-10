@@ -1,31 +1,31 @@
 {
-  "sectionLabel": "[PS] Our Services",
-  "heading": "[PS] How We Can Help",
+  "sectionLabel": "Our Services",
+  "heading": "How We Can Help",
   "cards": {
     "immigration": {
-      "title": "[PS] Immigration Help",
-      "description": "[PS] Free legal consultations for asylum, work permits, TPS, green cards, and family reunification."
+      "title": "Immigration Help",
+      "description": "Free legal consultations for asylum, work permits, TPS, green cards, and family reunification."
     },
     "housing": {
-      "title": "[PS] Housing",
-      "description": "[PS] Connect with housing resources, rental assistance, and shelter referrals in the Phoenix area."
+      "title": "Housing",
+      "description": "Connect with housing resources, rental assistance, and shelter referrals in the Phoenix area."
     },
     "healthcare": {
-      "title": "[PS] Healthcare",
-      "description": "[PS] Find low-cost clinics, mental health services, and health insurance enrollment assistance."
+      "title": "Healthcare",
+      "description": "Find low-cost clinics, mental health services, and health insurance enrollment assistance."
     },
     "education": {
-      "title": "[PS] Education & ESL",
-      "description": "[PS] English classes, GED programs, and school enrollment support for children and adults."
+      "title": "Education & ESL",
+      "description": "English classes, GED programs, and school enrollment support for children and adults."
     },
     "employment": {
-      "title": "[PS] Employment",
-      "description": "[PS] Job search assistance, resume help, interview preparation, and career training programs."
+      "title": "Employment",
+      "description": "Job search assistance, resume help, interview preparation, and career training programs."
     },
     "legal": {
-      "title": "[PS] Legal Aid",
-      "description": "[PS] Free or low-cost legal services for immigration, family law, and civil matters."
+      "title": "Legal Aid",
+      "description": "Free or low-cost legal services for immigration, family law, and civil matters."
     }
   },
-  "learnMore": "[PS] Learn More"
+  "learnMore": "Learn More"
 }

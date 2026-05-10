@@ -1,25 +1,28 @@
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 
-const quickLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'Immigration Help', path: '/immigration' },
-  { label: 'Community Resources', path: '/resources' },
-  { label: 'Know Your Rights', path: '/rights' },
-  { label: 'Events', path: '/events' },
-  { label: 'Stories', path: '/stories' },
-  { label: 'Contact', path: '/contact' },
-]
-
-const resourceLinks = [
-  { label: 'English Classes', path: '/resources' },
-  { label: 'Food Banks', path: '/resources' },
-  { label: 'Mental Health', path: '/resources' },
-  { label: 'Health Clinics', path: '/resources' },
-]
-
 export default function Footer() {
+  const { t } = useTranslation('common')
+
+  const quickLinks = [
+    { label: t('footer.home'), path: '/' },
+    { label: t('nav.immigrationHelp'), path: '/immigration' },
+    { label: t('nav.communityResources'), path: '/resources' },
+    { label: t('nav.knowYourRights'), path: '/rights' },
+    { label: t('footer.events'), path: '/events' },
+    { label: t('footer.stories'), path: '/stories' },
+    { label: t('footer.contact'), path: '/contact' },
+  ]
+
+  const resourceLinks = [
+    { label: 'English Classes', path: '/resources' },
+    { label: 'Food Banks', path: '/resources' },
+    { label: 'Mental Health', path: '/resources' },
+    { label: 'Health Clinics', path: '/resources' },
+  ]
+
   return (
     <footer className="bg-forest-dark text-cream">
       <div className="container-main py-12 md:py-16">
@@ -30,7 +33,7 @@ export default function Footer() {
               <img src="/images/Catholic.png" alt="Catholic Charities Logo" className="h-12 w-auto brightness-0 invert" />
             </div>
             <p className="text-cream/70 text-sm mb-4">
-              A program of Catholic Charities Community Services, Arizona
+              {t('footer.organization')}
             </p>
             <div className="space-y-2">
               <a
@@ -56,7 +59,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="label-text text-olive mb-4">Quick Links</h3>
+            <h3 className="label-text text-olive mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.path + link.label}>
@@ -73,7 +76,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="label-text text-olive mb-4">Resources</h3>
+            <h3 className="label-text text-olive mb-4">{t('footer.resourcesHeading')}</h3>
             <ul className="space-y-2">
               {resourceLinks.map((link) => (
                 <li key={link.label}>
@@ -90,15 +93,15 @@ export default function Footer() {
 
           {/* Legal & Language */}
           <div>
-            <h3 className="label-text text-olive mb-4">Legal</h3>
+            <h3 className="label-text text-olive mb-4">{t('footer.legal')}</h3>
             <p className="text-cream/60 text-xs mb-4 leading-relaxed">
-              This information is for educational purposes only and does not constitute legal advice.
+              {t('footer.legalDisclaimer')}
             </p>
             <div className="mb-4">
               <LanguageSwitcher variant="dark" />
             </div>
             <p className="text-cream/50 text-xs">
-              &copy; 2026 Catholic Charities Community Services, Arizona
+              {t('footer.copyright')}
             </p>
           </div>
         </div>
@@ -106,7 +109,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-forest-light/20 text-center">
           <p className="text-cream/50 text-xs">
-            Catholic Charities AZ &mdash; Serving Arizona since 1933
+            {t('footer.bottomText')}
           </p>
         </div>
       </div>

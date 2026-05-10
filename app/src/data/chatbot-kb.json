@@ -11,8 +11,8 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Legal Resources", "href": "#services" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Legal Resources", "href": "/immigration" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -27,8 +27,8 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Immigration Help", "href": "#services" },
-      { "label": "Employment Resources", "href": "#resources" }
+      { "label": "Immigration Help", "href": "/immigration" },
+      { "label": "Employment Resources", "href": "/resources" }
     ]
   },
   {
@@ -43,7 +43,7 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Legal Resources", "href": "#services" }
+      { "label": "Legal Resources", "href": "/immigration" }
     ]
   },
   {
@@ -58,8 +58,8 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Legal Resources", "href": "#services" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Legal Resources", "href": "/immigration" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -74,8 +74,8 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Legal Resources", "href": "#services" },
-      { "label": "Events", "href": "#events" }
+      { "label": "Legal Resources", "href": "/immigration" },
+      { "label": "Events", "href": "/events" }
     ]
   },
   {
@@ -90,8 +90,8 @@
     "response_uzbek": "",
     "section": "rights",
     "actions": [
-      { "label": "Know Your Rights", "href": "#rights" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Know Your Rights", "href": "/rights" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -106,8 +106,8 @@
     "response_uzbek": "",
     "section": "rights",
     "actions": [
-      { "label": "Know Your Rights", "href": "#rights" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Know Your Rights", "href": "/rights" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -122,7 +122,7 @@
     "response_uzbek": "",
     "section": "rights",
     "actions": [
-      { "label": "Know Your Rights", "href": "#rights" }
+      { "label": "Know Your Rights", "href": "/rights" }
     ]
   },
   {
@@ -137,7 +137,7 @@
     "response_uzbek": "",
     "section": "resources",
     "actions": [
-      { "label": "Community Resources", "href": "#resources" }
+      { "label": "Community Resources", "href": "/resources" }
     ]
   },
   {
@@ -152,8 +152,8 @@
     "response_uzbek": "",
     "section": "resources",
     "actions": [
-      { "label": "Community Resources", "href": "#resources" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Community Resources", "href": "/resources" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -168,7 +168,7 @@
     "response_uzbek": "",
     "section": "resources",
     "actions": [
-      { "label": "Community Resources", "href": "#resources" }
+      { "label": "Community Resources", "href": "/resources" }
     ]
   },
   {
@@ -183,8 +183,8 @@
     "response_uzbek": "",
     "section": "resources",
     "actions": [
-      { "label": "Community Resources", "href": "#resources" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Community Resources", "href": "/resources" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -199,7 +199,7 @@
     "response_uzbek": "",
     "section": "resources",
     "actions": [
-      { "label": "Community Resources", "href": "#resources" }
+      { "label": "Community Resources", "href": "/resources" }
     ]
   },
   {
@@ -214,8 +214,8 @@
     "response_uzbek": "",
     "section": "events",
     "actions": [
-      { "label": "Events", "href": "#events" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Events", "href": "/events" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -230,8 +230,8 @@
     "response_uzbek": "",
     "section": "contact",
     "actions": [
-      { "label": "Contact Us", "href": "#contact" },
-      { "label": "Speak to Someone", "href": "#contact" }
+      { "label": "Contact Us", "href": "/contact" },
+      { "label": "Speak to Someone", "href": "/contact" }
     ]
   },
   {
@@ -246,8 +246,8 @@
     "response_uzbek": "",
     "section": "services",
     "actions": [
-      { "label": "Legal Resources", "href": "#services" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Legal Resources", "href": "/immigration" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   },
   {
@@ -262,8 +262,8 @@
     "response_uzbek": "",
     "section": "contact",
     "actions": [
-      { "label": "Quick Access", "href": "#services" },
-      { "label": "Contact Us", "href": "#contact" }
+      { "label": "Quick Access", "href": "/immigration" },
+      { "label": "Contact Us", "href": "/contact" }
     ]
   }
 ]

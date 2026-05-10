@@ -1,10 +1,10 @@
 {
-  "label": "[FA] Upcoming Events",
-  "heading": "[FA] Events & Gatherings",
+  "label": "Upcoming Events",
+  "heading": "Events & Gatherings",
   "categories": {
-    "workshop": "[FA] Workshop",
-    "legal": "[FA] Legal Clinic",
-    "cultural": "[FA] Cultural",
-    "holiday": "[FA] Holiday"
+    "workshop": "Workshop",
+    "legal": "Legal Clinic",
+    "cultural": "Cultural",
+    "holiday": "Holiday"
   }
 }

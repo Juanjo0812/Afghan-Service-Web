@@ -1,38 +1,38 @@
 {
   "nav": {
-    "logo": "[UZ] Afghan Support",
-    "home": "[UZ] Home",
-    "immigrationHelp": "[UZ] Immigration Help",
-    "communityResources": "[UZ] Community Resources",
-    "knowYourRights": "[UZ] Know Your Rights",
-    "events": "[UZ] Events",
-    "contact": "[UZ] Contact",
-    "getHelp": "[UZ] Get Help Now",
-    "openMenu": "[UZ] Open menu",
-    "closeMenu": "[UZ] Close menu"
+    "logo": "Afghan Support",
+    "home": "Home",
+    "immigrationHelp": "Immigration Help",
+    "communityResources": "Community Resources",
+    "knowYourRights": "Know Your Rights",
+    "events": "Events",
+    "contact": "Contact",
+    "getHelp": "Get Help Now",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "footer": {
-    "logo": "[UZ] Afghan Support",
-    "tagline": "[UZ] Serving Afghan families in Phoenix since 2021.",
-    "quickLinks": "[UZ] Quick Links",
-    "home": "[UZ] Home",
-    "immigrationHelp": "[UZ] Immigration Help",
-    "resources": "[UZ] Resources",
-    "events": "[UZ] Events",
-    "contact": "[UZ] Contact",
-    "languages": "[UZ] Languages",
-    "english": "[UZ] English",
-    "dari": "[UZ] دری (Dari)",
-    "pashto": "[UZ] پښتو (Pashto)",
-    "uzbek": "[UZ] O'zbek (Uzbek)",
-    "copyright": "[UZ] © 2026 Afghan Support. All rights reserved."
+    "logo": "Afghan Support",
+    "tagline": "Serving Afghan families in Phoenix since 2021.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "immigrationHelp": "Immigration Help",
+    "resources": "Resources",
+    "events": "Events",
+    "contact": "Contact",
+    "languages": "Languages",
+    "english": "English",
+    "dari": "دری (Dari)",
+    "pashto": "پښتو (Pashto)",
+    "uzbek": "O'zbek (Uzbek)",
+    "copyright": "© 2026 Afghan Support. All rights reserved."
   },
   "quickAccess": {
-    "immigrationHelp": "[UZ] Immigration Help",
-    "knowYourRights": "[UZ] Know Your Rights",
-    "findResources": "[UZ] Find Resources",
-    "upcomingEvents": "[UZ] Upcoming Events"
+    "immigrationHelp": "Immigration Help",
+    "knowYourRights": "Know Your Rights",
+    "findResources": "Find Resources",
+    "upcomingEvents": "Upcoming Events"
   },
-  "skipLink": "[UZ] Skip to main content",
-  "chatbotFallback": "[UZ] Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
+  "skipLink": "Skip to main content",
+  "chatbotFallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
 }

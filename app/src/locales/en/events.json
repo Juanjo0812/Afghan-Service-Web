@@ -1,6 +1,20 @@
 {
-  "label": "Upcoming Events",
-  "heading": "Events & Gatherings",
+  "label": "EVENTS",
+  "heading": "Events Calendar",
+  "description": "Join us for workshops, legal clinics, cultural gatherings, and community events.",
+  "upcomingLabel": "UPCOMING EVENT",
+  "featuredBadge": "Featured Event",
+  "registerCta": "Register for Workshop",
+  "listView": "List View",
+  "calendarView": "Calendar View",
+  "filters": {
+    "all": "All Events",
+    "immigration": "Immigration Workshops",
+    "legal": "Legal Clinics",
+    "cultural": "Cultural Gatherings",
+    "holiday": "Afghan Holidays"
+  },
+  "noEvents": "No events found for this category.",
   "categories": {
     "workshop": "Workshop",
     "legal": "Legal Clinic",

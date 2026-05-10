@@ -1,7 +1,12 @@
 {
-  "label": "Community Voices",
-  "heading": "Stories That Inspire",
-  "description": "Hear from the families and community leaders whose lives were changed through our support.",
+  "label": "STORIES",
+  "heading": "Community Impact",
+  "description": "Real stories from Afghan families who have found support and success in Phoenix.",
+  "filters": {
+    "all": "All Stories",
+    "clients": "Client Stories",
+    "leaders": "Community Leaders"
+  },
   "aria": {
     "viewTestimonial": "View testimonial from {{name}}",
     "closeTestimonial": "Close testimonial",
@@ -12,5 +17,11 @@
     "nextTestimonial": "Next testimonial",
     "scrollLeft": "Scroll testimonials left",
     "scrollRight": "Scroll testimonials right"
+  },
+  "bottomCta": {
+    "heading": "Be Part of Our Story",
+    "text": "Whether you need help or want to support our community, we'd love to hear from you.",
+    "primary": "Get Help Now",
+    "secondary": "Contact Us"
   }
 }

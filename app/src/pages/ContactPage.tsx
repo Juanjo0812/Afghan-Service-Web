@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Phone, Mail, Clock, MapPin, MessageCircle, CheckCircle, AlertCircle } from 'lucide-react'
 
 type FormStatus =
@@ -10,6 +11,7 @@ type FormStatus =
   | 'generic-error'
 
 export default function ContactPage() {
+  const { t } = useTranslation('contact')
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -34,10 +36,10 @@ export default function ContactPage() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
-    if (!formData.name.trim()) newErrors.name = 'Please enter your name'
-    if (!formData.phone.trim()) newErrors.phone = 'Please enter your phone number'
+    if (!formData.name.trim()) newErrors.name = t('form.errors.name')
+    if (!formData.phone.trim()) newErrors.phone = t('form.errors.phone')
     if (!formData.message.trim())
-      newErrors.message = 'Please enter your question or message'
+      newErrors.message = t('form.errors.message')
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -83,7 +85,7 @@ export default function ContactPage() {
       if (!response.ok || !data.success) {
         setStatus('generic-error')
         setErrorMessage(
-          data.error || 'Something went wrong. Please try again later.'
+          data.error || t('form.error')
         )
         return
       }
@@ -91,7 +93,7 @@ export default function ContactPage() {
       setStatus('success')
     } catch {
       setStatus('generic-error')
-      setErrorMessage('Something went wrong. Please try again later.')
+      setErrorMessage(t('form.error'))
     }
   }
 
@@ -115,13 +117,12 @@ export default function ContactPage() {
         </div>
         <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
           <div className="max-w-3xl">
-            <span className="label-text text-amber block mb-3">CONTACT US</span>
+            <span className="label-text text-amber block mb-3">{t('label')}</span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
-              We're Here to Help
+              {t('heading')}
             </h1>
             <p className="text-body-lg text-white/90 max-w-2xl">
-              Reach out for free, confidential assistance. Our team speaks your
-              language.
+              {t('description')}
             </p>
           </div>
         </div>
@@ -137,7 +138,7 @@ export default function ContactPage() {
                 id="form-heading"
                 className="font-display text-heading-2 text-forest mb-6"
               >
-                Send Us a Message
+                {t('form.heading')}
               </h2>
 
               {status === 'success' ? (
@@ -147,10 +148,10 @@ export default function ContactPage() {
                     aria-hidden="true"
                   />
                   <h3 className="font-display text-heading-3 text-forest mb-2">
-                    Thank You!
+                    {t('success.title')}
                   </h3>
                   <p className="text-body text-forest-light">
-                    We will contact you within 24 hours.
+                    {t('success.message')}
                   </p>
                 </div>
               ) : (
@@ -176,7 +177,7 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-label text-forest mb-1.5"
                     >
-                      Your Name <span className="text-error">*</span>
+                      {t('form.name.label')} <span className="text-error">*</span>
                     </label>
                     <input
                       type="text"
@@ -193,7 +194,7 @@ export default function ContactPage() {
                           ? 'border-error bg-error/5'
                           : 'border-warm-sand'
                       }`}
-                      placeholder="Enter your full name"
+                      placeholder={t('form.name.placeholder')}
                       aria-required="true"
                       aria-invalid={!!errors.name}
                       disabled={status === 'sending'}
@@ -210,7 +211,7 @@ export default function ContactPage() {
                       htmlFor="phone"
                       className="block text-label text-forest mb-1.5"
                     >
-                      Phone Number <span className="text-error">*</span>
+                      {t('form.phone.label')} <span className="text-error">*</span>
                     </label>
                     <input
                       type="tel"
@@ -227,7 +228,7 @@ export default function ContactPage() {
                           ? 'border-error bg-error/5'
                           : 'border-warm-sand'
                       }`}
-                      placeholder="Enter your phone number"
+                      placeholder={t('form.phone.placeholder')}
                       aria-required="true"
                       aria-invalid={!!errors.phone}
                       disabled={status === 'sending'}
@@ -244,7 +245,7 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="block text-label text-forest mb-1.5"
                     >
-                      How Can We Help? <span className="text-error">*</span>
+                      {t('form.message.label')} <span className="text-error">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -261,7 +262,7 @@ export default function ContactPage() {
                           ? 'border-error bg-error/5'
                           : 'border-warm-sand'
                       }`}
-                      placeholder="Describe your question or what you need help with..."
+                      placeholder={t('form.message.placeholder')}
                       aria-required="true"
                       aria-invalid={!!errors.message}
                       disabled={status === 'sending'}
@@ -285,15 +286,15 @@ export default function ContactPage() {
                         />
                         <div>
                           <p className="font-medium">
-                            Too many messages sent
+                            {t('form.rateLimited.title')}
                           </p>
                           <p className="text-sm text-forest-light mt-1">
                             {retryAfter
-                              ? `Please wait ${Math.ceil(retryAfter / 60)} minutes before trying again.`
-                              : 'Please wait a while before trying again.'}
+                              ? t('form.rateLimited.retry', { minutes: Math.ceil(retryAfter / 60) })
+                              : t('form.rateLimited.wait')}
                           </p>
                           <p className="text-sm text-forest-light mt-1">
-                            If this is urgent, call or WhatsApp us below.
+                            {t('form.rateLimited.urgent')}
                           </p>
                         </div>
                       </div>
@@ -312,11 +313,10 @@ export default function ContactPage() {
                         />
                         <div>
                           <p className="font-medium">
-                            {errorMessage || 'Something went wrong'}
+                            {errorMessage || t('form.error')}
                           </p>
                           <p className="text-sm text-forest-light mt-1">
-                            Please try again, or contact us directly using the
-                            options on the right.
+                            {t('form.errorFallback')}
                           </p>
                         </div>
                       </div>
@@ -328,7 +328,7 @@ export default function ContactPage() {
                     className="btn-primary w-full sm:w-auto"
                     disabled={status === 'sending'}
                   >
-                    {status === 'sending' ? 'Sending...' : 'Send Message'}
+                    {status === 'sending' ? t('form.sending') : t('form.submit')}
                   </button>
                 </form>
               )}
@@ -338,7 +338,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card border border-warm-sand/50">
                 <h2 className="font-display text-heading-3 text-forest mb-6">
-                  Contact Information
+                  {t('info.heading')}
                 </h2>
 
                 <div className="space-y-6">
@@ -357,7 +357,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-body text-forest font-medium">
-                        Message us on WhatsApp
+                        {t('info.whatsapp')}
                       </p>
                       <p className="text-body-lg text-forest group-hover:text-amber transition-colors">
                         480.416.2333
@@ -375,7 +375,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-body text-forest font-medium">
-                        Call us
+                        {t('info.phone')}
                       </p>
                       <p className="text-body-lg text-forest group-hover:text-amber transition-colors">
                         480.416.2333{' '}
@@ -394,7 +394,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-body text-forest font-medium">
-                        Email us
+                        {t('info.email')}
                       </p>
                       <p className="text-body text-forest-light group-hover:text-amber transition-colors">
                         Dpeshtaz@cc-az.org
@@ -409,7 +409,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-body text-forest font-medium">
-                        Office Hours
+                        {t('info.hours')}
                       </p>
                       <p className="text-body text-forest-light">
                         Monday&ndash;Friday, 9:00 AM&ndash;5:00 PM
@@ -427,7 +427,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-body text-forest font-medium">
-                        Visit us
+                        {t('info.address')}
                       </p>
                       <p className="text-body text-forest-light">
                         5151 N 19th Ave

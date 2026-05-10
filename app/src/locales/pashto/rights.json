@@ -1,43 +1,43 @@
 {
-  "label": "[PS] Know Your Rights",
-  "heading": "[PS] Know Your Rights",
-  "description": "[PS] Understanding your rights is the first step to protecting yourself and your family.",
+  "label": "Know Your Rights",
+  "heading": "Know Your Rights",
+  "description": "Understanding your rights is the first step to protecting yourself and your family.",
   "scenarios": {
     "police": {
-      "title": "[PS] When Interacting with Police or Immigration Agents",
+      "title": "When Interacting with Police or Immigration Agents",
       "items": [
-        "[PS] You do not have to answer questions about your immigration status.",
-        "[PS] You may say: \"I want to remain silent.\"",
-        "[PS] You have the right to refuse a search without a warrant.",
-        "[PS] Ask for a lawyer before signing anything."
+        "You do not have to answer questions about your immigration status.",
+        "You may say: \"I want to remain silent.\"",
+        "You have the right to refuse a search without a warrant.",
+        "Ask for a lawyer before signing anything."
       ]
     },
     "ice": {
-      "title": "[PS] If ICE Comes to Your Home",
+      "title": "If ICE Comes to Your Home",
       "items": [
-        "[PS] Do NOT open the door without a signed warrant.",
-        "[PS] Ask to see it through the window or under the door.",
-        "[PS] You have the right to remain silent.",
-        "[PS] Have a family safety plan."
+        "Do NOT open the door without a signed warrant.",
+        "Ask to see it through the window or under the door.",
+        "You have the right to remain silent.",
+        "Have a family safety plan."
       ]
     },
     "documents": {
-      "title": "[PS] Carrying Documents Safely",
+      "title": "Carrying Documents Safely",
       "items": [
-        "[PS] Carry copies, not originals.",
-        "[PS] Avoid carrying your passport unless advised.",
-        "[PS] Store important documents safely at home."
+        "Carry copies, not originals.",
+        "Avoid carrying your passport unless advised.",
+        "Store important documents safely at home."
       ]
     }
   },
-  "disclaimer": "[PS] This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
-  "lastReviewed": "[PS] Last reviewed: May 2026",
+  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
+  "lastReviewed": "Last reviewed: May 2026",
   "downloads": {
-    "title": "[PS] Know Your Rights Cards",
-    "subtitle": "[PS] Download wallet-size cards",
-    "english": "[PS] Download (English)",
-    "dari": "[PS] Download (Dari)",
-    "pashto": "[PS] Download (Pashto)",
-    "uzbek": "[PS] Download (Uzbek)"
+    "title": "Know Your Rights Cards",
+    "subtitle": "Download wallet-size cards",
+    "english": "Download (English)",
+    "dari": "Download (Dari)",
+    "pashto": "Download (Pashto)",
+    "uzbek": "Download (Uzbek)"
   }
 }
