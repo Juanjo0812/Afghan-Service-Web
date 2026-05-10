@@ -1,8 +1,8 @@
 # PRD — Afghan Support Phoenix (Realistic Production Version)
 
 **Product**: Afghan Support — Community Resource Website  
-**Version**: 3.0 — consolidated source of truth  
-**Date**: 2026-05-08  
+**Version**: 3.1 — production closure alignment  
+**Date**: 2026-05-10  
 **Status**: Active PRD  
 **Source input**: `app/docs/Website_Layout_Afghan_Immigration.md`
 
@@ -32,9 +32,10 @@ JSON responses. It must not generate legal advice.
 
 | Area | Decision |
 |---|---|
-| App model | Static-first React SPA with section navigation |
+| App model | Static-first React SPA with language-aware routes |
 | Main goal | Help users quickly find trusted support and contact staff |
 | Content model | Curated static content and local JSON files |
+| Multilingual coverage | Language toggle must update all primary visible page content, not only `html.dir` |
 | Legal content | Static, reviewed, and not dynamically generated |
 | Contact data | Sent by email only; not persisted in app storage or database |
 | Chatbot | Deterministic keyword/scoring match from local JSON only |
@@ -85,7 +86,8 @@ may use lower-end devices, and may be under emotional/legal stress.
 
 | Client request | Product implementation | Priority | Status |
 |---|---|---:|---|
-| Header with logo/menu/language toggle/CTA | Navigation with section links, language switcher, Get Help Now CTA | P0 | Required |
+| Header with logo/menu/language toggle/CTA | Navigation with page links, language switcher, Get Help Now CTA | P0 | Required |
+| Language toggle EN/Dari/Pashto/Uzbek | All active route copy, form labels, CTA text, chatbot labels, validation messages, and legal/resource/event/story content must change language; Dari/Pashto must also use RTL | P0 | Required before launch |
 | Home hero | Welcome message, family image/video fallback, clear CTA | P0 | Required |
 | Quick access icons | Four large buttons: Immigration, Rights, Resources, Events | P0 | Required |
 | About snapshot | Short institutional support statement | P0 | Required |
@@ -109,6 +111,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 ### 6.1 Home / Welcome
 
 - Header with logo, menu, language toggle, and CTA.
+- Language toggle is functional only when all active-route visible copy changes language; RTL alone is not enough.
 - Hero with high-contrast headline and subtext.
 - Static image or single optimized video only; no parallax layers.
 - Quick access buttons for the four main tasks.
@@ -176,13 +179,23 @@ may use lower-end devices, and may be under emotional/legal stress.
 - Responses must come from local JSON only.
 - Must include fallback contact path when no match is found.
 
+### 6.9 Multilingual Content Coverage
+
+- The client-requested language toggle is P0 functionality, not decorative UI.
+- Every active route must support English, Dari, Pashto, and Uzbek for primary visible text:
+  - navigation, footer, page headings, section body copy, CTA text, form labels, validation messages, event/resource/story labels, rights content, downloads, and chatbot UI/actions.
+- Proper names, phone numbers, addresses, organization names, URLs, and legally approved document titles may remain unchanged when appropriate.
+- Dari and Pashto must set RTL direction and remain visually usable.
+- Machine translation may be used only as a draft; launch requires fluent/native human review for Dari, Pashto, and Uzbek.
+- If any active page remains English-only, the language toggle cannot be considered complete.
+
 ---
 
 ## 7. User Stories
 
 | ID | Story | Acceptance Criteria |
 |---|---|---|
-| US-01 | As an Afghan family member, I want to switch to Dari or Pashto so I can understand the site. | Language switch updates visible text and sets RTL direction where applicable. |
+| US-01 | As an Afghan family member, I want to switch to Dari, Pashto, or Uzbek so I can understand the site. | Language switch updates all primary visible route text, chatbot labels/actions, form labels/errors, and legal/resource/event content; Dari/Pashto also set RTL direction. |
 | US-02 | As a user needing immigration help, I want a clear “Get Help Now” path. | CTA scrolls/navigates to contact and contact options are visible. |
 | US-03 | As a user worried about ICE/police interaction, I want quick rights information. | Know Your Rights section is readable, static, and has downloads. |
 | US-04 | As a community volunteer, I want to share resource categories. | Resources are grouped clearly and links/contact details are easy to copy or tap. |
@@ -208,7 +221,7 @@ Events → event details → registration/contact path if required
 
 | Content | Storage | Notes |
 |---|---|---|
-| UI translations | Local locale JSON files | EN, Dari, Pashto, Uzbek |
+| UI translations | Local locale JSON files | EN, Dari, Pashto, Uzbek; must cover all active routes, not only legacy sections |
 | Events | Local JSON or typed constants | Easy to update without touching layout |
 | Resources | Local JSON | Include category, title, description, link/contact |
 | Testimonials | Local JSON | Only approved names/assets |
@@ -337,6 +350,7 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 | P0 | Confirm deploy platform | Needed for headers, API, rate limiting |
 | P0 | Legal disclaimer and review date | Required for rights/legal sections and chatbot |
 | P0 | Real contact email flow | Validate env vars, sender, recipient, fallback |
+| P0 | Full multilingual coverage | All active route text changes for EN/Dari/Pashto/Uzbek; RTL for Dari/Pashto |
 | P0 | Client requirement compliance pass | Verify every original layout item is represented |
 | P1 | Rights PDFs in 4 languages | Must use approved files |
 | P1 | Production anti-spam/rate-limit hardening | Shared store/CDN/WAF preferred |
@@ -355,6 +369,7 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 - [ ] `modification_plan.md` completed.
 - [ ] `implementation_plan.md` reflects post-cleanup reality.
 - [ ] Legal/rights content reviewed by qualified reviewer.
+- [ ] All active route copy is wired to i18n/local JSON or an approved equivalent.
 - [ ] Translations reviewed by fluent/native speakers.
 - [ ] Contact form sends email and does not persist PII.
 - [ ] Production rate limiting/anti-spam decision implemented.
