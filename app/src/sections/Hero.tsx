@@ -1,32 +1,13 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
 
 export default function Hero() {
   const { t } = useTranslation('hero')
-  const labelRef = useRef<HTMLSpanElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLAnchorElement>(null)
-  const videoRef1 = useRef<HTMLVideoElement>(null)
-  const videoRef2 = useRef<HTMLVideoElement>(null)
-  const videoRef3 = useRef<HTMLVideoElement>(null)
-  const prefersReduced = useReducedMotion()
+  const [entered, setEntered] = useState(false)
 
   useEffect(() => {
-    if (prefersReduced) return
-    // Set playback rates for parallax effect
-    if (videoRef1.current) videoRef1.current.playbackRate = 0.6
-    if (videoRef2.current) videoRef2.current.playbackRate = 0.85
-    if (videoRef3.current) videoRef3.current.playbackRate = 1.0
-
-    // Entry animations
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.to(labelRef.current, { opacity: 1, y: 0, duration: 1.0, delay: 0.3 })
-      .to(titleRef.current, { opacity: 1, y: 0, duration: 1.0 }, '-=0.5')
-      .to(subtitleRef.current, { opacity: 1, y: 0, duration: 1.0 }, '-=0.5')
-      .to(ctaRef.current, { opacity: 1, y: 0, duration: 1.0 }, '-=0.5')
+    const id = setTimeout(() => setEntered(true), 50)
+    return () => clearTimeout(id)
   }, [])
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -47,47 +28,17 @@ export default function Hero() {
         }}
       />
 
-      {/* Video layer 1 — background, slowest */}
+      {/* Video background */}
       <video
-        ref={videoRef1}
         aria-hidden="true"
         role="presentation"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.0)' }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         src="/videos/hero-main.mp4"
         muted
         loop
         playsInline
         autoPlay
         preload="auto"
-      />
-
-      {/* Video layer 2 — mid-ground */}
-      <video
-        ref={videoRef2}
-        aria-hidden="true"
-        role="presentation"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.15)' }}
-        src="/videos/hero-main.mp4"
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="metadata"
-      />
-
-      {/* Video layer 3 — foreground, fastest */}
-      <video
-        ref={videoRef3}
-        aria-hidden="true"
-        role="presentation"
-        className="hidden md:block"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.3)' }}
-        src="/videos/hero-main.mp4"
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="metadata"
       />
 
       {/* Hero content */}
@@ -105,10 +56,11 @@ export default function Hero() {
         }}
       >
         <span
-          ref={labelRef}
           style={{
-            opacity: 0,
-            transform: 'translateY(20px)',
+            opacity: entered ? 1 : 0,
+            transform: entered ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: '0.3s',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500,
             fontSize: 12,
@@ -122,10 +74,11 @@ export default function Hero() {
         </span>
 
         <h1
-          ref={titleRef}
           style={{
-            opacity: 0,
-            transform: 'translateY(20px)',
+            opacity: entered ? 1 : 0,
+            transform: entered ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: '0.55s',
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 600,
             fontSize: 'clamp(2.8rem, 5.5vw, 4.8rem)',
@@ -136,13 +89,27 @@ export default function Hero() {
           }}
         >
           {t('title')}
+          <span
+            style={{
+              display: 'block',
+              fontSize: '0.6em',
+              fontWeight: 400,
+              color: 'rgba(250,245,239,0.75)',
+              marginTop: 8,
+              direction: 'rtl',
+              fontFamily: "'Noto Sans Arabic', 'Cormorant Garamond', serif",
+            }}
+          >
+            {t('dariTitle')} — خوش آمدید به فینکس
+          </span>
         </h1>
 
         <p
-          ref={subtitleRef}
           style={{
-            opacity: 0,
-            transform: 'translateY(20px)',
+            opacity: entered ? 1 : 0,
+            transform: entered ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: '0.8s',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 400,
             fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
@@ -156,12 +123,13 @@ export default function Hero() {
         </p>
 
         <a
-          ref={ctaRef}
           href="#contact"
           onClick={handleCtaClick}
           style={{
-            opacity: 0,
-            transform: 'translateY(20px)',
+            opacity: entered ? 1 : 0,
+            transform: entered ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: '1.05s',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500,
             fontSize: 14,
@@ -171,7 +139,6 @@ export default function Hero() {
             borderRadius: 32,
             padding: '14px 36px',
             textDecoration: 'none',
-            transition: 'background 0.4s ease, color 0.4s ease',
             display: 'inline-block',
           }}
           onMouseEnter={(e) => {

@@ -1,4 +1,10 @@
 {
   "label": "Upcoming Events",
-  "heading": "Community Events"
+  "heading": "Events & Gatherings",
+  "categories": {
+    "workshop": "Workshop",
+    "legal": "Legal Clinic",
+    "cultural": "Cultural",
+    "holiday": "Holiday"
+  }
 }

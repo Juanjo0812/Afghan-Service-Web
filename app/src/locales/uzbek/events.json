@@ -1,4 +1,10 @@
 {
   "label": "[UZ] Upcoming Events",
-  "heading": "[UZ] Community Events"
+  "heading": "[UZ] Events & Gatherings",
+  "categories": {
+    "workshop": "[UZ] Workshop",
+    "legal": "[UZ] Legal Clinic",
+    "cultural": "[UZ] Cultural",
+    "holiday": "[UZ] Holiday"
+  }
 }

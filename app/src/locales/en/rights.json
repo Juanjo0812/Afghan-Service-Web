@@ -1,14 +1,43 @@
 {
   "label": "Know Your Rights",
-  "heading": "You Have Rights Here",
-  "description": "Regardless of your immigration status, you have rights in the United States. Learn what to do if approached by immigration officials, how to prepare your family, and where to find legal help.",
-  "rights": [
-    "You have the right to remain silent. You do not have to answer questions about your immigration status.",
-    "You have the right to refuse a search of yourself, your home, or your belongings without a warrant signed by a judge.",
-    "You have the right to speak to a lawyer before answering any questions or signing any documents.",
-    "If ICE agents come to your home, do not open the door. Ask them to show you a warrant signed by a judge through the window or under the door.",
-    "You have the right to carry copies of your documents — keep originals in a safe place at home."
-  ],
-  "imageAlt": "Passport and immigration documents",
-  "downloadButton": "Download Rights Guide (PDF)"
+  "heading": "Know Your Rights",
+  "description": "Understanding your rights is the first step to protecting yourself and your family.",
+  "scenarios": {
+    "police": {
+      "title": "When Interacting with Police or Immigration Agents",
+      "items": [
+        "You do not have to answer questions about your immigration status.",
+        "You may say: \"I want to remain silent.\"",
+        "You have the right to refuse a search without a warrant.",
+        "Ask for a lawyer before signing anything."
+      ]
+    },
+    "ice": {
+      "title": "If ICE Comes to Your Home",
+      "items": [
+        "Do NOT open the door without a signed warrant.",
+        "Ask to see it through the window or under the door.",
+        "You have the right to remain silent.",
+        "Have a family safety plan."
+      ]
+    },
+    "documents": {
+      "title": "Carrying Documents Safely",
+      "items": [
+        "Carry copies, not originals.",
+        "Avoid carrying your passport unless advised.",
+        "Store important documents safely at home."
+      ]
+    }
+  },
+  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
+  "lastReviewed": "Last reviewed: May 2026",
+  "downloads": {
+    "title": "Know Your Rights Cards",
+    "subtitle": "Download wallet-size cards",
+    "english": "Download (English)",
+    "dari": "Download (Dari)",
+    "pashto": "Download (Pashto)",
+    "uzbek": "Download (Uzbek)"
+  }
 }

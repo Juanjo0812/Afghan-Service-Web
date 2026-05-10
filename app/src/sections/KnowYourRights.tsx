@@ -1,50 +1,28 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
-import { useLanguage } from '../hooks/useLanguage'
-import { getSlideDirection } from '../lib/animationDirection'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+import { Shield, Home, FileText } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger)
+const scenarioIcons = {
+  police: Shield,
+  ice: Home,
+  documents: FileText,
+} as const
+
+const scenarioKeys = ['police', 'ice', 'documents'] as const
 
 export default function KnowYourRights() {
   const { t } = useTranslation('rights')
-  const { isRTL } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
-  const prefersReduced = useReducedMotion()
+  const { ref: headingRef, visible: headingVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: cardsRef, visible: cardsVisible } = useScrollReveal<HTMLDivElement>()
 
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      gsap.to(imageRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1.0,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-
-      gsap.to(textRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1.0,
-        ease: 'power3.out',
-        delay: 0.15,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  const downloads = [
+    { key: 'english', label: t('downloads.english') },
+    { key: 'dari', label: t('downloads.dari') },
+    { key: 'pashto', label: t('downloads.pashto') },
+    { key: 'uzbek', label: t('downloads.uzbek') },
+  ]
 
   return (
     <section
@@ -52,52 +30,17 @@ export default function KnowYourRights() {
       ref={sectionRef}
       style={{ background: '#faf5ef', padding: 'clamp(70px, 8vw, 120px) 0' }}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 clamp(1.5rem, 5vw, 4rem)',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 64,
-          alignItems: 'center',
-        }}
-      >
-        {/* Left column — image */}
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(1.5rem, 5vw, 4rem)' }}>
+        {/* Heading */}
         <div
-          ref={imageRef}
+          ref={headingRef}
           style={{
-            opacity: 0,
-            transform: `translateX(${getSlideDirection(isRTL).enterFrom * 0.8}px)`,
-            flex: '1 1 40%',
-            minWidth: 280,
-            order: 1,
+            opacity: headingVisible ? 1 : 0,
+            transform: headingVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+            textAlign: 'center',
+            marginBottom: 64,
           }}
-          className="rights-image-col"
-        >
-          <img
-            src="/images/img-rights.jpg"
-            alt={t('imageAlt')}
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              boxShadow: '0 8px 32px rgba(22, 45, 90, 0.08)',
-            }}
-          />
-        </div>
-
-        {/* Right column — text */}
-        <div
-          ref={textRef}
-          style={{
-            opacity: 0,
-            transform: `translateX(${-getSlideDirection(isRTL).enterFrom * 0.8}px)`,
-            flex: '1 1 50%',
-            minWidth: 300,
-            order: 2,
-          }}
-          className="rights-text-col"
         >
           <span
             style={{
@@ -133,71 +76,209 @@ export default function KnowYourRights() {
               fontSize: 17,
               color: '#1a1a2e',
               lineHeight: 1.7,
-              marginBottom: 28,
+              maxWidth: 700,
+              margin: '0 auto',
             }}
           >
             {t('description')}
           </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px' }}>
-            {(t('rights', { returnObjects: true }) as string[]).map((right, index) => (
-              <li
-                key={index}
+        </div>
+
+        {/* Scenario cards */}
+        <div
+          ref={cardsRef}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 32,
+            marginBottom: 64,
+          }}
+        >
+          {scenarioKeys.map((key, index) => {
+            const Icon = scenarioIcons[key]
+            const items = t(`scenarios.${key}.items`, { returnObjects: true }) as string[]
+            return (
+              <div
+                key={key}
+                className="scenario-card"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 400,
-                  fontSize: 16,
-                  color: '#1a1a2e',
-                  lineHeight: 1.7,
-                  marginBottom: 12,
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: 12,
+                  opacity: cardsVisible ? 1 : 0,
+                  transform: cardsVisible ? 'translateY(0)' : 'translateY(40px)',
+                  transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease',
+                  transitionDelay: `${index * 0.1}s`,
+                  background: '#ffffff',
+                  border: '1px solid rgba(22, 45, 90, 0.08)',
+                  borderInlineStart: '4px solid var(--color-accent)',
+                  padding: '36px 28px',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget
+                  el.style.boxShadow = '0 12px 40px rgba(22, 45, 90, 0.06)'
+                  el.style.borderColor = 'rgba(var(--color-accent-rgb), 0.2)'
+                  el.style.borderInlineStartColor = 'var(--color-accent)'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget
+                  el.style.boxShadow = 'none'
+                  el.style.borderColor = 'rgba(22, 45, 90, 0.08)'
+                  el.style.borderInlineStartColor = 'var(--color-accent)'
                 }}
               >
-                <span style={{ color: 'var(--color-accent)', fontSize: 18, lineHeight: 1.4, flexShrink: 0 }}>•</span>
-                {right}
-              </li>
-            ))}
-          </ul>
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
+                <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
+                  <Icon size={40} strokeWidth={1.5} color="var(--color-accent)" />
+                </div>
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+                    lineHeight: 1.3,
+                    letterSpacing: '-0.01em',
+                    color: '#162d5a',
+                    marginBottom: 20,
+                    textAlign: 'center',
+                  }}
+                >
+                  {t(`scenarios.${key}.title`)}
+                </h3>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {items.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 400,
+                        fontSize: 15,
+                        color: '#1a1a2e',
+                        lineHeight: 1.7,
+                        marginBottom: 12,
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: 12,
+                      }}
+                    >
+                      <span style={{ color: 'var(--color-accent)', fontSize: 16, lineHeight: 1.4, flexShrink: 0 }}>•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Downloads */}
+        <div
+          style={{
+            textAlign: 'center',
+            marginBottom: 48,
+          }}
+        >
+          <h3
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 14,
-              letterSpacing: '0.03em',
-              border: '1px solid #162d5a',
-              background: 'transparent',
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 600,
+              fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
+              lineHeight: 1.3,
               color: '#162d5a',
-              borderRadius: 32,
-              padding: '12px 28px',
-              textDecoration: 'none',
-              display: 'inline-block',
-              transition: 'background 0.4s ease, color 0.4s ease',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.target as HTMLElement
-              el.style.background = '#162d5a'
-              el.style.color = '#faf5ef'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.target as HTMLElement
-              el.style.background = 'transparent'
-              el.style.color = '#162d5a'
+              marginBottom: 8,
             }}
           >
-            {t('downloadButton')}
-          </a>
+            {t('downloads.title')}
+          </h3>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 400,
+              fontSize: 15,
+              color: '#6b6b7b',
+              lineHeight: 1.6,
+              marginBottom: 24,
+            }}
+          >
+            {t('downloads.subtitle')}
+          </p>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 16,
+            }}
+          >
+            {downloads.map((dl) => (
+              <a
+                key={dl.key}
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 500,
+                  fontSize: 14,
+                  letterSpacing: '0.03em',
+                  border: '1px solid #162d5a',
+                  background: 'transparent',
+                  color: '#162d5a',
+                  borderRadius: 32,
+                  padding: '12px 28px',
+                  textDecoration: 'none',
+                  display: 'inline-block',
+                  transition: 'background 0.4s ease, color 0.4s ease',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.target as HTMLElement
+                  el.style.background = '#162d5a'
+                  el.style.color = '#faf5ef'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.target as HTMLElement
+                  el.style.background = 'transparent'
+                  el.style.color = '#162d5a'
+                }}
+              >
+                {dl.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <style>{`
-        @media (max-width: 767px) {
-          .rights-image-col { order: 2 !important; }
-          .rights-text-col { order: 1 !important; }
-        }
-      `}</style>
+        {/* Disclaimer */}
+        <div
+          style={{
+            background: '#f0ece6',
+            borderRadius: 8,
+            padding: '24px 28px',
+            marginBottom: 16,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 400,
+              fontSize: 13,
+              color: '#6b6b7b',
+              lineHeight: 1.6,
+              margin: 0,
+            }}
+          >
+            {t('disclaimer')}
+          </p>
+        </div>
+
+        {/* Last reviewed */}
+        <p
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 400,
+            fontSize: 12,
+            color: '#9a9aaa',
+            textAlign: 'center',
+            margin: 0,
+          }}
+        >
+          {t('lastReviewed')}
+        </p>
+      </div>
     </section>
   )
 }

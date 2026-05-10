@@ -1,62 +1,42 @@
 [
   {
     "num": "[PS] 01",
-    "title": "[PS] Healthcare",
+    "title": "[PS] English Classes",
     "links": [
-      "[PS] Valleywise Community Health Center",
-      "[PS] Phoenix VA Healthcare",
-      "[PS] Mountain Park Health Center",
-      "[PS] Immigrant Health Access"
+      "[PS] Rio Salado College ESL",
+      "[PS] Phoenix Public Library English Classes",
+      "[PS] Literacy Volunteers of Maricopa County",
+      "[PS] Arizona State University Global Launch"
     ]
   },
   {
     "num": "[PS] 02",
-    "title": "[PS] Housing & Shelter",
+    "title": "[PS] Mental Health & Wellness",
     "links": [
-      "[PS] Arizona Housing Coalition",
-      "[PS] HOM Inc. Housing Services",
-      "[PS] Central Arizona Shelter Services",
-      "[PS] Tenant Rights Hotline"
+      "[PS] EMPACT Suicide Prevention Center",
+      "[PS] Jewish Family & Children's Services",
+      "[PS] Resilience in Diversity (RID)",
+      "[PS] NAMI Valley of the Sun"
     ]
   },
   {
     "num": "[PS] 03",
-    "title": "[PS] Food Assistance",
+    "title": "[PS] Food Banks",
     "links": [
       "[PS] St. Mary's Food Bank",
       "[PS] United Food Bank",
       "[PS] Desert Mission Food Pantry",
-      "[PS] WIC Nutrition Program"
+      "[PS] AZCEND Food Bank"
     ]
   },
   {
     "num": "[PS] 04",
-    "title": "[PS] Education & ESL",
+    "title": "[PS] Health Clinics",
     "links": [
-      "[PS] Rio Salado College ESL",
-      "[PS] Literacy Volunteers of Maricopa",
-      "[PS] Phoenix Public Library Classes",
-      "[PS] Arizona State University Outreach"
-    ]
-  },
-  {
-    "num": "[PS] 05",
-    "title": "[PS] Employment",
-    "links": [
-      "[PS] Arizona@Work Job Centers",
-      "[PS] Refugee Employment Services",
-      "[PS] Goodwill Career Services",
-      "[PS] Local Chamber of Commerce"
-    ]
-  },
-  {
-    "num": "[PS] 06",
-    "title": "[PS] Legal Services",
-    "links": [
-      "[PS] Florence Immigrant & Refugee Rights",
-      "[PS] Arizona Justice Project",
-      "[PS] Community Legal Services",
-      "[PS] ACLU of Arizona"
+      "[PS] Valleywise Community Health Center",
+      "[PS] Mountain Park Health Center",
+      "[PS] Wesley Community & Health Center",
+      "[PS] Adelante Healthcare"
     ]
   }
 ]

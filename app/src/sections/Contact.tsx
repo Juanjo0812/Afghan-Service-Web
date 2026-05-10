@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { useLanguage } from '../hooks/useLanguage'
 import { getSlideDirection } from '../lib/animationDirection'
 import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface ContactDetail {
   icon: typeof Phone
@@ -24,10 +20,9 @@ export default function Contact() {
   const { t } = useTranslation('contact')
   const { isRTL } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const leftRef = useRef<HTMLDivElement>(null)
-  const rightRef = useRef<HTMLDivElement>(null)
+  const { ref: leftRef, visible: leftVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: rightRef, visible: rightVisible } = useScrollReveal<HTMLDivElement>()
   const [submitted, setSubmitted] = useState(false)
-  const prefersReduced = useReducedMotion()
 
   const contactFormSchema = useMemo(
     () =>
@@ -74,36 +69,6 @@ export default function Contact() {
       website_url: '',
     },
   })
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      gsap.to(leftRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1.0,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-
-      gsap.to(rightRef.current, {
-        opacity: 1,
-        x: 0,
-        duration: 1.0,
-        ease: 'power3.out',
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -153,8 +118,9 @@ export default function Contact() {
         <div
           ref={leftRef}
           style={{
-            opacity: 0,
-            transform: `translateX(${getSlideDirection(isRTL).enterFrom * 0.6}px)`,
+            opacity: leftVisible ? 1 : 0,
+            transform: leftVisible ? 'translateX(0)' : `translateX(${getSlideDirection(isRTL).enterFrom * 0.6}px)`,
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
             flex: '1 1 45%',
             minWidth: 280,
           }}
@@ -318,8 +284,10 @@ export default function Contact() {
         <div
           ref={rightRef}
           style={{
-            opacity: 0,
-            transform: `translateX(${-getSlideDirection(isRTL).enterFrom * 0.6}px)`,
+            opacity: rightVisible ? 1 : 0,
+            transform: rightVisible ? 'translateX(0)' : `translateX(${-getSlideDirection(isRTL).enterFrom * 0.6}px)`,
+            transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: '0.2s',
             flex: '1 1 45%',
             minWidth: 280,
           }}

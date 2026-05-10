@@ -1,151 +1,53 @@
-# Modification Plan — Current Code Cleanup
+# Modification Plan — UI Refactor & Hybrid Migration
 
-This document is the **bridge between the current codebase and the realistic
-PRD**. It does not add new functionality. It only removes over-engineering and
-leaves the codebase ready to execute `implementation_plan.md`.
+## Goal
+Refactor the frontend architecture to a multi-page React Router setup, migrating the base design from `New-style/New-web` into our current repository (`app/`) while strictly preserving existing business logic (i18n, RTL support, deterministic Chatbot). We will also selectively inject enhanced HTML designs from standalone templates for Events, Resources, and Stories.
 
-**Active PRD**: `app/docs/PRD_Afghan_Support_Realistic.md`
+## Architecture Guidelines
+- **Routing Architecture**: The current app is a single long-scrolling SPA. We are splitting it into multiple routes. The `Chatbot`, `Navigation`, and `Footer` will be kept at the `AppShell` level so they persist across page navigations.
+- **Tailwind Configuration**: The `New-style` design has its own `tailwind.config.js` and `index.css` (custom colors/tokens). We will overwrite the current project's styles with the new ones so the base design matches.
 
----
+## Proposed Changes
 
-## Main Rule
+### 1. Structural Migration & Setup
+Merge the foundational UI layer from the new design into the active project, without breaking existing logic.
 
-Preserve the current behavior that already works:
+- **[MODIFY] `tailwind.config.js` & `src/index.css`**: Replace with the configuration and CSS variables from `New-style/New-web/app`.
+- **[NEW] `src/components/`**: Copy new UI primitives from `New-style/New-web/app/src/components` into `app/src/components`.
 
-- navigation
-- existing sections
-- i18n/RTL
-- form/contact flow
-- deterministic chatbot
-- local JSON data
-- baseline SEO
+### 2. Routing Configuration
+Break the monolithic `App.tsx` into multiple distinct routes.
 
-Cleanup must reduce complexity without breaking the product. This is
-architecture, not “deleting for the sake of deleting.”
+- **[MODIFY] `src/App.tsx`**: Set up `react-router` with the following route structure:
+  - `/` (Main View: Home, ImmigrationHelp, CommunityResources, Testimonials/Stories)
+  - `/rights` (Know Your Rights)
+  - `/events` (Events)
+  - `/contact` (Contact)
 
----
+### 3. Page Construction & Specific Enhancements
+Rebuild the sections using the new design components, injecting the specific HTML enhancements requested.
 
-## 1. Dependency Cleanup
+- **[MODIFY] `src/sections/Hero.tsx` / `src/sections/Events.tsx`**: Inject the "Next Event" design from `New-style/index.html`.
+- **[MODIFY] `src/sections/CommunityResources.tsx`**: Inject the professional resources layout from `New-style/resources.html`.
+- **[NEW] `src/pages/EventsPage.tsx`**: Use the enhanced list item design from `New-style/events.html`. Preserve the list structure (vertical stack) for list view, and keep the calendar view unchanged.
+- **[MODIFY] `src/sections/Testimonials.tsx`**: Use the mixed card layout (clients, leaders, text-only) from `New-style/stories.html`. Re-integrate the existing video modal logic (popup when clicking a video story) from the old design.
 
-Remove libraries related to complex DOM manipulation, scroll hijacking, heavy
-JS animations, or unused components.
+### 4. Logic Preservation
+Ensure that the active PRD requirements are not lost during the visual migration.
 
-```bash
-npm uninstall @gsap/react gsap framer-motion lenis next-themes recharts react-resizable-panels input-otp cmdk react-day-picker vaul
-```
+- Maintain `react-i18next` hooks (`useTranslation`) and translation keys in all new components.
+- Maintain RTL support (logical tailwind properties).
+- Ensure the `Chatbot` component remains untouched and functional on all routes.
+- Preserve form validations (`zod` + `react-hook-form`).
 
-Radix/Shadcn: remove only packages/components that have no real imports in the
-final code. Do not assume: verify imports before deleting.
+## Verification Plan
 
-```bash
-npm uninstall @radix-ui/react-accordion @radix-ui/react-alert-dialog @radix-ui/react-aspect-ratio @radix-ui/react-checkbox @radix-ui/react-collapsible @radix-ui/react-context-menu @radix-ui/react-dropdown-menu @radix-ui/react-hover-card @radix-ui/react-menubar @radix-ui/react-navigation-menu @radix-ui/react-popover @radix-ui/react-progress @radix-ui/react-radio-group @radix-ui/react-slider @radix-ui/react-switch @radix-ui/react-toggle @radix-ui/react-toggle-group @radix-ui/react-tooltip embla-carousel-react
-```
+### Automated Checks
+- `tsc -b`: Ensure no TypeScript errors were introduced by copying new components.
+- Linter checks to ensure imports are correct.
 
-Keep functional dependencies if they are in use:
-
-- `react`
-- `react-router`
-- `react-i18next` / `i18next`
-- `react-hook-form`
-- `zod`
-- `resend`
-- `sonner`
-- `lucide-react`
-- `react-helmet-async`
-- `tailwindcss`
-- `tailwindcss-animate`
-
----
-
-## 2. Global Cleanup
-
-### `src/App.tsx`
-
-- [ ] Remove the `useLenis` import and usage.
-- [ ] Keep `SEO`, `Navigation`, sections, `Footer`, `Chatbot`, and `Toaster`.
-
-### `src/hooks/`
-
-- [ ] Remove `useLenis.ts`.
-- [ ] Remove `useReducedMotion.ts` only when no imports remain.
-- [ ] Use native CSS with `prefers-reduced-motion` for remaining animations.
-
-### `src/components/ui/`
-
-- [ ] Delete shadcn/ui components that no longer have imports.
-- [ ] Do not delete components still used by sections or forms.
-
----
-
-## 3. Replace JS Animations with CSS/Tailwind
-
-| Current effect | Recommended replacement |
-|---|---|
-| GSAP fade/slide | `animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out` |
-| Framer modal scale | `animate-in fade-in zoom-in-95 duration-300 ease-out` |
-| Card hover | `transition-all duration-300 hover:-translate-y-1 hover:shadow-lg` |
-| Buttons | `transition-colors duration-300` |
-
-### Hero
-
-- [ ] Remove `gsap` imports/references.
-- [ ] Remove timelines and refs used only for animation.
-- [ ] Keep either an image or one optimized video.
-- [ ] Remove video/parallax layers.
-- [ ] Keep overlay and CTA.
-
-### Sections
-
-Apply to:
-
-- `QuickAccess`
-- `About`
-- `KnowYourRights`
-- `CommunityResources`
-- `Events`
-- `Contact`
-- `Testimonials`
-
-Checklist per section:
-
-- [ ] No `gsap` import.
-- [ ] No `ScrollTrigger`.
-- [ ] No `motion.div`/`AnimatePresence` unless the team decides to keep
-  Framer, which this plan does not recommend.
-- [ ] Simple states/interactions with React + CSS.
-- [ ] RTL support is not degraded.
-
----
-
-## 4. Chatbot
-
-- [ ] Keep the deterministic engine and local KB.
-- [ ] Do not add AI, embeddings, or external APIs.
-- [ ] Replace JS animations with CSS/Tailwind if any exist.
-- [ ] Verify fallback to contact.
-- [ ] Verify RTL text does not break the layout.
-
----
-
-## 5. Post-Cleanup Acceptance Criteria
-
-Cleanup is complete when:
-
-- [ ] No imports remain for `gsap`, `@gsap/react`, `framer-motion`, or `lenis`.
-- [ ] `src/App.tsx` does not use `useLenis`.
-- [ ] `package.json` does not keep removed unused dependencies.
-- [ ] Scrolling is native again.
-- [ ] Main sections remain visible.
-- [ ] i18n/RTL still works.
-- [ ] Contact and chatbot remain present.
-- [ ] `npm run dev` works for manual review.
-
-Do not run `npm run build` unless the maintainer explicitly authorizes it.
-
----
-
-## After Completion
-
-1. Mark this document as completed or move it to archive.
-2. Execute `implementation_plan.md`.
-3. Do not reintroduce heavy JS animations without a real product reason.
+### Manual Verification
+- Navigate between `/`, `/rights`, `/events`, and `/contact` to verify smooth routing.
+- Test the language toggle to ensure translations and RTL work on the new UI.
+- Click a video story in the Testimonials section to verify the modal popup triggers correctly.
+- Verify the deterministic Chatbot remains accessible on all pages.

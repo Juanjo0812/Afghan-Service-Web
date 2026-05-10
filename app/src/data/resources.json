@@ -1,32 +1,42 @@
 [
   {
     "num": "01",
-    "title": "Healthcare",
-    "links": ["Valleywise Community Health Center", "Phoenix VA Healthcare", "Mountain Park Health Center", "Immigrant Health Access"]
+    "title": "English Classes",
+    "links": [
+      "Rio Salado College ESL",
+      "Phoenix Public Library English Classes",
+      "Literacy Volunteers of Maricopa County",
+      "Arizona State University Global Launch"
+    ]
   },
   {
     "num": "02",
-    "title": "Housing & Shelter",
-    "links": ["Arizona Housing Coalition", "HOM Inc. Housing Services", "Central Arizona Shelter Services", "Tenant Rights Hotline"]
+    "title": "Mental Health & Wellness",
+    "links": [
+      "EMPACT Suicide Prevention Center",
+      "Jewish Family & Children's Services",
+      "Resilience in Diversity (RID)",
+      "NAMI Valley of the Sun"
+    ]
   },
   {
     "num": "03",
-    "title": "Food Assistance",
-    "links": ["St. Mary's Food Bank", "United Food Bank", "Desert Mission Food Pantry", "WIC Nutrition Program"]
+    "title": "Food Banks",
+    "links": [
+      "St. Mary's Food Bank",
+      "United Food Bank",
+      "Desert Mission Food Pantry",
+      "AZCEND Food Bank"
+    ]
   },
   {
     "num": "04",
-    "title": "Education & ESL",
-    "links": ["Rio Salado College ESL", "Literacy Volunteers of Maricopa", "Phoenix Public Library Classes", "Arizona State University Outreach"]
-  },
-  {
-    "num": "05",
-    "title": "Employment",
-    "links": ["Arizona@Work Job Centers", "Refugee Employment Services", "Goodwill Career Services", "Local Chamber of Commerce"]
-  },
-  {
-    "num": "06",
-    "title": "Legal Services",
-    "links": ["Florence Immigrant & Refugee Rights", "Arizona Justice Project", "Community Legal Services", "ACLU of Arizona"]
+    "title": "Health Clinics",
+    "links": [
+      "Valleywise Community Health Center",
+      "Mountain Park Health Center",
+      "Wesley Community & Health Center",
+      "Adelante Healthcare"
+    ]
   }
 ]

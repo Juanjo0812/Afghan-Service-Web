@@ -18,6 +18,7 @@ import enEvents from '../locales/en/events.json'
 import enContact from '../locales/en/contact.json'
 import enTestimonials from '../locales/en/testimonials.json'
 import enChatbot from '../locales/en/chatbot.json'
+import enImmigrationHelp from '../locales/en/immigration-help.json'
 
 /* Dari */
 import faCommon from '../locales/dari/common.json'
@@ -30,6 +31,7 @@ import faEvents from '../locales/dari/events.json'
 import faContact from '../locales/dari/contact.json'
 import faTestimonials from '../locales/dari/testimonials.json'
 import faChatbot from '../locales/dari/chatbot.json'
+import faImmigrationHelp from '../locales/dari/immigration-help.json'
 
 /* Pashto */
 import psCommon from '../locales/pashto/common.json'
@@ -42,6 +44,7 @@ import psEvents from '../locales/pashto/events.json'
 import psContact from '../locales/pashto/contact.json'
 import psTestimonials from '../locales/pashto/testimonials.json'
 import psChatbot from '../locales/pashto/chatbot.json'
+import psImmigrationHelp from '../locales/pashto/immigration-help.json'
 
 /* Uzbek */
 import uzCommon from '../locales/uzbek/common.json'
@@ -54,6 +57,7 @@ import uzEvents from '../locales/uzbek/events.json'
 import uzContact from '../locales/uzbek/contact.json'
 import uzTestimonials from '../locales/uzbek/testimonials.json'
 import uzChatbot from '../locales/uzbek/chatbot.json'
+import uzImmigrationHelp from '../locales/uzbek/immigration-help.json'
 
 export const NAMESPACES = [
   'common',
@@ -66,6 +70,7 @@ export const NAMESPACES = [
   'contact',
   'testimonials',
   'chatbot',
+  'immigration-help',
 ] as const
 
 export type Namespace = (typeof NAMESPACES)[number]
@@ -96,6 +101,7 @@ i18n
         contact: enContact,
         testimonials: enTestimonials,
         chatbot: enChatbot,
+        'immigration-help': enImmigrationHelp,
       },
       dari: {
         common: faCommon,
@@ -108,6 +114,7 @@ i18n
         contact: faContact,
         testimonials: faTestimonials,
         chatbot: faChatbot,
+        'immigration-help': faImmigrationHelp,
       },
       pashto: {
         common: psCommon,
@@ -120,6 +127,7 @@ i18n
         contact: psContact,
         testimonials: psTestimonials,
         chatbot: psChatbot,
+        'immigration-help': psImmigrationHelp,
       },
       uzbek: {
         common: uzCommon,
@@ -132,6 +140,7 @@ i18n
         contact: uzContact,
         testimonials: uzTestimonials,
         chatbot: uzChatbot,
+        'immigration-help': uzImmigrationHelp,
       },
     },
   })

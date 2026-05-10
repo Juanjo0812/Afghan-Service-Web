@@ -1,14 +1,43 @@
 {
   "label": "[FA] Know Your Rights",
-  "heading": "[FA] You Have Rights Here",
-  "description": "[FA] Regardless of your immigration status, you have rights in the United States. Learn what to do if approached by immigration officials, how to prepare your family, and where to find legal help.",
-  "rights": [
-    "[FA] You have the right to remain silent. You do not have to answer questions about your immigration status.",
-    "[FA] You have the right to refuse a search of yourself, your home, or your belongings without a warrant signed by a judge.",
-    "[FA] You have the right to speak to a lawyer before answering any questions or signing any documents.",
-    "[FA] If ICE agents come to your home, do not open the door. Ask them to show you a warrant signed by a judge through the window or under the door.",
-    "[FA] You have the right to carry copies of your documents — keep originals in a safe place at home."
-  ],
-  "imageAlt": "[FA] Passport and immigration documents",
-  "downloadButton": "[FA] Download Rights Guide (PDF)"
+  "heading": "[FA] Know Your Rights",
+  "description": "[FA] Understanding your rights is the first step to protecting yourself and your family.",
+  "scenarios": {
+    "police": {
+      "title": "[FA] When Interacting with Police or Immigration Agents",
+      "items": [
+        "[FA] You do not have to answer questions about your immigration status.",
+        "[FA] You may say: \"I want to remain silent.\"",
+        "[FA] You have the right to refuse a search without a warrant.",
+        "[FA] Ask for a lawyer before signing anything."
+      ]
+    },
+    "ice": {
+      "title": "[FA] If ICE Comes to Your Home",
+      "items": [
+        "[FA] Do NOT open the door without a signed warrant.",
+        "[FA] Ask to see it through the window or under the door.",
+        "[FA] You have the right to remain silent.",
+        "[FA] Have a family safety plan."
+      ]
+    },
+    "documents": {
+      "title": "[FA] Carrying Documents Safely",
+      "items": [
+        "[FA] Carry copies, not originals.",
+        "[FA] Avoid carrying your passport unless advised.",
+        "[FA] Store important documents safely at home."
+      ]
+    }
+  },
+  "disclaimer": "[FA] This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
+  "lastReviewed": "[FA] Last reviewed: May 2026",
+  "downloads": {
+    "title": "[FA] Know Your Rights Cards",
+    "subtitle": "[FA] Download wallet-size cards",
+    "english": "[FA] Download (English)",
+    "dari": "[FA] Download (Dari)",
+    "pashto": "[FA] Download (Pashto)",
+    "uzbek": "[FA] Download (Uzbek)"
+  }
 }

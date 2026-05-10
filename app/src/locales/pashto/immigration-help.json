@@ -1,0 +1,37 @@
+{
+  "label": "[PS] Immigration Services",
+  "heading": "[PS] Free Immigration Assistance for Afghan Families in Phoenix",
+  "subtitle": "[PS] We provide free and confidential immigration legal support for Afghan individuals and families.",
+  "services": {
+    "asylum": {
+      "title": "[PS] Asylum Applications",
+      "description": "[PS] Help with affirmative and defensive asylum applications"
+    },
+    "workPermit": {
+      "title": "[PS] Work Permit Assistance",
+      "description": "[PS] Employment authorization document (EAD) applications and renewals"
+    },
+    "tps": {
+      "title": "[PS] TPS (Temporary Protected Status)",
+      "description": "[PS] TPS registration and re-registration assistance"
+    },
+    "greenCard": {
+      "title": "[PS] Green Card & Family Reunification",
+      "description": "[PS] Adjustment of status and family-based petitions"
+    },
+    "adjustmentAct": {
+      "title": "[PS] Afghan Adjustment Act Assistance",
+      "description": "[PS] Assistance under the Afghan Adjustment Act provisions"
+    }
+  },
+  "languages": "We speak your language: English | دری | پښتو | Oʻzbek",
+  "contact": {
+    "heading": "[PS] Call today — we speak your language and are ready to help",
+    "name": "Daoud",
+    "phone": "480.416.2333",
+    "email": "Dpeshtaz@cc-az.org",
+    "location": "[PS] Phoenix office — in-person or phone appointments",
+    "hours": "[PS] Monday–Friday | 9 AM – 5 PM",
+    "cta": "[PS] Request a Call Back"
+  }
+}

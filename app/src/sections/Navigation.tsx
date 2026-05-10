@@ -5,7 +5,7 @@ import LanguageSwitcher from '../components/LanguageSwitcher'
 
 const navLinks = [
   { key: 'nav.home', href: '#home' },
-  { key: 'nav.immigrationHelp', href: '#services' },
+  { key: 'nav.immigrationHelp', href: '#immigration-help' },
   { key: 'nav.communityResources', href: '#resources' },
   { key: 'nav.knowYourRights', href: '#rights' },
   { key: 'nav.events', href: '#events' },

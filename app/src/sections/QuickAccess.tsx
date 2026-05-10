@@ -1,64 +1,21 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
-import { Globe, Home, Heart, BookOpen, Briefcase, Scale } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+import { Globe, Scale, Heart, BookOpen } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const serviceIcons = {
-  immigration: Globe,
-  housing: Home,
-  healthcare: Heart,
-  education: BookOpen,
-  employment: Briefcase,
-  legal: Scale,
-} as const
-
-const serviceKeys = ['immigration', 'housing', 'healthcare', 'education', 'employment', 'legal'] as const
+const quickAccessItems = [
+  { key: 'immigrationHelp', icon: Globe, href: '#immigration-help' },
+  { key: 'knowYourRights', icon: Scale, href: '#rights' },
+  { key: 'findResources', icon: Heart, href: '#resources' },
+  { key: 'upcomingEvents', icon: BookOpen, href: '#events' },
+] as const
 
 export default function QuickAccess() {
-  const { t } = useTranslation('services')
+  const { t: tServices } = useTranslation('services')
+  const { t: tCommon } = useTranslation('common')
   const sectionRef = useRef<HTMLDivElement>(null)
-  const headingRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const prefersReduced = useReducedMotion()
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      // Heading animation
-      gsap.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-
-      // Cards stagger animation
-      const cards = cardsRef.current?.querySelectorAll('.service-card')
-      if (cards) {
-        gsap.to(cards, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: 'top 80%',
-          },
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  const { ref: headingRef, visible: headingVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: cardsRef, visible: cardsVisible } = useScrollReveal<HTMLDivElement>()
 
   return (
     <section
@@ -70,7 +27,13 @@ export default function QuickAccess() {
         {/* Heading */}
         <div
           ref={headingRef}
-          style={{ opacity: 0, transform: 'translateY(30px)', textAlign: 'center', marginBottom: 64 }}
+          style={{
+            opacity: headingVisible ? 1 : 0,
+            transform: headingVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+            textAlign: 'center',
+            marginBottom: 64,
+          }}
         >
           <span
             style={{
@@ -84,7 +47,7 @@ export default function QuickAccess() {
               marginBottom: 16,
             }}
           >
-            {t('sectionLabel')}
+            {tServices('sectionLabel')}
           </span>
           <h2
             style={{
@@ -96,34 +59,44 @@ export default function QuickAccess() {
               color: '#162d5a',
             }}
           >
-            {t('heading')}
+            {tServices('heading')}
           </h2>
         </div>
 
-        {/* Cards grid */}
+        {/* Quick access tiles */}
         <div
           ref={cardsRef}
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
             gap: 32,
           }}
         >
-          {serviceKeys.map((key) => {
-            const Icon = serviceIcons[key]
+          {quickAccessItems.map((item, index) => {
+            const Icon = item.icon
             return (
-              <div
-                key={key}
-                className="service-card"
+              <a
+                key={item.key}
+                href={item.href}
+                className="quick-access-tile"
                 style={{
-                  opacity: 0,
-                  transform: 'translateY(40px)',
+                  opacity: cardsVisible ? 1 : 0,
+                  transform: cardsVisible ? 'translateY(0)' : 'translateY(40px)',
+                  transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease',
+                  transitionDelay: `${index * 0.1}s`,
                   background: '#ffffff',
                   border: '1px solid rgba(22, 45, 90, 0.08)',
-                  padding: '40px 32px',
+                  padding: '48px 32px',
                   textAlign: 'center',
-                  transition: 'transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease',
-                  cursor: 'default',
+                  textDecoration: 'none',
+                  flex: '1 1 200px',
+                  maxWidth: 260,
+                  minHeight: 200,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget
@@ -139,9 +112,9 @@ export default function QuickAccess() {
                 }}
               >
                 <div style={{ marginBottom: 20, display: 'flex', justifyContent: 'center' }}>
-                  <Icon size={48} strokeWidth={1.5} color="var(--color-accent)" />
+                  <Icon size={56} strokeWidth={1.5} color="var(--color-accent)" />
                 </div>
-                <h3
+                <span
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 600,
@@ -149,45 +122,11 @@ export default function QuickAccess() {
                     lineHeight: 1.3,
                     letterSpacing: '-0.01em',
                     color: '#162d5a',
-                    marginBottom: 12,
                   }}
                 >
-                  {t(`cards.${key}.title`)}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 400,
-                    fontSize: 15,
-                    color: '#6b6b7b',
-                    lineHeight: 1.6,
-                    marginBottom: 16,
-                  }}
-                >
-                  {t(`cards.${key}.description`)}
-                </p>
-                <span
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 500,
-                    fontSize: 13,
-                    color: 'var(--color-accent)',
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    borderBottom: '1px solid transparent',
-                    transition: 'border-color 0.3s ease',
-                    display: 'inline-block',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLElement).style.borderBottomColor = 'var(--color-accent)'
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLElement).style.borderBottomColor = 'transparent'
-                  }}
-                >
-                  {t('learnMore')}
+                  {tCommon(`quickAccess.${item.key}`)}
                 </span>
-              </div>
+              </a>
             )
           })}
         </div>

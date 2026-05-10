@@ -1,4 +1,10 @@
 {
   "label": "[FA] Upcoming Events",
-  "heading": "[FA] Community Events"
+  "heading": "[FA] Events & Gatherings",
+  "categories": {
+    "workshop": "[FA] Workshop",
+    "legal": "[FA] Legal Clinic",
+    "cultural": "[FA] Cultural",
+    "holiday": "[FA] Holiday"
+  }
 }

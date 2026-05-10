@@ -1,14 +1,43 @@
 {
   "label": "[UZ] Know Your Rights",
-  "heading": "[UZ] You Have Rights Here",
-  "description": "[UZ] Regardless of your immigration status, you have rights in the United States. Learn what to do if approached by immigration officials, how to prepare your family, and where to find legal help.",
-  "rights": [
-    "[UZ] You have the right to remain silent. You do not have to answer questions about your immigration status.",
-    "[UZ] You have the right to refuse a search of yourself, your home, or your belongings without a warrant signed by a judge.",
-    "[UZ] You have the right to speak to a lawyer before answering any questions or signing any documents.",
-    "[UZ] If ICE agents come to your home, do not open the door. Ask them to show you a warrant signed by a judge through the window or under the door.",
-    "[UZ] You have the right to carry copies of your documents — keep originals in a safe place at home."
-  ],
-  "imageAlt": "[UZ] Passport and immigration documents",
-  "downloadButton": "[UZ] Download Rights Guide (PDF)"
+  "heading": "[UZ] Know Your Rights",
+  "description": "[UZ] Understanding your rights is the first step to protecting yourself and your family.",
+  "scenarios": {
+    "police": {
+      "title": "[UZ] When Interacting with Police or Immigration Agents",
+      "items": [
+        "[UZ] You do not have to answer questions about your immigration status.",
+        "[UZ] You may say: \"I want to remain silent.\"",
+        "[UZ] You have the right to refuse a search without a warrant.",
+        "[UZ] Ask for a lawyer before signing anything."
+      ]
+    },
+    "ice": {
+      "title": "[UZ] If ICE Comes to Your Home",
+      "items": [
+        "[UZ] Do NOT open the door without a signed warrant.",
+        "[UZ] Ask to see it through the window or under the door.",
+        "[UZ] You have the right to remain silent.",
+        "[UZ] Have a family safety plan."
+      ]
+    },
+    "documents": {
+      "title": "[UZ] Carrying Documents Safely",
+      "items": [
+        "[UZ] Carry copies, not originals.",
+        "[UZ] Avoid carrying your passport unless advised.",
+        "[UZ] Store important documents safely at home."
+      ]
+    }
+  },
+  "disclaimer": "[UZ] This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
+  "lastReviewed": "[UZ] Last reviewed: May 2026",
+  "downloads": {
+    "title": "[UZ] Know Your Rights Cards",
+    "subtitle": "[UZ] Download wallet-size cards",
+    "english": "[UZ] Download (English)",
+    "dari": "[UZ] Download (Dari)",
+    "pashto": "[UZ] Download (Pashto)",
+    "uzbek": "[UZ] Download (Uzbek)"
+  }
 }

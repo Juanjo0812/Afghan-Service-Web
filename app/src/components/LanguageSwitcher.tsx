@@ -16,7 +16,11 @@ const LANGUAGE_SUBLABELS: Record<LangCode, string> = {
   uzbek: 'Uzbek',
 }
 
-export default function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  variant?: 'light' | 'dark'
+}
+
+export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcherProps) {
   const { lang, changeLanguage, supportedLanguages } = useLanguage()
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -46,47 +50,23 @@ export default function LanguageSwitcher() {
     setOpen(false)
   }
 
+  const buttonClasses = variant === 'dark' 
+    ? "flex items-center gap-1.5 px-3 py-2 border border-cream/30 rounded-md text-cream font-medium text-sm transition-all hover:bg-white/10 hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber"
+    : "flex items-center gap-1.5 px-3 py-2 border border-warm-sand/60 rounded-md text-forest font-medium text-sm transition-all hover:bg-cream-dark hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber"
+
   return (
-    <div ref={containerRef} style={{ position: 'relative' }}>
+    <div ref={containerRef} className="relative">
       <button
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Select language"
         onClick={() => setOpen((prev) => !prev)}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 6,
-          background: 'none',
-          border: '1px solid rgba(22, 45, 90, 0.12)',
-          borderRadius: 8,
-          padding: '6px 12px',
-          cursor: 'pointer',
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 500,
-          fontSize: 12,
-          color: '#162d5a',
-          transition: 'border-color 0.2s ease, background 0.2s ease',
-        }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget
-          el.style.borderColor = 'rgba(22, 45, 90, 0.25)'
-          el.style.background = 'rgba(22, 45, 90, 0.04)'
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget
-          el.style.borderColor = 'rgba(22, 45, 90, 0.12)'
-          el.style.background = 'none'
-        }}
+        className={buttonClasses}
       >
         <span>{LANGUAGE_LABELS[lang]}</span>
         <ChevronDown
-          size={14}
-          color="#162d5a"
-          style={{
-            transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-            transition: 'transform 0.2s ease',
-          }}
+          size={16}
+          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''} ${variant === 'dark' ? 'text-cream' : 'text-forest'}`}
         />
       </button>
 
@@ -94,21 +74,7 @@ export default function LanguageSwitcher() {
         <ul
           role="listbox"
           aria-label="Languages"
-          style={{
-            position: 'absolute',
-            top: 'calc(100% + 6px)',
-            insetInlineEnd: 0,
-            minWidth: 160,
-            background: '#ffffff',
-            border: '1px solid rgba(22, 45, 90, 0.08)',
-            borderRadius: 12,
-            boxShadow: '0 12px 40px rgba(22, 45, 90, 0.12)',
-            padding: '6px',
-            margin: 0,
-            listStyle: 'none',
-            zIndex: 3000,
-            animation: 'langDropdownIn 0.2s ease forwards',
-          }}
+          className="absolute top-[calc(100%+8px)] right-0 min-w-[160px] bg-white border border-warm-sand/50 rounded-xl shadow-dropdown p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
           {supportedLanguages.map((code) => {
             const selected = code === lang
@@ -118,58 +84,14 @@ export default function LanguageSwitcher() {
                   role="option"
                   aria-selected={selected}
                   onClick={() => handleSelect(code)}
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: 8,
-                    padding: '8px 12px',
-                    borderRadius: 8,
-                    border: 'none',
-                    background: selected ? 'rgba(22, 45, 90, 0.06)' : 'transparent',
-                    cursor: 'pointer',
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: selected ? 600 : 400,
-                    fontSize: 13,
-                    color: '#162d5a',
-                    transition: 'background 0.15s ease',
-                    textAlign: 'start',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!selected) {
-                      ;(e.currentTarget as HTMLElement).style.background = 'rgba(22, 45, 90, 0.04)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!selected) {
-                      ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-                    }
-                  }}
+                  className={`w-full flex items-center justify-between gap-2 px-3 py-2 rounded-md text-sm transition-colors text-left ${
+                    selected
+                      ? 'bg-amber/10 text-forest font-semibold'
+                      : 'text-forest hover:bg-cream-dark'
+                  }`}
                 >
                   <span>{LANGUAGE_LABELS[code]}</span>
-                  <span
-                    style={{
-                      fontSize: 11,
-                      color: '#6b6b7b',
-                      fontWeight: 400,
-                    }}
-                  >
+                  <span className="text-xs text-forest-light">
                     {LANGUAGE_SUBLABELS[code]}
                   </span>
                 </button>
-              </li>
-            )
-          })}
-        </ul>
-      )}
-
-      <style>{`
-        @keyframes langDropdownIn {
-          from { opacity: 0; transform: translateY(-4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-    </div>
-  )
-}

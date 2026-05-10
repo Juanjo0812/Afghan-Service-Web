@@ -7,7 +7,7 @@
     "knowYourRights": "[PS] Know Your Rights",
     "events": "[PS] Events",
     "contact": "[PS] Contact",
-    "getHelp": "[PS] Get Help",
+    "getHelp": "[PS] Get Help Now",
     "openMenu": "[PS] Open menu",
     "closeMenu": "[PS] Close menu"
   },
@@ -26,6 +26,12 @@
     "pashto": "[PS] پښتو (Pashto)",
     "uzbek": "[PS] O'zbek (Uzbek)",
     "copyright": "[PS] © 2026 Afghan Support. All rights reserved."
+  },
+  "quickAccess": {
+    "immigrationHelp": "[PS] Immigration Help",
+    "knowYourRights": "[PS] Know Your Rights",
+    "findResources": "[PS] Find Resources",
+    "upcomingEvents": "[PS] Upcoming Events"
   },
   "skipLink": "[PS] Skip to main content",
   "chatbotFallback": "[PS] Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."

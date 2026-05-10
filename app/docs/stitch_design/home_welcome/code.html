@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welcome Home - Afghan Support Network</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#caf082",
+                      "secondary-fixed-dim": "#edc200",
+                      "on-background": "#1b1c19",
+                      "on-tertiary-fixed-variant": "#364e00",
+                      "on-secondary-fixed": "#231b00",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#98bb89",
+                      "surface-dim": "#dbdad5",
+                      "on-secondary-container": "#6f5900",
+                      "on-primary-fixed-variant": "#304e27",
+                      "on-tertiary-fixed": "#131f00",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#fbf9f4",
+                      "secondary-fixed": "#ffe07f",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#042102",
+                      "on-surface-variant": "#43483f",
+                      "primary-fixed": "#c8edb8",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#1b1c19",
+                      "surface-tint": "#47663c",
+                      "surface-container": "#f0eee9",
+                      "surface-bright": "#fbf9f4",
+                      "on-secondary-fixed-variant": "#564500",
+                      "background": "#fbf9f4",
+                      "secondary-container": "#fed000",
+                      "surface-container-high": "#eae8e3",
+                      "surface-container-low": "#f5f3ee",
+                      "tertiary-fixed-dim": "#afd369",
+                      "on-tertiary-container": "#9abd56",
+                      "surface-container-highest": "#e4e2dd",
+                      "secondary": "#725c00",
+                      "inverse-on-surface": "#f2f1ec",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#223300",
+                      "tertiary-container": "#344b00",
+                      "outline": "#73796e",
+                      "outline-variant": "#c3c8bc",
+                      "primary-fixed-dim": "#add19d",
+                      "primary": "#173410",
+                      "primary-container": "#2d4b24",
+                      "surface-variant": "#e4e2dd",
+                      "inverse-surface": "#30312e",
+                      "inverse-primary": "#add19d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "container-max": "1200px",
+                      "target-min": "44px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["14px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "label-lg": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-sm": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-on-background sticky top-0 w-full z-50 border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center px-margin-mobile md:px-gutter py-4 max-w-container-max mx-auto">
+<a class="text-headline-md font-headline-lg text-primary dark:text-primary-fixed flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+                Afghan Support Network
+            </a>
+<!-- Desktop Nav -->
+<ul class="hidden md:flex items-center gap-6">
+<li><a class="font-label-lg text-label-lg text-primary font-bold border-b-2 border-secondary hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Home</a></li>
+<li><a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Immigration Help</a></li>
+<li><a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Community Resources</a></li>
+<li><a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Know Your Rights</a></li>
+<li><a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Events</a></li>
+<li><a class="font-label-lg text-label-lg text-on-surface-variant dark:text-surface-variant hover:text-secondary-fixed-dim transition-colors duration-200 py-2" href="#">Contact</a></li>
+</ul>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-1 font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">language</span>
+                    EN/دری
+                </button>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-DEFAULT font-label-lg text-label-lg hover:opacity-90 active:opacity-80 active:scale-95 transition-all min-h-[44px]">
+                    Get Help Now
+                </button>
+<button class="md:hidden text-on-surface-variant p-2">
+<span class="material-symbols-outlined text-[28px]">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full min-h-[600px] flex items-center justify-center py-20 px-margin-mobile md:px-gutter bg-surface-container overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Family gathering" class="w-full h-full object-cover opacity-30 mix-blend-multiply" data-alt="A warm, candid portrait of an Afghan family gathered around a table in a bright, modern living space. Soft, natural light streams through a large window, creating a hopeful and welcoming atmosphere. The composition emphasizes connection and resilience, with subtle earthy tones of olive and soft sand in the background decor reflecting institutional warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt1nWPdHFDZYlc8mAX2I6-ebMVzSpKCihVmQ_GcoRTT6krEIHePg-u9eoaVKEQJg1k1qNyyKHFls0H5iKPSzXZhE6bcpfAlaZkicZUwgpIISUUDKsBpAZ1PYsDLS2jqQP_U9o4VVBMJfAby9jlSFshoKvMuqYZYlIhzHruCZ5LjwDt2yZpT-mf5813mhpV9YlhrSDC8faQnGSlfxObVPXuxKacP9AaQHgWz1d2-4E1Wd0zOUF2xIJmGFlEZfyUy0iXb7CjntKZ6ljx"/>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto text-center flex flex-col items-center">
+<div class="inline-block mb-6 px-4 py-2 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full border border-outline-variant">
+<p class="font-body-sm text-body-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                        Serving Phoenix Metro Area
+                    </p>
+</div>
+<h1 class="font-display text-display text-primary mb-2">Welcome Home</h1>
+<h2 class="font-display text-display text-primary mb-6" dir="rtl">به خانه خوش آمدید</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+                    Free, confidential support for Afghan families in Phoenix. We are here to help you navigate your new environment with dignity and respect.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
+<button class="w-full sm:w-auto bg-primary text-on-primary px-8 py-4 rounded-DEFAULT font-label-lg text-label-lg hover:bg-primary-container transition-colors min-h-[44px] flex items-center justify-center gap-2">
+                        Get Help Now
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto bg-transparent border-2 border-outline text-primary px-8 py-4 rounded-DEFAULT font-label-lg text-label-lg hover:bg-surface-variant transition-colors min-h-[44px]">
+                        Learn About Your Rights
+                    </button>
+</div>
+</div>
+</section>
+<!-- Quick Access Bento Grid -->
+<section class="py-20 px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">How We Can Support You</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Access our core services designed to provide stability and guidance.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary hover:shadow-sm transition-all h-full flex flex-col focus:ring-2 focus:ring-secondary focus:outline-none" href="#">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Immigration Help</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-grow mb-6">Legal assistance for asylum, SIVs, and family reunification processes.</p>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
+                        Learn more <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</span>
+</a>
+<!-- Card 2 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary hover:shadow-sm transition-all h-full flex flex-col focus:ring-2 focus:ring-secondary focus:outline-none" href="#">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Know Your Rights</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-grow mb-6">Understand your legal rights in the US regarding housing, work, and law enforcement.</p>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
+                        Learn more <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</span>
+</a>
+<!-- Card 3 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary hover:shadow-sm transition-all h-full flex flex-col focus:ring-2 focus:ring-secondary focus:outline-none" href="#">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Find Resources</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-grow mb-6">Connect with healthcare, housing, employment, and education support.</p>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
+                        Learn more <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</span>
+</a>
+<!-- Card 4 -->
+<a class="group block bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary hover:shadow-sm transition-all h-full flex flex-col focus:ring-2 focus:ring-secondary focus:outline-none" href="#">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Upcoming Events</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-grow mb-6">Join workshops, community gatherings, and legal clinics.</p>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 group-hover:gap-2 transition-all mt-auto">
+                        Learn more <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</span>
+</a>
+</div>
+</section>
+<!-- About & Event Split Section -->
+<section class="py-20 bg-surface-container-low border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<!-- About Text -->
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-2 block">Our Mission</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Building community and providing essential legal support.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                        The Afghan Support Network provides comprehensive, culturally competent services to Afghan families. We combine expert legal advocacy with deep community roots to ensure every family has the tools they need to thrive in their new home.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Our services are free, completely confidential, and provided by professionals who understand both the legal landscape and the cultural context.
+                    </p>
+<a class="font-label-lg text-label-lg text-primary border-b border-primary pb-1 hover:text-primary-container transition-colors inline-flex items-center gap-2" href="#">
+                        Read more about our impact
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Event Preview Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/20 rounded-bl-full -z-0"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Featured Event</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Free Citizenship Workshop</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Get expert guidance on your naturalization application process with our legal team.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="font-body-sm text-body-sm">June 13, 2026 • 10:00 AM - 2:00 PM</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="font-body-sm text-body-sm">Phoenix Community Center</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">translate</span>
+<span class="font-body-sm text-body-sm">Dari &amp; Pashto interpretation provided</span>
+</div>
+</div>
+<button class="w-full bg-transparent border-2 border-primary text-primary px-6 py-3 rounded-DEFAULT font-label-lg text-label-lg hover:bg-surface-container transition-colors min-h-[44px]">
+                            Register for Workshop
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom CTA -->
+<section class="py-24 bg-surface-tint text-on-primary text-center px-margin-mobile md:px-gutter">
+<div class="max-w-2xl mx-auto">
+<span class="material-symbols-outlined text-[48px] mb-6 opacity-90" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<h2 class="font-display text-display mb-6">Need help right now?</h2>
+<p class="font-body-lg text-body-lg opacity-90 mb-10">
+                    Our team is ready to assist you. Calls are confidential and interpreters are available.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-DEFAULT font-label-lg text-label-lg hover:opacity-90 active:scale-95 transition-all min-h-[44px] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">phone</span>
+                        Get Help Now
+                    </button>
+<button class="bg-transparent border border-on-primary text-on-primary px-8 py-4 rounded-DEFAULT font-label-lg text-label-lg hover:bg-on-primary/10 transition-colors min-h-[44px]">
+                        Send us a message
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-on-background w-full py-12 border-t border-outline-variant dark:border-outline">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<span class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+                    Afghan Support Network
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+                    © 2024 Afghan Support Network. Affiliated with Catholic Charities AZ. All rights reserved.
+                </p>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-lg text-label-lg text-primary mb-2">Legal &amp; Privacy</h4>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors focus:ring-2 focus:ring-secondary-fixed w-fit" href="#">Legal Disclaimer</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors focus:ring-2 focus:ring-secondary-fixed w-fit" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors focus:ring-2 focus:ring-secondary-fixed w-fit" href="#">Language Options</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-label-lg text-label-lg text-primary mb-2">Contact Us</h4>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors focus:ring-2 focus:ring-secondary-fixed w-fit flex items-center gap-2" href="tel:4804162333">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                    480.416.2333
+                </a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors focus:ring-2 focus:ring-secondary-fixed w-fit flex items-center gap-2" href="mailto:contact@afghansupport.org">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                    contact@afghansupport.org
+                </a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,20 +1,37 @@
 [
   {
-    "month": "[PS] Mar",
+    "month": "[PS] Jun",
+    "day": "[PS] 13",
+    "title": "[PS] Free Citizenship Workshop",
+    "details": "[PS] 9:00 AM – 2:00 PM • Registration required",
+    "category": "workshop"
+  },
+  {
+    "month": "[PS] Jun",
+    "day": "[PS] 28",
+    "title": "[PS] Immigration Legal Clinic",
+    "details": "[PS] 10:00 AM – 4:00 PM • Afghan Support Office",
+    "category": "legal"
+  },
+  {
+    "month": "[PS] Jul",
+    "day": "[PS] 12",
+    "title": "[PS] Community Cultural Gathering",
+    "details": "[PS] 5:00 PM – 8:00 PM • Phoenix Community Center",
+    "category": "cultural"
+  },
+  {
+    "month": "[PS] Jul",
+    "day": "[PS] 18",
+    "title": "[PS] Know Your Rights Workshop",
+    "details": "[PS] 11:00 AM – 1:00 PM • Virtual (Zoom link provided)",
+    "category": "workshop"
+  },
+  {
+    "month": "[PS] Aug",
     "day": "[PS] 15",
-    "title": "[PS] Community Iftar Dinner",
-    "details": "[PS] 6:30 PM — Afghan Community Center"
-  },
-  {
-    "month": "[PS] Mar",
-    "day": "[PS] 22",
-    "title": "[PS] Immigration Clinic: Open Consultation",
-    "details": "[PS] 10:00 AM — Afghan Support Office"
-  },
-  {
-    "month": "[PS] Every Tue",
-    "day": "[PS] —",
-    "title": "[PS] ESL Class: Beginner English",
-    "details": "[PS] 5:00 PM — Phoenix Public Library"
+    "title": "[PS] Afghan Independence Day Celebration",
+    "details": "[PS] 3:00 PM – 9:00 PM • Steele Indian School Park",
+    "category": "holiday"
   }
 ]

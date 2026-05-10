@@ -1,67 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { useLanguage } from '../hooks/useLanguage'
 import { getSlideDirection } from '../lib/animationDirection'
 import { ArrowRight } from 'lucide-react'
 import { loadData } from '../lib/dataLoader'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface EventItem {
   title: string
   month: string
   day: string
   details: string
+  category: 'workshop' | 'legal' | 'cultural' | 'holiday'
+}
+
+const badgeColors: Record<EventItem['category'], { bg: string; text: string }> = {
+  workshop: { bg: 'rgba(59,130,246,0.1)', text: '#2563eb' },
+  legal: { bg: 'rgba(34,197,94,0.1)', text: '#16a34a' },
+  cultural: { bg: 'rgba(249,115,22,0.1)', text: '#ea580c' },
+  holiday: { bg: 'rgba(239,68,68,0.1)', text: '#dc2626' },
 }
 
 export default function Events() {
   const { t } = useTranslation('events')
   const { lang, isRTL } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const headingRef = useRef<HTMLDivElement>(null)
-  const listRef = useRef<HTMLDivElement>(null)
-  const prefersReduced = useReducedMotion()
+  const { ref: headingRef, visible: headingVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: listRef, visible: listVisible } = useScrollReveal<HTMLDivElement>()
   const [events, setEvents] = useState<EventItem[]>([])
 
   useEffect(() => {
     loadData<EventItem[]>(lang, 'events').then(setEvents)
   }, [lang])
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      gsap.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-
-      const cards = listRef.current?.querySelectorAll('.event-card')
-      if (cards) {
-        gsap.to(cards, {
-          opacity: 1,
-          x: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: listRef.current,
-            start: 'top 80%',
-          },
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
 
   return (
     <section
@@ -73,7 +43,7 @@ export default function Events() {
         {/* Heading */}
         <div
           ref={headingRef}
-          style={{ opacity: 0, transform: 'translateY(30px)', marginBottom: 48 }}
+          style={{ opacity: headingVisible ? 1 : 0, transform: headingVisible ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)', marginBottom: 48 }}
         >
           <span
             style={{
@@ -105,93 +75,116 @@ export default function Events() {
 
         {/* Event list */}
         <div ref={listRef} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {events.map((event) => (
-            <div
-              key={event.title}
-              className="event-card"
-              style={{
-                opacity: 0,
-                transform: `translateX(${getSlideDirection(isRTL).enterFrom * 0.4}px)`,
-                background: '#ffffff',
-                border: '1px solid rgba(22, 45, 90, 0.06)',
-                borderInlineStart: '1px solid rgba(22, 45, 90, 0.06)',
-                padding: '28px 32px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 24,
-                transition: 'transform 0.3s ease, border-inline-start-color 0.3s ease, border-inline-start-width 0.3s ease',
-                cursor: 'pointer',
-                flexWrap: 'wrap',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget
-                el.style.transform = `translateX(${isRTL ? -4 : 4}px)`
-                el.style.borderInlineStart = '3px solid var(--color-accent)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget
-                el.style.transform = 'translateX(0)'
-                el.style.borderInlineStart = '1px solid rgba(22, 45, 90, 0.06)'
-              }}
-            >
-              {/* Date box */}
-              <div style={{ width: 80, textAlign: 'center', flexShrink: 0 }}>
-                <div
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 500,
-                    fontSize: 11,
-                    textTransform: 'uppercase' as const,
-                    color: 'var(--color-accent)',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {event.month}
+          {events.map((event, index) => {
+            const colors = badgeColors[event.category]
+            return (
+              <div
+                key={event.title}
+                className="event-card"
+                style={{
+                  opacity: listVisible ? 1 : 0,
+                  transform: listVisible ? 'translateX(0)' : `translateX(${getSlideDirection(isRTL).enterFrom * 0.4}px)`,
+                  transition: 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-inline-start-color 0.3s ease, border-inline-start-width 0.3s ease',
+                  transitionDelay: `${index * 0.12}s`,
+                  background: '#ffffff',
+                  border: '1px solid rgba(22, 45, 90, 0.06)',
+                  borderInlineStart: '1px solid rgba(22, 45, 90, 0.06)',
+                  padding: '28px 32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 24,
+                  cursor: 'pointer',
+                  flexWrap: 'wrap',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget
+                  el.style.transform = `translateX(${isRTL ? -4 : 4}px)`
+                  el.style.borderInlineStart = '3px solid var(--color-accent)'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget
+                  el.style.transform = 'translateX(0)'
+                  el.style.borderInlineStart = '1px solid rgba(22, 45, 90, 0.06)'
+                }}
+              >
+                {/* Date box */}
+                <div style={{ width: 80, textAlign: 'center', flexShrink: 0 }}>
+                  <div
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                      fontSize: 11,
+                      textTransform: 'uppercase' as const,
+                      color: 'var(--color-accent)',
+                      letterSpacing: '0.05em',
+                    }}
+                  >
+                    {event.month}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontWeight: 600,
+                      fontSize: 36,
+                      color: '#162d5a',
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {event.day}
+                  </div>
                 </div>
-                <div
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 600,
-                    fontSize: 36,
-                    color: '#162d5a',
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {event.day}
+
+                {/* Content */}
+                <div style={{ flex: 1, minWidth: 200, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+                    <h3
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontWeight: 600,
+                        fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
+                        lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
+                        color: '#162d5a',
+                        margin: 0,
+                      }}
+                    >
+                      {event.title}
+                    </h3>
+                    <span
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 500,
+                        fontSize: 11,
+                        letterSpacing: '0.05em',
+                        textTransform: 'uppercase' as const,
+                        color: colors.text,
+                        background: colors.bg,
+                        padding: '4px 8px',
+                        borderRadius: 4,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {t(`categories.${event.category}`)}
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 400,
+                      fontSize: 14,
+                      color: '#6b6b7b',
+                      margin: 0,
+                    }}
+                  >
+                    {event.details}
+                  </p>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div style={{ flex: 1, minWidth: 200 }}>
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontWeight: 600,
-                    fontSize: 'clamp(1.3rem, 2vw, 1.6rem)',
-                    lineHeight: 1.3,
-                    letterSpacing: '-0.01em',
-                    color: '#162d5a',
-                    marginBottom: 4,
-                  }}
-                >
-                  {event.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 400,
-                    fontSize: 14,
-                    color: '#6b6b7b',
-                  }}
-                >
-                  {event.details}
-                </p>
+                {/* Arrow */}
+                <ArrowRight size={20} color="var(--color-accent)" style={{ flexShrink: 0 }} />
               </div>
-
-              {/* Arrow */}
-              <ArrowRight size={20} color="var(--color-accent)" style={{ flexShrink: 0 }} />
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

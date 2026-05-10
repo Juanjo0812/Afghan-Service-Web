@@ -1,14 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTranslation } from 'react-i18next'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { X, Play, ChevronLeft, ChevronRight, Quote } from 'lucide-react'
-import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useLanguage } from '../hooks/useLanguage'
 import { loadData } from '../lib/dataLoader'
-
-gsap.registerPlugin(ScrollTrigger)
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -30,21 +25,25 @@ function TestimonialCard({
   testimonial,
   onClick,
   index,
+  isVisible,
 }: {
   testimonial: Testimonial
   onClick: () => void
   index: number
+  isVisible: boolean
 }) {
   const { t } = useTranslation('testimonials')
   return (
-    <motion.button
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
+    <button
       onClick={onClick}
       className="group flex-shrink-0 flex flex-col items-center gap-3 cursor-pointer bg-transparent border-none outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-sm"
-      style={{ width: 110 }}
+      style={{
+        width: 110,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
+        transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+        transitionDelay: `${index * 0.08}s`,
+      }}
       aria-label={t('aria.viewTestimonial', { name: testimonial.name })}
     >
       {/* Avatar ring */}
@@ -102,7 +101,7 @@ function TestimonialCard({
       >
         {testimonial.name}
       </span>
-    </motion.button>
+    </button>
   )
 }
 
@@ -147,163 +146,166 @@ function TestimonialModal({
   }, [])
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[10000] flex items-center justify-center p-4 md:p-8"
-      style={{ background: 'rgba(26, 26, 46, 0.72)', backdropFilter: 'blur(8px)' }}
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={t('aria.modalLabel', { name: testimonial.name })}
-    >
-      {/* Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.97 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg overflow-hidden"
+    <>
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes modalCardIn { from { opacity: 0; transform: translateY(30px) scale(0.97) } to { opacity: 1; transform: translateY(0) scale(1) } }
+      `}</style>
+      <div
         style={{
-          background: '#ffffff',
-          border: '1px solid rgba(22, 45, 90, 0.06)',
-          boxShadow: '0 24px 80px rgba(0,0,0,0.18)',
+          animation: 'fadeIn 0.25s ease forwards',
+          background: 'rgba(26, 26, 46, 0.72)',
+          backdropFilter: 'blur(8px)',
         }}
+        className="fixed inset-0 z-[10000] flex items-center justify-center p-4 md:p-8"
+        onClick={onClose}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('aria.modalLabel', { name: testimonial.name })}
       >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          aria-label={t('aria.closeTestimonial')}
-          className="absolute top-4 z-10 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-[rgba(22,45,90,0.06)]"
-          style={{ width: 36, height: 36, insetInlineEnd: 16, background: 'rgba(250,245,239,0.85)', border: 'none', cursor: 'pointer' }}
+        {/* Card */}
+        <div
+          style={{
+            animation: 'modalCardIn 0.3s ease-out forwards',
+            background: '#ffffff',
+            border: '1px solid rgba(22, 45, 90, 0.06)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.18)',
+          }}
+          onClick={(e) => e.stopPropagation()}
+          className="relative w-full max-w-lg overflow-hidden"
         >
-          <X size={18} color="#162d5a" />
-        </button>
+          {/* Close */}
+          <button
+            onClick={onClose}
+            aria-label={t('aria.closeTestimonial')}
+            className="absolute top-4 z-10 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-[rgba(22,45,90,0.06)]"
+            style={{ width: 36, height: 36, insetInlineEnd: 16, background: 'rgba(250,245,239,0.85)', border: 'none', cursor: 'pointer' }}
+          >
+            <X size={18} color="#162d5a" />
+          </button>
 
-        {/* Media */}
-        {testimonial.videoUrl ? (
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#1a1a2e' }}>
-            <video
-              src={testimonial.videoUrl}
-              controls
-              autoPlay
-              muted
-              playsInline
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
-        ) : (
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#f5efe7' }}>
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
-        )}
+          {/* Media */}
+          {testimonial.videoUrl ? (
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#1a1a2e' }}>
+              <video
+                src={testimonial.videoUrl}
+                controls
+                autoPlay
+                muted
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+          ) : (
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#f5efe7' }}>
+              <img
+                src={testimonial.avatar}
+                alt={testimonial.name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+          )}
 
-        {/* Content */}
-        <div style={{ padding: 'clamp(24px, 4vw, 36px)' }}>
-          {/* Quote */}
-          <div className="flex gap-3 mb-5">
-            <Quote
-              size={28}
-              className="flex-shrink-0 mt-0.5"
-              style={{ color: 'var(--color-accent)', opacity: 0.4 }}
-            />
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                fontSize: 15,
-                lineHeight: 1.7,
-                color: '#1a1a2e',
-              }}
-            >
-              {testimonial.quote}
-            </p>
-          </div>
-
-          {/* Author */}
-          <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid rgba(22,45,90,0.06)' }}>
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              className="rounded-full object-cover"
-              style={{ width: 44, height: 44 }}
-            />
-            <div>
-              <span
-                className="block"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontWeight: 600,
-                  fontSize: 18,
-                  color: '#162d5a',
-                  lineHeight: 1.2,
-                }}
-              >
-                {testimonial.name}
-              </span>
-              <span
+          {/* Content */}
+          <div style={{ padding: 'clamp(24px, 4vw, 36px)' }}>
+            {/* Quote */}
+            <div className="flex gap-3 mb-5">
+              <Quote
+                size={28}
+                className="flex-shrink-0 mt-0.5"
+                style={{ color: 'var(--color-accent)', opacity: 0.4 }}
+              />
+              <p
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 400,
-                  fontSize: 13,
-                  color: '#6b6b7b',
+                  fontSize: 15,
+                  lineHeight: 1.7,
+                  color: '#1a1a2e',
                 }}
               >
-                {testimonial.role}
-              </span>
+                {testimonial.quote}
+              </p>
+            </div>
+
+            {/* Author */}
+            <div className="flex items-center gap-3 pt-4" style={{ borderTop: '1px solid rgba(22,45,90,0.06)' }}>
+              <img
+                src={testimonial.avatar}
+                alt={testimonial.name}
+                className="rounded-full object-cover"
+                style={{ width: 44, height: 44 }}
+              />
+              <div>
+                <span
+                  className="block"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontWeight: 600,
+                    fontSize: 18,
+                    color: '#162d5a',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {testimonial.name}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 400,
+                    fontSize: 13,
+                    color: '#6b6b7b',
+                  }}
+                >
+                  {testimonial.role}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Prev / Next controls */}
-        <div
-          className="flex justify-between px-5 pb-5"
-          style={{ marginTop: -8 }}
-        >
-          <button
-            onClick={onPrev}
-            disabled={!hasPrev}
-            aria-label={t('aria.previousTestimonial')}
-            className="flex items-center gap-1 transition-colors duration-200 disabled:opacity-30"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 13,
-              color: '#162d5a',
-              background: 'none',
-              border: 'none',
-              cursor: hasPrev ? 'pointer' : 'default',
-            }}
+          {/* Prev / Next controls */}
+          <div
+            className="flex justify-between px-5 pb-5"
+            style={{ marginTop: -8 }}
           >
-            <ChevronLeft size={16} /> {t('aria.previous')}
-          </button>
-          <button
-            onClick={onNext}
-            disabled={!hasNext}
-            aria-label={t('aria.nextTestimonial')}
-            className="flex items-center gap-1 transition-colors duration-200 disabled:opacity-30"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              fontSize: 13,
-              color: '#162d5a',
-              background: 'none',
-              border: 'none',
-              cursor: hasNext ? 'pointer' : 'default',
-            }}
-          >
-            {t('aria.next')} <ChevronRight size={16} />
-          </button>
+            <button
+              onClick={onPrev}
+              disabled={!hasPrev}
+              aria-label={t('aria.previousTestimonial')}
+              className="flex items-center gap-1 transition-colors duration-200 disabled:opacity-30"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                fontSize: 13,
+                color: '#162d5a',
+                background: 'none',
+                border: 'none',
+                cursor: hasPrev ? 'pointer' : 'default',
+              }}
+            >
+              <ChevronLeft size={16} /> {t('aria.previous')}
+            </button>
+            <button
+              onClick={onNext}
+              disabled={!hasNext}
+              aria-label={t('aria.nextTestimonial')}
+              className="flex items-center gap-1 transition-colors duration-200 disabled:opacity-30"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                fontSize: 13,
+                color: '#162d5a',
+                background: 'none',
+                border: 'none',
+                cursor: hasNext ? 'pointer' : 'default',
+              }}
+            >
+              {t('aria.next')} <ChevronRight size={16} />
+            </button>
+          </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </>
   )
 }
 
@@ -314,35 +316,18 @@ export default function Testimonials() {
   const { t } = useTranslation('testimonials')
   const { lang, isRTL } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const headingRef = useRef<HTMLDivElement>(null)
+  const { ref: headingRef, visible: headingVisible } = useScrollReveal<HTMLDivElement>()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const { ref: scrollRevealRef, visible: scrollVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: featuredRef, visible: featuredVisible } = useScrollReveal<HTMLDivElement>()
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const prefersReduced = useReducedMotion()
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
 
   useEffect(() => {
     loadData<Testimonial[]>(lang, 'testimonials').then(setTestimonials)
   }, [lang])
-
-  /* GSAP scroll-triggered heading animation */
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      gsap.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
 
   /* Scroll state detection */
   const updateScrollState = useCallback(() => {
@@ -389,8 +374,9 @@ export default function Testimonials() {
           <div
             ref={headingRef}
             style={{
-              opacity: 0,
-              transform: 'translateY(30px)',
+              opacity: headingVisible ? 1 : 0,
+              transform: headingVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
               textAlign: 'center',
               marginBottom: 56,
             }}
@@ -460,7 +446,10 @@ export default function Testimonials() {
 
             {/* Avatar row — centered on all screens */}
             <div
-              ref={scrollRef}
+              ref={(el) => {
+                scrollRef.current = el
+                ;(scrollRevealRef as React.MutableRefObject<HTMLDivElement | null>).current = el
+              }}
               className="flex gap-8 py-4 scrollbar-hide overflow-x-auto md:overflow-x-visible justify-center"
               style={{
                 WebkitOverflowScrolling: 'touch',
@@ -473,6 +462,7 @@ export default function Testimonials() {
                   key={testimonial.id}
                   testimonial={testimonial}
                   index={i}
+                  isVisible={scrollVisible}
                   onClick={() => setActiveIndex(i)}
                 />
               ))}
@@ -500,13 +490,14 @@ export default function Testimonials() {
 
           {/* ---- Featured quote (the first testimonial with video) ---- */}
           {testimonials[0] && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
+            <div
+              ref={featuredRef}
               className="mt-14 mx-auto"
               style={{
+                opacity: featuredVisible ? 1 : 0,
+                transform: featuredVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+                transitionDelay: '0.25s',
                 maxWidth: 720,
                 background: '#ffffff',
                 border: '1px solid rgba(22,45,90,0.06)',
@@ -564,28 +555,26 @@ export default function Testimonials() {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* ---- Modal ---- */}
-      <AnimatePresence>
-        {activeIndex !== null && testimonials[activeIndex] && (
-          <TestimonialModal
-            testimonial={testimonials[activeIndex]}
-            onClose={() => setActiveIndex(null)}
-            onPrev={() => setActiveIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : prev))}
-            onNext={() =>
-              setActiveIndex((prev) =>
-                prev !== null && prev < testimonials.length - 1 ? prev + 1 : prev,
-              )
-            }
-            hasPrev={activeIndex > 0}
-            hasNext={activeIndex < testimonials.length - 1}
-          />
-        )}
-      </AnimatePresence>
+      {activeIndex !== null && testimonials[activeIndex] && (
+        <TestimonialModal
+          testimonial={testimonials[activeIndex]}
+          onClose={() => setActiveIndex(null)}
+          onPrev={() => setActiveIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : prev))}
+          onNext={() =>
+            setActiveIndex((prev) =>
+              prev !== null && prev < testimonials.length - 1 ? prev + 1 : prev,
+            )
+          }
+          hasPrev={activeIndex > 0}
+          hasNext={activeIndex < testimonials.length - 1}
+        />
+      )}
     </>
   )
 }

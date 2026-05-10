@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import { useLanguage } from '../hooks/useLanguage'
 import { loadData } from '../lib/dataLoader'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface ResourceItem {
   num: string
@@ -18,47 +14,13 @@ export default function CommunityResources() {
   const { t } = useTranslation('resources')
   const { lang } = useLanguage()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const headingRef = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
-  const prefersReduced = useReducedMotion()
+  const { ref: headingRef, visible: headingVisible } = useScrollReveal<HTMLDivElement>()
+  const { ref: gridRef, visible: gridVisible } = useScrollReveal<HTMLDivElement>()
   const [resources, setResources] = useState<ResourceItem[]>([])
 
   useEffect(() => {
     loadData<ResourceItem[]>(lang, 'resources').then(setResources)
   }, [lang])
-
-  useEffect(() => {
-    if (prefersReduced) return
-    const ctx = gsap.context(() => {
-      gsap.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
-
-      const cards = gridRef.current?.querySelectorAll('.resource-card')
-      if (cards) {
-        gsap.to(cards, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          stagger: 0.08,
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: 'top 80%',
-          },
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
 
   return (
     <section
@@ -70,7 +32,7 @@ export default function CommunityResources() {
         {/* Heading */}
         <div
           ref={headingRef}
-          style={{ opacity: 0, transform: 'translateY(30px)', textAlign: 'center', marginBottom: 64 }}
+          style={{ opacity: headingVisible ? 1 : 0, transform: headingVisible ? 'translateY(0)' : 'translateY(30px)', transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)', textAlign: 'center', marginBottom: 64 }}
         >
           <span
             style={{
@@ -109,17 +71,18 @@ export default function CommunityResources() {
             gap: 24,
           }}
         >
-          {resources.map((res) => (
+          {resources.map((res, index) => (
             <div
               key={res.num}
               className="resource-card"
               style={{
-                opacity: 0,
-                transform: 'translateY(30px)',
+                opacity: gridVisible ? 1 : 0,
+                transform: gridVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease',
+                transitionDelay: `${index * 0.08}s`,
                 background: '#ffffff',
                 border: '1px solid rgba(22, 45, 90, 0.06)',
                 padding: 32,
-                transition: 'border-color 0.3s ease',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'rgba(var(--color-accent-rgb), 0.2)'
