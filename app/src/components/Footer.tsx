@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { TreePine, Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 
 const quickLinks = [

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
+import { FadeIn } from '../components/FadeIn'
 
 const rightsSections = [
   {
@@ -141,18 +142,20 @@ export default function RightsPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl border border-warm-sand/50 shadow-card overflow-hidden">
-            {rightsSections.map((section) => (
-              <AccordionItem
-                key={section.id}
-                section={section}
-                isOpen={openSection === section.id}
-                onToggle={() =>
-                  setOpenSection(openSection === section.id ? '' : section.id)
-                }
-              />
-            ))}
-          </div>
+          <FadeIn delay={200} duration={800}>
+            <div className="bg-white rounded-xl border border-warm-sand/50 shadow-card overflow-hidden">
+              {rightsSections.map((section) => (
+                <AccordionItem
+                  key={section.id}
+                  section={section}
+                  isOpen={openSection === section.id}
+                  onToggle={() =>
+                    setOpenSection(openSection === section.id ? '' : section.id)
+                  }
+                />
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -169,19 +172,20 @@ export default function RightsPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {downloadCards.map((card) => (
-              <button
-                key={card.lang}
-                className="bg-white rounded-xl p-6 md:p-8 text-center shadow-card border border-warm-sand/50 transition-all duration-250 hover:shadow-card-hover hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 group"
-                onClick={() => alert('Download coming soon for ' + card.label)}
-              >
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center group-hover:bg-amber/10 transition-colors">
-                  <Download className="w-5 h-5 text-forest group-hover:text-amber transition-colors" aria-hidden="true" />
-                </div>
-                <h3 className="font-semibold text-heading-4 text-forest" dir={card.dir}>
-                  {card.label}
-                </h3>
-              </button>
+            {downloadCards.map((card, i) => (
+              <FadeIn key={card.lang} delay={i * 150} duration={800} className="h-full">
+                <button
+                  className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-250 hover:shadow-card-hover hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 group"
+                  onClick={() => alert('Download coming soon for ' + card.label)}
+                >
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center group-hover:bg-amber/10 transition-colors">
+                    <Download className="w-5 h-5 text-forest group-hover:text-amber transition-colors" aria-hidden="true" />
+                  </div>
+                  <h3 className="font-semibold text-heading-4 text-forest" dir={card.dir}>
+                    {card.label}
+                  </h3>
+                </button>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -201,64 +205,68 @@ export default function RightsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Community Leaders Video */}
-            <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden">
-              <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
-                <img
-                  src="/images/hero-events.jpg"
-                  alt="Community workshop setting"
-                  className="absolute inset-0 w-full h-full object-cover opacity-70"
-                />
-                <button
-                  onClick={() => setPlayingVideo(playingVideo === 'community' ? null : 'community')}
-                  className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                  aria-label={playingVideo === 'community' ? 'Pause video' : 'Play community leaders video'}
-                >
-                  {playingVideo === 'community' ? (
-                    <Pause className="w-6 h-6 text-white" aria-hidden="true" />
-                  ) : (
-                    <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
-                  )}
-                </button>
+            <FadeIn delay={100} duration={800} className="h-full">
+              <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden h-full flex flex-col">
+                <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
+                  <img
+                    src="/images/hero-events.jpg"
+                    alt="Community workshop setting"
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                  <button
+                    onClick={() => setPlayingVideo(playingVideo === 'community' ? null : 'community')}
+                    className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                    aria-label={playingVideo === 'community' ? 'Pause video' : 'Play community leaders video'}
+                  >
+                    {playingVideo === 'community' ? (
+                      <Pause className="w-6 h-6 text-white" aria-hidden="true" />
+                    ) : (
+                      <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
+                    )}
+                  </button>
+                </div>
+                <div className="p-5 md:p-6 flex-grow">
+                  <h3 className="font-semibold text-heading-4 text-forest mb-1">
+                    Community Leaders Speak
+                  </h3>
+                  <p className="text-body-sm text-forest-light">
+                    Hear from Afghan community leaders about your rights and resources in Phoenix.
+                  </p>
+                </div>
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="font-semibold text-heading-4 text-forest mb-1">
-                  Community Leaders Speak
-                </h3>
-                <p className="text-body-sm text-forest-light">
-                  Hear from Afghan community leaders about your rights and resources in Phoenix.
-                </p>
-              </div>
-            </div>
+            </FadeIn>
 
             {/* Client Stories Video */}
-            <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden">
-              <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
-                <img
-                  src="/images/hero-stories.jpg"
-                  alt="Community member portrait"
-                  className="absolute inset-0 w-full h-full object-cover opacity-70"
-                />
-                <button
-                  onClick={() => setPlayingVideo(playingVideo === 'clients' ? null : 'clients')}
-                  className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                  aria-label={playingVideo === 'clients' ? 'Pause video' : 'Play client stories video'}
-                >
-                  {playingVideo === 'clients' ? (
-                    <Pause className="w-6 h-6 text-white" aria-hidden="true" />
-                  ) : (
-                    <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
-                  )}
-                </button>
+            <FadeIn delay={300} duration={800} className="h-full">
+              <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden h-full flex flex-col">
+                <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
+                  <img
+                    src="/images/hero-stories.jpg"
+                    alt="Community member portrait"
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
+                  <button
+                    onClick={() => setPlayingVideo(playingVideo === 'clients' ? null : 'clients')}
+                    className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                    aria-label={playingVideo === 'clients' ? 'Pause video' : 'Play client stories video'}
+                  >
+                    {playingVideo === 'clients' ? (
+                      <Pause className="w-6 h-6 text-white" aria-hidden="true" />
+                    ) : (
+                      <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
+                    )}
+                  </button>
+                </div>
+                <div className="p-5 md:p-6 flex-grow">
+                  <h3 className="font-semibold text-heading-4 text-forest mb-1">
+                    Client Experiences
+                  </h3>
+                  <p className="text-body-sm text-forest-light">
+                    Learn how understanding their rights helped these families build a new life.
+                  </p>
+                </div>
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="font-semibold text-heading-4 text-forest mb-1">
-                  Client Stories
-                </h3>
-                <p className="text-body-sm text-forest-light">
-                  Listen to community members who have navigated the immigration process successfully.
-                </p>
-              </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>

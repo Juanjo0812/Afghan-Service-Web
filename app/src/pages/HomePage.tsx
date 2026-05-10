@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { useEffect, useRef } from 'react'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, MapPin } from 'lucide-react'
+import { FadeIn } from '../components/FadeIn'
 
 function useScrollReveal() {
   const ref = useRef<HTMLDivElement>(null)
@@ -87,20 +88,28 @@ export default function HomePage() {
 
         <div className="relative container-main z-10 flex flex-col items-center text-center pt-20" ref={heroRef}>
           <div className="max-w-3xl flex flex-col items-center">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              Welcome Home
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-2 font-arabic opacity-0 animate-fade-in-up" dir="rtl" style={{ animationDelay: '0.3s' }}>
-              به خانه خوش آمدید — خوش آمدید به فینکس
-            </p>
-            <p className="text-body-lg text-white/80 mb-8 max-w-lg opacity-0 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-              Free, confidential support for Afghan families in Phoenix
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center w-full opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
-              <Link to="/rights" className="btn-primary text-center">
-                Learn About Your Rights
-              </Link>
-            </div>
+            <FadeIn delay={300} duration={1200}>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight">
+                Welcome Home
+              </h1>
+            </FadeIn>
+            <FadeIn delay={1000} duration={1000}>
+              <p className="text-lg md:text-xl text-white/90 mb-2 font-arabic" dir="rtl">
+                به خانه خوش آمدید — خوش آمدید به فینکس
+              </p>
+            </FadeIn>
+            <FadeIn delay={1700} duration={1000}>
+              <p className="text-body-lg text-white/80 mb-8 max-w-lg">
+                Free, confidential support for Afghan families in Phoenix
+              </p>
+            </FadeIn>
+            <FadeIn delay={2400} duration={1000}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
+                <Link to="/rights" className="btn-primary text-center">
+                  Learn About Your Rights
+                </Link>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -121,25 +130,25 @@ export default function HomePage() {
             {quickCards.map((card, i) => {
               const Icon = card.icon
               return (
-                <Link
-                  key={card.title}
-                  to={card.path}
-                  className="group bg-white rounded-2xl p-7 md:p-8 text-center transition-all duration-250 hover:bg-cream-dark hover:shadow-card-hover hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 border border-amber/40 shadow-sm"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-warm-sand/60 flex items-center justify-center transition-colors group-hover:bg-amber-light">
-                    <Icon className="w-8 h-8 text-forest" aria-hidden="true" />
-                  </div>
-                  <h3 className="font-semibold text-heading-4 text-forest mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-body-sm text-forest-light leading-relaxed">
-                    {card.description}
-                  </p>
-                  <span className="inline-flex items-center gap-1 mt-4 text-amber text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    Learn more <ChevronRight className="w-4 h-4" aria-hidden="true" />
-                  </span>
-                </Link>
+                <FadeIn key={card.title} delay={i * 200}>
+                  <Link
+                    to={card.path}
+                    className="group bg-white rounded-2xl p-7 md:p-8 text-center transition-all duration-250 hover:bg-cream-dark hover:shadow-card-hover hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 border border-amber/40 shadow-sm block h-full"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-warm-sand/60 flex items-center justify-center transition-colors group-hover:bg-amber-light">
+                      <Icon className="w-8 h-8 text-forest" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-semibold text-heading-4 text-forest mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-body-sm text-forest-light leading-relaxed">
+                      {card.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1 mt-4 text-amber text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                      Learn more <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </FadeIn>
               )
             })}
           </div>

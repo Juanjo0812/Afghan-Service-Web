@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
+import { FadeIn } from '../components/FadeIn'
 
 
 type ViewMode = 'list' | 'calendar'
@@ -328,7 +329,11 @@ export default function EventsPage() {
           {viewMode === 'list' ? (
             <div className="space-y-5">
               {filteredEvents.length > 0 ? (
-                filteredEvents.map((event) => <EventCard key={event.id} event={event} />)
+                filteredEvents.map((event, index) => (
+                  <FadeIn key={event.id} delay={index * 150} duration={800}>
+                    <EventCard event={event} />
+                  </FadeIn>
+                ))
               ) : (
                 <div className="text-center py-12 text-forest-light">
                   No events found for this category.

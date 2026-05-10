@@ -1,4 +1,5 @@
 import { Home, Stethoscope, Briefcase, GraduationCap, Bus, Utensils, Check, ArrowRight } from 'lucide-react'
+import { FadeIn } from '../components/FadeIn'
 
 export default function ResourcesPage() {
   return (
@@ -37,45 +38,48 @@ export default function ResourcesPage() {
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Housing (Featured) */}
-            <div className="md:col-span-2 lg:col-span-2 bg-white border border-amber/40 rounded-lg overflow-hidden flex flex-col md:flex-row transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
-              <div className="w-full md:w-2/5 h-64 md:h-auto bg-warm-sand/20 relative">
-                <img 
-                  alt="Housing support meeting" 
-                  className="w-full h-full object-cover" 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                />
-              </div>
-              <div className="p-6 md:p-8 w-full md:w-3/5 flex flex-col">
-                <div className="flex items-center gap-2 mb-3">
-                  <Home className="w-5 h-5 text-amber" />
-                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">Housing</span>
+            <FadeIn className="md:col-span-2 lg:col-span-2">
+              <div className="bg-white border border-amber/40 rounded-lg overflow-hidden flex flex-col md:flex-row transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+                <div className="w-full md:w-2/5 h-64 md:h-auto bg-warm-sand/20 relative">
+                  <img 
+                    alt="Housing support meeting" 
+                    className="w-full h-full object-cover" 
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  />
                 </div>
-                <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">Housing Assistance</h2>
-                <p className="text-forest-light mb-6 flex-grow">
-                  Emergency shelter placement, transitional housing programs, and rental assistance for newly arrived families. We work with local partners to find safe, affordable homes.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-3 text-forest-light">
-                    <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                    <span className="text-sm">Emergency shelter referrals</span>
+                <div className="p-6 md:p-8 w-full md:w-3/5 flex flex-col">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Home className="w-5 h-5 text-amber" />
+                    <span className="text-xs font-semibold text-amber uppercase tracking-wider">Housing</span>
                   </div>
-                  <div className="flex items-center gap-3 text-forest-light">
-                    <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                    <span className="text-sm">Rental deposit assistance</span>
+                  <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">Housing Assistance</h2>
+                  <p className="text-forest-light mb-6 flex-grow">
+                    Emergency shelter placement, transitional housing programs, and rental assistance for newly arrived families. We work with local partners to find safe, affordable homes.
+                  </p>
+                  <div className="space-y-3 mb-8">
+                    <div className="flex items-center gap-3 text-forest-light">
+                      <Check className="w-5 h-5 text-forest flex-shrink-0" />
+                      <span className="text-sm">Emergency shelter referrals</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-forest-light">
+                      <Check className="w-5 h-5 text-forest flex-shrink-0" />
+                      <span className="text-sm">Rental deposit assistance</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-forest-light">
+                      <Check className="w-5 h-5 text-forest flex-shrink-0" />
+                      <span className="text-sm">Lease review and translation</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3 text-forest-light">
-                    <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                    <span className="text-sm">Lease review and translation</span>
-                  </div>
+                  <button className="btn-primary w-full md:w-auto mt-auto">
+                    Get Housing Help
+                  </button>
                 </div>
-                <button className="btn-primary w-full md:w-auto mt-auto">
-                  Get Housing Help
-                </button>
               </div>
-            </div>
+            </FadeIn>
 
             {/* Healthcare */}
-            <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+            <FadeIn delay={150} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
               <div className="flex items-center gap-2 mb-3">
                 <Stethoscope className="w-5 h-5 text-amber" />
                 <span className="text-xs font-semibold text-amber uppercase tracking-wider">Healthcare</span>
@@ -89,10 +93,12 @@ export default function ResourcesPage() {
                   View Resources <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+              </div>
+            </FadeIn>
 
             {/* Employment */}
-            <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+            <FadeIn delay={250} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
               <div className="flex items-center gap-2 mb-3">
                 <Briefcase className="w-5 h-5 text-amber" />
                 <span className="text-xs font-semibold text-amber uppercase tracking-wider">Employment</span>
@@ -106,10 +112,12 @@ export default function ResourcesPage() {
                   View Resources <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+              </div>
+            </FadeIn>
 
             {/* Education */}
-            <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+            <FadeIn delay={350} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
               <div className="flex items-center gap-2 mb-3">
                 <GraduationCap className="w-5 h-5 text-amber" />
                 <span className="text-xs font-semibold text-amber uppercase tracking-wider">Education</span>
@@ -123,10 +131,12 @@ export default function ResourcesPage() {
                   View Resources <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+              </div>
+            </FadeIn>
 
             {/* Transportation */}
-            <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+            <FadeIn delay={150} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
               <div className="flex items-center gap-2 mb-3">
                 <Bus className="w-5 h-5 text-amber" />
                 <span className="text-xs font-semibold text-amber uppercase tracking-wider">Transportation</span>
@@ -140,10 +150,12 @@ export default function ResourcesPage() {
                   View Resources <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-            </div>
+              </div>
+            </FadeIn>
 
             {/* Food & Basic Needs */}
-            <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
+            <FadeIn delay={250} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
               <div className="flex items-center gap-2 mb-3">
                 <Utensils className="w-5 h-5 text-amber" />
                 <span className="text-xs font-semibold text-amber uppercase tracking-wider">Basic Needs</span>
@@ -158,6 +170,7 @@ export default function ResourcesPage() {
                 </a>
               </div>
             </div>
+            </FadeIn>
 
           </div>
         </div>

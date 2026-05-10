@@ -1,29 +1,35 @@
+import { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router'
 import SEO from './components/SEO'
 import Layout from './components/Layout'
-import HomePage from './pages/HomePage'
-import ImmigrationPage from './pages/ImmigrationPage'
-import RightsPage from './pages/RightsPage'
-import ResourcesPage from './pages/ResourcesPage'
-import EventsPage from './pages/EventsPage'
-import ContactPage from './pages/ContactPage'
-import StoriesPage from './pages/StoriesPage'
+import { ScrollToTop } from './components/ScrollToTop'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const ImmigrationPage = lazy(() => import('./pages/ImmigrationPage'))
+const RightsPage = lazy(() => import('./pages/RightsPage'))
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
+const EventsPage = lazy(() => import('./pages/EventsPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const StoriesPage = lazy(() => import('./pages/StoriesPage'))
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <SEO />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/:lang?" element={<HomePage />} />
-          <Route path="/:lang?/immigration" element={<ImmigrationPage />} />
-          <Route path="/:lang?/rights" element={<RightsPage />} />
-          <Route path="/:lang?/resources" element={<ResourcesPage />} />
-          <Route path="/:lang?/events" element={<EventsPage />} />
-          <Route path="/:lang?/contact" element={<ContactPage />} />
-          <Route path="/:lang?/stories" element={<StoriesPage />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-cream" aria-busy="true" />}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/:lang?" element={<HomePage />} />
+            <Route path="/:lang?/immigration" element={<ImmigrationPage />} />
+            <Route path="/:lang?/rights" element={<RightsPage />} />
+            <Route path="/:lang?/resources" element={<ResourcesPage />} />
+            <Route path="/:lang?/events" element={<EventsPage />} />
+            <Route path="/:lang?/contact" element={<ContactPage />} />
+            <Route path="/:lang?/stories" element={<StoriesPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   )
 }

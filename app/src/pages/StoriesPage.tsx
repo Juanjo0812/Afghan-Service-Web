@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Quote, X, Play, Volume2, Maximize, MoreVertical, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router'
+import { FadeIn } from '../components/FadeIn'
 
 type StoryFilter = 'all' | 'clients' | 'leaders'
 
@@ -100,11 +101,11 @@ function TextStoryCarousel({ story }: { story: Story }) {
   }
 
   return (
-    <article className="bg-forest border border-warm-sand/50 rounded-xl overflow-hidden flex flex-col transition-all hover:shadow-card-hover relative">
+    <article className="bg-forest border border-warm-sand/50 rounded-xl overflow-hidden flex flex-col transition-all hover:shadow-card-hover relative h-full">
       <div className="p-8 flex flex-col flex-grow justify-center relative min-h-[300px]">
         <Quote className="w-24 h-24 text-amber/20 absolute top-4 left-4" />
         
-        <div key={currentIndex} className="animate-in fade-in zoom-in-95 duration-300 flex flex-col flex-grow">
+        <div key={currentIndex} className="animate-in fade-in zoom-in-95 duration-300 flex flex-col flex-grow px-10 md:px-12">
           <p className="font-display text-xl md:text-2xl text-white mb-8 relative z-10">"{review.quote}"</p>
           <div className="mt-auto relative z-10 flex items-center gap-3">
             {review.image && (
@@ -155,7 +156,7 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
     return (
       <article 
         onClick={() => onClick(story)} 
-        className="col-span-1 md:col-span-2 lg:col-span-3 w-full bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col md:flex-row group cursor-pointer hover:bg-cream-dark hover:shadow-card-hover transition-all shadow-sm"
+        className="w-full bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col md:flex-row group cursor-pointer hover:bg-cream-dark hover:shadow-card-hover transition-all shadow-sm h-full"
       >
         <div className="md:w-1/2 relative bg-warm-sand/20 min-h-[300px]">
           <img alt={story.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" src={story.image} />
@@ -188,9 +189,9 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
   return (
     <article 
       onClick={() => onClick(story)}
-      className="bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm"
+      className="bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm h-full"
     >
-      <div className="h-48 relative bg-warm-sand/20 overflow-hidden">
+      <div className="h-48 relative bg-warm-sand/20 overflow-hidden shrink-0">
         <img alt={story.name || ''} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" src={story.image} />
         <div className="absolute inset-0 flex items-center justify-center bg-forest/20 group-hover:bg-transparent transition-colors">
           <div className="w-14 h-14 bg-forest/90 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:bg-amber transition-all shadow-lg">
@@ -293,8 +294,15 @@ export default function StoriesPage() {
       <section className="section-padding bg-cream" aria-label="Stories">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {filteredStories.map((story) => (
-              <StoryCard key={story.id} story={story} onClick={setSelectedVideo} />
+            {filteredStories.map((story, index) => (
+              <FadeIn 
+                key={story.id} 
+                delay={index * 150} 
+                duration={800} 
+                className={`h-full ${story.isFeatured ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
+              >
+                <StoryCard story={story} onClick={setSelectedVideo} />
+              </FadeIn>
             ))}
           </div>
         </div>
