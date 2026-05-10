@@ -7,6 +7,10 @@
     "clients": "Client Stories",
     "leaders": "Community Leaders"
   },
+  "storyTypes": {
+    "client": "Client Story",
+    "leader": "Community Leader"
+  },
   "aria": {
     "viewTestimonial": "View testimonial from {{name}}",
     "closeTestimonial": "Close testimonial",

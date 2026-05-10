@@ -2,6 +2,21 @@
   "label": "Community Voices",
   "heading": "Stories That Inspire",
   "description": "Hear from the families and community leaders whose lives were changed through our support.",
+  "filters": {
+    "all": "All Stories",
+    "clients": "Client Stories",
+    "leaders": "Community Leaders"
+  },
+  "storyTypes": {
+    "client": "Client Story",
+    "leader": "Community Leader"
+  },
+  "bottomCta": {
+    "heading": "Be Part of Our Story",
+    "text": "Whether you need help or want to support our community, we'd love to hear from you.",
+    "primary": "Get Help Now",
+    "secondary": "Contact Us"
+  },
   "aria": {
     "viewTestimonial": "View testimonial from {{name}}",
     "closeTestimonial": "Close testimonial",

@@ -238,7 +238,7 @@ export default function Chatbot() {
           }}
         >
           <div className="font-medium text-sm flex items-center gap-2">
-            <span>Need Help?</span>
+            <span>{t('notification.title')}</span>
             <span className="text-amber animate-pulse">👋</span>
           </div>
           {/* Triangle pointer */}
@@ -266,7 +266,7 @@ export default function Chatbot() {
         }}
       >
         {open ? <X size={24} className="text-white" /> : <MessageCircle size={24} className="text-white" />}
-        {!open && <span className="font-medium text-white text-[15px] whitespace-nowrap">Chat with us</span>}
+        {!open && <span className="font-medium text-white text-[15px] whitespace-nowrap">{t('openButton.label')}</span>}
       </button>
 
       <div

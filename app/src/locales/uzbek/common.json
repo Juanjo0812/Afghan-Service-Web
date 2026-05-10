@@ -25,6 +25,12 @@
     "dari": "دری (Dari)",
     "pashto": "پښتو (Pashto)",
     "uzbek": "O'zbek (Uzbek)",
+    "resourceLinks": {
+      "englishClasses": "English Classes",
+      "foodBanks": "Food Banks",
+      "mentalHealth": "Mental Health",
+      "healthClinics": "Health Clinics"
+    },
     "copyright": "© 2026 Afghan Support. All rights reserved."
   },
   "quickAccess": {

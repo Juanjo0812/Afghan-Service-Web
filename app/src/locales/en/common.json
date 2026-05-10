@@ -31,6 +31,12 @@
     "pashto": "پښتو (Pashto)",
     "uzbek": "O'zbek (Uzbek)",
     "resourcesHeading": "Resources",
+    "resourceLinks": {
+      "englishClasses": "English Classes",
+      "foodBanks": "Food Banks",
+      "mentalHealth": "Mental Health",
+      "healthClinics": "Health Clinics"
+    },
     "legal": "Legal",
     "legalDisclaimer": "This information is for educational purposes only and does not constitute legal advice.",
     "bottomText": "Catholic Charities AZ — Serving Arizona since 1933",

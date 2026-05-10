@@ -17,10 +17,10 @@ export default function Footer() {
   ]
 
   const resourceLinks = [
-    { label: 'English Classes', path: '/resources' },
-    { label: 'Food Banks', path: '/resources' },
-    { label: 'Mental Health', path: '/resources' },
-    { label: 'Health Clinics', path: '/resources' },
+    { label: t('footer.resourceLinks.englishClasses'), path: '/resources' },
+    { label: t('footer.resourceLinks.foodBanks'), path: '/resources' },
+    { label: t('footer.resourceLinks.mentalHealth'), path: '/resources' },
+    { label: t('footer.resourceLinks.healthClinics'), path: '/resources' },
   ]
 
   return (

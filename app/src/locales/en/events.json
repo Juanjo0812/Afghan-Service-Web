@@ -15,6 +15,12 @@
     "holiday": "Afghan Holidays"
   },
   "noEvents": "No events found for this category.",
+  "contactUsInfo": "Contact us for more information",
+  "details": "Details",
+  "aria": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month"
+  },
   "categories": {
     "workshop": "Workshop",
     "legal": "Legal Clinic",

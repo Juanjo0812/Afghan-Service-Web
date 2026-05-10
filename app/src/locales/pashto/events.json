@@ -6,5 +6,11 @@
     "legal": "Legal Clinic",
     "cultural": "Cultural",
     "holiday": "Holiday"
+  },
+  "contactUsInfo": "Contact us for more information",
+  "details": "Details",
+  "aria": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month"
   }
 }

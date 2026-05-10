@@ -150,12 +150,12 @@ function EventCard({ event }: { event: Event }) {
           )}
           {event.ctaType === 'text' && (
             <span className="text-forest-light text-sm">
-              Contact us for more information
+              {t('contactUsInfo')}
             </span>
           )}
           {event.ctaType !== 'text' && (
             <button onClick={() => navigate('/contact')} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
-              Details
+              {t('details')}
             </button>
           )}
         </div>
@@ -182,11 +182,11 @@ function CalendarView({ filteredEvents }: { filteredEvents: Event[] }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <button onClick={prevMonth} className="p-2 rounded-md hover:bg-cream-dark transition-colors focus:outline-none focus:ring-2 focus:ring-amber" aria-label="Previous month">
+        <button onClick={prevMonth} className="p-2 rounded-md hover:bg-cream-dark transition-colors focus:outline-none focus:ring-2 focus:ring-amber" aria-label={t('aria.previousMonth')}>
           <ChevronLeft className="w-5 h-5 text-forest" />
         </button>
         <h3 className="font-display text-heading-3 text-forest">{monthName}</h3>
-        <button onClick={nextMonth} className="p-2 rounded-md hover:bg-cream-dark transition-colors focus:outline-none focus:ring-2 focus:ring-amber" aria-label="Next month">
+        <button onClick={nextMonth} className="p-2 rounded-md hover:bg-cream-dark transition-colors focus:outline-none focus:ring-2 focus:ring-amber" aria-label={t('aria.nextMonth')}>
           <ChevronRight className="w-5 h-5 text-forest" />
         </button>
       </div>

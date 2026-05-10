@@ -124,7 +124,7 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
         </div>
         <div className="p-8 md:w-1/2 flex flex-col justify-center">
           <div className="text-amber font-semibold text-xs uppercase tracking-wider mb-2">
-            {story.type === 'clients' ? 'Client Story' : 'Community Leader'}
+            {story.type === 'clients' ? t('storyTypes.client') : t('storyTypes.leader')}
           </div>
           <h2 className="font-display text-2xl md:text-3xl text-forest mb-4">{story.title}</h2>
           <p className="text-body text-forest-light mb-6 flex-grow">{story.quote}</p>
@@ -153,7 +153,7 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
         </div>
         <div className="p-8 md:w-1/2 flex flex-col justify-center">
           <div className="text-amber font-semibold text-xs uppercase tracking-wider mb-2">
-            {story.type === 'clients' ? 'Client Story' : 'Community Leader'}
+            {story.type === 'clients' ? t('storyTypes.client') : t('storyTypes.leader')}
           </div>
           <h2 className="font-display text-2xl md:text-3xl text-forest mb-4">{story.title}</h2>
           <p className="text-body text-forest-light mb-6 flex-grow">{story.quote}</p>
@@ -185,9 +185,9 @@ function StoryCard({ story, onClick }: { story: Story, onClick: (story: Story) =
         </div>
       </div>
       <div className="p-6 flex flex-col flex-grow">
-        <div className="text-amber font-semibold text-xs uppercase tracking-wider mb-2">
-          {story.type === 'clients' ? 'Client Story' : 'Community Leader'}
-        </div>
+          <div className="text-amber font-semibold text-xs uppercase tracking-wider mb-2">
+            {story.type === 'clients' ? t('storyTypes.client') : t('storyTypes.leader')}
+          </div>
         <p className="text-body text-forest mb-6 italic flex-grow">"{story.quote}"</p>
         <div className="mt-auto">
           <div className="font-semibold text-forest">{story.name}</div>

@@ -8,6 +8,12 @@
   "sendAriaLabel": "Send message",
   "openAssistant": "Open chat assistant",
   "closeAssistant": "Close chat assistant",
+  "notification": {
+    "title": "Need Help?"
+  },
+  "openButton": {
+    "label": "Chat with us"
+  },
   "quickTopics": "Quick topics",
   "multiCandidate": "I found a few things that might help. Which one were you looking for?",
   "fallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170.",
