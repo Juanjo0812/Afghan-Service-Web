@@ -1,24 +1,97 @@
 import { useState } from 'react'
-import { Phone, Mail, Clock, MapPin, MessageCircle, CheckCircle } from 'lucide-react'
+import { Phone, Mail, Clock, MapPin, MessageCircle, CheckCircle, AlertCircle } from 'lucide-react'
+
+type FormStatus =
+  | 'idle'
+  | 'sending'
+  | 'success'
+  | 'validation-error'
+  | 'rate-limited'
+  | 'generic-error'
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false)
-  const [formData, setFormData] = useState({ name: '', phone: '', message: '' })
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    message: '',
+    website_url: '',
+  })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [submissionId] = useState(() => crypto.randomUUID())
+  const [retryAfter, setRetryAfter] = useState<number | undefined>(undefined)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const clearError = (field: string) => {
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev }
+        delete next[field]
+        return next
+      })
+    }
+  }
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
     if (!formData.name.trim()) newErrors.name = 'Please enter your name'
     if (!formData.phone.trim()) newErrors.phone = 'Please enter your phone number'
-    if (!formData.message.trim()) newErrors.message = 'Please enter your question or message'
+    if (!formData.message.trim())
+      newErrors.message = 'Please enter your question or message'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validate()) {
-      setSubmitted(true)
+    if (!validate()) {
+      setStatus('validation-error')
+      return
+    }
+
+    setStatus('sending')
+    setRetryAfter(undefined)
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          message: formData.message,
+          website_url: formData.website_url,
+          submissionId,
+        }),
+      })
+
+      const data = await response.json().catch(() => ({}))
+
+      if (response.status === 429) {
+        setStatus('rate-limited')
+        setRetryAfter(data.retryAfterSeconds)
+        return
+      }
+
+      if (response.status === 400 && data.fields) {
+        setStatus('validation-error')
+        setErrors(data.fields)
+        return
+      }
+
+      if (!response.ok || !data.success) {
+        setStatus('generic-error')
+        setErrorMessage(
+          data.error || 'Something went wrong. Please try again later.'
+        )
+        return
+      }
+
+      setStatus('success')
+    } catch {
+      setStatus('generic-error')
+      setErrorMessage('Something went wrong. Please try again later.')
     }
   }
 
@@ -47,7 +120,8 @@ export default function ContactPage() {
               We're Here to Help
             </h1>
             <p className="text-body-lg text-white/90 max-w-2xl">
-              Reach out for free, confidential assistance. Our team speaks your language.
+              Reach out for free, confidential assistance. Our team speaks your
+              language.
             </p>
           </div>
         </div>
@@ -59,22 +133,49 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Form - 60% */}
             <div className="lg:col-span-3">
-              <h2 id="form-heading" className="font-display text-heading-2 text-forest mb-6">
+              <h2
+                id="form-heading"
+                className="font-display text-heading-2 text-forest mb-6"
+              >
                 Send Us a Message
               </h2>
 
-              {submitted ? (
+              {status === 'success' ? (
                 <div className="bg-white rounded-xl p-8 md:p-10 shadow-card border border-success/20 text-center">
-                  <CheckCircle className="w-12 h-12 text-success mx-auto mb-4" aria-hidden="true" />
-                  <h3 className="font-display text-heading-3 text-forest mb-2">Thank You!</h3>
+                  <CheckCircle
+                    className="w-12 h-12 text-success mx-auto mb-4"
+                    aria-hidden="true"
+                  />
+                  <h3 className="font-display text-heading-3 text-forest mb-2">
+                    Thank You!
+                  </h3>
                   <p className="text-body text-forest-light">
                     We will contact you within 24 hours.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                  {/* Honeypot */}
+                  <div className="absolute opacity-0 -z-10 w-0 h-0 overflow-hidden">
+                    <input
+                      type="text"
+                      name="website_url"
+                      id="website_url"
+                      value={formData.website_url}
+                      onChange={(e) => {
+                        setFormData({ ...formData, website_url: e.target.value })
+                      }}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                    />
+                  </div>
+
                   <div>
-                    <label htmlFor="name" className="block text-label text-forest mb-1.5">
+                    <label
+                      htmlFor="name"
+                      className="block text-label text-forest mb-1.5"
+                    >
                       Your Name <span className="text-error">*</span>
                     </label>
                     <input
@@ -82,14 +183,20 @@ export default function ContactPage() {
                       id="name"
                       name="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value })
+                        clearError('name')
+                      }}
                       onBlur={validate}
                       className={`w-full px-4 py-3.5 rounded-md border-2 bg-white text-forest placeholder-forest-light/50 focus:outline-none focus:border-amber focus:shadow-sm transition-colors min-h-[48px] ${
-                        errors.name ? 'border-error bg-error/5' : 'border-warm-sand'
+                        errors.name
+                          ? 'border-error bg-error/5'
+                          : 'border-warm-sand'
                       }`}
                       placeholder="Enter your full name"
                       aria-required="true"
                       aria-invalid={!!errors.name}
+                      disabled={status === 'sending'}
                     />
                     {errors.name && (
                       <p className="mt-1.5 text-body-sm text-error" role="alert">
@@ -99,7 +206,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-label text-forest mb-1.5">
+                    <label
+                      htmlFor="phone"
+                      className="block text-label text-forest mb-1.5"
+                    >
                       Phone Number <span className="text-error">*</span>
                     </label>
                     <input
@@ -107,14 +217,20 @@ export default function ContactPage() {
                       id="phone"
                       name="phone"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, phone: e.target.value })
+                        clearError('phone')
+                      }}
                       onBlur={validate}
                       className={`w-full px-4 py-3.5 rounded-md border-2 bg-white text-forest placeholder-forest-light/50 focus:outline-none focus:border-amber focus:shadow-sm transition-colors min-h-[48px] ${
-                        errors.phone ? 'border-error bg-error/5' : 'border-warm-sand'
+                        errors.phone
+                          ? 'border-error bg-error/5'
+                          : 'border-warm-sand'
                       }`}
                       placeholder="Enter your phone number"
                       aria-required="true"
                       aria-invalid={!!errors.phone}
+                      disabled={status === 'sending'}
                     />
                     {errors.phone && (
                       <p className="mt-1.5 text-body-sm text-error" role="alert">
@@ -124,7 +240,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-label text-forest mb-1.5">
+                    <label
+                      htmlFor="message"
+                      className="block text-label text-forest mb-1.5"
+                    >
                       How Can We Help? <span className="text-error">*</span>
                     </label>
                     <textarea
@@ -132,14 +251,20 @@ export default function ContactPage() {
                       name="message"
                       rows={5}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value })
+                        clearError('message')
+                      }}
                       onBlur={validate}
                       className={`w-full px-4 py-3.5 rounded-md border-2 bg-white text-forest placeholder-forest-light/50 focus:outline-none focus:border-amber focus:shadow-sm transition-colors resize-y ${
-                        errors.message ? 'border-error bg-error/5' : 'border-warm-sand'
+                        errors.message
+                          ? 'border-error bg-error/5'
+                          : 'border-warm-sand'
                       }`}
                       placeholder="Describe your question or what you need help with..."
                       aria-required="true"
                       aria-invalid={!!errors.message}
+                      disabled={status === 'sending'}
                     />
                     {errors.message && (
                       <p className="mt-1.5 text-body-sm text-error" role="alert">
@@ -148,8 +273,62 @@ export default function ContactPage() {
                     )}
                   </div>
 
-                  <button type="submit" className="btn-primary w-full sm:w-auto">
-                    Send Message
+                  {status === 'rate-limited' && (
+                    <div
+                      className="bg-amber/10 border border-amber/30 rounded-lg p-4 text-forest"
+                      role="alert"
+                    >
+                      <div className="flex items-start gap-3">
+                        <AlertCircle
+                          className="w-5 h-5 text-amber mt-0.5 flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        <div>
+                          <p className="font-medium">
+                            Too many messages sent
+                          </p>
+                          <p className="text-sm text-forest-light mt-1">
+                            {retryAfter
+                              ? `Please wait ${Math.ceil(retryAfter / 60)} minutes before trying again.`
+                              : 'Please wait a while before trying again.'}
+                          </p>
+                          <p className="text-sm text-forest-light mt-1">
+                            If this is urgent, call or WhatsApp us below.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {status === 'generic-error' && (
+                    <div
+                      className="bg-error/10 border border-error/30 rounded-lg p-4 text-forest"
+                      role="alert"
+                    >
+                      <div className="flex items-start gap-3">
+                        <AlertCircle
+                          className="w-5 h-5 text-error mt-0.5 flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        <div>
+                          <p className="font-medium">
+                            {errorMessage || 'Something went wrong'}
+                          </p>
+                          <p className="text-sm text-forest-light mt-1">
+                            Please try again, or contact us directly using the
+                            options on the right.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="btn-primary w-full sm:w-auto"
+                    disabled={status === 'sending'}
+                  >
+                    {status === 'sending' ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
@@ -171,10 +350,15 @@ export default function ContactPage() {
                     className="flex items-start gap-4 group focus:outline-none focus:ring-2 focus:ring-amber rounded-lg p-1 -m-1"
                   >
                     <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="w-5 h-5 text-green-600" aria-hidden="true" />
+                      <MessageCircle
+                        className="w-5 h-5 text-green-600"
+                        aria-hidden="true"
+                      />
                     </div>
                     <div>
-                      <p className="text-body text-forest font-medium">Message us on WhatsApp</p>
+                      <p className="text-body text-forest font-medium">
+                        Message us on WhatsApp
+                      </p>
                       <p className="text-body-lg text-forest group-hover:text-amber transition-colors">
                         480.416.2333
                       </p>
@@ -190,9 +374,12 @@ export default function ContactPage() {
                       <Phone className="w-5 h-5 text-forest" aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-body text-forest font-medium">Call us</p>
+                      <p className="text-body text-forest font-medium">
+                        Call us
+                      </p>
                       <p className="text-body-lg text-forest group-hover:text-amber transition-colors">
-                        480.416.2333 <span className="text-body text-forest-light">(Daoud)</span>
+                        480.416.2333{' '}
+                        <span className="text-body text-forest-light">(Daoud)</span>
                       </p>
                     </div>
                   </a>
@@ -206,7 +393,9 @@ export default function ContactPage() {
                       <Mail className="w-5 h-5 text-forest" aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-body text-forest font-medium">Email us</p>
+                      <p className="text-body text-forest font-medium">
+                        Email us
+                      </p>
                       <p className="text-body text-forest-light group-hover:text-amber transition-colors">
                         Dpeshtaz@cc-az.org
                       </p>
@@ -219,7 +408,9 @@ export default function ContactPage() {
                       <Clock className="w-5 h-5 text-forest" aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-body text-forest font-medium">Office Hours</p>
+                      <p className="text-body text-forest font-medium">
+                        Office Hours
+                      </p>
                       <p className="text-body text-forest-light">
                         Monday&ndash;Friday, 9:00 AM&ndash;5:00 PM
                       </p>
@@ -229,12 +420,18 @@ export default function ContactPage() {
                   {/* Address */}
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-amber/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-5 h-5 text-forest" aria-hidden="true" />
+                      <MapPin
+                        className="w-5 h-5 text-forest"
+                        aria-hidden="true"
+                      />
                     </div>
                     <div>
-                      <p className="text-body text-forest font-medium">Visit us</p>
+                      <p className="text-body text-forest font-medium">
+                        Visit us
+                      </p>
                       <p className="text-body text-forest-light">
-                        5151 N 19th Ave<br />
+                        5151 N 19th Ave
+                        <br />
                         Phoenix, AZ 85015
                       </p>
                     </div>
@@ -243,13 +440,13 @@ export default function ContactPage() {
 
                 {/* Interactive Map */}
                 <div className="mt-8 aspect-video bg-warm-sand/20 rounded-xl overflow-hidden border border-warm-sand/50">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.697424610738!2d-112.1017830245084!3d33.51052304618797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b130db50b3e5b%3A0xe54e2079de936f4c!2s5151%20N%2019th%20Ave%2C%20Phoenix%2C%20AZ%2085015!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }} 
-                    allowFullScreen 
-                    loading="lazy" 
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.697424610738!2d-112.1017830245084!3d33.51052304618797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b130db50b3e5b%3A0xe54e2079de936f4c!2s5151%20N%2019th%20Ave%2C%20Phoenix%2C%20AZ%2085015!5e0!3m2!1sen!2sus!4v1715000000000!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Office Location Map"
                   ></iframe>

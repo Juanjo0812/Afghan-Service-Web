@@ -1,6 +1,9 @@
 import { Resend } from 'resend';
 import { z } from 'zod';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
+// In-memory fallback rate limiting
 interface RateLimitEntry {
   count: number;
   resetTime: number;
@@ -11,9 +14,10 @@ const rateLimitMap = new Map<string, RateLimitEntry>();
 const contactSchema = z.object({
   name: z.string().min(1).max(100),
   phone: z.string().min(1),
-  email: z.string().email(),
+  email: z.string().email().optional(),
   message: z.string().min(1).max(2000),
   website_url: z.string().optional(),
+  submissionId: z.string().min(1).optional(),
 });
 
 function sanitizeInput(input: string, maxLength: number): string {
@@ -29,21 +33,50 @@ function getClientIP(req: Request): string {
   return req.headers.get('x-real-ip') ?? 'unknown';
 }
 
-function checkRateLimit(ip: string): boolean {
+function checkInMemoryRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number
+): { success: boolean; retryAfterSeconds?: number } {
   const now = Date.now();
-  const entry = rateLimitMap.get(ip);
+  const entry = rateLimitMap.get(key);
 
   if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + 60_000 });
-    return true;
+    rateLimitMap.set(key, { count: 1, resetTime: now + windowMs });
+    return { success: true };
   }
 
-  if (entry.count >= 5) {
-    return false;
+  if (entry.count >= limit) {
+    return {
+      success: false,
+      retryAfterSeconds: Math.ceil((entry.resetTime - now) / 1000),
+    };
   }
 
   entry.count += 1;
-  return true;
+  return { success: true };
+}
+
+// Upstash Redis setup
+const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
+const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const useUpstash = Boolean(upstashUrl && upstashToken);
+
+let ipRatelimit: Ratelimit | null = null;
+let phoneRatelimit: Ratelimit | null = null;
+
+if (useUpstash) {
+  const redis = new Redis({ url: upstashUrl, token: upstashToken });
+  ipRatelimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(5, '1 h'),
+    analytics: true,
+  });
+  phoneRatelimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(3, '1 h'),
+    analytics: true,
+  });
 }
 
 function jsonResponse(
@@ -53,8 +86,7 @@ function jsonResponse(
 ): Response {
   const headers = new Headers({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Cache-Control': 'no-store',
     ...extraHeaders,
   });
   return new Response(JSON.stringify(body), { status, headers });
@@ -67,26 +99,47 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(null, {
       status: 204,
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Cache-Control': 'no-store',
       },
     });
   }
 
   if (req.method !== 'POST') {
-    return jsonResponse({ error: 'Method not allowed' }, 405);
+    return jsonResponse({ success: false, error: 'Method not allowed' }, 405);
   }
 
   const ip = getClientIP(req);
-  if (!checkRateLimit(ip)) {
-    return jsonResponse({ error: 'Too many requests' }, 429);
+
+  // IP-based rate limiting
+  let ipLimitResult: { success: boolean; retryAfterSeconds?: number };
+  if (useUpstash && ipRatelimit) {
+    const result = await ipRatelimit.limit(ip);
+    ipLimitResult = {
+      success: result.success,
+      retryAfterSeconds: result.reset
+        ? Math.ceil((result.reset - Date.now()) / 1000)
+        : undefined,
+    };
+  } else {
+    ipLimitResult = checkInMemoryRateLimit(ip, 5, 60 * 60 * 1000);
+  }
+
+  if (!ipLimitResult.success) {
+    return jsonResponse(
+      {
+        success: false,
+        error: 'Too many requests. Please call or WhatsApp us if this is urgent.',
+        retryAfterSeconds: ipLimitResult.retryAfterSeconds,
+      },
+      429
+    );
   }
 
   let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return jsonResponse({ error: 'Invalid JSON body' }, 400);
+    return jsonResponse({ success: false, error: 'Invalid JSON body' }, 400);
   }
 
   const parseResult = contactSchema.safeParse(body);
@@ -99,12 +152,41 @@ export default async function handler(req: Request): Promise<Response> {
       }
     }
     return jsonResponse(
-      { error: 'Validation failed', fields: fieldErrors },
+      { success: false, error: 'Validation failed', fields: fieldErrors },
       400
     );
   }
 
-  const { name, phone, email, message, website_url } = parseResult.data;
+  const { name, phone, email, message, website_url, submissionId } =
+    parseResult.data;
+
+  // Fingerprint-based rate limiting (phone)
+  if (phone) {
+    const phoneKey = `phone:${phone.trim().replace(/\s+/g, '')}`;
+    let phoneLimitResult: { success: boolean; retryAfterSeconds?: number };
+    if (useUpstash && phoneRatelimit) {
+      const result = await phoneRatelimit.limit(phoneKey);
+      phoneLimitResult = {
+        success: result.success,
+        retryAfterSeconds: result.reset
+          ? Math.ceil((result.reset - Date.now()) / 1000)
+          : undefined,
+      };
+    } else {
+      phoneLimitResult = checkInMemoryRateLimit(phoneKey, 3, 60 * 60 * 1000);
+    }
+
+    if (!phoneLimitResult.success) {
+      return jsonResponse(
+        {
+          success: false,
+          error: 'Too many requests. Please call or WhatsApp us if this is urgent.',
+          retryAfterSeconds: phoneLimitResult.retryAfterSeconds,
+        },
+        429
+      );
+    }
+  }
 
   if (website_url && website_url.trim().length > 0) {
     return jsonResponse(
@@ -118,28 +200,41 @@ export default async function handler(req: Request): Promise<Response> {
 
   const safeName = sanitizeInput(name, 100);
   const safePhone = sanitizeInput(phone, 50);
-  const safeEmail = sanitizeInput(email, 254);
+  const safeEmail = email ? sanitizeInput(email, 254) : '';
   const safeMessage = sanitizeInput(message, 2000);
 
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  if (!fromEmail) {
+    return jsonResponse(
+      { success: false, error: 'Failed to send message. Please try again later.' },
+      500
+    );
+  }
+
+  const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org';
+  const idempotencyKey = submissionId || crypto.randomUUID();
+
   try {
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
     const result = await resend.emails.send({
       from: fromEmail,
-      to: 'Dpeshtaz@cc-az.org',
+      to: toEmail,
       subject: `New Contact Form Submission from ${safeName}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${safeName}</p>
         <p><strong>Phone:</strong> ${safePhone}</p>
-        <p><strong>Email:</strong> ${safeEmail}</p>
+        ${safeEmail ? `<p><strong>Email:</strong> ${safeEmail}</p>` : ''}
         <p><strong>Message:</strong></p>
         <p>${safeMessage.replace(/\n/g, '<br>')}</p>
       `,
+      headers: {
+        'Idempotency-Key': idempotencyKey,
+      },
     });
 
     if (result.error) {
       return jsonResponse(
-        { error: 'Failed to send message. Please try again later.' },
+        { success: false, error: 'Failed to send message. Please try again later.' },
         500
       );
     }
@@ -153,7 +248,7 @@ export default async function handler(req: Request): Promise<Response> {
     );
   } catch {
     return jsonResponse(
-      { error: 'Failed to send message. Please try again later.' },
+      { success: false, error: 'Failed to send message. Please try again later.' },
       500
     );
   }
