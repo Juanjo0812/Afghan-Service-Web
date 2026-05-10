@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
-
 
 type ViewMode = 'list' | 'calendar'
 type EventCategory = 'all' | 'immigration' | 'legal' | 'cultural' | 'holiday'
@@ -31,12 +31,11 @@ const events: Event[] = [
     date: 'Saturday, June 13, 2026',
     day: 13,
     month: 'JUN',
-    time: '9:00 AM \u2013 2:00 PM',
+    time: '9:00 AM – 2:00 PM',
     location: 'Catholic Charities Community Center, 5151 N 19th Ave, Phoenix',
     description: 'Immigration attorneys will assist with citizenship applications. Bring your green card and passport. Lunch provided. Registration required.',
     cta: 'Register Now',
     ctaType: 'primary',
-    imageUrl: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 2,
@@ -46,12 +45,11 @@ const events: Event[] = [
     date: 'Tuesday, June 23, 2026',
     day: 23,
     month: 'JUN',
-    time: '6:00 PM \u2013 8:00 PM',
-    location: 'Phoenix Public Library \u2014 Burton Barr Central Library',
+    time: '6:00 PM – 8:00 PM',
+    location: 'Phoenix Public Library — Burton Barr Central Library',
     description: 'Learn about your rights when interacting with police and immigration agents. Materials available in Dari, Pashto, and English.',
     cta: 'Register Now',
     ctaType: 'primary',
-    imageUrl: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 3,
@@ -61,27 +59,25 @@ const events: Event[] = [
     date: 'Sunday, June 28, 2026',
     day: 28,
     month: 'JUN',
-    time: '11:00 AM \u2013 4:00 PM',
+    time: '11:00 AM – 4:00 PM',
     location: 'Encanto Park, Phoenix',
     description: 'Join the Afghan community for an Eid celebration. Food, music, children\'s activities, and community connection. All are welcome.',
-    cta: 'Register Now',
-    ctaType: 'primary',
-    imageUrl: 'https://images.unsplash.com/photo-1511632765486-a01c80cb8fa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    cta: 'Learn More',
+    ctaType: 'secondary',
   },
   {
     id: 4,
-    title: 'Free Legal Clinic \u2014 Immigration Q&A',
+    title: 'Free Legal Clinic — Immigration Q&A',
     category: 'legal',
     categoryLabel: 'Legal Clinics',
     date: 'Saturday, July 11, 2026',
     day: 11,
     month: 'JUL',
-    time: '10:00 AM \u2013 1:00 PM',
+    time: '10:00 AM – 1:00 PM',
     location: 'Catholic Charities Community Center',
     description: 'Drop-in legal clinic. Immigration attorneys available to answer your questions. First come, first served.',
-    cta: 'Register Now',
-    ctaType: 'primary',
-    imageUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    cta: 'Learn More',
+    ctaType: 'secondary',
   },
   {
     id: 5,
@@ -91,12 +87,11 @@ const events: Event[] = [
     date: 'Friday, September 11, 2026',
     day: 11,
     month: 'SEP',
-    time: '10:00 AM \u2013 3:00 PM',
+    time: '10:00 AM – 3:00 PM',
     location: 'South Mountain Park, Phoenix',
     description: 'Community celebration of Eid al-Adha. Prayer, feast, and fellowship. Bring your family.',
-    cta: 'Register Now',
-    ctaType: 'primary',
-    imageUrl: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    cta: 'Details',
+    ctaType: 'text',
   },
 ]
 
@@ -117,13 +112,12 @@ const categoryColors: Record<EventCategory, string> = {
 }
 
 function EventCard({ event }: { event: Event }) {
+  const navigate = useNavigate()
   const colorClass = categoryColors[event.category] || 'bg-amber'
-  const imageUrl = event.imageUrl || 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
 
   return (
     <div className="bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-sm hover:bg-cream-dark hover:shadow-card-hover transition-all">
       <div className="w-full md:w-2/5 h-64 md:h-auto bg-warm-sand/20 relative">
-        <img alt={event.title} className="w-full h-full object-cover" src={imageUrl} />
         <div className={`absolute top-4 left-4 ${colorClass} text-white px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider shadow-sm`}>
           {event.categoryLabel}
         </div>
@@ -152,22 +146,22 @@ function EventCard({ event }: { event: Event }) {
         </div>
         <div className="flex flex-wrap items-center gap-4 mt-auto">
           {event.ctaType === 'primary' && (
-            <button onClick={() => alert('Registration coming soon')} className="btn-primary w-full md:w-auto">
+            <button onClick={() => navigate('/contact')} className="btn-primary w-full md:w-auto">
               {event.cta}
             </button>
           )}
           {event.ctaType === 'secondary' && (
-            <button onClick={() => alert('More info coming soon')} className="btn-secondary w-full md:w-auto">
+            <button onClick={() => navigate('/contact')} className="btn-secondary w-full md:w-auto">
               {event.cta}
             </button>
           )}
           {event.ctaType === 'text' && (
-            <button onClick={() => alert('Details coming soon')} className="btn-white-outline w-full md:w-auto">
-              {event.cta}
-            </button>
+            <span className="text-forest-light text-sm">
+              Contact us for more information
+            </span>
           )}
           {event.ctaType !== 'text' && (
-            <button onClick={() => alert('Details coming soon')} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
+            <button onClick={() => navigate('/contact')} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
               Details
             </button>
           )}

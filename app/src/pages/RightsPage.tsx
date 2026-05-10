@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
+import { Link } from 'react-router'
 import { FadeIn } from '../components/FadeIn'
 
 const rightsSections = [
@@ -174,17 +175,21 @@ export default function RightsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {downloadCards.map((card, i) => (
               <FadeIn key={card.lang} delay={i * 150} duration={800} className="h-full">
-                <button
-                  className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-250 hover:shadow-card-hover hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 group"
-                  onClick={() => alert('Download coming soon for ' + card.label)}
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center group-hover:bg-amber/10 transition-colors">
-                    <Download className="w-5 h-5 text-forest group-hover:text-amber transition-colors" aria-hidden="true" />
+                <div className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center">
+                    <Download className="w-5 h-5 text-forest" aria-hidden="true" />
                   </div>
-                  <h3 className="font-semibold text-heading-4 text-forest" dir={card.dir}>
+                  <h3 className="font-semibold text-heading-4 text-forest mb-2" dir={card.dir}>
                     {card.label}
                   </h3>
-                </button>
+                  <p className="text-sm text-forest-light">
+                    Download cards coming soon. Please check back or{' '}
+                    <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors underline underline-offset-4">
+                      contact us
+                    </Link>{' '}
+                    for a copy.
+                  </p>
+                </div>
               </FadeIn>
             ))}
           </div>
