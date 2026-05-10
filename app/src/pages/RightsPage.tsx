@@ -101,12 +101,12 @@ export default function RightsPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Know your rights header">
+      <section className="relative min-h-[45vh]" aria-label="Know your rights header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-rights.jpg"
             alt="Community meeting in circle discussing rights"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center-30%]"
           />
           <div
             className="absolute inset-0"
@@ -116,14 +116,16 @@ export default function RightsPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">EMPOWERMENT</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-2xl mb-4">
-            Know Your Rights
-          </h1>
-          <p className="text-body-lg text-white/85 max-w-xl">
-            Understanding your rights is the first step toward protecting yourself and your family.
-          </p>
+        <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">EMPOWERMENT</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              Know Your Rights
+            </h1>
+            <p className="text-body-lg text-white/85 max-w-2xl">
+              Understanding your rights is the first step toward protecting yourself and your family.
+            </p>
+          </div>
         </div>
       </section>
 

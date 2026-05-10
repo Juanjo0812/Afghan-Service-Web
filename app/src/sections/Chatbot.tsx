@@ -31,6 +31,7 @@ export default function Chatbot() {
   const [hasTypedFreeText, setHasTypedFreeText] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [hasInteracted, setHasInteracted] = useState(false)
   const { findResponse } = useChatbotKB(lang)
 
   const quickActions: QuickActionDef[] = useMemo(
@@ -227,50 +228,47 @@ export default function Chatbot() {
 
   return (
     <>
+      {/* Floating Notification Bubble */}
+      {!hasInteracted && !open && (
+        <div 
+          className="fixed bottom-24 right-7 z-[9999] bg-forest text-white px-4 py-3 rounded-xl shadow-lg"
+          style={{
+            animation: 'chatFloat 3s ease-in-out infinite'
+          }}
+        >
+          <div className="font-medium text-sm flex items-center gap-2">
+            <span>Need Help?</span>
+            <span className="text-amber animate-pulse">👋</span>
+          </div>
+          {/* Triangle pointer */}
+          <div className="absolute -bottom-2 right-6 w-4 h-4 bg-forest transform rotate-45" />
+          
+          <button 
+            onClick={(e) => { e.stopPropagation(); setHasInteracted(true); }}
+            className="absolute -top-2 -right-2 bg-white text-forest rounded-full p-1 shadow-sm hover:bg-gray-100 transition-colors"
+            aria-label="Close notification"
+          >
+            <X size={12} />
+          </button>
+        </div>
+      )}
+
       {/* Floating toggle button */}
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => { setOpen(!open); setHasInteracted(true); }}
         aria-label={open ? t('closeAssistant') : t('openAssistant')}
+        className={`fixed bottom-7 right-7 z-[9999] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 ${
+          open ? 'bg-forest w-14 h-14 rounded-full' : 'bg-amber rounded-full px-5 py-3.5 gap-2'
+        }`}
         style={{
-          position: 'fixed',
-          bottom: 28,
-          insetInlineEnd: 28,
-          zIndex: 9999,
-          width: 64,
-          height: 64,
-          borderRadius: '50%',
-          background: open ? '#162d5a' : 'var(--color-accent)',
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: open
-            ? '0 4px 20px rgba(22, 45, 90, 0.35)'
-            : '0 4px 20px rgba(var(--color-accent-rgb), 0.35)',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease',
-        }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget
-          el.style.transform = 'scale(1.05)'
-          el.style.boxShadow = open
-            ? '0 6px 28px rgba(22, 45, 90, 0.45)'
-            : '0 6px 28px rgba(var(--color-accent-rgb), 0.45)'
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget
-          el.style.transform = 'scale(1)'
-          el.style.boxShadow = open
-            ? '0 4px 20px rgba(22, 45, 90, 0.35)'
-            : '0 4px 20px rgba(var(--color-accent-rgb), 0.35)'
+          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
       >
-        {open ? <X size={28} color="#faf5ef" /> : <MessageCircle size={28} color="#faf5ef" />}
+        {open ? <X size={24} className="text-white" /> : <MessageCircle size={24} className="text-white" />}
+        {!open && <span className="font-medium text-white text-[15px] whitespace-nowrap">Chat with us</span>}
       </button>
 
-      {/* Chat panel */}
-      {open && (
-        <div
+      <div
           ref={panelRef}
           role="dialog"
           aria-modal="true"
@@ -281,25 +279,36 @@ export default function Chatbot() {
             width: 'clamp(320px, 92vw, 400px)',
             maxHeight: 560,
             background: '#faf5ef',
-            borderRadius: 20,
-            boxShadow: '0 24px 64px rgba(22,45,90,0.15), 0 0 0 1px rgba(22,45,90,0.06)',
+            borderRadius: 24,
+            boxShadow: open 
+              ? '0 24px 64px rgba(26,37,24,0.18), 0 0 0 1px rgba(26,37,24,0.06)' 
+              : '0 4px 16px rgba(26,37,24,0), 0 0 0 1px rgba(26,37,24,0)',
             zIndex: 9998,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-            animation: 'chatSlideIn 0.35s ease forwards',
+            
+            // Premium Organic Animation
+            transformOrigin: 'calc(100% - 20px) calc(100% + 40px)',
+            transform: open ? 'scale(1) translateY(0)' : 'scale(0.3) translateY(60px)',
+            opacity: open ? 1 : 0,
+            pointerEvents: open ? 'auto' : 'none',
+            visibility: open ? 'visible' : 'hidden',
+            transition: 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out, box-shadow 0.65s ease-out, visibility 0.65s',
           }}
         >
           {/* Header */}
           <div
             style={{
-              background: 'linear-gradient(135deg, #162d5a 0%, #1e3a6e 100%)',
-              padding: '16px 20px',
+              background: 'linear-gradient(135deg, #1a2518 0%, #2a3a28 100%)',
+              padding: '20px 24px',
               display: 'flex',
               alignItems: 'center',
               gap: 12,
               flexShrink: 0,
               borderBottom: '1px solid rgba(250,245,239,0.1)',
+              borderTopLeftRadius: 24,
+              borderTopRightRadius: 24,
             }}
           >
             <div
@@ -321,7 +330,7 @@ export default function Chatbot() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
-                  fontSize: 15,
+                  fontSize: 16,
                   color: '#faf5ef',
                   lineHeight: 1.3,
                 }}
@@ -403,10 +412,10 @@ export default function Chatbot() {
                 {/* Avatar */}
                 <div
                   style={{
-                    width: 28,
-                    height: 28,
+                    width: 32,
+                    height: 32,
                     borderRadius: '50%',
-                    background: msg.from === 'user' ? '#3a4a6a' : 'var(--color-accent)',
+                    background: msg.from === 'user' ? '#96592a' : '#1a2518',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -423,21 +432,22 @@ export default function Chatbot() {
                 {/* Bubble */}
                 <div
                   style={{
-                    maxWidth: '78%',
-                    background: msg.from === 'user' ? '#162d5a' : '#f0e8dc',
-                    color: '#faf5ef',
-                    padding: '10px 14px',
+                    maxWidth: '82%',
+                    background: msg.from === 'user' ? '#96592a' : '#ffffff',
+                    color: msg.from === 'user' ? '#ffffff' : '#1a2518',
+                    padding: '12px 16px',
                     fontFamily: "'Inter', sans-serif",
                     fontSize: 14,
                     lineHeight: 1.5,
-                    borderStartStartRadius: 16,
-                    borderStartEndRadius: 16,
-                    borderEndEndRadius: msg.from === 'user' ? 4 : 16,
-                    borderEndStartRadius: msg.from === 'user' ? 16 : 4,
+                    borderStartStartRadius: 20,
+                    borderStartEndRadius: 20,
+                    borderEndEndRadius: msg.from === 'user' ? 4 : 20,
+                    borderEndStartRadius: msg.from === 'user' ? 20 : 4,
+                    boxShadow: msg.from === 'bot' ? '0 2px 8px rgba(26,37,24,0.06)' : 'none',
                     wordBreak: 'break-word',
                   }}
                 >
-                  <span style={{ color: msg.from === 'user' ? '#faf5ef' : '#162d5a' }}>
+                  <span>
                     {msg.text}
                   </span>
                   {msg.from === 'bot' && msg.actions && msg.actions.length > 0 && (
@@ -447,24 +457,26 @@ export default function Chatbot() {
                           key={action.label}
                           onClick={() => handleKBAction(action.href)}
                           style={{
-                            background: 'rgba(150,89,42,0.85)',
-                            color: '#faf5ef',
-                            border: 'none',
-                            padding: '6px 12px',
-                            borderRadius: 6,
+                            background: '#ffffff',
+                            color: '#1a2518',
+                            border: '1px solid #1a2518',
+                            padding: '8px 16px',
+                            borderRadius: 9999,
                             fontFamily: "'Inter', sans-serif",
-                            fontSize: 12,
-                            fontWeight: 500,
+                            fontSize: 13,
+                            fontWeight: 600,
                             cursor: 'pointer',
-                            transition: 'background 0.25s ease',
+                            transition: 'all 0.2s ease',
                           }}
                           onMouseEnter={(e) => {
                             const el = e.target as HTMLElement
-                            el.style.background = '#96592a'
+                            el.style.background = '#1a2518'
+                            el.style.color = '#ffffff'
                           }}
                           onMouseLeave={(e) => {
                             const el = e.target as HTMLElement
-                            el.style.background = 'rgba(150,89,42,0.85)'
+                            el.style.background = '#ffffff'
+                            el.style.color = '#1a2518'
                           }}
                         >
                           {action.label}
@@ -481,25 +493,27 @@ export default function Chatbot() {
                             key={scored.entry.id}
                             onClick={() => handleCandidateSelect(scored)}
                             style={{
-                              background: 'rgba(150,89,42,0.85)',
-                              color: '#faf5ef',
-                              border: 'none',
-                              padding: '8px 12px',
-                              borderRadius: 6,
+                              background: '#ffffff',
+                              color: '#1a2518',
+                              border: '1px solid #1a2518',
+                              padding: '10px 16px',
+                              borderRadius: 9999,
                               fontFamily: "'Inter', sans-serif",
-                              fontSize: 12,
-                              fontWeight: 500,
+                              fontSize: 13,
+                              fontWeight: 600,
                               cursor: 'pointer',
-                              transition: 'background 0.25s ease',
+                              transition: 'all 0.2s ease',
                               textAlign: 'start',
                             }}
                             onMouseEnter={(e) => {
                               const el = e.target as HTMLElement
-                              el.style.background = '#96592a'
+                              el.style.background = '#1a2518'
+                              el.style.color = '#ffffff'
                             }}
                             onMouseLeave={(e) => {
                               const el = e.target as HTMLElement
-                              el.style.background = 'rgba(150,89,42,0.85)'
+                              el.style.background = '#ffffff'
+                              el.style.color = '#1a2518'
                             }}
                           >
                             {label}
@@ -520,8 +534,8 @@ export default function Chatbot() {
           {showQuickActions && (
             <div
               style={{
-                padding: '10px 16px 6px',
-                borderTop: '1px solid rgba(22,45,90,0.08)',
+                padding: '12px 20px 8px',
+                borderTop: '1px solid rgba(26,37,24,0.06)',
                 flexShrink: 0,
                 background: '#faf5ef',
               }}
@@ -552,28 +566,28 @@ export default function Chatbot() {
                     onClick={() => handleActionClick(action)}
                     style={{
                       background: '#ffffff',
-                      border: '1px solid rgba(22, 45, 90, 0.12)',
-                      padding: '9px 12px',
+                      border: '1.5px solid rgba(26, 37, 24, 0.25)',
+                      padding: '10px 14px',
                       fontFamily: "'Inter', sans-serif",
-                      fontWeight: 500,
-                      fontSize: 12,
-                      color: '#162d5a',
+                      fontWeight: 600,
+                      fontSize: 13,
+                      color: '#1a2518',
                       cursor: 'pointer',
-                      borderRadius: 10,
-                      transition: 'background 0.2s ease, border-color 0.2s ease, color 0.2s ease',
-                      textAlign: 'start',
+                      borderRadius: 9999,
+                      transition: 'all 0.2s ease',
+                      textAlign: 'center',
                     }}
                     onMouseEnter={(e) => {
                       const el = e.target as HTMLElement
-                      el.style.background = 'rgba(150,89,42,0.08)'
-                      el.style.borderColor = 'rgba(150,89,42,0.3)'
-                      el.style.color = '#96592a'
+                      el.style.background = '#1a2518'
+                      el.style.borderColor = '#1a2518'
+                      el.style.color = '#ffffff'
                     }}
                     onMouseLeave={(e) => {
                       const el = e.target as HTMLElement
                       el.style.background = '#ffffff'
-                      el.style.borderColor = 'rgba(22, 45, 90, 0.12)'
-                      el.style.color = '#162d5a'
+                      el.style.borderColor = 'rgba(26, 37, 24, 0.25)'
+                      el.style.color = '#1a2518'
                     }}
                   >
                     {action.label}
@@ -587,13 +601,13 @@ export default function Chatbot() {
           <form
             onSubmit={handleSend}
             style={{
-              borderTop: '1px solid rgba(22,45,90,0.08)',
-              padding: '12px 16px',
+              borderTop: '1px solid rgba(26,37,24,0.08)',
+              padding: '16px 20px',
               display: 'flex',
               alignItems: 'center',
-              gap: 10,
+              gap: 12,
               flexShrink: 0,
-              background: '#f5ede0',
+              background: '#ffffff',
             }}
           >
             <input
@@ -607,10 +621,10 @@ export default function Chatbot() {
                 border: 'none',
                 outline: 'none',
                 fontFamily: "'Inter', sans-serif",
-                fontSize: 14,
-                color: '#162d5a',
+                fontSize: 15,
+                color: '#1a2518',
                 background: 'transparent',
-                padding: '6px 0',
+                padding: '8px 0',
               }}
             />
             <button
@@ -646,16 +660,15 @@ export default function Chatbot() {
             </button>
           </form>
         </div>
-      )}
 
       <style>{`
-        @keyframes chatSlideIn {
-          from { opacity: 0; transform: translateY(16px) scale(0.96); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
         @keyframes typingBounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
           30% { transform: translateY(-4px); opacity: 1; }
+        }
+        @keyframes chatFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
         }
       `}</style>
     </>

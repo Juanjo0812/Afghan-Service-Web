@@ -71,7 +71,7 @@ export default function HomePage() {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover blur-[2px] scale-105"
+              className="w-full h-full object-cover object-top blur-[2px] scale-105"
             >
               <source src="/videos/Video_main.mp4" type="video/mp4" />
             </video>
@@ -97,10 +97,7 @@ export default function HomePage() {
               Free, confidential support for Afghan families in Phoenix
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center w-full opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
-              <Link to="/contact" className="btn-primary text-center">
-                Get Help Now
-              </Link>
-              <Link to="/rights" className="btn-white-outline text-center">
+              <Link to="/rights" className="btn-primary text-center">
                 Learn About Your Rights
               </Link>
             </div>

@@ -4,12 +4,12 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Community resources header">
+      <section className="relative min-h-[45vh]" aria-label="Community resources header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-resources.jpg"
             alt="Community garden food distribution event"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center-30%]"
           />
           <div
             className="absolute inset-0"
@@ -19,14 +19,16 @@ export default function ResourcesPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">RESOURCES</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-2xl mb-4">
-            Community Resources
-          </h1>
-          <p className="text-body-lg text-white/85 max-w-xl">
-            Essential services and programs to support you and your family in Phoenix.
-          </p>
+        <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">RESOURCES</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              Community Resources
+            </h1>
+            <p className="text-body-lg text-white/85 max-w-2xl">
+              Essential services and programs to support you and your family in Phoenix.
+            </p>
+          </div>
         </div>
       </section>
 

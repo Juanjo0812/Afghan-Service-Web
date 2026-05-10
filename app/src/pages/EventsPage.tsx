@@ -245,12 +245,12 @@ export default function EventsPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Events header">
+      <section className="relative min-h-[45vh]" aria-label="Events header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-events.jpg"
             alt="Community workshop"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center-50%]"
           />
           <div
             className="absolute inset-0"
@@ -260,14 +260,16 @@ export default function EventsPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">EVENTS</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-2xl mb-4">
-            Events Calendar
-          </h1>
-          <p className="text-body-lg text-white/85 max-w-xl">
-            Join us for workshops, legal clinics, cultural gatherings, and community events.
-          </p>
+        <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">EVENTS</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              Events Calendar
+            </h1>
+            <p className="text-body-lg text-white/85 max-w-2xl">
+              Join us for workshops, legal clinics, cultural gatherings, and community events.
+            </p>
+          </div>
         </div>
       </section>
 

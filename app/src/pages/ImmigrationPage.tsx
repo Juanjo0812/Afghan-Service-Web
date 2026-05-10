@@ -40,12 +40,12 @@ export default function ImmigrationPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Immigration services header">
+      <section className="relative min-h-[45vh]" aria-label="Immigration services header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-immigration.jpg"
             alt="Community worker helping Afghan family with documents"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[top-20%]"
           />
           <div
             className="absolute inset-0"
@@ -55,14 +55,16 @@ export default function ImmigrationPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">FREE SERVICES</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-3xl mb-4">
-            Free Immigration Assistance for Afghan Families in Phoenix
-          </h1>
-          <p className="text-body-lg text-white/85 max-w-2xl">
-            All services are free, confidential, and available in Dari, Pashto, Uzbek, and English.
-          </p>
+        <div className="relative container-main pt-36 pb-8 lg:pt-48 lg:pb-10">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">FREE SERVICES</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              Free Immigration Assistance for Afghan Families in Phoenix
+            </h1>
+            <p className="text-body-lg text-white/85 max-w-2xl">
+              All services are free, confidential, and available in Dari, Pashto, Uzbek, and English.
+            </p>
+          </div>
         </div>
       </section>
 

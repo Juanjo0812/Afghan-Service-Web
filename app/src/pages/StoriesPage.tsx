@@ -239,12 +239,12 @@ export default function StoriesPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Stories header">
+      <section className="relative min-h-[45vh]" aria-label="Stories header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-stories.jpg"
             alt="Afghan community member portrait"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center-10%]"
           />
           <div
             className="absolute inset-0"
@@ -254,14 +254,16 @@ export default function StoriesPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">STORIES</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-2xl mb-4">
-            Community Impact
-          </h1>
-          <p className="text-body-lg text-white/85 max-w-xl">
-            Real stories from Afghan families who have found support and success in Phoenix.
-          </p>
+        <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">STORIES</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              Community Impact
+            </h1>
+            <p className="text-body-lg text-white/85 max-w-2xl">
+              Real stories from Afghan families who have found support and success in Phoenix.
+            </p>
+          </div>
         </div>
       </section>
 

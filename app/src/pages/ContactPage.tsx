@@ -25,12 +25,12 @@ export default function ContactPage() {
   return (
     <>
       {/* Page Header */}
-      <section className="relative min-h-[45vh] flex items-end" aria-label="Contact header">
+      <section className="relative min-h-[45vh]" aria-label="Contact header">
         <div className="absolute inset-0">
           <img
             src="/images/hero-home.jpg"
             alt="Afghan support team"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center_30%]"
           />
           <div
             className="absolute inset-0"
@@ -40,14 +40,16 @@ export default function ContactPage() {
             }}
           />
         </div>
-        <div className="relative container-main pb-10 pt-32">
-          <span className="label-text text-amber block mb-3">CONTACT US</span>
-          <h1 className="font-display text-3xl md:text-4xl lg:text-display-l text-white max-w-2xl mb-4">
-            We're Here to Help
-          </h1>
-          <p className="text-body-lg text-white/90 max-w-xl">
-            Reach out for free, confidential assistance. Our team speaks your language.
-          </p>
+        <div className="relative container-main pt-36 pb-12 lg:pt-48 lg:pb-16">
+          <div className="max-w-3xl">
+            <span className="label-text text-amber block mb-3">CONTACT US</span>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-4 leading-tight">
+              We're Here to Help
+            </h1>
+            <p className="text-body-lg text-white/90 max-w-2xl">
+              Reach out for free, confidential assistance. Our team speaks your language.
+            </p>
+          </div>
         </div>
       </section>
 
