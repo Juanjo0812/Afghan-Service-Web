@@ -10,7 +10,7 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col bg-cream">
       <ScrollToTop />
       <Header />
-      <main id="main-content" className="flex-1 pt-16 md:pt-[72px]">
+      <main id="main-content" className="flex-1 pt-[76px] lg:pt-[116px]">
         <Outlet />
       </main>
       <Footer />

@@ -95,3 +95,11 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
                     {LANGUAGE_SUBLABELS[code]}
                   </span>
                 </button>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+    </div>
+  )
+}
