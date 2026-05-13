@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Briefcase, Shield, Compass, Calendar, ChevronRight, MapPin } from 'lucide-react'
+import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
 function useScrollReveal() {
@@ -64,11 +64,11 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section
-        className="relative min-h-[100vh] flex items-center justify-center"
+        className="relative h-[85vh] flex items-center justify-center"
         aria-label="Welcome"
       >
         <div className="absolute inset-0 overflow-hidden z-0">
-          <div className="sticky top-0 w-full h-[100vh]">
+          <div className="sticky top-0 w-full h-[85vh]">
             <video
               autoPlay
               loop
@@ -113,6 +113,17 @@ export default function HomePage() {
               </div>
             </FadeIn>
           </div>
+        </div>
+
+        {/* Animated scroll-down arrow */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1">
+          <span className="text-white/60 text-xs font-medium tracking-wider uppercase">
+            {t('scrollDown', { ns: 'hero' })}
+          </span>
+          <ChevronDown
+            className="w-6 h-6 text-white/70 animate-bounce"
+            aria-hidden="true"
+          />
         </div>
       </section>
 
