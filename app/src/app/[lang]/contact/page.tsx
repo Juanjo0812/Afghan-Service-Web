@@ -2,4 +2,8 @@ export function generateStaticParams() {
   return [{ lang: 'dari' }, { lang: 'uzbek' }]
 }
 
-export { default } from '../contact/page'
+import ContactPage from '@/pages/ContactPage'
+
+export default function Contact() {
+  return <ContactPage />
+}

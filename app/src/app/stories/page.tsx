@@ -1,5 +1,3 @@
-'use client'
-
 import StoriesPage from '@/pages/StoriesPage'
 
 export default function Stories() {

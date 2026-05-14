@@ -1,5 +1,3 @@
-'use client'
-
 import RightsPage from '@/pages/RightsPage'
 
 export default function Rights() {

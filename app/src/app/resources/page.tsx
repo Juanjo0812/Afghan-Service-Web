@@ -1,5 +1,3 @@
-'use client'
-
 import ResourcesPage from '@/pages/ResourcesPage'
 
 export default function Resources() {

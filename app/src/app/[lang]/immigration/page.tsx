@@ -2,4 +2,8 @@ export function generateStaticParams() {
   return [{ lang: 'dari' }, { lang: 'uzbek' }]
 }
 
-export { default } from '../immigration/page'
+import ImmigrationPage from '@/pages/ImmigrationPage'
+
+export default function Immigration() {
+  return <ImmigrationPage />
+}

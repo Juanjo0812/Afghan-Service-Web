@@ -16,7 +16,13 @@ export function Routes({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
-export function Route() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function Route(_props: {
+  path?: string
+  element?: ReactNode
+  children?: ReactNode
+  [key: string]: unknown
+}) {
   return null
 }
 

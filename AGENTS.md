@@ -5,7 +5,8 @@ These instructions apply to everything under this repository.
 ## Non-negotiables
 
 - Use conventional commits only. Never add `Co-Authored-By` or AI attribution.
-- Do not run `npm run build` after changes unless the maintainer explicitly overrides this rule.
+- NEVER use `npm` due to security constraints. ALWAYS use `pnpm` for all package management and script execution.
+- Do not run `pnpm run build` after changes unless the maintainer explicitly overrides this rule.
 - Keep answers, docs, PR notes, and handoffs short first. Expand only when the task genuinely needs detail.
 - Verify claims against code before stating them. If a claim is wrong, explain why with file-level evidence.
 - Treat AI as an execution tool, not the architect. Human intent leads; agents execute bounded work.
