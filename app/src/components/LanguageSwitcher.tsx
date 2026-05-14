@@ -1,18 +1,19 @@
+'use client'
+
 import { useState, useRef, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { useLanguage, type LangCode } from '../hooks/useLanguage'
 import { ChevronDown } from 'lucide-react'
 
 const LANGUAGE_LABELS: Record<LangCode, string> = {
   en: 'English',
   dari: 'دری',
-  pashto: 'پښتو',
   uzbek: "Oʻzbek",
 }
 
 const LANGUAGE_SUBLABELS: Record<LangCode, string> = {
   en: 'EN',
   dari: 'Dari',
-  pashto: 'Pashto',
   uzbek: 'Uzbek',
 }
 
@@ -21,7 +22,9 @@ interface LanguageSwitcherProps {
 }
 
 export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcherProps) {
-  const { lang, changeLanguage, supportedLanguages } = useLanguage()
+  const { lang, supportedLanguages } = useLanguage()
+  const pathname = usePathname()
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -46,7 +49,23 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
   }, [open])
 
   const handleSelect = (code: LangCode) => {
-    changeLanguage(code)
+    const segments = pathname.split('/').filter(Boolean)
+    const hasLangPrefix = supportedLanguages.includes(segments[0] as LangCode)
+
+    let newPath: string
+    if (code === 'en') {
+      if (hasLangPrefix) segments.shift()
+      newPath = '/' + segments.join('/')
+    } else {
+      if (hasLangPrefix) {
+        segments[0] = code
+      } else {
+        segments.unshift(code)
+      }
+      newPath = '/' + segments.join('/')
+    }
+
+    router.replace(newPath || '/')
     setOpen(false)
   }
 

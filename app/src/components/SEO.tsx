@@ -15,7 +15,6 @@ const DEFAULT_OG_IMAGE = '/images/og-default.jpg'
 const OG_LOCALE: Record<LangCode, string> = {
   en: 'en_US',
   dari: 'fa_AF',
-  pashto: 'ps_AF',
   uzbek: 'uz_UZ',
 }
 
