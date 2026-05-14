@@ -1,10 +1,11 @@
-# Implementation Plan — Afghan Support Phoenix Production Closure
+# Implementation Plan — Afghan Support Phoenix Next.js + Headless Production Closure
 
-This is the execution plan to finish Afghan Support Phoenix for production from the current `app/` codebase. It replaces the old post-cleanup checklist with a sub-agent-ready plan focused on runtime cleanup, real email delivery, security, resilience, content compliance, and launch verification.
+This is the execution plan to finish Afghan Support Phoenix for production from the current Next.js `app/` codebase. It reflects the migration to Next.js App Router with WordPress Headless for client-editable events and SEO/social metadata only.
 
 **Source of truth:** `app/docs/PRD_Afghan_Support_Realistic.md`  
 **Client input:** `app/docs/Website_Layout_Afghan_Immigration.md`  
 **Default deployment target:** Vercel, with `app/` as the project root  
+**Default CMS target:** WordPress on Hostinger, first validated locally with WordPress Studio  
 **Default email provider:** Resend  
 **Default production rate limit store:** Upstash Redis
 
@@ -15,7 +16,7 @@ This is the execution plan to finish Afghan Support Phoenix for production from 
 1. Do not rebuild the website from scratch.
 2. Preserve the current visual direction: institutional, warm, simple, accessible.
 3. Do not run `npm run build` unless the maintainer explicitly authorizes it.
-4. Do not add generative AI, LLMs, embeddings, external chatbot APIs, auth, CMS, database persistence, booking, donations, or blog/news features.
+4. Do not add generative AI, LLMs, embeddings, external chatbot APIs, auth, database persistence, booking, donations, blog/news features, or a general-purpose page builder.
 5. Do not store PII in localStorage, analytics, logs, a database, or static files.
 6. Verify claims against code before checking any task as done.
 7. Keep each work packet small enough for review; prefer one sub-agent per bounded area.
@@ -207,7 +208,6 @@ Replace `href="#"` with approved external links, phone numbers, or contact CTAs.
 - Download cards must link to actual approved PDFs:
   - English
   - Dari
-  - Pashto
   - Uzbek
 - If approved PDFs are missing, keep the task open and mark launch blocked.
 - Keep legal disclaimer and last-reviewed date visible.
@@ -234,7 +234,7 @@ Replace `href="#"` with approved external links, phone numbers, or contact CTAs.
 
 ## 6. Work Packet E — Full i18n, RTL, and Chatbot Routing
 
-**Goal:** fulfill the client-requested language toggle. RTL alone is not acceptable; the selected language must change the visible product copy across active routes.
+**Goal:** fulfill the current language toggle for English, Dari, and Uzbek. RTL alone is not acceptable; the selected language must change the visible product copy across active routes.
 
 ### Current problem to fix
 
@@ -253,12 +253,12 @@ The active route pages currently contain substantial hardcoded English copy. The
 
 ### Required changes
 
-- Treat multilingual coverage as P0 launch work because `Website_Layout_Afghan_Immigration.md` explicitly requires `Language Toggle: EN | Dari | Pashto | Uzbek`.
+- Treat multilingual coverage as P0 launch work for the currently approved language set: EN, Dari, and Uzbek.
 - Move active-route visible copy into locale JSON or an equivalent typed local content layer consumed by `react-i18next`.
 - Cover at minimum: nav labels, footer copy, page headers, body copy, cards, CTA text, form labels/placeholders/errors, success/error states, resources, events, rights content, download labels, stories/placeholder copy, chatbot labels/actions/responses.
 - Proper names, phone numbers, addresses, URLs, and reviewed organization names may remain unchanged.
-- Remove placeholder translation prefixes like `[FA]`, `[PS]`, `[UZ]` from active locale JSON.
-- Keep Dari and Pashto RTL behavior working through `LanguageProvider` and `direction.ts`.
+- Remove placeholder translation prefixes like `[FA]` and `[UZ]` from active locale JSON.
+- Keep Dari RTL behavior working through `LanguageProvider`, middleware, and `direction.ts`.
 - Update chatbot actions from hash-only targets such as `#contact` to real routes:
   - `/contact`
   - `/immigration`
@@ -267,13 +267,13 @@ The active route pages currently contain substantial hardcoded English copy. The
   - `/events`
 - Keep chatbot deterministic: local JSON + keyword/scoring only.
 - Chatbot legal/right responses must include safe educational framing and contact fallback.
-- Machine translation may be used only as a draft; production launch remains blocked until fluent/native review confirms Dari, Pashto, and Uzbek.
+- Machine translation may be used only as a draft; production launch remains blocked until fluent/native review confirms Dari and Uzbek.
 
 ### Acceptance criteria
 
-- Switching EN/Dari/Pashto/Uzbek updates all primary visible copy on every active route.
-- Dari/Pashto update `html[dir="rtl"]` and layout remains usable.
-- No active user-visible path contains `[FA]`, `[PS]`, `[UZ]`, or English-only copy except approved proper nouns/contact details.
+- Switching EN/Dari/Uzbek updates all primary visible copy on every active route.
+- Dari updates `html[dir="rtl"]` and layout remains usable.
+- No active user-visible path contains `[FA]`, `[UZ]`, or English-only copy except approved proper nouns/contact details.
 - Chatbot action buttons navigate to real routes.
 - No LLM, embedding, or external chatbot dependency is introduced.
 - Human translation review is documented before production launch.

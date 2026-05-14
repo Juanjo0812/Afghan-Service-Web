@@ -165,7 +165,7 @@ Preserve current public routes:
 
 - English/default: `/`, `/events`, `/stories`, `/contact`, `/immigration`, `/rights`, `/resources`
 - Other languages: `/dari`, `/dari/events`, `/uzbek`, `/uzbek/events`, etc.
-- Pashto routes such as `/pashto` and `/pashto/events` must not be recreated. If redirects are needed for old links, redirect them to English or a client-approved fallback route.
+- Pashto routes such as `/pashto` and `/pashto/events` must not be recreated as pages. The only allowed active Pashto runtime reference is a permanent redirect from old `/pashto/*` links to the equivalent English path.
 
 Root English route files and `[lang]` route files should import the same shared route modules to avoid duplicate page logic.
 
@@ -479,7 +479,7 @@ Manual checks:
 - [ ] Chatbot opens and routes to real pages.
 - [ ] Language switcher preserves route intent.
 - [ ] Dari renders RTL correctly.
-- [ ] Pashto has no active runtime, data, route, type, CMS schema, or documentation references except historical archive notes.
+- [ ] Pashto has no active data, page route, type, CMS schema, or supported-language references; the only active runtime reference allowed is the intentional `/pashto/*` redirect to English.
 - [ ] Contact form posts to `/api/contact` and preserves current success/error behavior.
 - [ ] WordPress Studio event edits appear on the events page.
 - [ ] WordPress Studio metadata edits appear in rendered metadata.

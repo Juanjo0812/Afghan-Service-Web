@@ -27,6 +27,13 @@ interface CalendarEvent {
   imageUrl?: string
 }
 
+function toPlainText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 function toCalendarEvent(event: EventContent): CalendarEvent {
   const start = new Date(event.startDate)
   const day = start.getDate()
@@ -66,7 +73,7 @@ function toCalendarEvent(event: EventContent): CalendarEvent {
     month,
     time: event.timeLabel,
     location: event.location,
-    description: event.description,
+    description: toPlainText(event.description),
     cta: event.ctaLabel,
     ctaType,
     ctaUrl: event.ctaUrl,

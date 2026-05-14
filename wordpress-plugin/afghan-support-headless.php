@@ -19,6 +19,8 @@ class Afghan_Support_Headless_Plugin {
         add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
         add_action('save_post', [$this, 'save_meta_boxes']);
         add_action('rest_api_init', [$this, 'register_rest_fields']);
+        add_filter('rest_asp_event_query', [$this, 'filter_event_rest_query'], 10, 2);
+        add_filter('rest_asp_page_meta_query', [$this, 'filter_page_meta_rest_query'], 10, 2);
     }
 
     public function register_post_types(): void {
@@ -337,6 +339,52 @@ class Afghan_Support_Headless_Plugin {
                 'description' => 'Open Graph image URL',
             ],
         ]);
+    }
+
+    private function append_meta_filter(array $args, string $key, string $value): array {
+        $meta_query = $args['meta_query'] ?? [];
+
+        if (!is_array($meta_query)) {
+            $meta_query = [];
+        }
+
+        if (!isset($meta_query['relation'])) {
+            $meta_query['relation'] = 'AND';
+        }
+
+        $meta_query[] = [
+            'key'     => $key,
+            'value'   => sanitize_text_field($value),
+            'compare' => '=',
+        ];
+
+        $args['meta_query'] = $meta_query;
+        return $args;
+    }
+
+    public function filter_event_rest_query(array $args, \WP_REST_Request $request): array {
+        $lang = $request->get_param('lang');
+
+        if (is_string($lang) && $lang !== '') {
+            $args = $this->append_meta_filter($args, '_asp_event_language', $lang);
+        }
+
+        return $args;
+    }
+
+    public function filter_page_meta_rest_query(array $args, \WP_REST_Request $request): array {
+        $lang = $request->get_param('lang');
+        $route_key = $request->get_param('route_key');
+
+        if (is_string($lang) && $lang !== '') {
+            $args = $this->append_meta_filter($args, '_asp_page_meta_language', $lang);
+        }
+
+        if (is_string($route_key) && $route_key !== '') {
+            $args = $this->append_meta_filter($args, '_asp_route_key', $route_key);
+        }
+
+        return $args;
     }
 }
 

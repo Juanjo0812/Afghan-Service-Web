@@ -68,6 +68,21 @@ function buildAlternateLangs(routeKey: string): Record<string, string> {
   return alts
 }
 
+function toPlainText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function truncateDescription(value: string, maxLength = 160): string {
+  if (value.length <= maxLength) {
+    return value
+  }
+
+  return `${value.slice(0, maxLength - 1).trim()}…`
+}
+
 export async function generatePageMetadata(
   routeKey: string,
   lang: LangCode
@@ -117,13 +132,14 @@ export async function generateEventDetailMetadata(
   // Resolution order: 1. Event-specific metadata, 2. WordPress events page metadata, 3. static defaults
   const event = await getEventBySlug(slug, lang)
 
-  if (event?.seo) {
-    const seo = event.seo
-    const title = seo.title
-    const description = seo.description
-    const ogTitle = seo.ogTitle ?? title
-    const ogDescription = seo.ogDescription ?? description
-    const ogImage = seo.ogImage
+  if (event) {
+    const title = event.seo?.title ?? `${event.title} — Afghan Support Phoenix`
+    const description =
+      event.seo?.description ??
+      truncateDescription(toPlainText(event.description))
+    const ogTitle = event.seo?.ogTitle ?? title
+    const ogDescription = event.seo?.ogDescription ?? description
+    const ogImage = event.seo?.ogImage ?? event.imageUrl
 
     const canonicalUrl = buildCanonicalUrl(`events/${slug}`, lang)
 
