@@ -8,7 +8,7 @@ const LANG_DIR: Record<string, string> = {
   uzbek: 'ltr',
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Permanent redirect: /pashto/* → equivalent English path

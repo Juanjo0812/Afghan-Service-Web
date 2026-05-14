@@ -78,12 +78,10 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
+  turbopack: {
+    resolveAlias: {
       "react-router": path.resolve(__dirname, "src/lib/react-router-shim.tsx"),
-    }
-    return config
+    },
   },
 }
 
