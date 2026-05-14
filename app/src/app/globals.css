@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 37 33% 96%;
+    --foreground: 135 14% 19%;
+    --card: 0 0% 100%;
+    --card-foreground: 135 14% 19%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 135 14% 19%;
+    --primary: 37 63% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 37 33% 90%;
+    --secondary-foreground: 135 14% 19%;
+    --muted: 37 25% 88%;
+    --muted-foreground: 135 10% 33%;
+    --accent: 97 14% 55%;
+    --accent-foreground: 135 14% 19%;
+    --destructive: 8 55% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 37 25% 85%;
+    --input: 37 25% 85%;
+    --ring: 37 63% 47%;
+    --radius: 0.625rem;
+    --sidebar-background: 135 20% 10%;
+    --sidebar-foreground: 37 33% 96%;
+    --sidebar-primary: 37 63% 47%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 135 14% 35%;
+    --sidebar-accent-foreground: 37 33% 96%;
+    --sidebar-border: 135 14% 25%;
+    --sidebar-ring: 37 63% 47%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-forest font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] body {
+    font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+  }
+
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 {
+    font-family: 'Noto Sans Arabic', 'Playfair Display', serif;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus states */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-amber ring-offset-2 ring-offset-cream;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-forest focus:text-white focus:px-4 focus:py-2 focus:rounded-md;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-container mx-auto px-6 md:px-12 lg:px-16;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-amber text-white font-semibold rounded-md shadow-card transition-all duration-250 hover:bg-amber-dark hover:shadow-card-hover hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 active:translate-y-0 min-h-[48px] text-base;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-forest font-semibold rounded-md border-2 border-forest transition-all duration-250 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2 min-h-[48px] text-base;
+  }
+
+  .btn-white-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-transparent text-white font-semibold rounded-md border-2 border-white transition-all duration-250 hover:bg-white hover:text-forest focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 min-h-[48px] text-base;
+  }
+
+  .text-link {
+    @apply text-amber underline decoration-1 underline-offset-2 transition-colors duration-250 hover:text-amber-dark hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .label-text {
+    @apply text-label font-semibold uppercase tracking-wider text-amber;
+  }
+}
+
+@layer utilities {
+  .duration-250 {
+    transition-duration: 250ms;
+  }
+}
