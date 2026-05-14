@@ -1,7 +1,9 @@
+'use client'
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Quote, X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
 
 interface Story {
@@ -128,10 +130,10 @@ export default function StoriesPage() {
           </h2>
           <p className="text-body-lg text-white/80 mb-8">{t('bottomCta.text')}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary">
               {t('bottomCta.primary')}
             </Link>
-            <Link to="/contact" className="btn-white-outline">
+            <Link href="/contact" className="btn-white-outline">
               {t('bottomCta.secondary')}
             </Link>
           </div>

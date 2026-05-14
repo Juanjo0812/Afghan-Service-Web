@@ -1,7 +1,9 @@
+'use client'
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
-import { Link } from 'react-router'
+import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
 
 function AccordionItem({
@@ -185,7 +187,7 @@ export default function RightsPage() {
                   </h3>
                   <p className="text-sm text-forest-light">
                     {t('downloads.comingSoon')}{' '}
-                    <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors underline underline-offset-4">
+                    <Link href="/contact" className="text-forest font-semibold hover:text-amber transition-colors underline underline-offset-4">
                       {t('downloads.contactUs')}
                     </Link>{' '}
                     {t('downloads.forCopy')}

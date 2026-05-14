@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 interface FadeInProps {
-  children: React.ReactNode
+  children: ReactNode
   delay?: number
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   className?: string
@@ -14,39 +14,8 @@ export function FadeIn({
   delay = 0, 
   direction = 'up', 
   className = '', 
-  threshold = 0.1,
   duration = 800
 }: FadeInProps) {
-  const [isVisible, setIsVisible] = useState(false)
-  const domRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            if (domRef.current) {
-              observer.unobserve(domRef.current)
-            }
-          }
-        })
-      },
-      { threshold, rootMargin: '0px 0px -50px 0px' }
-    )
-    
-    const currentRef = domRef.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-    
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [threshold])
-
   const translateClasses = {
     up: 'translate-y-12',
     down: '-translate-y-12',
@@ -57,16 +26,12 @@ export function FadeIn({
 
   return (
     <div
-      ref={domRef}
-      className={`transition-all ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0 translate-x-0' 
-          : `opacity-0 ${translateClasses[direction]}`
-      } ${className}`}
-      style={{ 
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms` 
-      }}
+      className={`opacity-100 motion-safe:animate-fade-in-up ${translateClasses[direction]} ${className}`}
+      style={{
+        animationDuration: `${duration}ms`,
+        animationDelay: `${delay}ms`,
+        animationFillMode: 'both',
+      } as CSSProperties}
     >
       {children}
     </div>

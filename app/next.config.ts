@@ -1,20 +1,24 @@
 import type { NextConfig } from 'next'
-import path from 'path'
 
 const wpMediaHost = process.env.WORDPRESS_MEDIA_HOSTNAME
 
 function buildCSP(): string {
+  const isDev = process.env.NODE_ENV !== "production"
   const imgSrc = wpMediaHost
     ? `'self' data: https://${wpMediaHost}`
     : "'self' data:"
+  const scriptSrc = isDev
+    ? "'self' 'unsafe-inline' 'unsafe-eval'"
+    : "'self' 'unsafe-inline'"
+  const connectSrc = isDev ? "'self' ws: wss:" : "'self'"
 
   return [
     "default-src 'self'",
-    "script-src 'self'",
+    `script-src ${scriptSrc}`,
     "style-src 'self' 'unsafe-inline'",
     `img-src ${imgSrc}`,
     "media-src 'self'",
-    "connect-src 'self'",
+    `connect-src ${connectSrc}`,
     "frame-src https://www.google.com",
     "form-action 'self'",
     "frame-ancestors 'none'",
@@ -77,11 +81,6 @@ const nextConfig: NextConfig = {
         ],
       },
     ]
-  },
-  turbopack: {
-    resolveAlias: {
-      "react-router": path.resolve(__dirname, "src/lib/react-router-shim.tsx"),
-    },
   },
 }
 

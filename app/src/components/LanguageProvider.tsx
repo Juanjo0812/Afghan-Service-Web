@@ -1,5 +1,7 @@
+'use client'
+
 import { useEffect, useState, useCallback } from 'react'
-import { useLocation, useNavigate } from 'react-router'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import i18n from '../lib/i18n'
 import {
   getDirection,
@@ -15,16 +17,17 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children, initialLang = 'en' }: LanguageProviderProps) {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const pathname = usePathname() || '/'
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [lang, setLang] = useState<LangCode>(initialLang)
 
   const detectLangFromPath = useCallback((): LangCode => {
-    const firstSegment = location.pathname.split('/')[1]
+    const firstSegment = pathname.split('/')[1]
     return SUPPORTED_LANGUAGES.includes(firstSegment as LangCode)
       ? (firstSegment as LangCode)
       : 'en'
-  }, [location.pathname])
+  }, [pathname])
 
   useEffect(() => {
     const detected = detectLangFromPath()
@@ -53,8 +56,11 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
 
   const changeLanguage = useCallback(
     (newLang: LangCode) => {
-      const segments = location.pathname.split('/').filter(Boolean)
+      const segments = pathname.split('/').filter(Boolean)
       const hasLangPrefix = SUPPORTED_LANGUAGES.includes(segments[0] as LangCode)
+      const query = searchParams.toString()
+      const hash = typeof window !== 'undefined' ? window.location.hash : ''
+      const suffix = `${query ? `?${query}` : ''}${hash}`
 
       let newPath: string
 
@@ -62,21 +68,19 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
         if (hasLangPrefix) {
           segments.shift()
         }
-        newPath =
-          '/' + segments.join('/') + location.search + location.hash
+        newPath = '/' + segments.join('/') + suffix
       } else {
         if (hasLangPrefix) {
           segments[0] = newLang
         } else {
           segments.unshift(newLang)
         }
-        newPath =
-          '/' + segments.join('/') + location.search + location.hash
+        newPath = '/' + segments.join('/') + suffix
       }
 
-      navigate(newPath || '/', { replace: true })
+      router.replace(newPath || '/')
     },
-    [location, navigate]
+    [pathname, router, searchParams]
   )
 
   const dir = getDirection(lang)

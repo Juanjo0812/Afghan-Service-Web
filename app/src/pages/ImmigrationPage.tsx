@@ -1,4 +1,6 @@
-import { Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Shield, Briefcase, Clock, CreditCard, Landmark, Phone, Mail, Clock3 } from 'lucide-react'
 
@@ -155,7 +157,7 @@ export default function ImmigrationPage() {
                   <Clock3 className="w-5 h-5 text-olive" aria-hidden="true" />
                   <span className="text-body-sm">{t('contact.hours')}</span>
                 </div>
-                <Link to="/contact" className="btn-primary w-full text-center mt-2">
+                <Link href="/contact" className="btn-primary w-full text-center mt-2">
                   {t('contact.cta')}
                 </Link>
               </div>
