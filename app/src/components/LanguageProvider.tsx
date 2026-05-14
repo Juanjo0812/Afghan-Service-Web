@@ -58,7 +58,7 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
     (newLang: LangCode) => {
       const segments = pathname.split('/').filter(Boolean)
       const hasLangPrefix = SUPPORTED_LANGUAGES.includes(segments[0] as LangCode)
-      const query = searchParams.toString()
+      const query = searchParams?.toString() ?? ''
       const hash = typeof window !== 'undefined' ? window.location.hash : ''
       const suffix = `${query ? `?${query}` : ''}${hash}`
 
