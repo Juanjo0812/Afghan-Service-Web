@@ -24,17 +24,17 @@ This is the execution plan to finish Afghan Support Phoenix for production from 
 
 ## 1. Current State to Preserve
 
-The active app is the Vite/React app under `app/`.
+The active app is the Next.js App Router app under `app/`.
 
 | Area | Current anchor |
 |---|---|
-| Entry | `src/main.tsx` |
-| Routes | `src/App.tsx` lazy page routes |
-| Layout | `src/components/Layout.tsx` |
+| Entry | `src/app/layout.tsx` + `src/app/page.tsx` |
+| Routes | Next.js App Router pages under `src/app/**/page.tsx` |
+| Layout | `src/components/AppShell.tsx` wrapped in root layout |
 | Header/Footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
 | Active pages | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` |
 | Chatbot | `src/sections/Chatbot.tsx` + `src/data/chatbot-kb.json` |
-| Contact API | `api/contact.ts` |
+| Contact API | `src/app/api/contact/route.ts` (Next.js Route Handler) |
 | Styling | Tailwind + `src/index.css` |
 
 Do not restore removed design-reference folders. The deleted `app/docs/stitch_design/**` files are not runtime dependencies.
@@ -60,8 +60,8 @@ Do not restore removed design-reference folders. The deleted `app/docs/stitch_de
   - `src/data/testimonials*.json`
   - locale JSON files
 - Remove production-unneeded tooling if no active code needs it:
-  - `kimi-plugin-inspect-react` from `vite.config.ts`, `package.json`, and lockfile
-  - `tw-animate-css` from `package.json` and lockfile if unused
+- `kimi-plugin-inspect-react` from `package.json` and lockfile if unused
+- `tw-animate-css` from `package.json` and lockfile if unused
 - Fix active lint issue in `src/components/Header.tsx` without changing navigation behavior.
 
 ### Acceptance criteria
@@ -280,36 +280,34 @@ The active route pages currently contain substantial hardcoded English copy. The
 
 ---
 
-## 7. Work Packet F — Vercel Deployment and Security Headers
+## 7. Work Packet F — Next.js/Vercel Deployment and Security Headers
 
-**Goal:** prepare production deployment with a safe static CDN + serverless API setup.
+**Goal:** prepare production deployment with Next.js on Vercel and WordPress on Hostinger.
 
 ### Required changes
 
-Create `vercel.json` in the `app/` project root.
+Configure `next.config.ts` in the `app/` project root:
 
-Configuration must include:
-
-- SPA fallback to `index.html` for deep links.
-- Security headers for all pages:
-  - `Content-Security-Policy`
+- Image remote patterns for `WORDPRESS_MEDIA_HOSTNAME`.
+- Security headers for all pages via `async headers()`:
+  - `Content-Security-Policy` (including WordPress media domain in `img-src`)
   - `X-Content-Type-Options: nosniff`
   - `Referrer-Policy: strict-origin-when-cross-origin`
   - restrictive `Permissions-Policy`
-  - `Strict-Transport-Security` only after HTTPS/domain is verified
+  - `X-Frame-Options: DENY`
+  - `X-XSS-Protection: 0`
 - Cache headers:
-  - immutable cache for hashed Vite assets
-  - no-store for `/api/contact`
+  - immutable cache for `/assets/*`
+  - `no-store` for `/api/contact` and `/api/revalidate`
+- Delete legacy `vercel.json` if present; App Router handles routing natively.
 
 ### CSP target
-
-Start with this production target and adjust only when code proves a directive is required:
 
 ```txt
 default-src 'self';
 script-src 'self';
 style-src 'self' 'unsafe-inline';
-img-src 'self' data:;
+img-src 'self' data: https://<WORDPRESS_MEDIA_HOSTNAME>;
 media-src 'self';
 connect-src 'self';
 frame-src https://www.google.com;
@@ -320,19 +318,26 @@ base-uri 'self';
 upgrade-insecure-requests
 ```
 
-If Google Maps embed remains, keep `frame-src https://www.google.com`. If it is replaced with a link/static map, remove `frame-src`.
-
 ### Required production env vars
 
 Set these in Vercel Project Settings for Preview and Production:
 
+- `NEXT_PUBLIC_SITE_URL`
 - `RESEND_API_KEY`
 - `RESEND_FROM_EMAIL`
 - `CONTACT_TO_EMAIL`
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
+- `WORDPRESS_API_BASE_URL`
+- `WORDPRESS_REVALIDATE_SECRET`
+- `WORDPRESS_MEDIA_HOSTNAME`
 
 Rotate any local Resend key already used before production.
+
+### WordPress setup references
+
+- **WordPress Studio proof:** See `modification_plan.md` Packet D for local CPT and plugin setup.
+- **Hostinger production WordPress:** Deploy the `afghan-support-headless` plugin to Hostinger, confirm REST API is public, and configure the ISR webhook to `https://<site>/api/revalidate`.
 
 ---
 
@@ -345,13 +350,14 @@ Rotate any local Resend key already used before production.
 Run:
 
 ```bash
-npm run lint
+pnpm lint
+pnpm tsc --noEmit
 ```
 
 Do **not** run:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 unless the maintainer explicitly overrides the project rule.
@@ -361,16 +367,19 @@ unless the maintainer explicitly overrides the project rule.
 - [ ] Desktop navigation works on all routes.
 - [ ] Mobile menu opens, closes, and locks body scroll correctly.
 - [ ] Language switcher preserves route intent.
-- [ ] EN/Dari/Pashto/Uzbek update all primary visible active-route copy.
-- [ ] Dari and Pashto render RTL correctly.
+- [ ] EN/Dari/Uzbek update all primary visible active-route copy.
+- [ ] Dari renders RTL correctly on first paint.
+- [ ] Events page fetches from WordPress with graceful fallback when offline.
 - [ ] Keyboard-only navigation reaches header, main content, chatbot, form, and footer.
 - [ ] Contact form handles success, validation errors, API failure, honeypot, and rate limit.
 - [ ] Contact fallback options remain visible when API fails.
-- [ ] Rights PDFs open/download correctly in all four languages.
+- [ ] Rights PDFs open/download correctly in all three active languages (EN, Dari, Uzbek).
 - [ ] Events CTAs go to approved registration/contact flows.
 - [ ] External links use safe attributes.
 - [ ] No fake testimonials remain.
-- [ ] No active `href="#"`, `alert(...)`, `[FA]`, `[PS]`, `[UZ]`, hardcoded English-only route copy, or Unsplash URLs remain.
+- [ ] No active `href="#"`, `alert(...)`, `[FA]`, `[UZ]`, hardcoded English-only route copy, or Unsplash URLs remain.
+- [ ] Page metadata (title, description, OG tags) renders from WordPress or safe defaults.
+- [ ] ISR revalidation endpoint returns 200 with valid secret and 401 without.
 
 ### Launch blockers
 
@@ -381,8 +390,10 @@ Do not mark production-ready if any of these are missing:
 - Security headers are configured.
 - Rights PDFs are approved and linked.
 - Legal/rights content has reviewer approval and last-reviewed date.
-- All active route copy is translated for EN/Dari/Pashto/Uzbek.
-- Dari/Pashto/Uzbek translations have human review or are explicitly marked pending.
+- All active route copy is translated for EN/Dari/Uzbek.
+- Dari/Uzbek translations have human review or are explicitly marked pending.
+- WordPress REST URL is configured and tested.
+- ISR revalidation secret is configured in Vercel and WordPress.
 - API key used locally has been rotated before production.
 
 ---
@@ -405,7 +416,8 @@ When all packets are complete, update this document or a short handoff note with
 - [OWASP Content Security Policy](https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html)
 - [OWASP Input Validation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
 - [OWASP Denial of Service](https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html)
-- [Vercel Vite deployment](https://vercel.com/docs/frameworks/vite)
-- [Vercel `vercel.json`](https://vercel.com/docs/project-configuration/vercel-json)
+- [Next.js App Router](https://nextjs.org/docs/app)
+- [Next.js metadata API](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
+- [Next.js caching and revalidation](https://nextjs.org/docs/app/getting-started/caching-and-revalidating)
 - [Resend idempotency keys](https://resend.com/docs/dashboard/emails/idempotency-keys)
 - [Upstash Rate Limit](https://upstash.com/docs/redis/sdks/ratelimit-ts/overview)

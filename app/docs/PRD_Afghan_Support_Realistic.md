@@ -32,7 +32,7 @@ JSON responses. It must not generate legal advice.
 
 | Area | Decision |
 |---|---|
-| App model | Static-first React SPA with language-aware routes |
+| App model | Next.js static/server-rendered frontend with WordPress Headless for scoped editorial content |
 | Main goal | Help users quickly find trusted support and contact staff |
 | Content model | Curated static content and local JSON files |
 | Multilingual coverage | Language toggle must update all primary visible page content, not only `html.dir` |
@@ -59,7 +59,7 @@ JSON responses. It must not generate legal advice.
 
 - User accounts or authentication.
 - Database persistence for contact submissions.
-- CMS/admin panel for MVP.
+- General-purpose page builder/editor is out of scope.
 - AI chatbot, embeddings, LLMs, or external chatbot APIs.
 - Online booking/reservation system.
 - Dynamic legal advice.
@@ -222,7 +222,8 @@ Events → event details → registration/contact path if required
 | Content | Storage | Notes |
 |---|---|---|
 | UI translations | Local locale JSON files | EN, Dari, Pashto, Uzbek; must cover all active routes, not only legacy sections |
-| Events | Local JSON or typed constants | Easy to update without touching layout |
+| Events | WordPress Headless (asp_event CPT) | Client-editable via WordPress admin; fetched server-side with ISR |
+| Page/event metadata | WordPress Headless (asp_page_meta CPT) | Client-editable SEO title, description, and Open Graph tags |
 | Resources | Local JSON | Include category, title, description, link/contact |
 | Testimonials | Local JSON | Only approved names/assets |
 | Chatbot KB | `src/data/chatbot-kb.json` | Curated responses only |
@@ -235,11 +236,11 @@ Events → event details → registration/contact path if required
 
 | Layer | Decision |
 |---|---|
-| Frontend | React 19 + TypeScript + Vite |
+| Frontend | Next.js 16 App Router + React 19 + TypeScript |
 | Styling | Tailwind CSS with native CSS transitions |
-| Routing | SPA section navigation / language-aware route prefix |
-| i18n | `react-i18next` with local resources |
-| RTL | Dynamic `document.documentElement.dir` for Dari/Pashto |
+| Routing | Next.js App Router with `[lang]` dynamic segments |
+| i18n | `react-i18next` with local resources + server-side lang resolution via middleware |
+| RTL | `html[dir]` set on first paint via middleware + `x-dir` header |
 | Forms | `react-hook-form` + `zod`, server-side validation too |
 | Email | Resend or approved provider through serverless endpoint |
 | Hosting | Static CDN + serverless function for contact |
