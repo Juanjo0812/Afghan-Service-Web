@@ -1,43 +1,61 @@
 {
   "nav": {
     "logo": "Afghan Support",
-    "home": "Home",
-    "immigrationHelp": "Immigration Help",
-    "communityResources": "Community Resources",
-    "knowYourRights": "Know Your Rights",
-    "events": "Events",
-    "contact": "Contact",
-    "getHelp": "Get Help Now",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "home": "Bosh sahifa",
+    "immigrationHelp": "Immigratsiya bo'yicha yordam",
+    "communityResources": "Hamjamiyat resurslari",
+    "knowYourRights": "Huquqlaringizni biling",
+    "events": "Tadbirlar",
+    "contact": "Bog'lanish",
+    "getHelp": "Hozir yordam olish",
+    "openMenu": "Menyuni ochish",
+    "stories": "Hikoyalar",
+    "closeMenu": "Menyuni yopish"
   },
+  "mobileNavigation": "[MT] Navigatsiya",
+  "selectLanguage": "[MT] Tilni tanlash",
   "footer": {
     "logo": "Afghan Support",
-    "tagline": "Serving Afghan families in Phoenix since 2021.",
-    "quickLinks": "Quick Links",
-    "home": "Home",
-    "immigrationHelp": "Immigration Help",
-    "resources": "Resources",
-    "events": "Events",
-    "contact": "Contact",
-    "languages": "Languages",
+    "organization": "[MT] Katolik Xayriya Jamoat Xizmatlari, Arizona dasturi",
+    "tagline": "[MT] Feniksdagi afg'on oilalariga xizmat qilish 2021-yildan beri.",
+    "quickLinks": "Tezkor havolalar",
+    "home": "Bosh sahifa",
+    "immigrationHelp": "Immigratsiya bo'yicha yordam",
+    "resources": "Resurslar",
+    "events": "Tadbirlar",
+    "contact": "Bog'lanish",
+    "stories": "Hikoyalar",
+    "languages": "Tillar",
     "english": "English",
     "dari": "دری (Dari)",
     "uzbek": "O'zbek (Uzbek)",
+    "resourcesHeading": "Resurslar",
     "resourceLinks": {
-      "englishClasses": "English Classes",
-      "foodBanks": "Food Banks",
-      "mentalHealth": "Mental Health",
-      "healthClinics": "Health Clinics"
+      "englishClasses": "Ingliz tili darslari",
+      "foodBanks": "Oziq-ovqat banklari",
+      "mentalHealth": "Ruhiy salomatlik",
+      "healthClinics": "Tibbiy klinikalar"
     },
-    "copyright": "© 2026 Afghan Support. All rights reserved."
+    "legal": "[MT] Huquqiy",
+    "legalDisclaimer": "[MT] Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
+    "bottomText": "[MT] Katolik Xayriya AZ — 1933-yildan beri Arizonaga xizmat qiladi",
+    "copyright": "© 2026 Afghan Support. Barcha huquqlar himoyalangan."
   },
   "quickAccess": {
-    "immigrationHelp": "Immigration Help",
-    "knowYourRights": "Know Your Rights",
-    "findResources": "Find Resources",
-    "upcomingEvents": "Upcoming Events"
+    "immigrationHelp": "Immigratsiya bo'yicha yordam",
+    "knowYourRights": "Huquqlaringizni biling",
+    "findResources": "Manbalarni topish",
+    "upcomingEvents": "Kelgusi tadbirlar",
+    "immigrationDesc": "[MT] Boshpana, ish ruxsatnomasi va huquqiy maqom bo'yicha bepul yordam",
+    "rightsDesc": "[MT] Politsiya yoki ICE bilan muloqotda o'z huquqlaringizni bilib oling",
+    "resourcesDesc": "[MT] Ingliz tili darslari, oziq-ovqat banklari, tibbiy klinikalar va boshqa",
+    "eventsDesc": "[MT] Seminarlar, huquqiy klinikalar va madaniy uchrashuvlar"
   },
-  "skipLink": "Skip to main content",
-  "chatbotFallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
+  "home": {
+    "howCanWeHelp": "[MT] Qanday yordam bera olamiz?",
+    "freeServices": "[MT] Afg'on oilalari uchun bepul xizmatlar va qo'llab-quvvatlash"
+  },
+  "learnMore": "[MT] Ko'proq bilish",
+  "skipLink": "[MT] Asosiy mazmunga o'tish",
+  "chatbotFallback": "[MT] Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun +1 (602) 666-6170 raqamiga qo'ng'iroq qiling."
 }

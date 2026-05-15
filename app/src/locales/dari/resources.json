@@ -1,5 +1,32 @@
 {
-  "label": "Community Resources",
-  "heading": "Find the Support You Need",
-  "description": "Free and low-cost services available to Afghan families in the Phoenix area."
+  "label": "منابع",
+  "heading": "منابع اجتماعی",
+  "description": "خدمات و برنامه‌های ضروری برای حمایت از شما و خانواده‌تان در فینیکس.",
+  "getHelp": "[MT] دریافت کمک",
+  "contactUs": "[MT] تماس با ما",
+  "categories": {
+    "english": {
+      "tag": "آموزش",
+      "title": "کلاس‌های انگلیسی",
+      "desc": "برنامه‌های ESL، آمادگی GED و کمک در ثبت‌نام مدرسه برای کودکان و بزرگسالان.",
+      "item1": "[MT] برنامه‌های ESL برای تمام سطوح",
+      "item2": "[MT] کلاس‌های آمادگی GED",
+      "item3": "[MT] کمک در ثبت‌نام مدرسه"
+    },
+    "mental": {
+      "tag": "سلامت",
+      "title": "سلامت روان و تندرستی",
+      "desc": "مشاوره، گروه‌های حمایتی و مراقبت آگاه از تروما برای افراد و خانواده‌ها."
+    },
+    "food": {
+      "tag": "نیازهای اساسی",
+      "title": "بانک‌های غذا",
+      "desc": "مکان‌های بانک غذا، کمک در ثبت‌نام SNAP و منابع غذای حلال."
+    },
+    "health": {
+      "tag": "بهداشت",
+      "title": "کلینیک‌های بهداشتی",
+      "desc": "کلینیک‌های رایگان و کم‌هزینه، کمک در ثبت‌نام AHCCCS و معرفی مراقبت دندانی."
+    }
+  }
 }

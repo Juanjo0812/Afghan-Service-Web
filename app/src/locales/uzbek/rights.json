@@ -1,42 +1,67 @@
 {
-  "label": "Know Your Rights",
-  "heading": "Know Your Rights",
-  "description": "Understanding your rights is the first step to protecting yourself and your family.",
-  "scenarios": {
+  "label": "Quvvatlantirish",
+  "heading": "Huquqlaringizni biling",
+  "description": "O'z huquqlaringizni tushunish o'zingiz va oilangizni himoya qilish uchun birinchi qadamdir.",
+  "accordionHeading": "[MT] Sizning kalit vaziyatlardagi huquqlaringiz",
+  "accordionSubtext": "[MT] Huquqlaringiz haqida ko'proq bilish uchun har bir mavzuni bosing",
+  "sections": {
     "police": {
-      "title": "When Interacting with Police or Immigration Agents",
-      "items": [
-        "You do not have to answer questions about your immigration status.",
-        "You may say: \"I want to remain silent.\"",
-        "You have the right to refuse a search without a warrant.",
-        "Ask for a lawyer before signing anything."
-      ]
+      "title": "Politsiya yoki immigratsiya xodimlari bilan muloqotda",
+      "bullet1": "Siz immigratsiya maqomingiz haqidagi savollarga javob berishga majbur emassiz.",
+      "bullet2": "Siz o'zingizga, avtomobilingizga yoki uyingizga ruxsatnomasiz qidiruvdan bosh tortish huquqiga egasiz.",
+      "bullet3": "Siz advokat talab qilish huquqiga egasiz. Ayting: \"Men advokat bilan gaplashishni xohlayman.\"",
+      "bullet4": "Siz advokat bilan gaplashmasdan hech qanday hujjatni imzolash huquqiga egasiz.",
+      "bullet5": "Qochmang, yolg'on gapirmang yoki soxta hujjatlarni taqdim etmang. Tinch va odobli bo'ling.",
+      "bullet6": "Agar siz qo'lga olingan bo'lsangiz, telefon qilish huquqiga egasiz."
     },
     "ice": {
-      "title": "If ICE Comes to Your Home",
-      "items": [
-        "Do NOT open the door without a signed warrant.",
-        "Ask to see it through the window or under the door.",
-        "You have the right to remain silent.",
-        "Have a family safety plan."
-      ]
+      "title": "Agar immigratsiya xizmati (ICE) uyingizga kelsa",
+      "bullet1": "ICE sudya tomonidan imzolangan ruxsatnomasiz uyingizga kira olmaydi. Ular ruxsatnomani eshik ostidan sildirishlarini so'rang.",
+      "bullet2": "Siz sukut saqlash huquqiga egasiz. Ular amaldagi sud ruxsatnomasini ko'rsatmasa, eshikni ochmang.",
+      "bullet3": "Advokat bilan gaplashmasdan hech qanday hujjatni imzolamang.",
+      "bullet4": "Agar ICE ruxsatsiz kirsaydi, ayting: \"Men bu qidiruvga rozilik bermayman.\"",
+      "bullet5": "Oilaviy xavfsizlik rejasini tayyorlang: Agar oila a'zosi qo'lga olingan bo'lsa, kim bolalarga g'amxo'rlik qilishini bilib oling.",
+      "bullet6": "Muhim hujjatlarni xavfsiz va oson yetib boradigan joyda saqlang.",
+      "bullet7": "Advokatingizning raqami ham bo'lsa, muhim telefon raqamlarni yodlang."
     },
     "documents": {
-      "title": "Carrying Documents Safely",
-      "items": [
-        "Carry copies, not originals.",
-        "Avoid carrying your passport unless advised.",
-        "Store important documents safely at home."
-      ]
+      "title": "Hujjatlarni xavfsiz saqlash va olib yurish",
+      "bullet1": "Muhim hujjatlaringizning nusxalarini olib yuring, asllarini emas. Asllarini uyingizdagi xavfsiz joyda saqlang.",
+      "bullet2": "Muhim hujjatlar qatoriga: pasport, I-94, ish ruxsatnomasi, haydash guvohnomasi, sud hujjatlari kiradi.",
+      "bullet3": "Raqamli nusxalar yarating va ularni xavfsiz saqlang (bulutli saqlash, ishonchli oilaga elektron pochta).",
+      "bullet4": "Soxta hujjatlarni olib yurmang — bu jiddiy huquqiy oqibatlarga olib kelishi mumkin.",
+      "bullet5": "Agar sizda amaldagi ish ruxsatnomasi yoki haydash guvohnomasi bo'lsa, uni olib yuring.",
+      "bullet6": "Ofitserlarga berish uchun \"Huquqlaringizni biling\" kartasini (quyida yuklab oling) olib yurishni o'ylab ko'ring."
     }
   },
-  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
-  "lastReviewed": "Last reviewed: May 2026",
+  "disclaimer": "Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi. Har bir vaziyat turlicha. Iltimos, o'z sharoitingiz bo'yicha maslahat olish uchun malakali immigratsiya advokati bilan maslahatlashing.",
+  "lastReviewed": "So'nggi ko'rib chiqilgan: May 2026",
   "downloads": {
-    "title": "Know Your Rights Cards",
-    "subtitle": "Download wallet-size cards",
-    "english": "Download (English)",
-    "dari": "Download (Dari)",
-    "uzbek": "Download (Uzbek)"
+    "heading": "Huquqlaringizni biling kartalarini yuklab oling",
+    "subtext": "[MT] Hamyon o'lchamida olib yurish mumkin bo'lgan kartalar. Turli tillarda mavjud.",
+    "comingSoon": "[MT] Yuklab olish kartalari tez orada. Iltimos, keyinroq qayta tekshiring yoki",
+    "contactUs": "[MT] biz bilan bog'laning",
+    "forCopy": "[MT] nusxa olish uchun.",
+    "title": "Huquqlaringizni biling kartalari",
+    "subtitle": "[MT] Hamyon o'lchamida kartalarni yuklab oling",
+    "english": "Yuklab olish (Inglizcha)",
+    "dari": "Yuklab olish (Dariy)",
+    "uzbek": "Yuklab olish (O'zbek)"
+  },
+  "videos": {
+    "heading": "Video resurslar",
+    "subtext": "[MT] Jamoat rahbarlari va jarayonni bosib o'tganlardan bilib oling",
+    "playCommunity": "[MT] Jamoat rahbarlari videosini ijro etish",
+    "pauseCommunity": "[MT] Videoni to'xtatish",
+    "playClients": "[MT] Mijozlar hikoyalari videosini ijro etish",
+    "pauseClients": "[MT] Videoni to'xtatish",
+    "community": {
+      "title": "[MT] Jamoat rahbarlari gapiradi",
+      "desc": "[MT] Feniksda o'z huquqlaringiz va resurslaringiz haqida afg'on jamoat rahbarlaridan eshitib oling."
+    },
+    "clients": {
+      "title": "[MT] Mijozlar tajribasi",
+      "desc": "[MT] Huquqlarini tushunish qanday qilib bu oilalarga yangi hayot qurishga yordam berganini bilib oling."
+    }
   }
 }

@@ -1,52 +1,52 @@
 {
-  "welcome": "Welcome to Afghan Support. Select a topic below or type your question.",
-  "title": "Kalil ssistant",
-  "status": "Online",
-  "closeChat": "Close chat",
-  "inputPlaceholder": "Type your message...",
-  "inputAriaLabel": "Type your question",
-  "sendAriaLabel": "Send message",
-  "openAssistant": "Open chat assistant",
-  "closeAssistant": "Close chat assistant",
+  "welcome": "Afghan Supportga xush kelibsiz. Quyidagi mavzulardan birini tanlang yoki savolingizni yozing.",
+  "title": "Kalil yordamchisi",
+  "status": "Onlayn",
+  "closeChat": "Chatni yopish",
+  "inputPlaceholder": "Xabaringizni yozing...",
+  "inputAriaLabel": "Savolingizni yozing",
+  "sendAriaLabel": "Xabar yuborish",
+  "openAssistant": "Chat yordamchisini ochish",
+  "closeAssistant": "Chat yordamchisini yopish",
   "notification": {
-    "title": "Need Help?"
+    "title": "Yordam kerakmi?"
   },
   "openButton": {
-    "label": "Chat with us"
+    "label": "Biz bilan chat qiling"
   },
-  "quickTopics": "Quick topics",
-  "multiCandidate": "I found a few things that might help. Which one were you looking for?",
-  "fallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170.",
+  "quickTopics": "Tezkor mavzular",
+  "multiCandidate": "[MT] Sizga yordam berishi mumkin bo'lgan bir necha narsa topdim. Qaysi birini qidiryapsiz?",
+  "fallback": "[MT] Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun +1 (602) 666-6170 raqamiga qo'ng'iroq qiling.",
   "actions": {
     "immigration": {
-      "label": "Immigration Help",
-      "response": "We provide immigration support services including case management, legal referrals, and document assistance for Afghan families in Phoenix. Our team can help you navigate the immigration process and connect you with trusted legal professionals.",
-      "cta": "View Services"
+      "label": "Immigratsiya bo'yicha yordam",
+      "response": "[MT] Biz Feniksdagi afg'on oilalariga ish boshqaruvi, huquqiy yo'naltirish va hujjatlar yordami kabi immigratsiya qo'llab-quvvatlash xizmatlarini taqdim etamiz. Bizning jamoamiz immigratsiya jarayonida sizga yordam berish va ishonchli huquqiy mutaxassislar bilan bog'lashishi mumkin.",
+      "cta": "Xizmatlarni ko'rish"
     },
     "community": {
-      "label": "Community Resources",
-      "response": "Connect with local food banks, healthcare providers, housing assistance, and other essential services in the Phoenix area. We maintain a curated list of community partners ready to help Afghan families.",
-      "cta": "Explore Resources"
+      "label": "Hamjamiyat resurslari",
+      "response": "[MT] Mahalliy oziq-ovqat banklari, sog'liqni saqlash provayderlari, uy-joy yordami va Feniks hududidagi boshqa zarur xizmatlar bilan bog'laning. Biz afg'on oilalariga yordam berishga tayyor hamjamiyat hamkorlarining tanlangan ro'yxatini saqlaymiz.",
+      "cta": "Resurslarni ko'rish"
     },
     "rights": {
-      "label": "Know Your Rights",
-      "response": "Learn about your rights as an immigrant, refugee, or asylum seeker. Access know-your-rights materials in Dari and English. This information is for educational purposes only and does not constitute legal advice.",
-      "cta": "Read More"
+      "label": "Huquqlaringizni biling",
+      "response": "[MT] Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy va ingliz tilidagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
+      "cta": "Ko'proq o'qish"
     },
     "events": {
-      "label": "Events",
-      "response": "We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration.",
-      "cta": "See Events"
+      "label": "Tadbirlar",
+      "response": "[MT] Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
+      "cta": "Tadbirlarni ko'rish"
     },
     "contact": {
-      "label": "Contact Info",
-      "response": "Reach our team by phone, email, or WhatsApp. Our office is located at 5151 N 19th Ave, Phoenix AZ 85015. We respond to all inquiries within 1–2 business days.",
-      "cta": "Contact Us"
+      "label": "Aloqa ma'lumotlari",
+      "response": "[MT] Jamoamizga telefon, elektron pochta yoki WhatsApp orqali murojaat qiling. Bizning ofisimiz 5151 N 19th Ave, Phoenix AZ 85015 manzilida joylashgan. Biz barcha so'rovlarga 1-2 ish kuni ichida javob beramiz.",
+      "cta": "Biz bilan bog'laning"
     },
     "speak": {
-      "label": "Speak to Someone",
-      "response": "Our caseworkers are available to speak with you in Dari or English. Whether you need guidance, emotional support, or just someone to listen, we are here for you.",
-      "cta": "Get in Touch"
+      "label": "Birorta bilan gaplashish",
+      "response": "[MT] Bizning kasbiy xodimlarimiz siz bilan dariy yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
+      "cta": "Aloqa o'rnatish"
     }
   }
 }

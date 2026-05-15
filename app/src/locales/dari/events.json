@@ -1,16 +1,30 @@
 {
-  "label": "Upcoming Events",
-  "heading": "Events & Gatherings",
-  "categories": {
-    "workshop": "Workshop",
-    "legal": "Legal Clinic",
-    "cultural": "Cultural",
-    "holiday": "Holiday"
+  "label": "رویدادها",
+  "heading": "تقویم رویدادها",
+  "description": "[MT] در کارگاه‌ها، کلینیک‌های حقوقی، گردهمایی‌های فرهنگی و رویدادهای جامعه ما شرکت کنید.",
+  "upcomingLabel": "رویداد پیش رو",
+  "featuredBadge": "[MT] رویداد ویژه",
+  "registerCta": "[MT] ثبت‌نام در کارگاه",
+  "listView": "[MT] نمایش لیست",
+  "calendarView": "[MT] نمایش تقویم",
+  "filters": {
+    "all": "[MT] همه رویدادها",
+    "immigration": "[MT] کارگاه‌های مهاجرت",
+    "legal": "[MT] کلینیک‌های حقوقی",
+    "cultural": "[MT] گردهمایی‌های فرهنگی",
+    "holiday": "[MT] تعطیلات افغان‌ها"
   },
-  "contactUsInfo": "Contact us for more information",
-  "details": "Details",
+  "noEvents": "[MT] هیچ رویدادی برای این دسته پیدا نشد.",
+  "contactUsInfo": "برای اطلاعات بیشتر با ما تماس بگیرید",
+  "details": "جزئیات",
   "aria": {
-    "previousMonth": "Previous month",
-    "nextMonth": "Next month"
+    "previousMonth": "ماه قبل",
+    "nextMonth": "ماه بعد"
+  },
+  "categories": {
+    "workshop": "کارگاه",
+    "legal": "کلینیک حقوقی",
+    "cultural": "فرهنگی",
+    "holiday": "تعطیلات"
   }
 }
