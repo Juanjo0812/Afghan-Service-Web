@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { Quote, X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 
 interface Story {
   id: number
@@ -49,6 +51,7 @@ function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) =
 
 export default function StoriesPage() {
   const { t } = useTranslation('testimonials')
+  const { lang } = useLanguage()
   const [selectedVideo, setSelectedVideo] = useState<Story | null>(null)
 
   const videoStories: Story[] = Array.from({ length: 5 }, (_, i) => ({
@@ -125,10 +128,10 @@ export default function StoriesPage() {
           </h2>
           <p className="text-body-lg text-white/80 mb-8">{t('bottomCta.text')}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">
+            <Link href={localizePath('/contact', lang)} className="btn-primary">
               {t('bottomCta.primary')}
             </Link>
-            <Link href="/contact" className="btn-white-outline">
+            <Link href={localizePath('/contact', lang)} className="btn-white-outline">
               {t('bottomCta.secondary')}
             </Link>
           </div>

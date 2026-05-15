@@ -6,6 +6,7 @@ import { MessageCircle, X, User, Send } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useChatbotKB } from '../hooks/useChatbotKB'
 import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import type { ScoredEntry, KBEntry } from '../lib/matchKeywords'
 
 interface QuickActionDef {
@@ -115,6 +116,8 @@ export default function Chatbot() {
       window.open(href, '_self')
     } else if (href.startsWith('/') && href.endsWith('.pdf')) {
       window.open(href, '_blank')
+    } else if (href.startsWith('/')) {
+      router.push(localizePath(href, lang))
     } else {
       router.push(href)
     }

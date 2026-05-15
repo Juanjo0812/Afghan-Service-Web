@@ -1,6 +1,7 @@
 import { getEventBySlug } from '@/server/cms/wordpress'
 import { generateEventDetailMetadata } from '@/server/seo/metadata'
 import { notFound } from 'next/navigation'
+import { localizePath } from '@/lib/navigation'
 import type { LangCode } from '@/domain/language'
 
 export function generateStaticParams() {
@@ -89,7 +90,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ la
                 {event.ctaLabel}
               </a>
             ) : (
-              <a href="/contact" className="btn-primary inline-block">
+              <a href={localizePath('/contact', lang as LangCode)} className="btn-primary inline-block">
                 {event.ctaLabel}
               </a>
             )}

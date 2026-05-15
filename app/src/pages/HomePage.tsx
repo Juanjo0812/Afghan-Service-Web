@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import type { EventContent } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
 
@@ -19,33 +21,34 @@ interface HomePageProps {
   lang?: LangCode
 }
 
-export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) {
+export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomePageProps) {
   const { t } = useTranslation(['common', 'hero', 'about', 'events'])
+  const { lang } = useLanguage()
 
   const quickCards = [
     {
       icon: Briefcase,
       title: t('quickAccess.immigrationHelp', { ns: 'common' }),
       description: t('quickAccess.immigrationDesc', { ns: 'common' }),
-      path: '/immigration',
+      path: localizePath('/immigration', lang),
     },
     {
       icon: Shield,
       title: t('quickAccess.knowYourRights', { ns: 'common' }),
       description: t('quickAccess.rightsDesc', { ns: 'common' }),
-      path: '/rights',
+      path: localizePath('/rights', lang),
     },
     {
       icon: Compass,
       title: t('quickAccess.findResources', { ns: 'common' }),
       description: t('quickAccess.resourcesDesc', { ns: 'common' }),
-      path: '/resources',
+      path: localizePath('/resources', lang),
     },
     {
       icon: Calendar,
       title: t('quickAccess.upcomingEvents', { ns: 'common' }),
       description: t('quickAccess.eventsDesc', { ns: 'common' }),
-      path: '/events',
+      path: localizePath('/events', lang),
     },
   ]
 
@@ -96,7 +99,7 @@ export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) 
             </FadeIn>
             <FadeIn delay={2400} duration={1000}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
-                <Link href="/rights" className="btn-primary text-center">
+                <Link href={localizePath('/rights', lang)} className="btn-primary text-center">
                   {t('ctaRights', { ns: 'hero' })}
                 </Link>
               </div>
@@ -173,7 +176,7 @@ export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) 
               <p className="text-body text-forest-light mb-6 leading-relaxed">
                 {t('body2', { ns: 'about' })}
               </p>
-              <Link href="/immigration" className="text-link inline-flex items-center gap-1">
+              <Link href={localizePath('/immigration', lang)} className="text-link inline-flex items-center gap-1">
                 {t('learnMoreServices', { ns: 'about' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
@@ -241,7 +244,7 @@ export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) 
                       <Calendar className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
                       <span className="text-body-lg font-medium text-forest">
                         {new Date(featuredEvent.startDate).toLocaleDateString(
-                          lang === 'dari' ? 'fa' : lang === 'uzbek' ? 'uz' : 'en-US',
+                          pageLang === 'dari' ? 'fa' : pageLang === 'uzbek' ? 'uz' : 'en-US',
                           { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
                         )} &bull; {featuredEvent.timeLabel}
                       </span>
@@ -256,7 +259,7 @@ export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) 
 
                   {/* CTA */}
                   <Link
-                    href={`/events/${featuredEvent.slug}`}
+                    href={localizePath(`/events/${featuredEvent.slug}`, lang)}
                     className="btn-primary w-full sm:w-auto"
                   >
                     {t('registerCta', { ns: 'events' })}
@@ -277,7 +280,7 @@ export default function HomePage({ featuredEvent, lang = 'en' }: HomePageProps) 
           <p className="text-body-lg text-white/80 mb-8">
             {t('ctaSubtext', { ns: 'hero' })}
           </p>
-          <Link href="/contact" className="btn-primary text-lg px-10 py-4 inline-flex">
+          <Link href={localizePath('/contact', lang)} className="btn-primary text-lg px-10 py-4 inline-flex">
             {t('cta', { ns: 'hero' })}
           </Link>
           <p className="mt-5 text-body text-white/70">

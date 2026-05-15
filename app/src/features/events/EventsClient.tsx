@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn } from '@/components/FadeIn'
+import { useLanguage } from '@/hooks/useLanguage'
+import { localizePath } from '@/lib/navigation'
 import type { EventContent, EventCategory } from '@/domain/content'
 
 type ViewMode = 'list' | 'calendar'
@@ -92,18 +94,19 @@ const categoryColors: Record<EventCategory | 'all', string> = {
 function EventCard({ event }: { event: CalendarEvent }) {
   const { t } = useTranslation('events')
   const router = useRouter()
+  const { lang } = useLanguage()
   const colorClass = categoryColors[event.category] || 'bg-amber'
 
   const handleCtaClick = () => {
     if (event.ctaUrl) {
       window.open(event.ctaUrl, '_blank', 'noopener,noreferrer')
     } else {
-      router.push('/contact')
+      router.push(localizePath('/contact', lang))
     }
   }
 
   const handleDetailsClick = () => {
-    router.push(`/events/${event.slug}`)
+    router.push(localizePath(`/events/${event.slug}`, lang))
   }
 
   return (
