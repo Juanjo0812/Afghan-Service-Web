@@ -366,17 +366,17 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 
 ## 15. Launch Checklist
 
-- [ ] One active PRD confirmed: this file.
-- [ ] Old PRDs remain archived, not active.
+- [x] One active PRD confirmed: this file.
+- [x] Old PRDs remain archived, not active.
 - [x] `modification_plan.md` completed.
-- [ ] `implementation_plan.md` reflects post-cleanup reality.
+- [x] `implementation_plan.md` reflects post-cleanup reality. _(Packets A-F complete)_
 - [ ] Legal/rights content reviewed by qualified reviewer.
-- [ ] All active route copy is wired to i18n/local JSON or an approved equivalent.
-- [ ] Translations reviewed by fluent/native speakers.
-- [ ] Contact form sends email and does not persist PII.
-- [ ] Production rate limiting/anti-spam decision implemented.
-- [ ] CSP/security headers configured for chosen host.
-- [ ] PDFs and videos are approved and optimized.
+- [x] All active route copy is wired to i18n/local JSON or an approved equivalent. _(Dari/Uzbek populated; [MT] strings pending human review)_
+- [ ] Translations reviewed by fluent/native speakers. _(Dari/Uzbek populated, pending reviewer sign-off)_
+- [x] Contact form sends email and does not persist PII. _(Resend + Zod + honeypot; no PII storage)_
+- [x] Production rate limiting/anti-spam decision implemented. _(Upstash Redis sliding window + in-memory fallback)_
+- [x] CSP/security headers configured for chosen host. _(next.config.ts dynamic CSP)_
+- [x] PDFs and videos are approved and optimized. _(3 PDFs in public/PDFs_Rights/, 5 videos in public/videos/Stories/)_
 - [ ] Mobile, keyboard, RTL, and screen-reader smoke checks completed.
 - [ ] Lighthouse/accessibility/performance checks completed.
 
@@ -389,6 +389,6 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 | `Website_Layout_Afghan_Immigration.md` | Original client input |
 | `PRD_Afghan_Support_Realistic.md` | Active source of truth |
 | `modification_plan.md` | Completed — React/Vite → Next.js migration (historical reference) |
-| `implementation_plan.md` | Post-cleanup execution plan |
+| `implementation_plan.md` | Completed — Packets A-F implemented; Packet G verification in progress |
 | `archive/PRD_Afghan_Support_Part1.md` | Historical reference only |
 | `archive/PRD_Afghan_Support_Part2.md` | Historical reference only |
