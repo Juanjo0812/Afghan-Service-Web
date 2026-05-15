@@ -1,12 +1,13 @@
 [
   {
     "id": "asylum",
+    "title": "Asylum Application Help",
     "keywords_en": ["asylum", "refugee", "political asylum", "persecution", "afraid to return"],
-    "keywords_dari": ["پناهندگی", "پناهنده", "سیاسی"],
-    "keywords_uzbek": [],
+    "keywords_dari": ["پناهندگی", "پناهنده", "سیاسی", "بازگشت", "ترس"],
+    "keywords_uzbek": ["boshpana", "qochoq", "siyosiy", "qochish"],
     "response_en": "Asylum may be available if you fear persecution in your home country. Our legal partners can help you understand the process and prepare your application. This information is for educational purposes only.",
-    "response_dari": "اگر از بازگشت به کشور خود می‌ترسید، ممکن است واجد شرایط پناهندگی باشید. شرکای حقوقی ما می‌توانند به شما در درک روند کار کمک کنند. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "",
+    "response_dari": "اگر از بازگشت به کشور خود می‌ترسید، ممکن است واجد شرایط پناهندگی باشید. شرکای حقوقی ما می‌توانند به شما در درک روند کار و آماده‌سازی درخواست کمک کنند. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Agar vataningizga qaytishdan qo'rqsangiz, boshpana huquqiga ega bo'lishingiz mumkin. Huquqiy hamkorlarimiz jarayonni tushunish va arizangizni tayyorlashda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -15,12 +16,13 @@
   },
   {
     "id": "work-permit",
+    "title": "Work Permit Assistance",
     "keywords_en": ["work permit", "employment authorization", "EAD", "job", "work legally"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["مجوز کار", "کار", "شغل", "استخدام"],
+    "keywords_uzbek": ["ishlash ruxsatnomasi", "ish", "xodim", "EAD"],
     "response_en": "Employment Authorization Documents (EAD) allow you to work legally in the United States. We can connect you with organizations that help with work permit applications. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "اسناد مجوز اشتغال (EAD) به شما اجازه می‌دهد به طور قانونی در ایالات متحده کار کنید. ما می‌توانیم شما را با سازمان‌هایی که در درخواست مجوز کار کمک می‌کنند، مرتبط سازیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Ishlash ruxsatnomasi hujjatlari (EAD) sizga AQShda qonuniy ishlish imkonini beradi. Biz sizni ish ruxsatnomasi arizalari bilan yordam beradigan tashkilotlar bilan bog'lashimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Immigration Help", "href": "/immigration" },
@@ -29,12 +31,13 @@
   },
   {
     "id": "tps",
+    "title": "Temporary Protected Status (TPS)",
     "keywords_en": ["TPS", "temporary protected status", "protection"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["TPS", "وضعیت محافظت شده موقت", "حفاظت"],
+    "keywords_uzbek": ["TPS", "vaqtinchalik himoya", "maqom"],
     "response_en": "Temporary Protected Status (TPS) provides protection from deportation and work authorization for eligible individuals. Our team can help you check if you qualify and guide you through renewal deadlines. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "وضعیت محافظت شده موقت (TPS) از اخراج محافظت می‌کند و برای افراد واجد شرایط اجازه کار می‌دهد. تیم ما می‌تواند به شما در بررسی صلاحیت و راهنمایی در مورد مهلت‌های تمدید کمک کند. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Vaqtinchalik himoyalangan maqom (TPS) vajib shaxslar uchun deportatsiyadan himoya qiladi va ish ruxsatini beradi. Jamoamiz sizning sazovorligingizni tekshirish va yangilash muddatlarida yo'l-yo'riq berishda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" }
@@ -42,12 +45,13 @@
   },
   {
     "id": "green-card",
+    "title": "Green Card & Family Reunification",
     "keywords_en": ["green card", "permanent residence", "LPR", "family reunification", "petition"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["گرین کارت", "اقامت دائم", "خانواده", "حمایت"],
+    "keywords_uzbek": ["grin-karta", "doimiy yashash", "oilani birlashtirish"],
     "response_en": "Lawful Permanent Residence (green card) can be obtained through family sponsorship, employment, or other pathways. We can help you explore your options and connect you with trusted legal assistance. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "اقامت قانونی دائم (گرین کارت) می‌تواند از طریق حمایت خانواده، کار یا سایر مسیرها به دست آید. ما می‌توانیم به شما در بررسی گزینه‌ها و ارتباط با کمک حقوقی مورد اعتماد کمک کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Qonuniy doimiy yashash (grin-karta) oilaviy homiylik, bandlik yoki boshqa yo'llar orqali olinishi mumkin. Biz sizga variantlarni ko'rib chiqish va ishonchli huquqiy yordam bilan bog'lashda yordam berishimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -56,12 +60,13 @@
   },
   {
     "id": "afghan-adjustment-act",
+    "title": "Afghan Adjustment Act",
     "keywords_en": ["Afghan Adjustment Act", "AAA", "adjustment of status"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["قانون تطبیق افغان‌ها", "AAA", "تطبیق وضعیت"],
+    "keywords_uzbek": ["Afg'onistonliklarni moslashtirish qonuni", "AAA", "tuzatish"],
     "response_en": "The Afghan Adjustment Act aims to provide a pathway to permanent residence for certain Afghan evacuees. Stay informed about legislative updates and how they may affect your case. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "قانون تطبیق افغان‌ها هدفش ایجاد مسیر اقامت دائم برای برخی آوارگان افغان است. از به‌روزرسانی‌های قانونی و تأثیر آن بر پرونده خود مطلع شوید. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Afg'onistonliklarni moslashtirish qonuni ma'lum afg'on muhojirlariga doimiy yashash yo'lini yaratishga qaratilgan. Qonunchilik yangilanishlari va ularning ishingizga ta'siri haqida xabardor bo'ling. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -70,12 +75,13 @@
   },
   {
     "id": "know-your-rights-police",
+    "title": "Your Rights with Police",
     "keywords_en": ["police", "stopped by police", "rights", "remain silent", "warrant"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["پلیس", "حقوق", "سکوت", "حکم", "بازرسی"],
+    "keywords_uzbek": ["politsiya", "huquqlar", "sukut", "ruxsatnoma"],
     "response_en": "You have the right to remain silent and the right to refuse consent to a search without a warrant. Keep a know-your-rights card with you at all times. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "شما حق سکوت و حق امتناع از بازرسی بدون حکم را دارید. همیشه کارت حقوق خود را همراه داشته باشید. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Siz sukut saqlash va ruxsatnomasiz qidiruvni rad etish huquqiga egasiz. Har doim huquqlaringizni bilish kartochkasini o'zingiz bilan olib yuring. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
@@ -84,12 +90,13 @@
   },
   {
     "id": "know-your-rights-ice",
+    "title": "If ICE Comes to Your Home",
     "keywords_en": ["ICE", "immigration", "immigration agent", "ICE at home", "deportation"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["ICE", "مهاجرت", "مامور مهاجرت", "در", "اخراج"],
+    "keywords_uzbek": ["ICE", "immigratsiya", "mamur", "uy", "deportatsiya"],
     "response_en": "You have the right to remain silent, the right to refuse entry without a warrant, and the right to speak with an attorney. Do not open the door unless ICE shows a judicial warrant. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "شما حق سکوت، حق امتناع از باز کردن در بدون حکم قضایی و حق صحبت با وکیل را دارید. در را باز نکنید مگر اینکه ICE حکم قضایی نشان دهد. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Siz sukut saqlash, sud ruxsatnomasisiz eshikni ochishni rad etish va advokat bilan gaplashish huquqiga egasiz. Agar ICE sud ruxsatnomasini ko'rsatmasa, eshikni ochmang. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
@@ -98,12 +105,13 @@
   },
   {
     "id": "documents",
+    "title": "Carrying Documents Safely",
     "keywords_en": ["documents", "passport", "papers", "carry documents", "copies"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["مدارک", "پاسپورت", "کپی", "حمل"],
+    "keywords_uzbek": ["hujjatlar", "pasport", "nusxa", "olib yurish"],
     "response_en": "Always carry copies of important documents, not originals. Keep a folder with your passport, immigration papers, and emergency contacts in a safe place. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "همیشه کپی مدارک مهم را حمل کنید، نه اصل آن‌ها را. یک پوشه با پاسپورت، اسناد مهاجرتی و مخاطبین اضطراری را در جای امن نگهداری کنید. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Muhim hujjatlarning aslini emas, nusxalarini olib yuring. Pasport, immigratsiya hujjatlari va favqulodda aloqa ma'lumotlari bilan jildni xavfsiz joyda saqlang. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" }
@@ -111,12 +119,13 @@
   },
   {
     "id": "esl",
+    "title": "English Classes (ESL)",
     "keywords_en": ["ESL", "English", "English classes", "learn English", "language"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["انگلیسی", "کلاس", "زبان", "آموزش"],
+    "keywords_uzbek": ["ingliz tili", "dars", "til", "o'rganish"],
     "response_en": "Free and low-cost English classes are available through local community colleges, libraries, and nonprofit organizations. Learning English can help with employment and daily life. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "کلاس‌های رایگان و کم‌هزینه انگلیسی از طریق کالج‌های جامعه، کتابخانه‌ها و سازمان‌های غیرانتفاعی در دسترس است. یادگیری انگلیسی می‌تواند در کار و زندگی روزمره کمک کند. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Mahalliy jamoat kollejlari, kutubxonalar va notijorat tashkilotlar orqali bepul va arzon ingliz tili darslari mavjud. Ingliz tilini o'rganish bandlik va kundalik hayotda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -124,12 +133,13 @@
   },
   {
     "id": "healthcare",
+    "title": "Health Clinics & Medical Care",
     "keywords_en": ["healthcare", "doctor", "medical", "clinic", "health insurance"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["سلامت", "دکتر", "پزشکی", "درمان", "بیمه"],
+    "keywords_uzbek": ["tibbiy", "doktor", "klinika", "sog'liq"],
     "response_en": "Several community health centers in Phoenix provide care regardless of immigration status or ability to pay. We can help you find a clinic near you. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "چندین مرکز بهداشت جامعه در فینیکس مراقبت ارائه می‌دهند بدون توجه به وضعیت مهاجرتی یا توانایی پرداخت. ما می‌توانیم به شما در یافتن کلینیک نزدیک کمک کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Feniksdagi bir nechta jamoat salomatligi markazlari immigratsiya holatiga yoki to'lov qilish qobiliyatiga qarab tibbiy yordam ko'rsatadi. Biz sizga yaqin klinika topishda yordam berishimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
@@ -138,12 +148,13 @@
   },
   {
     "id": "food",
+    "title": "Food Banks & Meal Programs",
     "keywords_en": ["food", "food bank", "hungry", "meals", "groceries"],
-    "keywords_dari": ["غذا", "خوراک", "گرسنه"],
-    "keywords_uzbek": [],
+    "keywords_dari": ["غذا", "بانک غذا", "گرسنه", "وعده"],
+    "keywords_uzbek": ["oziq-ovqat", "bank", "ochlik", "taom"],
     "response_en": "Food banks and meal programs throughout Phoenix offer free groceries and hot meals. No ID or proof of income is required at most locations. This information is for educational purposes only.",
     "response_dari": "بانک‌های غذا و برنامه‌های وعده غذایی در سراسر فینیکس مواد غذایی و وعده‌های گرم رایگان ارائه می‌دهند. در اکثر مکان‌ها نیاز به شناسنامه یا اثبات درآمد نیست. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "",
+    "response_uzbek": "Feniks bo'ylab oziq-ovqat banklari va ovqat dasturlari bepul oziq-ovqat va issiq taomlar taklif qiladi. Ko'pchilik joylarda ID yoki daromad dalili talab qilinmaydi. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -151,12 +162,13 @@
   },
   {
     "id": "housing",
+    "title": "Housing & Shelter Assistance",
     "keywords_en": ["housing", "shelter", "rent", "apartment", "homeless"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["مسکن", "پناهگاه", "اجاره", "خانه"],
+    "keywords_uzbek": ["uy-joy", "uy", "ijara", "turar joy"],
     "response_en": "Emergency shelter, transitional housing, and rental assistance programs are available in Maricopa County. Our team can connect you with housing navigators. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "برنامه‌های سرپناه اضطراری، مسکن انتقالی و کمک اجاره در شهرستان ماریکوپا در دسترس است. تیم ما می‌تواند شما را با راهنمایان مسکن مرتبط سازد. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Marikopa okrugida favqulodda turar joy, o'tish davri uy-joyi va ijara yordami dasturlari mavjud. Bizning jamoamiz sizni uy-joy yo'lboshchilari bilan bog'lashi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
@@ -165,12 +177,13 @@
   },
   {
     "id": "employment",
+    "title": "Job Training & Employment",
     "keywords_en": ["employment", "job", "work", "career", "resume"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["استخدام", "کار", "شغل", "رزومه", "آموزش"],
+    "keywords_uzbek": ["bandlik", "ish", "kasb", "rezyume"],
     "response_en": "Local workforce development centers offer job training, resume assistance, and interview preparation. Many programs are free and open to all. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "مراکز توسعه نیروی کار محلی آموزش شغلی، کمک رزومه و آمادگی مصاحبه ارائه می‌دهند. بسیاری از برنامه‌ها رایگان و برای همه باز هستند. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Mahalliy mehnat bozori rivojlanish markazlari ish o'rganish, rezyume yordami va suhbatga tayyorgarlik taklif qiladi. Ko'pgina dasturlar bepul va barcha uchun ochiq. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -178,12 +191,13 @@
   },
   {
     "id": "events",
+    "title": "Upcoming Workshops & Events",
     "keywords_en": ["events", "workshop", "clinic legal", "citizenship", "cultural"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["رویداد", "کارگاه", "کلینیک", "فرهنگی", "برنامه"],
+    "keywords_uzbek": ["tadbir", "seminar", "klinika", "madaniy", "taqvim"],
     "response_en": "We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "ما کارگاه‌ها، کلینیک‌های حقوقی و رویدادهای فرهنگی منظم برای جامعه افغان در فینیکس برگزار می‌کنیم. برای تاریخ‌های پیش رو و ثبت‌نام، صفحه رویدادهای ما را بررسی کنید. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "events",
     "actions": [
       { "label": "Events", "href": "/events" },
@@ -192,12 +206,13 @@
   },
   {
     "id": "contact",
+    "title": "Contact Us",
     "keywords_en": ["contact", "phone", "call", "email", "help", "speak to someone"],
-    "keywords_dari": ["تماس", "تلفن", "ایمیل", "کمک"],
-    "keywords_uzbek": [],
+    "keywords_dari": ["تماس", "تلفن", "ایمیل", "کمک", "صحبت"],
+    "keywords_uzbek": ["aloqa", "telefon", "qo'ng'iroq", "yordam"],
     "response_en": "You can reach us by phone at +1 (602) 666-6170, by email, or by visiting our office. Our team is here to help connect you with the resources you need. This information is for educational purposes only.",
     "response_dari": "می‌توانید با ما از طریق تلفن یا ایمیل تماس بگیرید. تیم ما برای کمک به شما در دسترس است. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "",
+    "response_uzbek": "Biz bilan telefon orqali yoki elektron pochta orqali bog'lanishingiz mumkin. Jamoamiz sizga kerakli resurslarni topishda yordam berish uchun shu yerda. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "contact",
     "actions": [
       { "label": "Contact Us", "href": "/contact" },
@@ -206,12 +221,13 @@
   },
   {
     "id": "legal-aid",
+    "title": "Free & Low-Cost Legal Aid",
     "keywords_en": ["legal aid", "lawyer", "attorney", "legal help", "immigration lawyer"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["حقوقی", "وکیل", "مشاوره", "مهاجرت", "کمک حقوقی"],
+    "keywords_uzbek": ["huquqiy yordam", "advokat", "immigratsiya advokati"],
     "response_en": "Free and low-cost legal aid is available for immigration matters, family law, and tenant rights. We partner with trusted attorneys who understand the Afghan community's needs. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "کمک حقوقی رایگان و کم‌هزینه برای مسائل مهاجرتی، قانون خانواده و حقوق مستاجران در دسترس است. ما با وکلای مورد اعتمادی که نیازهای جامعه افغان را درک می‌کنند، همکاری می‌کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Immigratsiya masalalari, oilaviy huquq va ijarachi huquqlari uchun bepul va arzon huquqiy yordam mavjud. Biz afg'on hamjamiyatining ehtiyojlarini tushunuvchi ishonchli advokatlar bilan hamkorlik qilamiz. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -220,16 +236,101 @@
   },
   {
     "id": "general-help",
+    "title": "General Help & Information",
     "keywords_en": ["help", "general", "information", "support", "assistance"],
-    "keywords_dari": [],
-    "keywords_uzbek": [],
+    "keywords_dari": ["کمک", "عمومی", "اطلاعات", "پشتیبانی"],
+    "keywords_uzbek": ["yordam", "umumiy", "ma'lumot", "qo'llab-quvvatlash"],
     "response_en": "We are here to support Afghan families in Phoenix with immigration resources, community connections, and cultural programs. Please explore the topics below or contact us directly. This information is for educational purposes only.",
-    "response_dari": "",
-    "response_uzbek": "",
+    "response_dari": "ما برای حمایت از خانواده‌های افغان در فینیکس با منابع مهاجرتی، ارتباطات جامعه و برنامه‌های فرهنگی اینجا هستیم. لطفاً موضوعات زیر را بررسی کنید یا مستقیماً با ما تماس بگیرید. این اطلاعات صرفاً برای اهداف آموزشی است.",
+    "response_uzbek": "Biz Feniksdagi afg'on oilalarni immigratsiya resurslari, hamjamiyat aloqalari va madaniy dasturlar bilan qo'llab-quvvatlash uchun shu yerda. Quyidagi mavzularni ko'rib chiqing yoki biz bilan to'g'ridan-to'g'ri bog'laning. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
     "section": "contact",
     "actions": [
       { "label": "Quick Access", "href": "/immigration" },
       { "label": "Contact Us", "href": "/contact" }
+    ]
+  },
+  {
+    "id": "download-rights-en",
+    "title": "Download Rights Card (English)",
+    "keywords_en": ["download", "rights card", "English card", "print rights"],
+    "keywords_dari": ["دانلود", "کارت حقوق", "انگلیسی"],
+    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "inglizcha"],
+    "response_en": "Download the Know Your Rights card in English to keep with you.",
+    "response_dari": "کارت حقوق خود را به زبان انگلیسی دانلود کنید تا همیشه همراه داشته باشید.",
+    "response_uzbek": "Huquqlaringizni bilish kartochkasini ingliz tilida yuklab oling va o'zingiz bilan saqlang.",
+    "section": "rights",
+    "actions": [
+      { "label": "Download (English)", "href": "/PDFs_Rights/Rights_EN.pdf" }
+    ]
+  },
+  {
+    "id": "download-rights-dari",
+    "title": "Download Rights Card (Dari)",
+    "keywords_en": ["download Dari", "rights card Dari", "Dari card"],
+    "keywords_dari": ["دانلود", "کارت حقوق", "دری"],
+    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "dariy"],
+    "response_en": "Download the Know Your Rights card in Dari to keep with you.",
+    "response_dari": "کارت حقوق خود را به زبان دری دانلود کنید تا همیشه همراه داشته باشید.",
+    "response_uzbek": "Huquqlaringizni bilish kartochkasini dariy tilida yuklab oling va o'zingiz bilan saqlang.",
+    "section": "rights",
+    "actions": [
+      { "label": "Download (Dari)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
+    ]
+  },
+  {
+    "id": "download-rights-uzbek",
+    "title": "Download Rights Card (Uzbek)",
+    "keywords_en": ["download Uzbek", "rights card Uzbek", "Uzbek card"],
+    "keywords_dari": ["دانلود", "کارت حقوق", "ازبکی"],
+    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "o'zbek"],
+    "response_en": "Download the Know Your Rights card in Uzbek to keep with you.",
+    "response_dari": "کارت حقوق خود را به زبان ازبکی دانلود کنید تا همیشه همراه داشته باشید.",
+    "response_uzbek": "Huquqlaringizni bilish kartochkasini o'zbek tilida yuklab oling va o'zingiz bilan saqlang.",
+    "section": "rights",
+    "actions": [
+      { "label": "Download (Uzbek)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
+    ]
+  },
+  {
+    "id": "upcoming-events",
+    "title": "Upcoming Events & Workshops",
+    "keywords_en": ["next event", "upcoming", "workshop", "what's happening", "schedule", "calendar"],
+    "keywords_dari": ["رویداد بعدی", "آینده", "کارگاه", "برنامه"],
+    "keywords_uzbek": ["kelgusi tadbir", "seminar", "taqvim"],
+    "response_en": "We host regular workshops, legal clinics, and cultural events. Check our events page for upcoming dates and registration.",
+    "response_dari": "ما کارگاه‌ها، کلینیک‌های حقوقی و رویدادهای فرهنگی منظم برگزار می‌کنیم. برای تاریخ‌های پیش رو و ثبت‌نام، صفحه رویدادهای ما را بررسی کنید.",
+    "response_uzbek": "Biz muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
+    "section": "events",
+    "actions": [
+      { "label": "View Events", "href": "/events" }
+    ]
+  },
+  {
+    "id": "call-daoud",
+    "title": "Call Daoud",
+    "keywords_en": ["call", "phone", "Daoud", "speak to someone", "talk"],
+    "keywords_dari": ["تماس", "تلفن", "داوود", "صحبت"],
+    "keywords_uzbek": ["qo'ng'iroq", "telefon", "Daoud", "suhbat"],
+    "response_en": "You can call Daoud directly for immigration assistance.",
+    "response_dari": "می‌توانید برای کمک مهاجرتی مستقیماً با داوود تماس بگیرید.",
+    "response_uzbek": "Immigratsiya yordami uchun Daoud bilan to'g'ridan-to'g'ri qo'ng'iroq qilishingiz mumkin.",
+    "section": "contact",
+    "actions": [
+      { "label": "Call 480.416.2333", "href": "tel:4804162333" }
+    ]
+  },
+  {
+    "id": "whatsapp",
+    "title": "Message on WhatsApp",
+    "keywords_en": ["whatsapp", "message", "text", "chat"],
+    "keywords_dari": ["واتس‌اپ", "پیام", "متن", "چت"],
+    "keywords_uzbek": ["whatsapp", "xabar", "matn", "chat"],
+    "response_en": "Send us a message on WhatsApp for quick assistance.",
+    "response_dari": "برای کمک سریع، پیامی در واتس‌اپ برای ما ارسال کنید.",
+    "response_uzbek": "Tezkor yordam uchun bizga WhatsApp orqali xabar yuboring.",
+    "section": "contact",
+    "actions": [
+      { "label": "Open WhatsApp", "href": "https://wa.me/14804162333" }
     ]
   }
 ]
