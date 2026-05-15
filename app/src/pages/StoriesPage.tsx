@@ -16,20 +16,7 @@ interface Story {
   context: string
 }
 
-// Replace with the 5 approved client videos when assets are ready.
-// Each story needs: image (thumbnail), videoUrl, title, quote, name, context.
-const stories: Story[] = [
-  {
-    id: 1,
-    image: '/images/hero-stories.jpg',
-    videoUrl: '',
-    title: 'Community Stories Coming Soon',
-    quote:
-      'We are collecting video stories from Afghan families and community leaders. Check back soon.',
-    name: 'Afghan Support Phoenix',
-    context: 'Community Program — Catholic Charities',
-  },
-]
+
 
 function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) => void }) {
   return (
@@ -64,7 +51,15 @@ export default function StoriesPage() {
   const { t } = useTranslation('testimonials')
   const [selectedVideo, setSelectedVideo] = useState<Story | null>(null)
 
-  const videoStories = stories
+  const videoStories: Story[] = Array.from({ length: 5 }, (_, i) => ({
+    id: i + 1,
+    image: '/images/hero-stories.jpg',
+    videoUrl: `/videos/Stories/Story_${i + 1}.mp4`,
+    title: t('stories.title', { number: i + 1 }),
+    quote: t('stories.quote'),
+    name: t('stories.name'),
+    context: t('stories.context'),
+  }))
 
   const handleNextVideo = () => {
     if (!selectedVideo) return
