@@ -17,15 +17,15 @@ These instructions apply to everything under this repository.
 - Legal and immigration content must be static, curated, and reviewed. Do not generate legal advice dynamically.
 - The chatbot must be deterministic: local JSON knowledge base + keyword/scoring match only. No LLMs, embeddings, or external chatbot APIs.
 - Do not store PII. Contact submissions may be emailed through an approved provider, but the app must not persist form data.
-- Multilingual support target: English, Dari, Pashto, Uzbek. Dari/Pashto need RTL support.
+- Multilingual support target: English, Dari, Uzbek. Dari needs RTL support.
 
 ## Project shape
 
 - App root: `app/`
-- Main app entry: `app/src/App.tsx`
-- Page sections: `app/src/sections/`
+- Main app entry: `app/src/app/layout.tsx` + `app/src/app/page.tsx` (Next.js App Router)
+- Page views: `app/src/pages/`
 - Static assets: `app/public/images/` and `app/public/videos/`
-- Product docs: `app/docs/PRD_Afghan_Support_Part1.md` and `app/docs/PRD_Afghan_Support_Part2.md`
+- Product docs: `app/docs/PRD_Afghan_Support_Realistic.md` (active PRD)
 
 ## Implementation guidance for sub-agents
 

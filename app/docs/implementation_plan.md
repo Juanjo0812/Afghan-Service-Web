@@ -15,7 +15,7 @@ This is the execution plan to finish Afghan Support Phoenix for production from 
 
 1. Do not rebuild the website from scratch.
 2. Preserve the current visual direction: institutional, warm, simple, accessible.
-3. Do not run `npm run build` unless the maintainer explicitly authorizes it.
+3. Do not run `pnpm run build` unless the maintainer explicitly authorizes it.
 4. Do not add generative AI, LLMs, embeddings, external chatbot APIs, auth, database persistence, booking, donations, blog/news features, or a general-purpose page builder.
 5. Do not store PII in localStorage, analytics, logs, a database, or static files.
 6. Verify claims against code before checking any task as done.
@@ -69,7 +69,7 @@ Do not restore removed design-reference folders. The deleted `app/docs/stitch_de
 ### Acceptance criteria
 
 - No active imports point to deleted files.
-- `npm run lint` has no errors caused by deleted legacy code or `Header.tsx`.
+- `pnpm lint` has no errors caused by deleted legacy code or `Header.tsx`.
 - No visual/routing behavior is intentionally changed in this packet.
 
 ---
@@ -224,12 +224,24 @@ Replace `href="#"` with approved external links, phone numbers, or contact CTAs.
 - Use approved local assets from `public/images` and `public/videos`.
 - Do not delete unused public assets until active page replacements are complete.
 
+### Homepage featured event (dynamic)
+
+The "Announcements / Events Preview" required by the client layout currently renders hardcoded English text in `HomePage.tsx` (title, description, date, location). It must show the closest upcoming event from WordPress dynamically.
+
+- Convert `src/app/page.tsx` to an `async` server component that calls `getEvents()`.
+- Select the event whose `startDate` is closest to and after `Date.now()`.
+- Pass the selected `EventContent` as an optional prop to `HomePage`.
+- `HomePage` renders the existing featured-event card design using the dynamic data.
+- If no upcoming event exists, hide the featured-event section or show a translatable fallback message.
+- Event content (title, description, date, location) comes from WordPress, not from locale JSON. UI labels ("Upcoming Event", "Register Now") remain in locale JSON via `react-i18next`.
+
 ### Acceptance criteria
 
 - No active page contains `href="#"`.
 - No active page uses `alert(...)` for production actions.
 - No active page uses Unsplash URLs or other unapproved runtime stock media.
 - Required client layout items are represented in active routes.
+- Homepage featured event renders the closest upcoming event from WordPress or degrades gracefully when none exist.
 
 ---
 
@@ -270,6 +282,25 @@ The active route pages currently contain substantial hardcoded English copy. The
 - Chatbot legal/right responses must include safe educational framing and contact fallback.
 - Machine translation may be used only as a draft; production launch remains blocked until fluent/native review confirms Dari and Uzbek.
 
+### Replace placeholder locale translations
+
+The current Dari and Uzbek locale JSON files contain English placeholder text. Replace all namespaces with the approved translations from:
+
+- Dari: `app/docs/Website_Layout_Afghan_Immigration_Dari.md`
+- Uzbek: `app/docs/Website_Layout_Afghan_Immigration_Uzbek.md`
+
+Namespaces to update: `about`, `chatbot`, `common`, `contact`, `events`, `hero`, `immigration-help`, `resources`, `rights`, `services`, `testimonials`.
+
+### WordPress event translation strategy
+
+**Decision required before launch.** The CMS adapter already accepts a language parameter (`getEvents(lang)`), but the content authoring workflow must be defined:
+
+- If the client enters events only in English, Dari/Uzbek users will see English event content surrounded by translated UI labels. This may be acceptable for time-sensitive operational content.
+- If full event translation is required, add a WordPress multilingual plugin (Polylang) so the client can provide translated versions of each event.
+- Regardless of the chosen strategy, the frontend must implement a fallback: when no translated event version exists for a language, display the English version with translated UI labels (category badge, CTA button, date/time formatting).
+
+Document the chosen strategy and communicate it to the client before launch.
+
 ### Acceptance criteria
 
 - Switching EN/Dari/Uzbek updates all primary visible copy on every active route.
@@ -278,6 +309,8 @@ The active route pages currently contain substantial hardcoded English copy. The
 - Chatbot action buttons navigate to real routes.
 - No LLM, embedding, or external chatbot dependency is introduced.
 - Human translation review is documented before production launch.
+- All locale JSON namespaces contain approved Dari and Uzbek translations, not English placeholders.
+- WordPress event translation strategy is documented and communicated to the client.
 
 ---
 

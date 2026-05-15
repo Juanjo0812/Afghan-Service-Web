@@ -42,7 +42,7 @@ JSON responses. It must not generate legal advice.
 | Chatbot | Deterministic keyword/scoring match from local JSON only |
 | AI/LLMs | Out of scope and prohibited for chatbot/legal answers |
 | Visual approach | Simple, accessible, no scroll hijacking or heavy animation |
-| Active implementation path | Run `modification_plan.md` first, then continue with `implementation_plan.md` |
+| Active implementation path | `modification_plan.md` completed (React/Vite → Next.js migration); continue with `implementation_plan.md` for remaining production work |
 
 ---
 
@@ -116,7 +116,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 - Hero with high-contrast headline and subtext.
 - Static image or single optimized video only; no parallax layers.
 - Quick access buttons for the four main tasks.
-- Short about snapshot and featured event.
+- Short about snapshot and featured event (closest upcoming event from WordPress).
 
 ### 6.2 Immigration Help
 
@@ -154,6 +154,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 
 - Simple list/card view for upcoming workshops, legal clinics, cultural events,
   and Afghan holidays.
+- Event data sourced from WordPress Headless (`asp_event` CPT), fetched server-side with ISR.
 - No booking engine in MVP.
 - If registration is needed, link to approved external registration/contact.
 
@@ -367,7 +368,7 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 
 - [ ] One active PRD confirmed: this file.
 - [ ] Old PRDs remain archived, not active.
-- [ ] `modification_plan.md` completed.
+- [x] `modification_plan.md` completed.
 - [ ] `implementation_plan.md` reflects post-cleanup reality.
 - [ ] Legal/rights content reviewed by qualified reviewer.
 - [ ] All active route copy is wired to i18n/local JSON or an approved equivalent.
@@ -387,7 +388,7 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 |---|---|
 | `Website_Layout_Afghan_Immigration.md` | Original client input |
 | `PRD_Afghan_Support_Realistic.md` | Active source of truth |
-| `modification_plan.md` | Temporary migration plan tied to current code |
+| `modification_plan.md` | Completed — React/Vite → Next.js migration (historical reference) |
 | `implementation_plan.md` | Post-cleanup execution plan |
 | `archive/PRD_Afghan_Support_Part1.md` | Historical reference only |
 | `archive/PRD_Afghan_Support_Part2.md` | Historical reference only |
