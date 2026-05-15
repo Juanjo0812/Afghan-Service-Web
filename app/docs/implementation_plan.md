@@ -33,7 +33,7 @@ The active app is the Next.js App Router app under `app/`.
 | Routes | Next.js App Router pages under `src/app/**/page.tsx` |
 | Layout | `src/components/AppShell.tsx` wrapped in root layout |
 | Header/Footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
-| Active pages | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` |
+| Active page views | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx`; events render through `src/features/events/EventsClient.tsx` |
 | Chatbot | `src/sections/Chatbot.tsx` + `src/data/chatbot-kb.json` |
 | Contact API | `src/app/api/contact/route.ts` (Next.js Route Handler) |
 | Styling | Tailwind + `src/index.css` |
@@ -64,6 +64,7 @@ Do not restore removed design-reference folders. The deleted `app/docs/stitch_de
 - `kimi-plugin-inspect-react` from `package.json` and lockfile if unused
 - `tw-animate-css` from `package.json` and lockfile if unused
 - Fix active lint issue in `src/components/Header.tsx` without changing navigation behavior.
+- Keep generated artifacts out of source control: `.next/`, `out/`, and `*.tsbuildinfo`.
 
 ### Acceptance criteria
 
@@ -246,7 +247,7 @@ The active route pages currently contain substantial hardcoded English copy. The
 - `src/pages/ImmigrationPage.tsx`
 - `src/pages/RightsPage.tsx`
 - `src/pages/ResourcesPage.tsx`
-- `src/pages/EventsPage.tsx`
+- `src/features/events/EventsClient.tsx`
 - `src/pages/StoriesPage.tsx`
 - `src/pages/ContactPage.tsx`
 - `src/sections/Chatbot.tsx`
@@ -303,9 +304,11 @@ Configure `next.config.ts` in the `app/` project root:
 
 ### CSP target
 
+Next.js App Router needs a CSP that allows hydration scripts. Keep the production policy explicit and upgrade to nonce/hash-based scripts when security hardening starts.
+
 ```txt
 default-src 'self';
-script-src 'self';
+script-src 'self' 'unsafe-inline';
 style-src 'self' 'unsafe-inline';
 img-src 'self' data: https://<WORDPRESS_MEDIA_HOSTNAME>;
 media-src 'self';
@@ -317,6 +320,8 @@ object-src 'none';
 base-uri 'self';
 upgrade-insecure-requests
 ```
+
+Local `next dev` additionally needs `script-src 'unsafe-eval'` and `connect-src ws: wss:` for Turbopack/HMR. Do not copy those dev-only allowances blindly into production.
 
 ### Required production env vars
 
@@ -380,6 +385,7 @@ unless the maintainer explicitly overrides the project rule.
 - [ ] No active `href="#"`, `alert(...)`, `[FA]`, `[UZ]`, hardcoded English-only route copy, or Unsplash URLs remain.
 - [ ] Page metadata (title, description, OG tags) renders from WordPress or safe defaults.
 - [ ] ISR revalidation endpoint returns 200 with valid secret and 401 without.
+- [ ] Generated artifacts (`.next/`, `out/`, `*.tsbuildinfo`) are absent from commits.
 
 ### Launch blockers
 

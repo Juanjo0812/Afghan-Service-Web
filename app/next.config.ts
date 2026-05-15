@@ -1,18 +1,50 @@
 import type { NextConfig } from 'next'
 
 const wpMediaHost = process.env.WORDPRESS_MEDIA_HOSTNAME
+const wpApiBase = process.env.WORDPRESS_API_BASE_URL
+
+function toUrl(value: string): URL | null {
+  try {
+    return new URL(value)
+  } catch {
+    return null
+  }
+}
+
+function isLocalHost(hostname: string): boolean {
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1"
+}
+
+function resolveWordPressMediaUrl(): URL | null {
+  const apiUrl = wpApiBase ? toUrl(wpApiBase) : null
+
+  if (!wpMediaHost) {
+    return apiUrl
+  }
+
+  const explicitMediaUrl = toUrl(wpMediaHost)
+  if (explicitMediaUrl) {
+    return explicitMediaUrl
+  }
+
+  if (apiUrl && apiUrl.hostname === wpMediaHost && isLocalHost(wpMediaHost)) {
+    return apiUrl
+  }
+
+  return toUrl(`https://${wpMediaHost}`)
+}
+
+const wpMediaUrl = resolveWordPressMediaUrl()
 
 function buildCSP(): string {
   const isDev = process.env.NODE_ENV !== "production"
-  const imgSrc = wpMediaHost
-    ? `'self' data: https://${wpMediaHost}`
-    : "'self' data:"
+  const imgSrc = ["'self'", "data:", wpMediaUrl?.origin].filter(Boolean).join(" ")
   const scriptSrc = isDev
     ? "'self' 'unsafe-inline' 'unsafe-eval'"
     : "'self' 'unsafe-inline'"
   const connectSrc = isDev ? "'self' ws: wss:" : "'self'"
 
-  return [
+  const directives = [
     "default-src 'self'",
     `script-src ${scriptSrc}`,
     "style-src 'self' 'unsafe-inline'",
@@ -24,17 +56,22 @@ function buildCSP(): string {
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
-    "upgrade-insecure-requests",
-  ].join("; ")
+  ]
+
+  if (!isDev) {
+    directives.push("upgrade-insecure-requests")
+  }
+
+  return directives.join("; ")
 }
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: wpMediaHost || "localhost",
-        port: "",
+        protocol: (wpMediaUrl?.protocol.replace(":", "") || "https") as "http" | "https",
+        hostname: wpMediaUrl?.hostname || wpMediaHost || "localhost",
+        port: wpMediaUrl?.port || "",
         pathname: "/**",
       },
     ],

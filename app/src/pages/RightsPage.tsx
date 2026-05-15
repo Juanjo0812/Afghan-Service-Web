@@ -178,7 +178,7 @@ export default function RightsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
             {downloadCards.map((card, i) => (
               <FadeIn key={card.lang} delay={i * 150} duration={800} className="h-full">
-                <div className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-300 hover:bg-cream-dark hover:shadow-card-hover">
+                <div className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-300 hover:bg-cream-dark hover:shadow-card-hover hover:border-amber">
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center">
                     <Download className="w-5 h-5 text-forest" aria-hidden="true" />
                   </div>

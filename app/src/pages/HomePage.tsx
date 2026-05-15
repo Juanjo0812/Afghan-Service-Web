@@ -145,8 +145,9 @@ export default function HomePage() {
 
       {/* About Snapshot */}
       <section className="section-padding bg-warm-sand/40" aria-labelledby="about-heading">
-        <div className="container-main">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <FadeIn delay={200}>
+          <div className="container-main">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <span className="label-text block mb-3">{t('label', { ns: 'about' })}</span>
               <h2 id="about-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-5">
@@ -184,12 +185,14 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        </FadeIn>
       </section>
 
       {/* Featured Event */}
       <section className="section-padding bg-cream" aria-labelledby="event-heading">
-        <div className="container-main max-w-3xl">
-          <div className="text-center mb-10">
+        <FadeIn delay={200}>
+          <div className="container-main max-w-3xl">
+            <div className="text-center mb-10">
             <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
           </div>
           <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
@@ -245,13 +248,14 @@ export default function HomePage() {
               {/* CTA — elegant outline button */}
               <Link
                 href="/events"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border-2 border-forest text-forest font-semibold rounded-md transition-all duration-250 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2 min-h-[48px] text-base"
+                className="btn-primary w-full sm:w-auto"
               >
                 {t('registerCta', { ns: 'events' })}
               </Link>
             </div>
           </div>
         </div>
+        </FadeIn>
       </section>
 
       {/* Bottom CTA */}
