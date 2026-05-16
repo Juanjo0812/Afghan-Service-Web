@@ -1,5 +1,6 @@
 import { generatePageMetadata } from '@/server/seo/metadata'
 import type { LangCode } from '@/domain/language'
+import { assertValidLang } from '@/lib/routeGuard'
 import RightsPage from '@/pages/RightsPage'
 
 export function generateStaticParams() {
@@ -8,9 +9,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
+  assertValidLang(lang)
   return generatePageMetadata('rights', lang as LangCode)
 }
 
-export default function Rights() {
+export default async function Rights({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params
+  assertValidLang(lang)
   return <RightsPage />
 }
