@@ -6,6 +6,7 @@ import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin
 import { FadeIn } from '../components/FadeIn'
 import { useLanguage } from '../hooks/useLanguage'
 import { localizePath } from '../lib/navigation'
+import { formatEventDate } from '@/lib/formatDate'
 import type { EventContent } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
 
@@ -243,10 +244,7 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                     <div className="flex items-center gap-4 text-forest-light">
                       <Calendar className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
                       <span className="text-body-lg font-medium text-forest">
-                        {new Date(featuredEvent.startDate).toLocaleDateString(
-                          pageLang === 'dari' ? 'fa' : pageLang === 'uzbek' ? 'uz' : 'en-US',
-                          { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-                        )} &bull; {featuredEvent.timeLabel}
+                        {formatEventDate(featuredEvent.startDate, pageLang)} &bull; {featuredEvent.timeLabel}
                       </span>
                     </div>
                     <div className="flex items-center gap-4 text-forest-light">
