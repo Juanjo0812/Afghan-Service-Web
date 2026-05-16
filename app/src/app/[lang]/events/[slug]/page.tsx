@@ -1,5 +1,6 @@
 import { getEventBySlug } from '@/server/cms/wordpress'
 import { generateEventDetailMetadata } from '@/server/seo/metadata'
+import { sanitizeHtml } from '@/lib/sanitizeHtml'
 import { notFound } from 'next/navigation'
 import { localizePath } from '@/lib/navigation'
 import type { LangCode } from '@/domain/language'
@@ -80,7 +81,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ la
 
             <div
               className="prose prose-forest max-w-none mb-8"
-              dangerouslySetInnerHTML={{ __html: event.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
             />
 
             {event.ctaUrl ? (

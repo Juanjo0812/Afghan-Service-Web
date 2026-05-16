@@ -1,5 +1,6 @@
 import { getEventBySlug } from '@/server/cms/wordpress'
 import { generateEventDetailMetadata } from '@/server/seo/metadata'
+import { sanitizeHtml } from '@/lib/sanitizeHtml'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -71,7 +72,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
             <div
               className="prose prose-forest max-w-none mb-8"
-              dangerouslySetInnerHTML={{ __html: event.description }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(event.description) }}
             />
 
             {event.ctaUrl ? (
