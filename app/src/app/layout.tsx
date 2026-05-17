@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { headers } from 'next/headers'
 import './globals.css'
 import AppShell from '@/components/AppShell'
-import { isValidLang, getHtmlLang } from '@/domain/language'
 
 import { SITE_URL } from '@/server/seo/metadata'
 
@@ -13,21 +11,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const h = await headers()
-  const rawLang = h.get('x-lang') || 'en'
-  const dir = h.get('x-dir') || 'ltr'
-  const lang = isValidLang(rawLang) ? rawLang : 'en'
-  const htmlLang = getHtmlLang(lang)
-
   return (
-    <html lang={htmlLang} dir={dir}>
+    <html lang="en" dir="ltr">
       <body>
-        <AppShell initialLang={lang}>{children}</AppShell>
+        <AppShell initialLang="en">{children}</AppShell>
       </body>
     </html>
   )

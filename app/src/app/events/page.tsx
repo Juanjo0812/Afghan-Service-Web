@@ -1,4 +1,4 @@
-import { getEvents } from '@/server/cms/wordpress'
+import { getEvents } from '@/server/cms/cms-cache'
 import EventsClient from '@/features/events/EventsClient'
 import { generatePageMetadata } from '@/server/seo/metadata'
 
