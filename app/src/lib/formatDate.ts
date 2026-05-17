@@ -20,3 +20,37 @@ export function formatEventMonth(date: Date, lang: LangCode): string {
 export function formatEventShortMonth(date: Date, lang: LangCode): string {
   return date.toLocaleString(LOCALE_MAP[lang], { month: 'short' }).toUpperCase()
 }
+
+export function formatEventTimeLabel(
+  startDate: string,
+  endDate: string | undefined,
+  lang: LangCode,
+): string {
+  const locale = LOCALE_MAP[lang]
+  try {
+    const start = new Date(startDate)
+    const startStr = start.toLocaleString(locale, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    })
+    if (endDate) {
+      const end = new Date(endDate)
+      const endStr = end.toLocaleString(locale, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+      })
+      return `${startStr} — ${endStr}`
+    }
+    return startStr
+  } catch {
+    return startDate
+  }
+}

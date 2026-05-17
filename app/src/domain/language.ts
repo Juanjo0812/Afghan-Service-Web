@@ -2,6 +2,11 @@ export type LangCode = 'en' | 'dari' | 'uzbek'
 
 export const SUPPORTED_LANGUAGES: LangCode[] = ['en', 'dari', 'uzbek']
 
+/** Languages accepted in `[lang]` route params — English lives at the root. */
+export type LocalizedLangCode = 'dari' | 'uzbek'
+
+export const LOCALIZED_LANGUAGES: LocalizedLangCode[] = ['dari', 'uzbek']
+
 export const LANG_LABELS: Record<LangCode, string> = {
   en: 'English',
   dari: 'دری',

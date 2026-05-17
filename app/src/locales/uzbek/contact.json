@@ -1,7 +1,7 @@
 {
   "label": "Bog'lanish",
   "heading": "Biz sizga yordam berishga tayyormiz",
-  "description": "[MT] Bepul va maxfiy yordam uchun murojaat qiling. Bizning jamoamiz sizning tilingizda gaplashadi.",
+  "description": "Bepul va maxfiy yordam uchun murojaat qiling. Bizning jamoamiz sizning tilingizda gaplashadi.",
   "details": {
     "phone": {
       "label": "Telefon",
@@ -20,10 +20,10 @@
       "value": "5151 N 19th Ave, Phoenix AZ 85015"
     }
   },
-  "mapCaption": "[MT] CC-AZ ofisi joylashuvi",
-  "mapTitle": "[MT] CC-AZ ofisi joylashuvi",
+  "mapCaption": "CC-AZ ofisi joylashuvi",
+  "mapTitle": "CC-AZ ofisi joylashuvi",
   "form": {
-    "heading": "[MT] Bizga xabar yuboring",
+    "heading": "Bizga xabar yuboring",
     "name": {
       "label": "Ism",
       "placeholder": "To'liq ismingizni kiriting"
@@ -33,52 +33,52 @@
       "placeholder": "Telefon raqamingizni kiriting"
     },
     "email": {
-      "label": "[MT] Elektron pochta manzili",
-      "placeholder": "[MT] Elektron pochta manzili"
+      "label": "Elektron pochta manzili",
+      "placeholder": "Elektron pochta manzili"
     },
     "message": {
       "label": "Qanday yordam bera olamiz?",
-      "placeholder": "[MT] Savolingiz yoki yordam kerak bo'lgan narsani tavsif eting..."
+      "placeholder": "Savolingiz yoki yordam kerak bo'lgan narsani tavsif eting..."
     },
     "submit": "Xabar yuborish",
     "sending": "Yuborilmoqda...",
     "errors": {
-      "name": "[MT] Iltimos, ismingizni kiriting",
-      "phone": "[MT] Iltimos, telefon raqamingizni kiriting",
-      "message": "[MT] Iltimos, savolingiz yoki xabaringizni kiriting"
+      "name": "Iltimos, ismingizni kiriting",
+      "phone": "Iltimos, telefon raqamingizni kiriting",
+      "message": "Iltimos, savolingiz yoki xabaringizni kiriting"
     },
     "rateLimited": {
-      "title": "[MT] Juda ko'p xabar yuborildi",
-      "retry": "[MT] Iltimos, qayta urinishdan oldin {{minutes}} daqiqa kuting.",
-      "wait": "[MT] Iltimos, qayta urinishdan oldin biroz kuting.",
-      "urgent": "[MT] Agar bu shoshilinch bo'lsa, quyidagi telefon yoki WhatsApp orqali biz bilan bog'laning."
+      "title": "Juda ko'p xabar yuborildi",
+      "retry": "Iltimos, qayta urinishdan oldin {{minutes}} daqiqa kuting.",
+      "wait": "Iltimos, qayta urinishdan oldin biroz kuting.",
+      "urgent": "Agar bu shoshilinch bo'lsa, quyidagi telefon yoki WhatsApp orqali biz bilan bog'laning."
     },
-    "error": "[MT] Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
-    "errorFallback": "[MT] Iltimos, qayta urinib ko'ring yoki o'ng tomondagi variantlar orqali biz bilan bog'laning."
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
+    "errorFallback": "Iltimos, qayta urinib ko'ring yoki o'ng tomondagi variantlar orqali biz bilan bog'laning."
   },
   "validation": {
-    "nameMin": "[MT] Ism kamida 2 ta belgidan iborat bo'lishi kerak",
-    "phoneRequired": "[MT] Telefon raqami majburiy",
-    "phoneInvalid": "[MT] Iltimos, to'g'ri telefon raqamini kiriting",
-    "emailInvalid": "[MT] Iltimos, to'g'ri elektron pochta manzilini kiriting",
-    "messageMin": "[MT] Xabar kamida 10 ta belgidan iborat bo'lishi kerak",
-    "messageMax": "[MT] Xabar ko'pi bilan 2000 ta belgidan iborat bo'lishi kerak"
+    "nameMin": "Ism kamida 2 ta belgidan iborat bo'lishi kerak",
+    "phoneRequired": "Telefon raqami majburiy",
+    "phoneInvalid": "Iltimos, to'g'ri telefon raqamini kiriting",
+    "emailInvalid": "Iltimos, to'g'ri elektron pochta manzilini kiriting",
+    "messageMin": "Xabar kamida 10 ta belgidan iborat bo'lishi kerak",
+    "messageMax": "Xabar ko'pi bilan 2000 ta belgidan iborat bo'lishi kerak"
   },
   "toast": {
-    "rateLimit": "[MT] Juda ko'p urinishlar. Iltimos, keyinroq qayta urinib ko'ring.",
-    "error": "[MT] Yuborish muvaffaqiyatsiz tugadi. Iltimos, qayta urinib ko'ring yoki biz bilan bog'laning.",
-    "success": "[MT] Xabaringiz uchun rahmat. Tez orada siz bilan bog'lanamiz."
+    "rateLimit": "Juda ko'p urinishlar. Iltimos, keyinroq qayta urinib ko'ring.",
+    "error": "Yuborish muvaffaqiyatsiz tugadi. Iltimos, qayta urinib ko'ring yoki biz bilan bog'laning.",
+    "success": "Xabaringiz uchun rahmat. Tez orada siz bilan bog'lanamiz."
   },
   "success": {
-    "title": "[MT] Rahmat!",
-    "message": "[MT] Biz 24 soat ichida siz bilan bog'lanamiz."
+    "title": "Rahmat!",
+    "message": "Biz 24 soat ichida siz bilan bog'lanamiz."
   },
   "info": {
-    "heading": "[MT] Aloqa ma'lumotlari",
-    "whatsapp": "[MT] WhatsApp orqali xabar yuboring",
-    "phone": "[MT] Bizga qo'ng'iroq qiling",
-    "email": "[MT] Bizga elektron pochta yuboring",
-    "hours": "[MT] Ofis soatlari",
-    "address": "[MT] Bizga tashrif buyuring"
+    "heading": "Aloqa ma'lumotlari",
+    "whatsapp": "WhatsApp orqali xabar yuboring",
+    "phone": "Bizga qo'ng'iroq qiling",
+    "email": "Bizga elektron pochta yuboring",
+    "hours": "Ofis soatlari",
+    "address": "Bizga tashrif buyuring"
   }
 }

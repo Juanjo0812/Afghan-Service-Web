@@ -65,7 +65,7 @@ export default function Header() {
               aria-label="Catholic Charities AZ - Home"
             >
               <img 
-                src="/images/Catholic.png" 
+                src="/images/afghan_support_logo.png" 
                 alt="Catholic Charities Logo" 
                 className={`w-auto transition-all duration-500 ease-in-out ${
                   scrolled ? 'h-10 md:h-12' : 'h-14 md:h-20 brightness-0 invert'

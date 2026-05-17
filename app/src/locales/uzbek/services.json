@@ -1,31 +1,31 @@
 {
-  "sectionLabel": "[MT] Bizning xizmatlarimiz",
-  "heading": "[MT] Qanday yordam bera olamiz",
+  "sectionLabel": "Bizning xizmatlarimiz",
+  "heading": "Qanday yordam bera olamiz",
   "cards": {
     "immigration": {
       "title": "Immigratsiya bo'yicha yordam",
-      "description": "[MT] Boshpana, ish ruxsatnomasi, TPS, grin-karta va oilani birlashtirish uchun bepul huquqiy maslahat."
+      "description": "Boshpana, ish ruxsatnomasi, TPS, grin-karta va oilani birlashtirish uchun bepul huquqiy maslahat."
     },
     "housing": {
-      "title": "[MT] Uy-joy",
-      "description": "[MT] Feniks hududida uy-joy resurslari, ijaraga yordam va boshpana yo'naltirish bilan bog'laning."
+      "title": "Uy-joy",
+      "description": "Feniks hududida uy-joy resurslari, ijaraga yordam va boshpana yo'naltirish bilan bog'laning."
     },
     "healthcare": {
-      "title": "[MT] Sog'liqni saqlash",
-      "description": "[MT] Arzon klinikalar, ruhiy salomatlik xizmatlari va sog'liqni saqlash sug'urtasini ro'yxatdan o'tkazish yordamini toping."
+      "title": "Sog'liqni saqlash",
+      "description": "Arzon klinikalar, ruhiy salomatlik xizmatlari va sog'liqni saqlash sug'urtasini ro'yxatdan o'tkazish yordamini toping."
     },
     "education": {
-      "title": "[MT] Ta'lim va ESL",
-      "description": "[MT] Ingliz tili darslari, GED dasturlari va bolalar va kattalar uchun maktabga qabul yordami."
+      "title": "Ta'lim va ESL",
+      "description": "Ingliz tili darslari, GED dasturlari va bolalar va kattalar uchun maktabga qabul yordami."
     },
     "employment": {
-      "title": "[MT] Bandlik",
-      "description": "[MT] Ish qidirish yordami, rezyume yordami, suhbatga tayyorgarlik va kasbiy trening dasturlari."
+      "title": "Bandlik",
+      "description": "Ish qidirish yordami, rezyume yordami, suhbatga tayyorgarlik va kasbiy trening dasturlari."
     },
     "legal": {
-      "title": "[MT] Huquqiy yordam",
-      "description": "[MT] Immigratsiya, oila huquqi va fuqarolik ishlarida bepul yoki arzon huquqiy xizmatlar."
+      "title": "Huquqiy yordam",
+      "description": "Immigratsiya, oila huquqi va fuqarolik ishlarida bepul yoki arzon huquqiy xizmatlar."
     }
   },
-  "learnMore": "[MT] Ko'proq bilish"
+  "learnMore": "Ko'proq bilish"
 }

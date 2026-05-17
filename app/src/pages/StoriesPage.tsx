@@ -177,7 +177,6 @@ export default function StoriesPage() {
               </button>
 
               {selectedVideo.videoUrl ? (
-                // TODO: Add <track> elements when caption files become available for accessibility.
                 <video
                   src={selectedVideo.videoUrl}
                   className="absolute inset-0 w-full h-full object-contain"

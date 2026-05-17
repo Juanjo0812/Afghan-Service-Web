@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { isValidLang, type LangCode } from '@/domain/language'
+import { LOCALIZED_LANGUAGES, type LocalizedLangCode } from '@/domain/language'
 
-export function assertValidLang(lang: string): LangCode {
-  if (!isValidLang(lang)) {
+export function assertValidLang(lang: string): LocalizedLangCode {
+  if (!LOCALIZED_LANGUAGES.includes(lang as LocalizedLangCode)) {
     notFound()
   }
-  return lang
+  return lang as LocalizedLangCode
 }
