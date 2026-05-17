@@ -1,164 +1,101 @@
-# Plan de corrección para producción — Auditoría 2026-05-17
+# Production readiness fix plan — verificación 2026-05-17
 
-**Veredicto directo:** NO está listo para producción todavía. Hay buena base, pero hoy hay bloqueantes reales: `pnpm lint` falla, hay flujo nuevo de registro a eventos fuera del layout acordado, hay riesgo de PII en rate limiting/analytics, y la estrategia de cache/ISR de WordPress no está limpia.
+**Veredicto directo:** ya no estamos en el estado crítico del primer audit. La mayoría de P0 técnicos fueron corregidos y los checks locales permitidos pasan. Pero **todavía no lo marcaría production-ready sin resolver/validar la revalidación WordPress**, completar QA manual real y cerrar decisiones operativas de privacidad/proveedores.
 
-> No corrí `pnpm run build`, respetando la regla del repo.
+> No se ejecutó `pnpm run build`, respetando la regla del repo. El build debe correr en el hosting/deploy pipeline.
 
-## Verificación ejecutada
+---
 
-| Check | Resultado | Nota |
+## 1. Evidencia verificada
+
+| Check | Estado | Evidencia |
 |---|---:|---|
-| `pnpm lint` | ❌ Falla | `EventRegistrationModal.tsx` setea estado dentro de effect; `HomePage.tsx` tiene `toPlainText` muerto. |
-| `pnpm exec tsc --noEmit --incremental false` | ✅ Pasa | TypeScript no reportó errores. |
-| `pnpm test` | ✅ Pasa | 4 archivos / 13 tests. |
-| `pnpm audit --prod --audit-level moderate` | ❌ Falla | `postcss < 8.5.10` vía `next`. |
-| `pnpm audit --audit-level moderate` | ❌ Falla | 16 vulnerabilidades, mayormente dev tooling; igual hay que resolver antes de release. |
+| `pnpm lint` | ✅ | Pasa. |
+| `pnpm exec tsc --noEmit --incremental false` | ✅ | Pasa. |
+| `pnpm test` | ✅ | Pasa. |
+| `pnpm audit --prod --audit-level moderate` | ✅ | Sin vulnerabilidades conocidas. |
+| `pnpm audit --audit-level moderate` | ✅ | Sin vulnerabilidades conocidas. |
+| `git status` | ✅/⚠️ | Estaba limpio antes de actualizar este documento; ahora este archivo queda modificado por esta verificación. |
+| WordPress REST directo | ✅ | La API configurada devuelve eventos con fechas actuales. El síntoma de fechas lentas apunta a cache/revalidación Next.js, no a WordPress como fuente. |
 
 ---
 
-## Lo que ya está bien encaminado
+## 2. P0 originales — estado actual
 
-- [x] App Router existe bajo `app/src/app/**` con rutas raíz y rutas localizadas `dari` / `uzbek`.
-- [x] Inglés canónico vive en rutas raíz; `[lang]` rechaza `en` mediante `assertValidLang`.
-- [x] El chatbot es determinístico: JSON local + scoring de keywords. No hay LLM, embeddings ni API externa de chatbot.
-- [x] El contenido legal principal está en locale JSON / componentes, no generado dinámicamente.
-- [x] Contact form usa Route Handler, Zod, honeypot, Resend y `Cache-Control: no-store`.
-- [x] WordPress queda limitado a eventos y metadata/SEO, alineado con la PRD.
-- [x] Hay sanitización allowlist antes de renderizar HTML de eventos con `dangerouslySetInnerHTML`.
-- [x] Hay headers de seguridad base: `nosniff`, `frame-ancestors 'none'`, `X-Frame-Options`, `Permissions-Policy`, CSP en producción.
-- [x] `.next/`, `dist/`, `node_modules/`, `.env.local` y `*.tsbuildinfo` están ignorados por Git.
-
-Eso es buena arquitectura de base. PERO base no es producción. Producción es disciplina: checks verdes, contratos claros y cero ambigüedad con PII.
-
----
-
-## P0 — Bloqueantes antes de deploy
-
-### Calidad / deployability
-
-- [ ] **Arreglar `pnpm lint`.**
-  - Evidencia: `app/src/features/events/EventRegistrationModal.tsx:46` dispara `react-hooks/set-state-in-effect`; `app/src/pages/HomePage.tsx:13` declara `toPlainText` sin uso.
-  - Por qué importa: si el pipeline permite deploy con lint rojo, estamos normalizando deuda. Eso no es “rápido”; es frágil.
-
-- [ ] **Resolver el estado Git antes de producción.**
-  - Evidencia: hay archivos críticos sin trackear: `app/src/app/api/event-register/route.ts`, `app/src/features/events/EventRegistrationModal.tsx`, `app/src/features/events/EventRegistrationToast.tsx` e imágenes nuevas bajo `app/public/images/`.
-  - Riesgo: Vercel desplegando desde Git no incluye archivos sin trackear. Resultado posible: build/deploy roto o UI referenciando assets inexistentes.
-
-- [ ] **No aprobar producción hasta que `pnpm audit --prod --audit-level moderate` pase o quede una excepción documentada.**
-  - Evidencia: `postcss < 8.5.10` aparece en dependencias productivas vía `next`.
-  - Tradeoff: si no hay upgrade seguro inmediato, documentar riesgo + mitigación + fecha de revisión. No lo escondas bajo la alfombra.
-
-### PII / privacidad
-
-- [ ] **Dejar de usar IP cruda como key persistida en Upstash.**
-  - Evidencia: `app/src/app/api/contact/route.ts:105-106` usa `ipRatelimit.limit(ip)`; `app/src/app/api/event-register/route.ts:107-108` usa `event-reg:${ip}`.
-  - Por qué está mal: IP puede ser dato personal. El contrato del proyecto dice no almacenar PII en analytics/logs/DB.
-  - Corrección: usar HMAC SHA-256 con secreto server-side para IP y teléfono (`RATE_LIMIT_HASH_SECRET`), nunca hash simple sin secreto.
-
-- [ ] **Desactivar o justificar `analytics: true` en Upstash antes de producción.**
-  - Evidencia: `contact/route.ts:75,80` y `event-register/route.ts:76`.
-  - Riesgo: si Upstash conserva identificadores/eventos de rate limit, eso puede contradecir “no PII en analytics”.
-
-- [ ] **Definir si el registro interno a eventos está aprobado.**
-  - Evidencia: `EventDetail.tsx` abre `EventRegistrationModal` si no hay `event.ctaUrl`; la route `api/event-register` envía nombre + teléfono/email por Resend.
-  - Comparación con spec: `Website_Layout_Afghan_Immigration.md` pide calendario/lista; la PRD dice que si hay registro, debe ir a un enlace externo aprobado o contacto. Esto implementa un mini booking interno. No asumas aprobación.
-  - Corrección preferida: eliminar el modal interno y usar `ctaUrl` aprobado o `/contact`. Si se mantiene, requiere aprobación explícita, política de retención y controles PII.
-
-- [ ] **Escapar HTML en emails; no alcanza con “sacar tags”.**
-  - Evidencia: `contact/route.ts:211-219` y `event-register/route.ts:181-188` interpolan datos de usuario en `html`.
-  - Corrección: usar `escapeHtml()` para `name`, `phone/contactValue`, `message`, `eventTitle`, y después convertir saltos de línea a `<br>`.
-
-### Arquitectura App Router / cache
-
-- [ ] **Sacar `headers()` del root layout o aceptar formalmente render dinámico global.**
-  - Evidencia: `app/src/app/layout.tsx:21` usa `await headers()` para `x-lang` / `x-dir`.
-  - Por qué importa: en App Router, `headers()` es Dynamic API y opta la ruta a dynamic rendering. Eso pelea con el objetivo de sitio mayormente estático/ISR.
-  - Corrección: mover `lang/dir` a layouts por segmento (`[lang]/layout.tsx`) o una estrategia estática por ruta. Middleware/proxy puede redirigir, pero no debería forzar todo el árbol a dynamic.
-
-- [ ] **Unificar la capa CMS/cache.**
-  - Evidencia: las páginas importan `@/server/cms/wordpress` directamente (`app/page.tsx`, `app/events/page.tsx`, `[lang]/events/page.tsx`); `cms-cache.ts` casi no se usa salvo `clearCmsCache()` en revalidate.
-  - Riesgo: el endpoint `/api/revalidate` limpia un cache custom que las páginas no consultan. Eso es arquitectura placebo.
-  - Corrección: usar una sola estrategia: `fetch(..., { next: { revalidate: 3600, tags: [...] } })` + `revalidateTag`, o wrapper cacheado real. No mezcles cache manual huérfana con ISR.
-
----
-
-## P1 — Importante antes de launch público
-
-- [ ] **Ordenar eventos por fecha real del evento, no por fecha de publicación WordPress.**
-  - Evidencia: `wordpress.ts:57-58` pide `orderby=date&order=desc`; eso ordena por post date salvo query meta custom.
-  - Corrección: ordenar en mapper/route por `startDate` ascendente para eventos futuros, o hacer `meta_key=_asp_event_start_date&orderby=meta_value` en WordPress si el REST lo permite.
-
-- [ ] **Evitar doble fetch de eventos/metadata.**
-  - Evidencia: `generateMetadata()` y la página pueden llamar WordPress por separado; `generateEventDetailMetadata()` vuelve a pedir el evento que la página también pide.
-  - Corrección: cache por URL/tag o wrapper compartido por request.
-
-- [ ] **Validar/allowlistear `event.ctaUrl`.**
-  - Evidencia: `EventDetail.tsx` renderiza `event.ctaUrl` como link externo.
-  - Riesgo: un editor WordPress puede publicar una URL no aprobada. No es XSS, pero sí riesgo de phishing/confianza.
-  - Corrección: permitir solo dominios aprobados o marcar links externos claramente.
-
-- [ ] **Comprimir o mover videos grandes a CDN/streaming.**
-  - Evidencia: videos locales de 17–28 MB (`Story_5.mp4`, `Story_1.mp4`, etc.).
-  - Riesgo: Lighthouse/performance móvil sufre, más para familias en dispositivos modestos.
-
-- [ ] **Migrar imágenes críticas a `next/image` o justificar `<img>`.**
-  - Evidencia: la UI usa muchos `<img>` en páginas y componentes.
-  - Corrección: usar `next/image` en hero/cards cuando se conozcan dimensiones. Ganas optimización, tamaños correctos y menos layout shift.
-
-- [ ] **Revisar CSP de producción.**
-  - Evidencia: `script-src` mantiene `'unsafe-inline'`; `style-src` también.
-  - Tradeoff: puede ser aceptable con Next/Tailwind y velocidad de entrega, pero debe quedar documentado. Más seguro: nonce/hashes donde aplique.
-
-- [ ] **Agregar `Cache-Control: no-store` explícito para `/api/event-register`.**
-  - Evidencia: `next.config.ts` cubre `/api/contact` y `/api/revalidate`, pero no `/api/event-register`.
-  - La route ya responde `no-store`; igual conviene cubrirla en config para consistencia operacional.
-
-- [ ] **Agregar fallback de eventos cuando WordPress esté caído.**
-  - Evidencia: `wordpress.ts` devuelve `[]`; la página queda vacía con “no events”. Eso no crashea, pero puede ocultar contenido operativo.
-  - Corrección: fallback estático mínimo aprobado o mensaje explícito “llamá/contactanos para próximos eventos”.
-
-- [ ] **Eliminar o justificar assets no referenciados.**
-  - Detectados: `app/public/images/Community_home.jpg`, `event-workshop.jpg`, `img-about.jpg`, `img-rights.jpg`.
-
----
-
-## Comparación con `Website_Layout_Afghan_Immigration.md`
-
-| Sección acordada | Estado | Brecha |
+| Ítem | Estado | Conclusión |
 |---|---:|---|
-| Header: logo, menú, idiomas, CTA Get Help Now | Parcial | Existe, pero hay que QA en EN/Dari/Uzbek y confirmar que el CTA es consistente en móvil/desktop. |
-| Home hero: family picture, headline, subtext, CTA visible | Parcial | Hay video hero y el CTA principal dentro del hero apunta a Rights, no a “Get Help Now”. Puede ser decisión visual, pero no coincide literal con el layout. |
-| Quick access | OK | Immigration, Rights, Resources, Events están presentes. |
-| About snapshot | OK | Presente. |
-| Announcements/events preview | OK técnico | Dinámico desde WordPress, pero revisar cache/ordering. |
-| Immigration Help | OK | Servicios, idiomas y contacto aparecen. |
-| Know Your Rights | Parcial | Contenido, PDFs y disclaimer existen; falta sign-off legal y revisar si el video de “past clients” requerido está cubierto por Stories o falta en Rights. |
-| Community Resources | OK | English classes, mental health, food banks, health clinics están. |
-| Events Calendar | Parcial | Lista/calendario existen; el registro interno no estaba en layout y requiere aprobación. |
-| Contact Page | OK técnico | Form name/phone/message + WhatsApp/phone/email/map presentes; falta PII/provider approval. |
-| Stories / Community Impact | OK con QA | Videos presentes; revisar tamaño, captions y autorización de uso. |
+| Lint rojo | ✅ Corregido | Ya no bloquea deploy. |
+| Archivos críticos sin trackear | ✅ Corregido | No se detectaron archivos nuevos críticos fuera de Git antes de este doc update. |
+| `pnpm audit --prod` fallaba por `postcss` | ✅ Corregido | Audit productivo pasa. |
+| IP cruda en Upstash | ✅/⚠️ Parcialmente corregido | Upstash usa hash/HMAC y `analytics: false`; el fallback en memoria todavía usa IP cruda como key efímera. Producción debe tener Upstash configurado para no depender del fallback. |
+| `analytics: true` en Upstash | ✅ Corregido | APIs usan `analytics: false`. |
+| Registro interno a eventos sin aprobación | ✅ Resuelto por PRD | La PRD actual marca el modal interno como aprobado por cliente el 2026-05-17. No borrarlo. |
+| HTML sin escapar en emails | ✅ Corregido | Inputs se escapan antes de interpolar HTML. |
+| `headers()` en root layout | ✅ Corregido | `app/src/app/layout.tsx` ya no usa `headers()`. Queda en `[lang]/layout.tsx`, acotado a rutas localizadas. |
+| Cache CMS manual huérfana | ⚠️ Todavía débil | Las páginas importan `cms-cache`, pero la invalidación por tags no está conectada a fetches etiquetados. Ver sección WordPress. |
 
 ---
 
-## Obsoleto / sospechoso
+## 3. WordPress: por qué las fechas tardan más
 
-- [ ] `app/src/server/cms/cms-cache.ts`: wrapper de cache no usado por las páginas; hoy solo se limpia en revalidate. O se usa de verdad o se elimina.
-- [ ] `app/src/pages/HomePage.tsx:13-18`: `toPlainText` muerto; causa lint rojo.
-- [ ] Imágenes no referenciadas: `Community_home.jpg`, `event-workshop.jpg`, `img-about.jpg`, `img-rights.jpg`.
-- [ ] Archivos generados locales (`app/.next/`, `app/dist/`, `app/tsconfig.tsbuildinfo`) existen en disco pero están ignorados. No subir por FTP/manual deploy.
-- [ ] `wordpress-plugin/afghan-support-headless.zip`: confirmar que corresponde al PHP actual antes de subir a Hostinger; si no, regenerar zip.
+**Diagnóstico:** no parece un problema de WordPress devolviendo datos viejos. El REST configurado devuelve fechas actuales. Lo que cambió es la arquitectura de cache: al sacar `headers()` del root layout, el sitio vuelve a comportarse más como estático/ISR. Eso es correcto para producción, pero significa que los cambios de WordPress pueden tardar hasta `revalidate = 3600` segundos si el webhook de revalidación no corre bien.
+
+### Hallazgos técnicos
+
+- [x] Las páginas de home/eventos tienen `export const revalidate = 3600`.
+- [x] Existe `/api/revalidate` y llama `revalidatePath()` para rutas principales.
+- [ ] `clearCmsCache()` llama `revalidateTag('events')` y `revalidateTag('metadata')`, pero los `fetch()` a WordPress no tienen `next.tags`; entonces esa parte de la invalidación es prácticamente placebo.
+- [ ] Si WordPress cambia una fecha y el webhook no llama `/api/revalidate` con el secreto correcto, el usuario puede ver cache viejo hasta 1 hora.
+
+### Checklist para cerrar el problema de fechas
+
+- [ ] Confirmar en WordPress/Hostinger que el webhook se dispara al crear/editar/publicar eventos.
+- [ ] Confirmar que el webhook llama `https://<dominio>/api/revalidate` con `WORDPRESS_REVALIDATE_SECRET` correcto.
+- [ ] Probar manualmente el endpoint con secreto válido después de cambiar una fecha.
+- [ ] Etiquetar los fetches de WordPress con `next: { tags: [...] }` y usar `revalidateTag(tag, { expire: 0 })` en el webhook, o eliminar tags y depender solo de `revalidatePath()`.
+- [ ] Considerar bajar el TTL de eventos de `3600` a `60` si el cliente necesita ver cambios casi inmediatos sin depender tanto del webhook.
+
+**Recomendación de arquitectura:** webhook + tags reales. Si el cliente edita fechas seguido, `3600` está bien solo si el webhook funciona perfecto; si no, es demasiado lento para operación diaria.
 
 ---
 
-## Checklist manual de despliegue
+## 4. P1 que siguen importando
+
+- [ ] **Allowlist para `event.ctaUrl`.** Hoy `EventDetail.tsx` renderiza la URL de WordPress como link externo. No es XSS, pero sí riesgo de confianza/phishing si un editor o plugin mete una URL no aprobada.
+- [ ] **Doble fetch posible en metadata + page.** Next memoiza algunos fetches iguales durante render, pero conviene revisar event detail y metadata para no duplicar llamadas innecesarias.
+- [ ] **Videos pesados.** Hay assets locales grandes; falta QA de performance móvil real/Lighthouse.
+- [ ] **CSP con `'unsafe-inline'`.** Puede ser aceptable para este release si queda documentado, pero no es el ideal de seguridad.
+- [ ] **Fallback de eventos.** Si WordPress cae, el sitio puede quedar sin eventos en vez de mostrar contenido estático aprobado o un mensaje operacional claro.
+- [ ] **Aprobaciones manuales.** Falta cierre formal de traducciones Dari/Uzbek, contenido legal, derechos de imagen/video y proveedores Resend/Upstash.
+
+---
+
+## 5. Comparación contra `Website_Layout_Afghan_Immigration.md`
+
+| Sección acordada | Estado | Brecha real |
+|---|---:|---|
+| Header con logo, menú, idiomas, CTA | ✅/⚠️ | Implementado; falta QA final móvil/RTL. |
+| Home hero con bienvenida, subtexto y CTA | ✅/⚠️ | Implementado con dirección visual propia; confirmar que CTA “Get Help Now” sea suficientemente visible. |
+| Quick access: Immigration/Rights/Resources/Events | ✅ | Cumple. |
+| About snapshot | ✅ | Cumple. |
+| Announcements/events preview | ⚠️ | Funciona, pero depende de cerrar cache/revalidación WordPress. |
+| Immigration Help | ✅ | Cumple base. |
+| Know Your Rights + downloads/videos | ✅/⚠️ | Cumple técnico; falta sign-off legal y QA de archivos aprobados. |
+| Community Resources | ✅ | Cumple base. |
+| Events calendar/list | ✅/⚠️ | Cumple; registro interno ahora está aprobado en PRD, pero la cache de fechas sigue pendiente. |
+| Contact page | ✅/⚠️ | Cumple técnico; falta cierre de proveedor/privacidad. |
+| Stories / Community Impact | ✅/⚠️ | Cumple si assets están aprobados; falta QA performance/autorización. |
+
+---
+
+## 6. Checklist manual de deploy
 
 ### Repo / release
 
-- [ ] Dejar `git status` limpio o con un commit/release branch claro.
-- [ ] Asegurar que archivos nuevos críticos estén trackeados si se van a desplegar.
+- [ ] Dejar `git status` limpio con este documento committeado o descartado.
 - [ ] Confirmar que no se suben `.env.local`, `.next/`, `dist/`, `node_modules/`, `*.tsbuildinfo`.
-- [ ] Correr y dejar verdes: `pnpm lint`, `pnpm exec tsc --noEmit --incremental false`, `pnpm test`, `pnpm audit --prod --audit-level moderate`.
-- [ ] No correr build local salvo override explícito del maintainer; Vercel hará build en deploy.
+- [ ] Verificar otra vez antes del release: `pnpm lint`, `pnpm exec tsc --noEmit --incremental false`, `pnpm test`, `pnpm audit --prod --audit-level moderate`.
+- [ ] No correr build local salvo override explícito; el hosting debe correrlo.
 
 ### Vercel / hosting Next.js
 
@@ -167,12 +104,12 @@ Eso es buena arquitectura de base. PERO base no es producción. Producción es d
 - [ ] Install command: `pnpm install --frozen-lockfile`.
 - [ ] Build command en hosting: `pnpm build`.
 - [ ] Framework preset: Next.js.
-- [ ] Node version compatible con Next 16/React 19.
-- [ ] Configurar dominio final y redirección canónica (`www` → apex o apex → `www`, uno solo).
+- [ ] Node version compatible con Next 16 / React 19.
+- [ ] Dominio canónico definido: apex o `www`, no ambos compitiendo.
 - [ ] HTTPS activo.
-- [ ] Revisar headers en producción: CSP, `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`.
+- [ ] Revisar headers reales en producción: CSP, `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`.
 
-### Variables de entorno en producción
+### Variables de entorno producción
 
 - [ ] `NEXT_PUBLIC_SITE_URL=https://<dominio-final>`.
 - [ ] `WORDPRESS_API_BASE_URL=https://<cms-domain>/wp-json/wp/v2`.
@@ -183,57 +120,46 @@ Eso es buena arquitectura de base. PERO base no es producción. Producción es d
 - [ ] `CONTACT_TO_EMAIL=<inbox aprobada>`.
 - [ ] `UPSTASH_REDIS_REST_URL=<production redis>`.
 - [ ] `UPSTASH_REDIS_REST_TOKEN=<production token>`.
-- [ ] Si se corrige PII hashing: `RATE_LIMIT_HASH_SECRET=<secreto largo random>`.
-
-### DNS / email
-
-- [ ] DNS del sitio apuntando a Vercel según proveedor: CNAME/ALIAS/A record según corresponda.
-- [ ] DNS de Resend configurado: SPF, DKIM y DMARC.
-- [ ] Sender domain verificado en Resend.
-- [ ] Probar envío real a `CONTACT_TO_EMAIL` desde producción.
-- [ ] Rotar claves usadas durante desarrollo.
+- [ ] `RATE_LIMIT_HASH_SECRET=<secreto largo random>`.
 
 ### WordPress / Hostinger
 
-- [ ] Instalar/actualizar plugin `afghan-support-headless` con zip generado desde el PHP actual.
-- [ ] Activar plugin y guardar permalinks.
-- [ ] Crear/verificar eventos en EN/Dari/Uzbek o definir fallback inglés aprobado.
-- [ ] Crear/verificar metadata SEO por ruta e idioma.
-- [ ] Subir media aprobada para eventos/OG.
-- [ ] Probar REST público: `/wp-json/wp/v2/events?lang=en` y `/site-metadata?route_key=home&lang=en`.
-- [ ] Configurar webhook WordPress → `https://<site>/api/revalidate` con `WORDPRESS_REVALIDATE_SECRET`.
-- [ ] Probar revalidation con secreto válido e inválido.
-- [ ] Proteger `/wp-admin`: contraseñas fuertes, 2FA si está disponible, usuarios mínimos.
-- [ ] Noindex para el subdominio CMS si no debe aparecer públicamente.
+- [ ] Instalar/actualizar plugin `afghan-support-headless` generado desde el PHP actual.
+- [ ] Guardar permalinks después de activar/actualizar plugin.
+- [ ] Probar REST público: `/wp-json/wp/v2/events?lang=en` y metadata por idioma/ruta.
+- [ ] Configurar webhook WordPress → `/api/revalidate` con secreto correcto.
+- [ ] Probar edición de fecha en WordPress y verificar cuánto tarda en `/events` producción.
+- [ ] Proteger `/wp-admin`: usuarios mínimos, password fuerte, 2FA si está disponible.
+- [ ] Noindex para CMS si no debe indexarse públicamente.
 
-### Privacidad / legal
+### Privacidad / legal / contenido
 
-- [ ] Aprobar Resend como procesador de datos y documentar retención.
-- [ ] Aprobar Upstash como procesador de datos o desactivar cualquier analytics/retención incompatible.
-- [ ] Confirmar que no se persiste PII en DB, localStorage, analytics, logs, WordPress o archivos estáticos.
+- [ ] Aprobar Resend como procesador de datos.
+- [ ] Aprobar Upstash como procesador de datos o documentar retención compatible con no PII.
+- [ ] Confirmar que no se persiste PII en DB, localStorage, analytics, logs o WordPress.
 - [ ] Revisar contenido legal/rights con reviewer calificado.
 - [ ] Revisar traducciones Dari/Uzbek con hablantes fluidos/nativos.
-- [ ] Confirmar autorizaciones de uso para imágenes/videos/testimonios.
+- [ ] Confirmar autorizaciones de imágenes, videos y testimonios.
 - [ ] Confirmar que chatbot/rights no generan consejo legal dinámico.
 
 ### QA final
 
 - [ ] Navegación completa EN.
-- [ ] Navegación completa Dari, con RTL desde primer render.
+- [ ] Navegación completa Dari con RTL desde primer render.
 - [ ] Navegación completa Uzbek.
-- [ ] Contact form: éxito, validación, rate limit, honeypot, error Resend.
-- [ ] Eventos: list view, calendar view, detalle, CTA/registro aprobado.
+- [ ] Contact form: éxito, validación, rate limit, honeypot y error Resend.
+- [ ] Event registration modal: éxito, validación, rate limit, honeypot y error Resend.
+- [ ] Eventos: list view, calendar view, detalle, CTA externo y modal interno aprobado.
 - [ ] Rights PDFs: EN/Dari/Uzbek abren/descargan.
 - [ ] Chatbot: respuestas determinísticas, links internos localizados, PDF/teléfono/WhatsApp.
 - [ ] Keyboard-only nav: header, main, forms, chatbot, modals, footer.
-- [ ] Lighthouse: performance/accessibility/SEO según PRD.
+- [ ] Lighthouse/performance/accessibility/SEO según PRD.
 - [ ] Sitemap y robots usan dominio final.
 
 ---
 
-## Referencias técnicas usadas para esta auditoría
+## 7. Referencias técnicas
 
-- Next.js `headers()` es Dynamic API y opta a dynamic rendering: https://nextjs.org/docs/app/api-reference/functions/headers
-- Next.js `revalidatePath` requiere `type` para rutas dinámicas: https://nextjs.org/docs/app/api-reference/functions/revalidatePath
-- Next.js Proxy reemplaza Middleware desde Next 16: https://nextjs.org/docs/app/getting-started/proxy
-- Next.js Image Optimization: https://nextjs.org/docs/app/building-your-application/optimizing/images
+- Next.js `fetch`: `next.revalidate` y `next.tags` definen cache y tags de datos.
+- Next.js `revalidateTag`: los tags deben existir primero en `fetch(..., { next: { tags } })`; para webhooks con expiración inmediata se puede usar `{ expire: 0 }`.
+- Next.js `revalidatePath`: en Route Handlers marca la ruta para regenerarse en la próxima visita; en rutas dinámicas requiere el parámetro `type`.
