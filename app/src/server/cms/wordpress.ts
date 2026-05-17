@@ -55,7 +55,7 @@ async function fetchFromWP(
 
 export async function getEvents(lang: LangCode): Promise<EventContent[]> {
   const result = await fetchFromWP(
-    `/events?_embed&per_page=100&orderby=meta_value&meta_key=_asp_event_start_date&order=asc&lang=${getLanguageParam(lang)}`
+    `/events?_embed&per_page=100&orderby=date&order=desc&lang=${getLanguageParam(lang)}`
   )
 
   if (!result.ok) {
@@ -69,7 +69,19 @@ export async function getEvents(lang: LangCode): Promise<EventContent[]> {
     return []
   }
 
-  return parseResult.data.map((wpEvent) => mapWPEventToDomain(wpEvent, lang))
+  const events = parseResult.data.map((wpEvent) => mapWPEventToDomain(wpEvent, lang))
+
+  // Sort by startDate ascending (closest upcoming first, past at end)
+  events.sort((a, b) => {
+    const dateA = new Date(a.startDate).getTime()
+    const dateB = new Date(b.startDate).getTime()
+    if (isNaN(dateA) && isNaN(dateB)) return 0
+    if (isNaN(dateA)) return 1
+    if (isNaN(dateB)) return -1
+    return dateA - dateB
+  })
+
+  return events
 }
 
 export async function getEventBySlug(
