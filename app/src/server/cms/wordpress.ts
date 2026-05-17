@@ -55,7 +55,7 @@ async function fetchFromWP(
 
 export async function getEvents(lang: LangCode): Promise<EventContent[]> {
   const result = await fetchFromWP(
-    `/events?_embed&per_page=100&orderby=date&order=desc&lang=${getLanguageParam(lang)}`
+    `/events?_embed&per_page=100&orderby=meta_value&meta_key=_asp_event_start_date&order=asc&lang=${getLanguageParam(lang)}`
   )
 
   if (!result.ok) {

@@ -57,7 +57,14 @@
     "pauseClients": "Videoni to'xtatish",
     "community": {
       "title": "Jamoat rahbarlari gapiradi",
-      "desc": "Feniksda o'z huquqlaringiz va resurslaringiz haqida afg'on jamoat rahbarlaridan eshitib oling."
+      "speaker1": {
+        "name": "Dawood Peshtaz",
+        "role": "Ish yurituvchi va aloqa koordinatori"
+      },
+      "speaker2": {
+        "name": "Amir-e-Saheb",
+        "role": "Immigratsiya xizmati xodimi"
+      }
     },
     "clients": {
       "title": "Mijozlar tajribasi",

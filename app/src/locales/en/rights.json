@@ -57,7 +57,14 @@
     "pauseClients": "Pause video",
     "community": {
       "title": "Community Leaders Speak",
-      "desc": "Hear from Afghan community leaders about your rights and resources in Phoenix."
+      "speaker1": {
+        "name": "Dawood Peshtaz",
+        "role": "Caseworker & Outreach Coordinator"
+      },
+      "speaker2": {
+        "name": "Amir-e-Saheb",
+        "role": "Immigration Services Colleague"
+      }
     },
     "clients": {
       "title": "Client Experiences",

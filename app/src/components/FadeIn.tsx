@@ -19,12 +19,44 @@ export function FadeIn({
   threshold = 0.1,
   duration = 800,
 }: FadeInProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  // Progressive enhancement: content must be readable even if mobile Safari
+  // fails hydration/IntersectionObserver. Animations are decoration, not layout.
+  const [isVisible, setIsVisible] = useState(true)
+  const [canAnimate, setCanAnimate] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const node = ref.current
     if (!node) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const touchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches
+    const smallViewport = window.matchMedia('(max-width: 767px)').matches
+
+    if (
+      prefersReducedMotion ||
+      touchDevice ||
+      smallViewport ||
+      typeof IntersectionObserver === 'undefined'
+    ) {
+      return
+    }
+
+    const rect = node.getBoundingClientRect()
+    const alreadyInView = rect.top < window.innerHeight && rect.bottom > 0
+
+    if (alreadyInView) {
+      return
+    }
+
+    const animationFrame = requestAnimationFrame(() => {
+      setCanAnimate(true)
+      setIsVisible(false)
+    })
+
+    // Safety timeout: force visibility if IO never fires.
+    // Handles old Android WebViews, slow JS init, or IO edge cases.
+    const fallbackTimer = setTimeout(() => setIsVisible(true), 2000)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,14 +64,19 @@ export function FadeIn({
           if (entry.isIntersecting) {
             setIsVisible(true)
             observer.unobserve(node)
+            clearTimeout(fallbackTimer)
           }
         }
       },
-      { threshold, rootMargin: '0px 0px -40px 0px' }
+      { threshold, rootMargin: '0px 0px 80px 0px' }
     )
 
     observer.observe(node)
-    return () => observer.unobserve(node)
+    return () => {
+      cancelAnimationFrame(animationFrame)
+      observer.unobserve(node)
+      clearTimeout(fallbackTimer)
+    }
   }, [threshold])
 
   return (
@@ -48,10 +85,13 @@ export function FadeIn({
       className={`${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible
+        transform: isVisible || !canAnimate
           ? 'translateY(0) translateX(0)'
           : `translateY(${direction === 'down' ? '-8px' : direction === 'up' ? '8px' : '0px'}) translateX(${direction === 'right' ? '-8px' : direction === 'left' ? '8px' : '0px'})`,
-        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
+        transition: canAnimate
+          ? `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`
+          : 'none',
+        willChange: canAnimate && !isVisible ? 'opacity, transform' : 'auto',
       }}
     >
       {children}

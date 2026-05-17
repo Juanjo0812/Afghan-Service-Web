@@ -46,92 +46,136 @@ export default function ResourcesPage() {
       <section className="section-padding bg-cream" aria-labelledby="resources-heading">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {/* English classes (Featured) */}
-            <FadeIn className="md:col-span-2 lg:col-span-2">
+            {/* Health Clinics (Featured) */}
+            <FadeIn className="col-span-1 md:col-span-2 lg:col-span-3">
               <div className="bg-white border border-amber/40 rounded-lg overflow-hidden flex flex-col md:flex-row transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover">
-                <div className="w-full md:w-2/5 h-64 md:h-auto bg-warm-sand/20 relative" />
+                <div className="w-full md:w-2/5 h-64 md:h-auto relative overflow-hidden">
+                  <img src="/images/Clinic.png" alt="Health clinic consultation" className="absolute inset-0 w-full h-full object-cover" />
+                </div>
                 <div className="p-6 md:p-8 w-full md:w-3/5 flex flex-col">
                   <div className="flex items-center gap-2 mb-3">
-                    <BookOpen className="w-5 h-5 text-amber" />
-                    <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.english.tag')}</span>
+                    <Stethoscope className="w-5 h-5 text-amber" />
+                    <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.health.tag')}</span>
                   </div>
-                  <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">{t('categories.english.title')}</h2>
+                  <h2 className="font-display text-2xl md:text-3xl text-forest mb-3">{t('categories.health.title')}</h2>
                   <p className="text-forest-light mb-6 flex-grow">
-                    {t('categories.english.desc')}
+                    {t('categories.health.desc')}
                   </p>
                   <div className="space-y-3 mb-8">
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">{t('categories.english.item1')}</span>
+                      <span className="text-sm">{t('categories.health.item1')}</span>
                     </div>
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">{t('categories.english.item2')}</span>
+                      <span className="text-sm">{t('categories.health.item2')}</span>
                     </div>
                     <div className="flex items-center gap-3 text-forest-light">
                       <Check className="w-5 h-5 text-forest flex-shrink-0" />
-                      <span className="text-sm">{t('categories.english.item3')}</span>
+                      <span className="text-sm">{t('categories.health.item3')}</span>
                     </div>
                   </div>
-                  <Link href={localizePath('/contact', lang)} className="btn-primary w-full md:w-auto mt-auto">
-                    {t('getHelp')}
+                  <Link href={localizePath('/contact', lang)} className="btn-primary w-full mt-auto text-center">
+                    {t('contactMoreInfo')}
                   </Link>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Mental health & wellness */}
+            {/* English Classes */}
             <FadeIn delay={150} duration={800} className="h-full">
+              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
+                <div className="flex items-center gap-2 mb-3">
+                  <BookOpen className="w-5 h-5 text-amber" />
+                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.english.tag')}</span>
+                </div>
+                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.english.title')}</h3>
+                <p className="text-forest-light mb-4">
+                  {t('categories.english.desc')}
+                </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.english.item1')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.english.item2')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.english.item3')}</span>
+                  </div>
+                </div>
+                <div className="mt-auto pt-4 border-t border-warm-sand/50">
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold underline underline-offset-4 decoration-1 hover:text-amber transition-colors flex items-center gap-2">
+                    {t('contactMoreInfo')} <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Mental Health & Wellness */}
+            <FadeIn delay={250} duration={800} className="h-full">
               <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
                 <div className="flex items-center gap-2 mb-3">
                   <Heart className="w-5 h-5 text-amber" />
                   <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.mental.tag')}</span>
                 </div>
                 <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.mental.title')}</h3>
-                <p className="text-forest-light mb-6 flex-grow">
+                <p className="text-forest-light mb-4">
                   {t('categories.mental.desc')}
                 </p>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.mental.item1')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.mental.item2')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.mental.item3')}</span>
+                  </div>
+                </div>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold underline underline-offset-4 decoration-1 hover:text-amber transition-colors flex items-center gap-2">
+                    {t('contactMoreInfo')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Food banks */}
-            <FadeIn delay={250} duration={800} className="h-full">
+            {/* Food Banks */}
+            <FadeIn delay={350} duration={800} className="h-full">
               <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
                 <div className="flex items-center gap-2 mb-3">
                   <Utensils className="w-5 h-5 text-amber" />
                   <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.food.tag')}</span>
                 </div>
                 <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.food.title')}</h3>
-                <p className="text-forest-light mb-6 flex-grow">
+                <p className="text-forest-light mb-4">
                   {t('categories.food.desc')}
                 </p>
-                <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
-                  </Link>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.food.item1')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.food.item2')}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-forest-light">
+                    <Check className="w-4 h-4 text-forest flex-shrink-0" />
+                    <span className="text-sm">{t('categories.food.item3')}</span>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
-
-            {/* Health clinics */}
-            <FadeIn delay={350} duration={800} className="h-full">
-              <div className="bg-white border border-amber/40 rounded-lg p-6 md:p-8 flex flex-col transition-all hover:bg-cream-dark shadow-sm hover:shadow-card-hover h-full">
-                <div className="flex items-center gap-2 mb-3">
-                  <Stethoscope className="w-5 h-5 text-amber" />
-                  <span className="text-xs font-semibold text-amber uppercase tracking-wider">{t('categories.health.tag')}</span>
-                </div>
-                <h3 className="font-display text-xl md:text-2xl text-forest mb-3">{t('categories.health.title')}</h3>
-                <p className="text-forest-light mb-6 flex-grow">
-                  {t('categories.health.desc')}
-                </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
-                    {t('contactUs')} <ArrowRight className="w-4 h-4" />
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold underline underline-offset-4 decoration-1 hover:text-amber transition-colors flex items-center gap-2">
+                    {t('contactMoreInfo')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>

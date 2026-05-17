@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn } from '@/components/FadeIn'
@@ -90,21 +89,8 @@ const categoryColors: Record<EventCategory | 'all', string> = {
 
 function EventCard({ event }: { event: CalendarEvent }) {
   const { t } = useTranslation('events')
-  const router = useRouter()
   const { lang } = useLanguage()
   const colorClass = categoryColors[event.category] || 'bg-amber'
-
-  const handleCtaClick = () => {
-    if (event.ctaUrl) {
-      window.open(event.ctaUrl, '_blank', 'noopener,noreferrer')
-    } else {
-      router.push(localizePath('/contact', lang))
-    }
-  }
-
-  const handleDetailsClick = () => {
-    router.push(localizePath(`/events/${event.slug}`, lang))
-  }
 
   return (
     <div className="bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-sm hover:bg-cream-dark hover:shadow-card-hover transition-all">
@@ -122,47 +108,30 @@ function EventCard({ event }: { event: CalendarEvent }) {
       </div>
       <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between">
         <div>
-          <div className="flex flex-wrap items-center gap-2 text-forest-light mb-3 text-sm">
-            <div className="flex items-center gap-1.5">
-              <CalendarIcon className="w-4 h-4 text-amber" />
+          <div className="flex flex-wrap items-center gap-2 text-forest-light mb-4 text-base md:text-lg">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-5 h-5 text-amber" />
               <span>{event.date}</span>
             </div>
-            <span className="hidden md:inline mx-1">•</span>
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-amber" />
+            <span className="hidden md:inline mx-1">&bull;</span>
+            <div className="flex items-center gap-2">
+              <Clock className="w-5 h-5 text-amber" />
               <span>{event.time}</span>
             </div>
           </div>
-          <h2 className="font-display text-2xl md:text-3xl text-forest mb-4">{event.title}</h2>
-          <p className="text-forest-light mb-6 line-clamp-3">
-            {event.description}
-          </p>
-          <div className="flex items-start gap-2 text-forest-light text-sm mb-6">
-            <MapPin className="w-4 h-4 text-amber flex-shrink-0 mt-0.5" />
+          <h2 className="font-display text-3xl md:text-4xl text-forest mb-5">{event.title}</h2>
+          <div className="flex items-start gap-2 text-forest-light text-base md:text-lg">
+            <MapPin className="w-5 h-5 text-amber flex-shrink-0 mt-1" />
             <span>{event.location}</span>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-4 mt-auto">
-          {event.ctaType === 'primary' && (
-            <button onClick={handleCtaClick} className="btn-primary w-full md:w-auto">
-              {event.cta}
-            </button>
-          )}
-          {event.ctaType === 'secondary' && (
-            <button onClick={handleCtaClick} className="btn-secondary w-full md:w-auto">
-              {event.cta}
-            </button>
-          )}
-          {event.ctaType === 'text' && (
-            <span className="text-forest-light text-sm">
-              {t('contactUsInfo')}
-            </span>
-          )}
-          {event.ctaType !== 'text' && (
-            <button onClick={handleDetailsClick} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
-              {t('details')}
-            </button>
-          )}
+        <div className="mt-8">
+          <a
+            href={localizePath(`/events/${event.slug}`, lang)}
+            className="text-forest text-lg font-medium hover:text-amber transition-colors underline underline-offset-4"
+          >
+            {t('detailsAndRegister')}
+          </a>
         </div>
       </div>
     </div>

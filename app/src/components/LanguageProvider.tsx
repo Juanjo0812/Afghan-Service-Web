@@ -35,7 +35,10 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
       i18n.changeLanguage(detected)
     }
     if (detected !== lang) {
-      setLang(detected)
+      // Defer state update to avoid react-hooks/set-state-in-effect.
+      // Language is derived from URL; this effect syncs React state with
+      // the external navigation system (Next.js router/pathname).
+      queueMicrotask(() => setLang(detected))
     }
   }, [detectLangFromPath, lang])
 
@@ -44,7 +47,12 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
     const htmlLang = getHtmlLang(lang)
     document.documentElement.lang = htmlLang
     document.documentElement.dir = dir
-    localStorage.setItem('i18nextLng', lang)
+    try {
+      localStorage.setItem('i18nextLng', lang)
+    } catch {
+      // Safari private mode / locked-down WebViews can reject storage writes.
+      // Language still works from the URL, so storage must not break hydration.
+    }
   }, [lang])
 
   useEffect(() => {

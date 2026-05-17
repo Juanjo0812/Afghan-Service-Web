@@ -36,7 +36,9 @@ export default function Footer() {
           {/* Organization Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="mb-4">
-              <img src="/images/Catholic.png" alt="Catholic Charities Logo" className="h-12 w-auto brightness-0 invert" />
+              <a href="https://www.catholiccharitiesaz.org/" target="_blank" rel="noopener noreferrer" className="inline-block focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 focus:ring-offset-forest-dark rounded-md">
+                <img src="/images/Catholic.png" alt="Catholic Charities Logo" className="h-12 w-auto brightness-0 invert" />
+              </a>
             </div>
             <p className="text-cream/70 text-sm mb-4">
               {t('footer.organization')}

@@ -4,6 +4,7 @@
   "description": "Essential services and programs to support you and your family in Phoenix.",
   "getHelp": "Get Help",
   "contactUs": "Contact Us",
+  "contactMoreInfo": "Contact us for more information",
   "categories": {
     "english": {
       "tag": "Education",
@@ -16,17 +17,26 @@
     "mental": {
       "tag": "Wellness",
       "title": "Mental Health & Wellness",
-      "desc": "Counseling, support groups, and trauma-informed care for individuals and families."
+      "desc": "Counseling, support groups, and trauma-informed care for individuals and families.",
+      "item1": "Individual and family counseling",
+      "item2": "Trauma-informed support groups",
+      "item3": "Crisis intervention referrals"
     },
     "food": {
       "tag": "Basic Needs",
       "title": "Food Banks",
-      "desc": "Food bank locations, SNAP enrollment assistance, and halal food resources."
+      "desc": "Food bank locations, SNAP enrollment assistance, and halal food resources.",
+      "item1": "Local food bank locations",
+      "item2": "SNAP enrollment assistance",
+      "item3": "Halal food resources"
     },
     "health": {
       "tag": "Healthcare",
       "title": "Health Clinics",
-      "desc": "Free and low-cost clinics, AHCCCS enrollment assistance, and dental care referrals."
+      "desc": "Free and low-cost clinics, AHCCCS enrollment assistance, and dental care referrals.",
+      "item1": "Free and low-cost clinic referrals",
+      "item2": "AHCCCS enrollment assistance",
+      "item3": "Dental care referrals"
     }
   }
 }

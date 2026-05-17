@@ -91,8 +91,8 @@ export default function Header() {
                   <Link
                     key={item.path}
                     href={item.path}
-                    className={`py-2 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 rounded-md whitespace-nowrap ${
-                      scrolled ? 'px-3 xl:px-4 text-[14px] xl:text-[15px]' : 'px-2 xl:px-3 text-[16px] xl:text-[17px]'
+                    className={`py-2 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 rounded-md whitespace-normal text-center leading-tight flex items-center justify-center h-full max-w-[120px] xl:max-w-none ${
+                      scrolled ? 'px-2 xl:px-4 text-[13px] xl:text-[15px]' : 'px-2 xl:px-3 text-[14px] xl:text-[16px]'
                     } ${
                       isActive ? activeStyle : inactiveStyle
                     }`}
@@ -151,13 +151,7 @@ export default function Header() {
             id="mobile-menu"
             className="absolute right-0 top-0 h-full w-full max-w-sm bg-forest-dark p-6 pt-20 flex flex-col gap-2 shadow-dropdown overflow-y-auto"
           >
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="absolute top-5 right-5 p-2 text-cream hover:text-amber transition-colors focus:outline-none focus:ring-2 focus:ring-amber rounded-md"
-              aria-label={t('nav.closeMenu')}
-            >
-              <X className="w-6 h-6" />
-            </button>
+
 
             <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
               <div className="mb-4">

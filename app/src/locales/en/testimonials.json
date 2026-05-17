@@ -24,14 +24,27 @@
   },
   "bottomCta": {
     "heading": "Be Part of Our Story",
-    "text": "Whether you need help or want to support our community, we'd love to hear from you.",
+    "text": "Whether you need help or want to support our community, in <1>Catholic Charities</1> we'd love to hear from you.",
     "primary": "Get Help Now",
     "secondary": "Contact Us"
   },
   "stories": {
-    "title": "Community Story {{number}}",
-    "quote": "Afghan community member shares their experience.",
-    "name": "Community Member",
-    "context": "Afghan Support Phoenix — Community Program"
+    "context": "Afghan Community Member",
+    "story1": {
+      "quote": "I have had a very good experience with Catholic Charities.",
+      "name": "Bahram Jailani"
+    },
+    "story2": {
+      "quote": "They helped me a lot with my children's problems.",
+      "name": "Sulaiman"
+    },
+    "story3": {
+      "quote": "I am very happy with the work they do in this office.",
+      "name": "Mushtaba Patang"
+    },
+    "story4": {
+      "quote": "They helped us with our work permit, Medicaid, and Social Security card.",
+      "name": "Faizullah Safi"
+    }
   }
 }

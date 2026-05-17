@@ -99,7 +99,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 | Rights downloads | PDF cards in English, Dari, and Uzbek | P0 | Required before launch |
 | Videos section | Community leaders and client experience videos | P1 | Needed if assets are provided |
 | Community resources | English classes, mental health, food banks, health clinics | P0 | Required |
-| Events calendar | Simple upcoming events list; no heavy booking system | P1 | Required |
+| Events calendar | Simple upcoming events list with internal registration modal for events without external URL; no heavy booking system | P1 | Implemented |
 | Contact page | Name, phone, question/message form + quick contact links | P0 | Required |
 | WhatsApp/phone/email/maps | Direct links and address/map | P0 | Required |
 | Stories/community impact | Simple testimonial/video grid or cards | P1 | Required if assets are provided |
@@ -157,6 +157,9 @@ may use lower-end devices, and may be under emotional/legal stress.
 - Event data sourced from WordPress Headless (`asp_event` CPT), fetched server-side with ISR.
 - No booking engine in MVP.
 - If registration is needed, link to approved external registration/contact.
+- Events without an approved external registration URL (`ctaUrl`) display an internal
+  registration modal. This sends name and phone/email via Resend to the contact inbox.
+  Client approved this feature (2026-05-17).
 
 ### 6.6 Contact
 

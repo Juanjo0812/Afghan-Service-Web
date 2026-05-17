@@ -119,21 +119,21 @@ export default function ImmigrationPage() {
           <div className="container-main">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Languages */}
-            <div>
-              <h2 id="contact-heading" className="font-display text-heading-2 text-forest mb-5">
+            <div className="flex flex-col justify-center lg:pr-8">
+              <h2 id="contact-heading" className="font-display text-heading-1 text-forest mb-6">
                 {t('languagesHeading')}
               </h2>
-              <div className="flex flex-wrap gap-3 mb-5">
+              <div className="flex flex-wrap gap-4 mb-8">
                 {languages.map((lang) => (
                   <span
                     key={lang}
-                    className="px-4 py-2 bg-white text-forest font-medium text-sm rounded-md border border-warm-sand/60"
+                    className="px-6 py-3 bg-white text-forest font-bold text-base md:text-lg rounded-lg border-2 border-amber/40 shadow-sm"
                   >
                     {lang}
                   </span>
                 ))}
               </div>
-              <p className="text-body text-forest-light leading-relaxed">
+              <p className="text-body-lg md:text-xl text-forest-light leading-relaxed">
                 {t('languagesSubtext')}
               </p>
             </div>
