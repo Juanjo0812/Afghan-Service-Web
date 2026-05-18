@@ -388,10 +388,11 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 ## 16. Documentation Map
 
 | Document | Role |
-|---|---|
+|---|---|---|
 | `Website_Layout_Afghan_Immigration.md` | Original client input |
 | `PRD_Afghan_Support_Realistic.md` | Active source of truth |
 | `modification_plan.md` | Completed — React/Vite → Next.js migration (historical reference) |
-| `implementation_plan.md` | Completed — Packets A-F implemented; Packet G verification in progress |
+| `implementation_plan.md` | Completed — Packets A-F implemented |
+| `production_readiness_fix_plan.md` | Completed — P0/P1 hardening audit and fixes applied |
 | `archive/PRD_Afghan_Support_Part1.md` | Historical reference only |
 | `archive/PRD_Afghan_Support_Part2.md` | Historical reference only |
