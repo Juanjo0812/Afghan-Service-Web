@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { NextResponse } from 'next/server'
+import { hashPhone } from '@/lib/fingerprint'
 
 // In-memory fallback rate limiting
 interface RateLimitEntry {
@@ -151,7 +152,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   // Fingerprint-based rate limiting (phone)
   if (phone) {
-    const phoneKey = `phone:${phone.trim().replace(/\s+/g, '')}`
+    const phoneKey = `phone:${await hashPhone(phone)}`
     let phoneLimitResult: { success: boolean; retryAfterSeconds?: number }
     if (useUpstash && phoneRatelimit) {
       const result = await phoneRatelimit.limit(phoneKey)

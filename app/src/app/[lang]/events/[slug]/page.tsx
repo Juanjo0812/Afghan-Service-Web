@@ -3,6 +3,7 @@ import { generateEventDetailMetadata } from '@/server/seo/metadata'
 import { notFound } from 'next/navigation'
 import { localizePath } from '@/lib/navigation'
 import type { LangCode } from '@/domain/language'
+import { assertValidLang } from '@/lib/routeGuard'
 
 export function generateStaticParams() {
   return [{ lang: 'dari' }, { lang: 'uzbek' }]
@@ -10,6 +11,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params
+  assertValidLang(lang)
   return generateEventDetailMetadata(slug, lang as LangCode)
 }
 
@@ -17,6 +19,7 @@ export const revalidate = 3600
 
 export default async function EventDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params
+  assertValidLang(lang)
   const event = await getEventBySlug(slug, lang as LangCode)
 
   if (!event) {

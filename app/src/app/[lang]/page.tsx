@@ -2,6 +2,7 @@ import { generatePageMetadata } from '@/server/seo/metadata'
 import { getEvents } from '@/server/cms/cms-cache'
 import type { EventContent } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
+import { assertValidLang } from '@/lib/routeGuard'
 import HomePage from '@/pages/HomePage'
 
 export const revalidate = 3600
@@ -12,11 +13,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
+  assertValidLang(lang)
   return generatePageMetadata('home', lang as LangCode)
 }
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
+  assertValidLang(lang)
   let featuredEvent: EventContent | null = null
   try {
     const events = await getEvents(lang as LangCode)
