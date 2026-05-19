@@ -4,6 +4,7 @@
   "description": "Siz va oilangizni Feniksda qo'llab-quvvatlash uchun zarur xizmatlar va dasturlar.",
   "getHelp": "Yordam olish",
   "contactUs": "Biz bilan bog'laning",
+  "contactMoreInfo": "Qo'shimcha ma'lumot uchun biz bilan bog'laning",
   "categories": {
     "english": {
       "tag": "Ta'lim",
@@ -16,17 +17,26 @@
     "mental": {
       "tag": "Salomatlik",
       "title": "Ruhiy salomatlik va xotirjamlik",
-      "desc": "Maslahat, qo'llab-quvvatlash guruhlari va shaxslar va oilalar uchun travmaga mos g'amxor."
+      "desc": "Maslahat, qo'llab-quvvatlash guruhlari va shaxslar va oilalar uchun travmaga mos g'amxor.",
+      "item1": "Shaxsiy va oilaviy maslahat",
+      "item2": "Travmaga mos qo'llab-quvvatlash guruhlari",
+      "item3": "Inqiroz yordami yo'naltirish"
     },
     "food": {
       "tag": "Asosiy ehtiyojlar",
       "title": "Oziq-ovqat banklari",
-      "desc": "Oziq-ovqat banklari joylari, SNAP ro'yxatdan o'tkazish yordami va halol oziq-ovqat resurslari."
+      "desc": "Oziq-ovqat banklari joylari, SNAP ro'yxatdan o'tkazish yordami va halol oziq-ovqat resurslari.",
+      "item1": "Mahalliy oziq-ovqat banklari joylari",
+      "item2": "SNAP ro'yxatdan o'tkazish yordami",
+      "item3": "Halol oziq-ovqat resurslari"
     },
     "health": {
       "tag": "Sog'liqni saqlash",
       "title": "Tibbiy klinikalar",
-      "desc": "Bepul va arzon klinikalar, AHCCCS ro'yxatdan o'tkazish yordami va tish g'amxo'rligi yo'naltirish."
+      "desc": "Bepul va arzon klinikalar, AHCCCS ro'yxatdan o'tkazish yordami va tish g'amxo'rligi yo'naltirish.",
+      "item1": "Bepul va arzon klinikalarga yo'naltirish",
+      "item2": "AHCCCS ro'yxatdan o'tkazish yordami",
+      "item3": "Tish g'amxo'rligi yo'naltirish"
     }
   }
 }

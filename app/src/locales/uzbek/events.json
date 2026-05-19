@@ -17,6 +17,8 @@
   "noEvents": "Bu toifada tadbirlar topilmadi.",
   "contactUsInfo": "Ko'proq ma'lumot uchun biz bilan bog'laning",
   "details": "Tafsilotlar",
+  "detailsAndRegister": "Batafsil va ro'yxatdan o'tish",
+  "register": "Ro'yxatdan o'tish",
   "aria": {
     "previousMonth": "Oldingi oy",
     "nextMonth": "Keyingi oy"
@@ -26,5 +28,29 @@
     "legal": "Huquqiy klinika",
     "cultural": "Madaniy",
     "holiday": "Bayram"
+  },
+  "dateLabel": "Sana",
+  "timeLabel": "Vaqt",
+  "locationLabel": "Joylashuv",
+  "backToEvents": "Tadbirlarga qaytish",
+  "registration": {
+    "modalTitle": "Ushbu tadbirga ro'yxatdan o'tish",
+    "nameLabel": "Ismingiz",
+    "namePlaceholder": "To'liq ismingizni kiriting",
+    "contactQuestion": "Qaysi usulda siz bilan bog'lanishni afzal ko'rasiz?",
+    "phone": "Telefon",
+    "email": "Elektron pochta",
+    "phonePlaceholder": "Telefon raqamingizni kiriting",
+    "emailPlaceholder": "Elektron pochta manzilingizni kiriting",
+    "submit": "Ro'yxatdan o'tish",
+    "sending": "Ro'yxatdan o'tilmoqda...",
+    "successTitle": "Ro'yxatdan o'tdingiz!",
+    "successMessage": "Siz ushbu tadbirga ro'yxatdan o'tdingiz. Iltimos, siz taqdim etgan aloqa usulini kuzatib boring — tez orada siz bilan bog'lanamiz.",
+    "errors": {
+      "name": "Iltimos, ismingizni kiriting",
+      "phone": "Iltimos, to'g'ri telefon raqamini kiriting",
+      "email": "Iltimos, to'g'ri elektron pochta manzilini kiriting"
+    },
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring."
   }
 }

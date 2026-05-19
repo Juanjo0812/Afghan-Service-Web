@@ -30,7 +30,7 @@
     },
     "rights": {
       "label": "Huquqlaringizni biling",
-      "response": "Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy va ingliz tilidagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
+      "response": "Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy, o'zbek va ingliz tillaridagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
       "cta": "Ko'proq o'qish"
     },
     "events": {
@@ -45,7 +45,7 @@
     },
     "speak": {
       "label": "Birorta bilan gaplashish",
-      "response": "Bizning kasbiy xodimlarimiz siz bilan dariy yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
+      "response": "Bizning kasbiy xodimlarimiz siz bilan dariy, o'zbek yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
       "cta": "Aloqa o'rnatish"
     }
   }

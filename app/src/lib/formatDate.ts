@@ -29,27 +29,42 @@ export function formatEventTimeLabel(
   const locale = LOCALE_MAP[lang]
   try {
     const start = new Date(startDate)
-    const startStr = start.toLocaleString(locale, {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    })
+
     if (endDate) {
       const end = new Date(endDate)
-      const endStr = end.toLocaleString(locale, {
+      const sameDay =
+        start.getFullYear() === end.getFullYear() &&
+        start.getMonth() === end.getMonth() &&
+        start.getDate() === end.getDate()
+
+      if (sameDay) {
+        // Same day → show only the time range (e.g. "9:30 AM — 2:30 PM")
+        const timeFmt: Intl.DateTimeFormatOptions = {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        }
+        return `${start.toLocaleTimeString(locale, timeFmt)} — ${end.toLocaleTimeString(locale, timeFmt)}`
+      }
+
+      // Different days → full date+time for both
+      const fullFmt: Intl.DateTimeFormatOptions = {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
-      })
-      return `${startStr} — ${endStr}`
+      }
+      return `${start.toLocaleString(locale, fullFmt)} — ${end.toLocaleString(locale, fullFmt)}`
     }
-    return startStr
+
+    // No end date → show start time only
+    return start.toLocaleTimeString(locale, {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    })
   } catch {
     return startDate
   }

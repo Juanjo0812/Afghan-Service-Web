@@ -16,16 +16,36 @@ These instructions apply to everything under this repository.
 - The public site is for Afghan families in Phoenix, Arizona.
 - Legal and immigration content must be static, curated, and reviewed. Do not generate legal advice dynamically.
 - The chatbot must be deterministic: local JSON knowledge base + keyword/scoring match only. No LLMs, embeddings, or external chatbot APIs.
-- Do not store PII. Contact submissions may be emailed through an approved provider, but the app must not persist form data.
-- Multilingual support target: English, Dari, Uzbek. Dari needs RTL support.
+- Do not store PII. Contact submissions may be emailed through an approved provider, but the app must not persist form data. IP addresses are HMAC-hashed before rate-limit key use. User data is HTML-escaped in email bodies.
+- Multilingual support target: English, Dari, Uzbek. Dari needs RTL support. All 11 locale namespaces populated with translations.
 
 ## Project shape
 
 - App root: `app/`
-- Main app entry: `app/src/app/layout.tsx` + `app/src/app/page.tsx` (Next.js App Router)
+- Main app entry: `app/src/app/layout.tsx` (static English root) + `app/src/app/[lang]/layout.tsx` (dynamic Dari/Uzbek) + `app/src/app/page.tsx` (Next.js App Router)
 - Page views: `app/src/pages/`
-- Static assets: `app/public/images/` and `app/public/videos/`
+- Features: `app/src/features/events/` (EventsClient, EventDetail, EventRegistrationModal)
+- Static assets: `app/public/images/`, `app/public/videos/`, `app/public/PDFs_Rights/`
 - Product docs: `app/docs/PRD_Afghan_Support_Realistic.md` (active PRD)
+
+## Testing
+
+- Test runner: Vitest
+- Test command: `pnpm test`
+- Test files: `app/src/lib/*.test.ts`
+- Coverage: deterministic pure functions (hashPhone, hashIP, escapeHtml, sanitizeHtml, matchKeywords, localizePath)
+- 15 tests across 4 test files
+
+## Verification before deploy
+
+```bash
+pnpm lint                              # ESLint — must exit 0
+pnpm exec tsc --noEmit --incremental false  # TypeScript — must exit 0
+pnpm test                              # Vitest — 15/15 must pass
+pnpm audit --prod --audit-level moderate   # Production deps — must pass
+```
+
+Do NOT run `pnpm run build` locally. Vercel builds on deploy.
 
 ## Implementation guidance for sub-agents
 

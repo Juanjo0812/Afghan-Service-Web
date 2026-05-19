@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 import { Quote, X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
@@ -20,7 +20,7 @@ interface Story {
 
 
 
-function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) => void }) {
+function StoryCard({ story, onClick, isWide, reverse }: { story: Story; onClick: (story: Story) => void; isWide?: boolean; reverse?: boolean }) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
@@ -32,24 +32,26 @@ function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) =
     <button
       onClick={() => onClick(story)}
       onKeyDown={handleKeyDown}
-      className="text-left bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm h-full w-full"
+      className={`text-left bg-white border border-amber/40 rounded-xl overflow-hidden flex transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm w-full h-full ${
+        isWide ? (reverse ? 'flex-col lg:flex-row-reverse' : 'flex-col lg:flex-row') : 'flex-col'
+      }`}
       aria-label={`Play community story video: ${story.name}`}
     >
-      <div className="h-48 relative bg-warm-sand/20 overflow-hidden shrink-0">
+      <div className={`relative bg-warm-sand/20 overflow-hidden shrink-0 ${isWide ? 'h-48 lg:h-auto lg:w-2/5' : 'h-48 w-full'}`}>
         <img
           alt={story.name}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           src={story.image}
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-forest/20 group-hover:bg-transparent transition-colors">
-          <div className="w-14 h-14 bg-forest/90 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:bg-amber transition-all shadow-lg">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
             <Play className="w-6 h-6 text-white fill-current ml-1" />
           </div>
         </div>
       </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <p className="text-body text-forest mb-6 italic flex-grow">"{story.quote}"</p>
-        <div className="mt-auto">
+      <div className={`flex flex-col flex-grow ${isWide ? 'p-6 lg:p-8 justify-center' : 'p-6'}`}>
+        <p className={`text-forest italic ${isWide ? 'text-lg lg:text-xl mb-6' : 'text-body mb-6 flex-grow'}`}>"{story.quote}"</p>
+        <div className={isWide ? 'mt-4' : 'mt-auto'}>
           <div className="font-semibold text-forest">{story.name}</div>
           <div className="text-sm text-forest-light">{story.context}</div>
         </div>
@@ -63,15 +65,44 @@ export default function StoriesPage() {
   const { lang } = useLanguage()
   const [selectedVideo, setSelectedVideo] = useState<Story | null>(null)
 
-  const videoStories: Story[] = Array.from({ length: 5 }, (_, i) => ({
-    id: i + 1,
-    image: '/images/hero-stories.jpg',
-    videoUrl: `/videos/Stories/Story_${i + 1}.mp4`,
-    title: t('stories.title', { number: i + 1 }),
-    quote: t('stories.quote'),
-    name: t('stories.name'),
-    context: t('stories.context'),
-  }))
+  const videoStories: Story[] = [
+    {
+      id: 1,
+      image: '/images/front_2.png',
+      videoUrl: '/videos/Stories/Story_2.mp4',
+      title: t('stories.story2.name'),
+      quote: t('stories.story2.quote'),
+      name: t('stories.story2.name'),
+      context: t('stories.context'),
+    },
+    {
+      id: 2,
+      image: '/images/front_4.png',
+      videoUrl: '/videos/Stories/Story_3.mp4',
+      title: t('stories.story4.name'),
+      quote: t('stories.story4.quote'),
+      name: t('stories.story4.name'),
+      context: t('stories.context'),
+    },
+    {
+      id: 3,
+      image: '/images/front_3.png',
+      videoUrl: '/videos/Stories/Story_4.mp4',
+      title: t('stories.story3.name'),
+      quote: t('stories.story3.quote'),
+      name: t('stories.story3.name'),
+      context: t('stories.context'),
+    },
+    {
+      id: 4,
+      image: '/images/front_1.png',
+      videoUrl: '/videos/Stories/Story_1.mp4',
+      title: t('stories.story1.name'),
+      quote: t('stories.story1.quote'),
+      name: t('stories.story1.name'),
+      context: t('stories.context'),
+    }
+  ]
 
   const handleNextVideo = () => {
     if (!selectedVideo) return
@@ -131,11 +162,15 @@ export default function StoriesPage() {
       <section className="section-padding bg-cream" aria-label="Stories">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {videoStories.map((story, index) => (
-              <FadeIn key={story.id} delay={index * 150} duration={800} className="h-full">
-                <StoryCard story={story} onClick={setSelectedVideo} />
-              </FadeIn>
-            ))}
+            {videoStories.map((story, index) => {
+              const isWide = index === 0 || index === 3;
+              const reverse = index === 3;
+              return (
+                <FadeIn key={story.id} delay={index * 150} duration={800} className={`h-full ${isWide ? 'lg:col-span-2' : 'lg:col-span-1'}`}>
+                  <StoryCard story={story} onClick={setSelectedVideo} isWide={isWide} reverse={reverse} />
+                </FadeIn>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -143,15 +178,23 @@ export default function StoriesPage() {
       {/* Bottom CTA */}
       <section className="section-padding bg-forest text-center" aria-label="Get help">
         <div className="container-main max-w-2xl">
+          <div className="flex justify-center mb-6">
+            <img src="/images/Catholic.png" alt="" aria-hidden="true" className="h-14 w-auto" />
+          </div>
           <h2 className="font-display text-heading-1 md:text-heading-1 text-white mb-4">
             {t('bottomCta.heading')}
           </h2>
-          <p className="text-body-lg text-white/80 mb-8">{t('bottomCta.text')}</p>
+          <p className="text-body-lg text-white/80 mb-8">
+            <Trans
+              i18nKey="bottomCta.text"
+              ns="testimonials"
+              components={{
+                1: <a href="https://www.catholiccharitiesaz.org/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-4 decoration-1 transition-colors" />
+              }}
+            />
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={localizePath('/contact', lang)} className="btn-primary">
-              {t('bottomCta.primary')}
-            </Link>
-            <Link href={localizePath('/contact', lang)} className="btn-white-outline">
+            <Link href={localizePath('/contact', lang)} className="btn-primary text-lg px-10 py-4 inline-flex">
               {t('bottomCta.secondary')}
             </Link>
           </div>
@@ -182,6 +225,7 @@ export default function StoriesPage() {
                   className="absolute inset-0 w-full h-full object-contain"
                   controls
                   autoPlay
+                  playsInline
                 />
               ) : (
                 <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />

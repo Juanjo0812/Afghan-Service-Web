@@ -1,6 +1,5 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
@@ -62,18 +61,20 @@ export const NAMESPACES = [
 
 export type Namespace = (typeof NAMESPACES)[number]
 
+// LanguageDetector removed: it ran during SSR where browser APIs don't
+// exist, producing a different initial language than the server render.
+// This caused a React hydration mismatch on mobile browsers, which
+// silently killed all onClick handlers and IntersectionObserver effects.
+// Language detection is already handled by LanguageProvider via URL path
+// + middleware headers, so the detector was redundant and harmful.
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    lng: 'en',
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     interpolation: { escapeValue: false },
-    detection: {
-      order: ['path', 'localStorage', 'navigator', 'htmlTag'],
-      lookupFromPathIndex: 0,
-      caches: ['localStorage'],
-    },
     ns: NAMESPACES,
     defaultNS: 'common',
     resources: {

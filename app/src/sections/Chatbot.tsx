@@ -249,7 +249,7 @@ export default function Chatbot() {
       {/* Floating Notification Bubble */}
       {!hasInteracted && !open && (
         <div 
-          className="fixed bottom-24 right-7 z-[9999] bg-forest text-white px-4 py-3 rounded-xl shadow-lg"
+          className="fixed bottom-24 right-7 z-30 bg-forest text-white px-4 py-3 rounded-xl shadow-lg"
           style={{
             animation: 'chatFloat 3s ease-in-out infinite'
           }}
@@ -275,7 +275,7 @@ export default function Chatbot() {
       <button
         onClick={() => { setOpen(!open); setHasInteracted(true); }}
         aria-label={open ? t('closeAssistant') : t('openAssistant')}
-        className={`fixed bottom-7 right-7 z-[9999] flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 ${
+        className={`fixed bottom-7 right-7 z-30 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 ${
           open ? 'bg-forest w-14 h-14 rounded-full' : 'bg-amber rounded-full px-5 py-3.5 gap-2'
         }`}
         style={{
@@ -301,7 +301,7 @@ export default function Chatbot() {
             boxShadow: open 
               ? '0 24px 64px rgba(26,37,24,0.18), 0 0 0 1px rgba(26,37,24,0.06)' 
               : '0 4px 16px rgba(26,37,24,0), 0 0 0 1px rgba(26,37,24,0)',
-            zIndex: 9998,
+            zIndex: 30,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',

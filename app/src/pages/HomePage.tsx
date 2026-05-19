@@ -55,6 +55,9 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
       >
         <div className="absolute inset-0 overflow-hidden z-0">
           <div className="sticky top-0 w-full h-[85vh]">
+            {/* TODO: migrate poster and about images to next/image for automatic optimization.
+                next/image requires known width/height; video poster uses string path.
+                Migration path: preload hero with next/image and reference the src in poster. */}
             <video
               autoPlay
               loop

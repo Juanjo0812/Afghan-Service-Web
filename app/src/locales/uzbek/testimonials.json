@@ -24,14 +24,27 @@
   },
   "bottomCta": {
     "heading": "Bizning hikoyamizning bir qismi bo'ling",
-    "text": "Sizga yordam kerak bo'lsa yoki jamoamizni qo'llab-quvvatlashni xohlasangiz, sizdan xabar eshitishni xohlaymiz.",
+    "text": "Sizga yordam kerak bo'lsa yoki jamoamizni qo'llab-quvvatlashni xohlasangiz, <1>Catholic Charities</1> da sizdan xabar eshitishni xohlaymiz.",
     "primary": "Hozir yordam olish",
     "secondary": "Biz bilan bog'laning"
   },
   "stories": {
-    "title": "Jamoat hikoyasi {{number}}",
-    "quote": "Afg'on hamjamiyati a'zosi o'z tajribasini baham ko'ramoqda.",
-    "name": "Jamoat a'zosi",
-    "context": "Afghan Support Phoenix — Jamoat dasturi"
+    "context": "Afg'on hamjamiyati a'zosi",
+    "story1": {
+      "quote": "Men Catholic Charities bilan juda yaxshi tajribaga ega bo'ldim.",
+      "name": "Bahram Jailani"
+    },
+    "story2": {
+      "quote": "Ular bolalarimning muammolari bilan menga juda ko'p yordam berishdi.",
+      "name": "Sulaiman"
+    },
+    "story3": {
+      "quote": "Men ushbu ofisdagi ishlaridan juda mamnunman.",
+      "name": "Mushtaba Patang"
+    },
+    "story4": {
+      "quote": "Ular bizga ish ruxsatnomasi, Medicaid va Ijtimoiy ta'minot kartasini olishda yordam berishdi.",
+      "name": "Faizullah Safi"
+    }
   }
 }

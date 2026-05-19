@@ -17,6 +17,8 @@
   "noEvents": "No events found for this category.",
   "contactUsInfo": "Contact us for more information",
   "details": "Details",
+  "detailsAndRegister": "More details & registration",
+  "register": "Register",
   "aria": {
     "previousMonth": "Previous month",
     "nextMonth": "Next month"
@@ -30,5 +32,25 @@
   "dateLabel": "Date",
   "timeLabel": "Time",
   "locationLabel": "Location",
-  "backToEvents": "Back to Events"
+  "backToEvents": "Back to Events",
+  "registration": {
+    "modalTitle": "Register for This Event",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Enter your full name",
+    "contactQuestion": "How do you prefer to be contacted?",
+    "phone": "Phone",
+    "email": "Email",
+    "phonePlaceholder": "Enter your phone number",
+    "emailPlaceholder": "Enter your email address",
+    "submit": "Register",
+    "sending": "Registering...",
+    "successTitle": "You're Registered!",
+    "successMessage": "You have registered for this event. Please keep an eye on the contact method you provided — you will be contacted soon.",
+    "errors": {
+      "name": "Please enter your name",
+      "phone": "Please enter a valid phone number",
+      "email": "Please enter a valid email address"
+    },
+    "error": "Something went wrong. Please try again later."
+  }
 }

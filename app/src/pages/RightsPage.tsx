@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
+import { ChevronDown, Download, Info, Play, X } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
 function AccordionItem({
@@ -54,7 +54,16 @@ function AccordionItem({
 export default function RightsPage() {
   const { t } = useTranslation('rights')
   const [openSection, setOpenSection] = useState<string>('police')
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null)
+  const [showVideoModal, setShowVideoModal] = useState(false)
+
+  useEffect(() => {
+    if (!showVideoModal) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowVideoModal(false)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [showVideoModal])
 
   const rightsSections = [
     {
@@ -108,7 +117,7 @@ export default function RightsPage() {
       <section className="relative min-h-[45vh]" aria-label="Know your rights header">
         <div className="absolute inset-0">
           <img
-            src="/images/hero-rights.png"
+            src="/images/hero-rights.jpg"
             alt="Community meeting in circle discussing rights"
             className="w-full h-full object-cover object-[center-30%]"
           />
@@ -180,7 +189,7 @@ export default function RightsPage() {
                 <a
                   href={card.href}
                   download
-                  className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-300 hover:bg-cream-dark hover:shadow-card-hover hover:border-amber"
+                  className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border-2 border-amber/50 transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 hover:scale-[1.03]"
                 >
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center">
                     <Download className="w-5 h-5 text-forest" aria-hidden="true" />
@@ -198,7 +207,7 @@ export default function RightsPage() {
       {/* Video Resources */}
       <section className="section-padding bg-cream" aria-labelledby="video-heading">
         <div className="container-main">
-          <div className="mb-8">
+          <div className="text-center mb-8">
             <h2 id="video-heading" className="font-display text-heading-1 text-forest mb-2">
               {t('videos.heading')}
             </h2>
@@ -207,73 +216,89 @@ export default function RightsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* Community Leaders Video */}
-            <FadeIn delay={100} duration={800} className="h-full">
-              <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden h-full flex flex-col">
-                <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
+          <FadeIn delay={100} duration={800}>
+            <div className="max-w-4xl mx-auto">
+              <button
+                onClick={() => setShowVideoModal(true)}
+                className="w-full text-left bg-white rounded-xl shadow-card border border-amber/40 overflow-hidden flex flex-col sm:flex-row transition-all hover:shadow-card-hover cursor-pointer group transform-gpu isolate"
+                aria-label={t('videos.playCommunity')}
+              >
+                <div className="w-full sm:w-3/5 relative overflow-hidden shrink-0 rounded-t-xl sm:rounded-tr-none sm:rounded-bl-xl" style={{ aspectRatio: '4/3' }}>
                   <img
-                    src="/images/hero-events.jpg"
-                    alt="Community workshop setting"
-                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                    src="/images/Story_leader.png"
+                    alt="Community leader portrait"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                  <button
-                    onClick={() => setPlayingVideo(playingVideo === 'community' ? null : 'community')}
-                    className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label={playingVideo === 'community' ? t('videos.pauseCommunity') : t('videos.playCommunity')}
-                  >
-                    {playingVideo === 'community' ? (
-                      <Pause className="w-6 h-6 text-white" aria-hidden="true" />
-                    ) : (
-                      <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
-                    )}
-                  </button>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                      <Play className="w-7 h-7 text-white ml-1" aria-hidden="true" />
+                    </div>
+                  </div>
                 </div>
-                <div className="p-5 md:p-6 flex-grow">
-                  <h3 className="font-semibold text-heading-4 text-forest mb-1">
+                <div className="p-6 md:p-8 flex flex-col justify-center flex-grow">
+                  <h3 className="font-display text-xl md:text-2xl text-forest mb-6">
                     {t('videos.community.title')}
                   </h3>
-                  <p className="text-body-sm text-forest-light">
-                    {t('videos.community.desc')}
-                  </p>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <div className="font-semibold text-forest text-lg">{t('videos.community.speaker1.name')}</div>
+                      <div className="text-sm text-forest-light">{t('videos.community.speaker1.role')}</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-forest text-lg">{t('videos.community.speaker2.name')}</div>
+                      <div className="text-sm text-forest-light">{t('videos.community.speaker2.role')}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
-
-            {/* Client Stories Video */}
-            <FadeIn delay={300} duration={800} className="h-full">
-              <div className="bg-white rounded-xl shadow-card border border-warm-sand/50 overflow-hidden h-full flex flex-col">
-                <div className="relative aspect-video bg-forest-dark flex items-center justify-center">
-                  <img
-                    src="/images/hero-stories.jpg"
-                    alt="Community member portrait"
-                    className="absolute inset-0 w-full h-full object-cover opacity-70"
-                  />
-                  <button
-                    onClick={() => setPlayingVideo(playingVideo === 'clients' ? null : 'clients')}
-                    className="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
-                    aria-label={playingVideo === 'clients' ? t('videos.pauseClients') : t('videos.playClients')}
-                  >
-                    {playingVideo === 'clients' ? (
-                      <Pause className="w-6 h-6 text-white" aria-hidden="true" />
-                    ) : (
-                      <Play className="w-6 h-6 text-white ml-1" aria-hidden="true" />
-                    )}
-                  </button>
-                </div>
-                <div className="p-5 md:p-6 flex-grow">
-                  <h3 className="font-semibold text-heading-4 text-forest mb-1">
-                    {t('videos.clients.title')}
-                  </h3>
-                  <p className="text-body-sm text-forest-light">
-                    {t('videos.clients.desc')}
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+              </button>
+            </div>
+          </FadeIn>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-forest/90 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Community video"
+        >
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
+            <div className="relative aspect-video bg-neutral-900 flex items-center justify-center">
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white rounded-full p-2 backdrop-blur-md transition-colors z-10"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <video
+                src="/videos/Stories/Story_5.mp4"
+                className="absolute inset-0 w-full h-full object-contain"
+                controls
+                autoPlay
+                playsInline
+              />
+            </div>
+            <div className="p-6 md:p-8">
+              <h3 className="font-display text-xl text-forest mb-6">
+                {t('videos.community.title')}
+              </h3>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <div className="font-semibold text-forest text-lg">{t('videos.community.speaker1.name')}</div>
+                  <div className="text-sm text-forest-light">{t('videos.community.speaker1.role')}</div>
+                </div>
+                <div>
+                  <div className="font-semibold text-forest text-lg">{t('videos.community.speaker2.name')}</div>
+                  <div className="text-sm text-forest-light">{t('videos.community.speaker2.role')}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Legal Disclaimer */}
       <section className="py-8 bg-cream-dark" aria-label="Legal disclaimer">

@@ -36,6 +36,10 @@ function resolveWordPressMediaUrl(): URL | null {
 
 const wpMediaUrl = resolveWordPressMediaUrl()
 
+// CSP uses 'unsafe-inline' for script-src and style-src.
+// This is an accepted tradeoff for Next.js App Router hydration and Tailwind CSS.
+// Future hardening path: nonce-based scripts and hashed styles.
+// See: https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy
 function buildCSP(): string {
   const isDev = process.env.NODE_ENV !== "production"
   const imgSrc = ["'self'", "data:", wpMediaUrl?.origin].filter(Boolean).join(" ")
@@ -92,6 +96,12 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/api/event-register",
+        headers: [
+          { key: "Cache-Control", value: "no-store" },
+        ],
+      },
+      {
         source: "/assets/(.*)",
         headers: [
           {
@@ -114,7 +124,11 @@ const nextConfig: NextConfig = {
           },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "0" },
-          { key: "Content-Security-Policy", value: csp },
+          // CSP only in production — in dev it blocks HMR WebSocket
+          // via LAN IP, killing React hydration on mobile devices.
+          ...(process.env.NODE_ENV === "production"
+            ? [{ key: "Content-Security-Policy", value: csp }]
+            : []),
         ],
       },
     ]

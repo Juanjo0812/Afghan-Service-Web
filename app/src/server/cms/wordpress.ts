@@ -18,7 +18,8 @@ function getLanguageParam(lang: LangCode): string {
 
 async function fetchFromWP(
   endpoint: string,
-  options?: RequestInit
+  options?: RequestInit,
+  tags?: string[]
 ): Promise<{ ok: true; data: unknown } | { ok: false; error: string }> {
   if (!WP_BASE) {
     return { ok: false, error: 'WORDPRESS_API_BASE_URL not configured' }
@@ -37,6 +38,7 @@ async function fetchFromWP(
         'Content-Type': 'application/json',
         ...(options?.headers || {}),
       },
+      next: tags && tags.length > 0 ? { tags } : undefined,
     })
 
     clearTimeout(timeoutId)
@@ -55,7 +57,9 @@ async function fetchFromWP(
 
 export async function getEvents(lang: LangCode): Promise<EventContent[]> {
   const result = await fetchFromWP(
-    `/events?_embed&per_page=100&orderby=date&order=desc&lang=${getLanguageParam(lang)}`
+    `/events?_embed&per_page=100&orderby=date&order=desc&lang=${getLanguageParam(lang)}`,
+    undefined,
+    ['events']
   )
 
   if (!result.ok) {
@@ -69,7 +73,19 @@ export async function getEvents(lang: LangCode): Promise<EventContent[]> {
     return []
   }
 
-  return parseResult.data.map((wpEvent) => mapWPEventToDomain(wpEvent, lang))
+  const events = parseResult.data.map((wpEvent) => mapWPEventToDomain(wpEvent, lang))
+
+  // Sort by startDate ascending (closest upcoming first, past at end)
+  events.sort((a, b) => {
+    const dateA = new Date(a.startDate).getTime()
+    const dateB = new Date(b.startDate).getTime()
+    if (isNaN(dateA) && isNaN(dateB)) return 0
+    if (isNaN(dateA)) return 1
+    if (isNaN(dateB)) return -1
+    return dateA - dateB
+  })
+
+  return events
 }
 
 export async function getEventBySlug(
@@ -104,7 +120,9 @@ export async function getPageMetadata(
   lang: LangCode
 ): Promise<PageMetadata | null> {
   const result = await fetchFromWP(
-    `/site-metadata?route_key=${encodeURIComponent(routeKey)}&lang=${getLanguageParam(lang)}&per_page=1`
+    `/site-metadata?route_key=${encodeURIComponent(routeKey)}&lang=${getLanguageParam(lang)}&per_page=1`,
+    undefined,
+    ['metadata']
   )
 
   if (!result.ok) {
