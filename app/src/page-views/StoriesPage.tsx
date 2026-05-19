@@ -37,7 +37,7 @@ function StoryCard({ story, onClick, isWide, reverse }: { story: Story; onClick:
       }`}
       aria-label={`Play community story video: ${story.name}`}
     >
-      <div className={`relative bg-warm-sand/20 overflow-hidden shrink-0 ${isWide ? 'h-48 lg:h-auto lg:w-2/5' : 'h-48 w-full'}`}>
+      <div className={`relative bg-warm-sand/20 overflow-hidden shrink-0 ${isWide ? 'h-48 w-full lg:h-auto lg:w-2/5' : 'h-48 w-full'}`}>
         <img
           alt={story.name}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"

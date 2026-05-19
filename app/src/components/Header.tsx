@@ -106,8 +106,8 @@ export default function Header() {
 
             {/* Right side: CTA + Language */}
             <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
-              {/* Language switcher — uses existing i18n integration */}
-              <div className="hidden md:block transition-all duration-500">
+              {/* Language switcher — visible on all breakpoints */}
+              <div className="transition-all duration-500">
                 <LanguageSwitcher variant={scrolled ? 'light' : 'dark'} />
               </div>
 
@@ -176,11 +176,6 @@ export default function Header() {
                 })}
               </div>
             </nav>
-
-            <div className="mt-6 pt-6 border-t border-forest-light/30">
-              <p className="text-cream/60 text-sm mb-3">{t('selectLanguage')}</p>
-              <LanguageSwitcher variant="dark" />
-            </div>
 
             <Link
               href={localizePath('/contact', lang)}
