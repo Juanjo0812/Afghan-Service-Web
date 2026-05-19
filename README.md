@@ -77,7 +77,7 @@ app/
 │   │   └── api/revalidate/     # ISR webhook endpoint
 │   ├── components/             # Shared UI (Header, Footer, AppShell)
 │   ├── features/events/        # Events client, detail, registration modal
-│   ├── pages/                  # Page views (Home, Immigration, Rights, etc.)
+│   ├── page-views/             # Page views (Home, Immigration, Rights, etc.)
 │   ├── sections/               # Chatbot widget
 │   ├── locales/                # i18n JSON (en, dari, uzbek)
 │   ├── data/                   # Chatbot KB, local JSON

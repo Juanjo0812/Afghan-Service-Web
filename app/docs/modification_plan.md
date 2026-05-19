@@ -35,7 +35,7 @@ The active project root is `app/`.
 | Entry | `src/app/layout.tsx` + `src/app/page.tsx` |
 | Routes | Next.js App Router pages under `src/app/**/page.tsx` |
 | Shell | `src/components/AppShell.tsx` with Header, Footer, Chatbot, Toaster |
-| Pages | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` (rendered by App Router pages) |
+| Pages | `src/page-views/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` (rendered by App Router pages) |
 | i18n | `src/lib/i18n.ts`, `src/locales/**`, `LanguageProvider`, language-aware route prefixes via `[lang]` dynamic segment |
 | RTL | Middleware `x-dir` header + `html[dir]` on first paint |
 | SEO | Next.js `generateMetadata()` with WordPress Headless fallback |

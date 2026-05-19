@@ -1,5 +1,5 @@
 import { generatePageMetadata } from '@/server/seo/metadata'
-import StoriesPage from '@/pages/StoriesPage'
+import StoriesPage from '@/page-views/StoriesPage'
 
 export async function generateMetadata() {
   return generatePageMetadata('stories', 'en')

@@ -23,7 +23,7 @@ These instructions apply to everything under this repository.
 
 - App root: `app/`
 - Main app entry: `app/src/app/layout.tsx` (static English root) + `app/src/app/[lang]/layout.tsx` (dynamic Dari/Uzbek) + `app/src/app/page.tsx` (Next.js App Router)
-- Page views: `app/src/pages/`
+- Page views: `app/src/page-views/`
 - Features: `app/src/features/events/` (EventsClient, EventDetail, EventRegistrationModal)
 - Static assets: `app/public/images/`, `app/public/videos/`, `app/public/PDFs_Rights/`
 - Product docs: `app/docs/PRD_Afghan_Support_Realistic.md` (active PRD)

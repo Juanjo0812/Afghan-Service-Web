@@ -1,7 +1,7 @@
 import { generatePageMetadata } from '@/server/seo/metadata'
 import type { LangCode } from '@/domain/language'
 import { assertValidLang } from '@/lib/routeGuard'
-import RightsPage from '@/pages/RightsPage'
+import RightsPage from '@/page-views/RightsPage'
 
 export function generateStaticParams() {
   return [{ lang: 'dari' }, { lang: 'uzbek' }]

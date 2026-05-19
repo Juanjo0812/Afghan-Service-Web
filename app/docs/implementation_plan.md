@@ -33,7 +33,7 @@ The active app is the Next.js App Router app under `app/`.
 | Routes | Next.js App Router pages under `src/app/**/page.tsx` |
 | Layout | `src/components/AppShell.tsx` wrapped in root layout |
 | Header/Footer | `src/components/Header.tsx`, `src/components/Footer.tsx` |
-| Active page views | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx`; events render through `src/features/events/EventsClient.tsx` |
+| Active page views | `src/page-views/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx`; events render through `src/features/events/EventsClient.tsx` |
 | Chatbot | `src/sections/Chatbot.tsx` + `src/data/chatbot-kb.json` |
 | Contact API | `src/app/api/contact/route.ts` (Next.js Route Handler) |
 | Styling | Tailwind + `src/app/globals.css` |
@@ -50,7 +50,7 @@ Do not restore removed design-reference folders. The deleted `app/docs/stitch_de
 
 - Delete unreachable runtime files:
   - `src/App.css`
-  - `src/pages/Home.tsx`
+  - `src/page-views/Home.tsx`
   - `src/hooks/useScrollReveal.ts`
   - `src/lib/animationDirection.ts`
   - `src/lib/dataLoader.ts`
@@ -80,7 +80,7 @@ Do not restore removed design-reference folders. The deleted `app/docs/stitch_de
 
 ### Frontend contract
 
-Update `src/pages/ContactPage.tsx` to submit to `POST /api/contact`.
+Update `src/page-views/ContactPage.tsx` to submit to `POST /api/contact`.
 
 Payload:
 
@@ -299,13 +299,13 @@ The active route pages currently contain substantial hardcoded English copy. The
 
 - `src/components/Header.tsx`
 - `src/components/Footer.tsx`
-- `src/pages/HomePage.tsx`
-- `src/pages/ImmigrationPage.tsx`
-- `src/pages/RightsPage.tsx`
-- `src/pages/ResourcesPage.tsx`
+- `src/page-views/HomePage.tsx`
+- `src/page-views/ImmigrationPage.tsx`
+- `src/page-views/RightsPage.tsx`
+- `src/page-views/ResourcesPage.tsx`
 - `src/features/events/EventsClient.tsx`
-- `src/pages/StoriesPage.tsx`
-- `src/pages/ContactPage.tsx`
+- `src/page-views/StoriesPage.tsx`
+- `src/page-views/ContactPage.tsx`
 - `src/sections/Chatbot.tsx`
 
 ### Required changes

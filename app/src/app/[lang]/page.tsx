@@ -3,7 +3,7 @@ import { getEvents } from '@/server/cms/cms-cache'
 import type { EventContent } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
 import { assertValidLang } from '@/lib/routeGuard'
-import HomePage from '@/pages/HomePage'
+import HomePage from '@/page-views/HomePage'
 
 export const revalidate = 3600
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import i18n from '../lib/i18n'
 import {
   getDirection,
@@ -18,7 +18,6 @@ interface LanguageProviderProps {
 
 export function LanguageProvider({ children, initialLang = 'en' }: LanguageProviderProps) {
   const pathname = usePathname() || '/'
-  const searchParams = useSearchParams()
   const router = useRouter()
   const [lang, setLang] = useState<LangCode>(initialLang)
 
@@ -66,9 +65,9 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
     (newLang: LangCode) => {
       const segments = pathname.split('/').filter(Boolean)
       const hasLangPrefix = SUPPORTED_LANGUAGES.includes(segments[0] as LangCode)
-      const query = searchParams?.toString() ?? ''
-      const hash = typeof window !== 'undefined' ? window.location.hash : ''
-      const suffix = `${query ? `?${query}` : ''}${hash}`
+      const suffix = typeof window !== 'undefined'
+        ? `${window.location.search}${window.location.hash}`
+        : ''
 
       let newPath: string
 
@@ -88,7 +87,7 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
 
       router.replace(newPath || '/')
     },
-    [pathname, router, searchParams]
+    [pathname, router]
   )
 
   const dir = getDirection(lang)

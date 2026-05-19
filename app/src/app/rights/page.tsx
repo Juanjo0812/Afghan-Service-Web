@@ -1,5 +1,5 @@
 import { generatePageMetadata } from '@/server/seo/metadata'
-import RightsPage from '@/pages/RightsPage'
+import RightsPage from '@/page-views/RightsPage'
 
 export async function generateMetadata() {
   return generatePageMetadata('rights', 'en')
