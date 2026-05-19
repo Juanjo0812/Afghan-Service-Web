@@ -40,6 +40,11 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  // Close mobile menu on any route change (e.g. language switch)
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
   return (
     <>
       <a href="#main-content" className="skip-link">
