@@ -5,6 +5,8 @@ import { Redis } from '@upstash/redis'
 import { NextResponse } from 'next/server'
 import { hashIP, hashPhone } from '@/lib/fingerprint'
 import { escapeHtml } from '@/lib/escapeHtml'
+import { generateContactEmail } from '@/lib/emailTemplates'
+
 
 // In-memory fallback rate limiting
 interface RateLimitEntry {
@@ -200,19 +202,22 @@ export async function POST(request: Request): Promise<NextResponse> {
   const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org'
   const idempotencyKey = submissionId || crypto.randomUUID()
 
+  const host = request.headers.get('host') || 'localhost:3000'
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const logoUrl = `${protocol}://${host}/images/Catholic.png`
+
   try {
     const result = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       subject: `New Contact Form Submission from ${safeName}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${safeName}</p>
-        <p><strong>Phone:</strong> ${safePhone}</p>
-        ${safeEmail ? `<p><strong>Email:</strong> ${safeEmail}</p>` : ''}
-        <p><strong>Message:</strong></p>
-        <p>${safeMessage}</p>
-      `,
+      html: generateContactEmail({
+        logoUrl,
+        name: safeName,
+        phone: safePhone,
+        email: safeEmail,
+        message: safeMessage,
+      }),
       headers: {
         'Idempotency-Key': idempotencyKey,
       },

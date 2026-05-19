@@ -30,13 +30,9 @@ export function FadeIn({
     if (!node) return
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const touchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches
-    const smallViewport = window.matchMedia('(max-width: 767px)').matches
 
     if (
       prefersReducedMotion ||
-      touchDevice ||
-      smallViewport ||
       typeof IntersectionObserver === 'undefined'
     ) {
       return
@@ -87,7 +83,7 @@ export function FadeIn({
         opacity: isVisible ? 1 : 0,
         transform: isVisible || !canAnimate
           ? 'translateY(0) translateX(0)'
-          : `translateY(${direction === 'down' ? '-8px' : direction === 'up' ? '8px' : '0px'}) translateX(${direction === 'right' ? '-8px' : direction === 'left' ? '8px' : '0px'})`,
+          : `translateY(${direction === 'down' ? '-6px' : direction === 'up' ? '6px' : '0px'}) translateX(${direction === 'right' ? '-6px' : direction === 'left' ? '6px' : '0px'})`,
         transition: canAnimate
           ? `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`
           : 'none',

@@ -5,6 +5,8 @@ import { Redis } from '@upstash/redis'
 import { NextResponse } from 'next/server'
 import { hashIP } from '@/lib/fingerprint'
 import { escapeHtml } from '@/lib/escapeHtml'
+import { generateEventRegistrationEmail } from '@/lib/emailTemplates'
+
 
 // ── In-memory fallback rate limiting (independent from contact) ──
 interface RateLimitEntry {
@@ -171,18 +173,23 @@ export async function POST(request: Request): Promise<NextResponse> {
   const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org'
   const contactLabel = contactMethod === 'phone' ? 'phone' : 'email'
 
+  const host = request.headers.get('host') || 'localhost:3000'
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const logoUrl = `${protocol}://${host}/images/Catholic.png`
+
   try {
     const result = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       subject: `Event Registration Request — ${safeEventTitle}`,
-      html: `
-        <h2>Event Registration Request</h2>
-        <p>Hello, my name is <strong>${safeName}</strong>, I would like to register for the event "<strong>${safeEventTitle}</strong>".</p>
-        <p>To provide me with more information, I would appreciate if you could contact me via <strong>${contactLabel}</strong>: <strong>${safeContact}</strong>.</p>
-        <hr />
-        <p style="color: #666; font-size: 14px;">Form language: ${langLabel}</p>
-      `,
+      html: generateEventRegistrationEmail({
+        logoUrl,
+        name: safeName,
+        eventTitle: safeEventTitle,
+        contactMethod,
+        contactValue: safeContact,
+        langLabel,
+      }),
     })
 
     if (result.error) {
