@@ -74,7 +74,7 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
     : "flex items-center gap-1.5 px-3 py-2 border border-warm-sand/60 rounded-md text-forest font-medium text-sm transition-all hover:bg-cream-dark hover:border-amber/50 focus:outline-none focus:ring-2 focus:ring-amber"
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative inline-block">
       <button
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -93,7 +93,7 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
         <ul
           role="listbox"
           aria-label="Languages"
-          className="absolute top-[calc(100%+8px)] right-0 min-w-[160px] bg-white border border-warm-sand/50 rounded-xl shadow-dropdown p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+          className="absolute top-[calc(100%+8px)] left-0 md:left-auto md:right-0 min-w-[160px] bg-white border border-warm-sand/50 rounded-xl shadow-dropdown p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
         >
           {supportedLanguages.map((code) => {
             const selected = code === lang

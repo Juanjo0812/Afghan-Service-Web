@@ -61,12 +61,13 @@
     font-family: 'Noto Sans Arabic', 'Cormorant Garamond', serif;
   }
 
-  /* Reduced motion */
+  /* Reduced motion — kill decorative animations but preserve
+     layout transitions (FadeIn uses inline transition styles
+     for opacity/transform which must not be overridden). */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
   }
@@ -116,4 +117,34 @@
   .duration-250 {
     transition-duration: 250ms;
   }
+}
+
+/* ── Event Registration Modal ── */
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modal-content-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes bubble-in {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  60%  { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  80%  { transform: translate(-50%, -50%) scale(0.96); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.modal-overlay {
+  animation: modal-overlay-in 250ms ease-out both;
+}
+
+.modal-content {
+  animation: modal-content-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.toast-bubble {
+  animation: bubble-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }

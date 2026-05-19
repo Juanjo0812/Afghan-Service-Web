@@ -1,4 +1,4 @@
-import { getEventBySlug } from '@/server/cms/wordpress'
+import { getEventBySlug } from '@/server/cms/cms-cache'
 import { generateEventDetailMetadata } from '@/server/seo/metadata'
 import EventDetail from '@/features/events/EventDetail'
 import { notFound } from 'next/navigation'
