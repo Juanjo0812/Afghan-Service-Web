@@ -9,10 +9,15 @@ import {
 } from '../lib/direction'
 import { LanguageContext } from '../hooks/useLanguage'
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+interface LanguageProviderProps {
+  children: React.ReactNode
+  initialLang?: LangCode
+}
+
+export function LanguageProvider({ children, initialLang = 'en' }: LanguageProviderProps) {
   const location = useLocation()
   const navigate = useNavigate()
-  const [lang, setLang] = useState<LangCode>('en')
+  const [lang, setLang] = useState<LangCode>(initialLang)
 
   const detectLangFromPath = useCallback((): LangCode => {
     const firstSegment = location.pathname.split('/')[1]

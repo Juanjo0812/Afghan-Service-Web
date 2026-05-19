@@ -48,7 +48,7 @@ const events: Event[] = [
     month: 'JUN',
     time: '6:00 PM – 8:00 PM',
     location: 'Phoenix Public Library — Burton Barr Central Library',
-    description: 'Learn about your rights when interacting with police and immigration agents. Materials available in Dari, Pashto, and English.',
+    description: 'Learn about your rights when interacting with police and immigration agents. Materials available in Dari and English.',
     cta: 'Register Now',
     ctaType: 'primary',
   },
@@ -105,6 +105,7 @@ const categoryColors: Record<EventCategory, string> = {
 }
 
 function EventCard({ event }: { event: Event }) {
+  const { t } = useTranslation('events')
   const navigate = useNavigate()
   const colorClass = categoryColors[event.category] || 'bg-amber'
 
@@ -165,6 +166,7 @@ function EventCard({ event }: { event: Event }) {
 }
 
 function CalendarView({ filteredEvents }: { filteredEvents: Event[] }) {
+  const { t } = useTranslation('events')
   const [currentMonth, setCurrentMonth] = useState(new Date(2026, 5, 1)) // June 2026
 
   const monthName = currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })
