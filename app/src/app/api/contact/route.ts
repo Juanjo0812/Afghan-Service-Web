@@ -3,7 +3,8 @@ import { z } from 'zod'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { NextResponse } from 'next/server'
-import { hashPhone } from '@/lib/fingerprint'
+import { hashIP, hashPhone } from '@/lib/fingerprint'
+import { escapeHtml } from '@/lib/escapeHtml'
 
 // In-memory fallback rate limiting
 interface RateLimitEntry {
@@ -21,11 +22,6 @@ const contactSchema = z.object({
   website_url: z.string().optional(),
   submissionId: z.string().min(1).optional(),
 })
-
-function sanitizeInput(input: string, maxLength: number): string {
-  const stripped = input.replace(/<[^>]*>/g, '')
-  return stripped.slice(0, maxLength)
-}
 
 function getClientIP(req: Request): string {
   const forwarded = req.headers.get('x-forwarded-for')
@@ -72,12 +68,12 @@ if (useUpstash) {
   ipRatelimit = new Ratelimit({
     redis,
     limiter: Ratelimit.slidingWindow(5, '1 h'),
-    analytics: true,
+    analytics: false,
   })
   phoneRatelimit = new Ratelimit({
     redis,
     limiter: Ratelimit.slidingWindow(3, '1 h'),
-    analytics: true,
+    analytics: false,
   })
 }
 
@@ -103,7 +99,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   // IP-based rate limiting
   let ipLimitResult: { success: boolean; retryAfterSeconds?: number }
   if (useUpstash && ipRatelimit) {
-    const result = await ipRatelimit.limit(ip)
+    const result = await ipRatelimit.limit(await hashIP(ip))
     ipLimitResult = {
       success: result.success,
       retryAfterSeconds: result.reset
@@ -188,10 +184,10 @@ export async function POST(request: Request): Promise<NextResponse> {
     )
   }
 
-  const safeName = sanitizeInput(name, 100)
-  const safePhone = sanitizeInput(phone, 50)
-  const safeEmail = email ? sanitizeInput(email, 254) : ''
-  const safeMessage = sanitizeInput(message, 2000)
+  const safeName = escapeHtml(name)
+  const safePhone = escapeHtml(phone)
+  const safeEmail = email ? escapeHtml(email) : ''
+  const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
 
   const fromEmail = process.env.RESEND_FROM_EMAIL
   if (!fromEmail) {
@@ -215,7 +211,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         <p><strong>Phone:</strong> ${safePhone}</p>
         ${safeEmail ? `<p><strong>Email:</strong> ${safeEmail}</p>` : ''}
         <p><strong>Message:</strong></p>
-        <p>${safeMessage.replace(/\n/g, '<br>')}</p>
+        <p>${safeMessage}</p>
       `,
       headers: {
         'Idempotency-Key': idempotencyKey,

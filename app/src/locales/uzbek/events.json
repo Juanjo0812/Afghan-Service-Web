@@ -1,20 +1,20 @@
 {
   "label": "Tadbirlar",
   "heading": "Tadbirlar taqvimi",
-  "description": "[MT] Seminarlar, huquqiy klinikalar, madaniy uchrashuvlar va hamjamiyat tadbirlarida qatnashing.",
+  "description": "Seminarlar, huquqiy klinikalar, madaniy uchrashuvlar va hamjamiyat tadbirlarida qatnashing.",
   "upcomingLabel": "Kelgusi tadbir",
-  "featuredBadge": "[MT] Tavsiya etilgan tadbir",
-  "registerCta": "[MT] Seminarga ro'yxatdan o'tish",
-  "listView": "[MT] Ro'yxat ko'rinishi",
-  "calendarView": "[MT] Taqvim ko'rinishi",
+  "featuredBadge": "Tavsiya etilgan tadbir",
+  "registerCta": "Seminarga ro'yxatdan o'tish",
+  "listView": "Ro'yxat ko'rinishi",
+  "calendarView": "Taqvim ko'rinishi",
   "filters": {
-    "all": "[MT] Barcha tadbirlar",
-    "immigration": "[MT] Immigratsiya seminarlari",
-    "legal": "[MT] Huquqiy klinikalar",
-    "cultural": "[MT] Madaniy uchrashuvlar",
-    "holiday": "[MT] Afg'oniston bayramlari"
+    "all": "Barcha tadbirlar",
+    "immigration": "Immigratsiya seminarlari",
+    "legal": "Huquqiy klinikalar",
+    "cultural": "Madaniy uchrashuvlar",
+    "holiday": "Afg'oniston bayramlari"
   },
-  "noEvents": "[MT] Bu toifada tadbirlar topilmadi.",
+  "noEvents": "Bu toifada tadbirlar topilmadi.",
   "contactUsInfo": "Ko'proq ma'lumot uchun biz bilan bog'laning",
   "details": "Tafsilotlar",
   "aria": {

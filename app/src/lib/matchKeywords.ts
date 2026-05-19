@@ -1,6 +1,8 @@
 export interface KBEntry {
   id: string
   title?: string
+  title_dari?: string
+  title_uzbek?: string
   keywords_en: string[]
   keywords_dari?: string[]
   keywords_uzbek?: string[]
@@ -9,6 +11,8 @@ export interface KBEntry {
   response_uzbek?: string
   section?: string
   actions?: { label: string; href: string }[]
+  actions_dari?: { label: string; href: string }[]
+  actions_uzbek?: { label: string; href: string }[]
 }
 
 export interface ScoredEntry {

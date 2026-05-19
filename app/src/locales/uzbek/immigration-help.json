@@ -2,31 +2,31 @@
   "label": "Bepul xizmatlar",
   "heading": "Feniksdagi afg'on oilalari uchun bepul immigratsiya yordami",
   "subtitle": "Barcha xizmatlar bepul, maxfiy va dariy, o'zbek va ingliz tillarida mavjud.",
-  "servicesHeading": "[MT] Bizning xizmatlarimiz",
-  "servicesSubtext": "[MT] Ko'proq ma'lumot olish yoki yordam so'rash uchun istalgan xizmat ustiga bosing",
-  "languagesHeading": "[MT] Mavjud tillar",
-  "languagesSubtext": "[MT] Bizning xodimlarimiz sizning tilingizda gaplashadi. Tarjima xizmatlari ham mavjud.",
-  "contactHeading": "[MT] Immigratsiya jamoamiz bilan bog'laning",
+  "servicesHeading": "Bizning xizmatlarimiz",
+  "servicesSubtext": "Ko'proq ma'lumot olish yoki yordam so'rash uchun istalgan xizmat ustiga bosing",
+  "languagesHeading": "Mavjud tillar",
+  "languagesSubtext": "Bizning xodimlarimiz sizning tilingizda gaplashadi. Tarjima xizmatlari ham mavjud.",
+  "contactHeading": "Immigratsiya jamoamiz bilan bog'laning",
   "services": {
     "asylum": {
       "title": "Boshpana so'rash bo'yicha arizalar",
-      "description": "[MT] Tasdiqlovchi va himoya boshpana arizalari bo'yicha yordam"
+      "description": "Tasdiqlovchi va himoya boshpana arizalari bo'yicha yordam"
     },
     "workPermit": {
       "title": "Ishlash ruxsatnomasi bo'yicha yordam",
-      "description": "[MT] Bandlik uchun ruxsat hujjati (EAD) arizalari va yangilash"
+      "description": "Bandlik uchun ruxsat hujjati (EAD) arizalari va yangilash"
     },
     "tps": {
       "title": "TPS - Vaqtinchalik himoyalangan maqom",
-      "description": "[MT] TPS ro'yxatdan o'tkazish va qayta ro'yxatdan o'tkazish yordami"
+      "description": "TPS ro'yxatdan o'tkazish va qayta ro'yxatdan o'tkazish yordami"
     },
     "greenCard": {
       "title": "Grin-karta va oilani birlashtirish",
-      "description": "[MT] Maqomni tuzatish va oilaviy da'volar"
+      "description": "Maqomni tuzatish va oilaviy da'volar"
     },
     "adjustmentAct": {
       "title": "Afg'onistonliklarni moslashtirish qonuni bo'yicha yordam",
-      "description": "[MT] Afg'onistonliklarni moslashtirish qonuni qoidalariga ko'ra yordam"
+      "description": "Afg'onistonliklarni moslashtirish qonuni qoidalariga ko'ra yordam"
     }
   },
   "languages": "Dariy | O'zbek tili",
@@ -38,6 +38,6 @@
     "location": "Feniks ofisi - shaxsan yoki telefon orqali qabul",
     "hours": "Dushanba-Juma | 9:00 dan 17:00 gacha",
     "cta": "Qayta qo'ng'iroq buyurtma qilish",
-    "role": "[MT] Immigratsiya ishlarini boshqaruvchi"
+    "role": "Immigratsiya ishlarini boshqaruvchi"
   }
 }

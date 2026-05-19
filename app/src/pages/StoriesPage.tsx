@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Quote, X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
@@ -21,10 +21,19 @@ interface Story {
 
 
 function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) => void }) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onClick(story)
+    }
+  }
+
   return (
-    <article
+    <button
       onClick={() => onClick(story)}
-      className="bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm h-full"
+      onKeyDown={handleKeyDown}
+      className="text-left bg-white border border-amber/40 rounded-xl overflow-hidden flex flex-col transition-all hover:bg-cream-dark hover:shadow-card-hover cursor-pointer group shadow-sm h-full w-full"
+      aria-label={`Play community story video: ${story.name}`}
     >
       <div className="h-48 relative bg-warm-sand/20 overflow-hidden shrink-0">
         <img
@@ -45,7 +54,7 @@ function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) =
           <div className="text-sm text-forest-light">{story.context}</div>
         </div>
       </div>
-    </article>
+    </button>
   )
 }
 
@@ -77,6 +86,17 @@ export default function StoriesPage() {
     if (idx === -1) return
     setSelectedVideo(videoStories[(idx - 1 + videoStories.length) % videoStories.length])
   }
+
+  useEffect(() => {
+    if (!selectedVideo) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedVideo(null)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [selectedVideo])
 
   return (
     <>
@@ -140,7 +160,12 @@ export default function StoriesPage() {
 
       {/* Video Modal Overlay */}
       {selectedVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-forest/90 backdrop-blur-sm">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-forest/90 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Community story video"
+        >
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
             <div className="relative aspect-video bg-neutral-900 flex items-center justify-center">
               <button

@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
+import { clearCmsCache } from '@/server/cms/cms-cache'
 
 const SECRET = process.env.WORDPRESS_REVALIDATE_SECRET
 
@@ -47,12 +48,20 @@ export async function POST(request: NextRequest) {
 
   for (const path of pathsToRevalidate) {
     try {
-      revalidatePath(path)
+      if (path.includes('[slug]')) {
+        revalidatePath(path, 'page')
+      } else {
+        revalidatePath(path)
+      }
       results.push({ path, success: true })
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err)
       results.push({ path, success: false, error: message })
     }
+  }
+
+  if (results.some((r) => r.success)) {
+    clearCmsCache()
   }
 
   const allOk = results.every((r) => r.success)

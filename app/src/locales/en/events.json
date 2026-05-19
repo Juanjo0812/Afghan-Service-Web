@@ -26,5 +26,9 @@
     "legal": "Legal Clinic",
     "cultural": "Cultural",
     "holiday": "Holiday"
-  }
+  },
+  "dateLabel": "Date",
+  "timeLabel": "Time",
+  "locationLabel": "Location",
+  "backToEvents": "Back to Events"
 }

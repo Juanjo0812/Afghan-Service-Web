@@ -1,37 +1,37 @@
 {
   "label": "Hikoyalar",
-  "heading": "[MT] Jamoaviy ta'sir",
-  "description": "[MT] Feniksda qo'llab-quvvatlash va muvaffaqiyat topgan afg'on oilalarining haqiqiy hikoyalari.",
+  "heading": "Jamoaviy ta'sir",
+  "description": "Feniksda qo'llab-quvvatlash va muvaffaqiyat topgan afg'on oilalarining haqiqiy hikoyalari.",
   "filters": {
-    "all": "[MT] Barcha hikoyalar",
-    "clients": "[MT] Mijozlar hikoyalari",
-    "leaders": "[MT] Jamoat rahbarlari"
+    "all": "Barcha hikoyalar",
+    "clients": "Mijozlar hikoyalari",
+    "leaders": "Jamoat rahbarlari"
   },
   "storyTypes": {
-    "client": "[MT] Mijoz hikoyasi",
-    "leader": "[MT] Jamoat rahbari"
+    "client": "Mijoz hikoyasi",
+    "leader": "Jamoat rahbari"
   },
   "aria": {
-    "viewTestimonial": "[MT] {{name}} dan guvohnomani ko'rish",
-    "closeTestimonial": "[MT] Guvohnomani yopish",
-    "modalLabel": "[MT] {{name}} dan guvohnoma",
-    "previous": "[MT] Oldingi",
-    "previousTestimonial": "[MT] Oldingi guvohnoma",
-    "next": "[MT] Keyingi",
-    "nextTestimonial": "[MT] Keyingi guvohnoma",
-    "scrollLeft": "[MT] Guvohnomalarni chapga aylantirish",
-    "scrollRight": "[MT] Guvohnomalarni o'ngga aylantirish"
+    "viewTestimonial": "{{name}} dan guvohnomani ko'rish",
+    "closeTestimonial": "Guvohnomani yopish",
+    "modalLabel": "{{name}} dan guvohnoma",
+    "previous": "Oldingi",
+    "previousTestimonial": "Oldingi guvohnoma",
+    "next": "Keyingi",
+    "nextTestimonial": "Keyingi guvohnoma",
+    "scrollLeft": "Guvohnomalarni chapga aylantirish",
+    "scrollRight": "Guvohnomalarni o'ngga aylantirish"
   },
   "bottomCta": {
-    "heading": "[MT] Bizning hikoyamizning bir qismi bo'ling",
-    "text": "[MT] Sizga yordam kerak bo'lsa yoki jamoamizni qo'llab-quvvatlashni xohlasangiz, sizdan xabar eshitishni xohlaymiz.",
-    "primary": "[MT] Hozir yordam olish",
-    "secondary": "[MT] Biz bilan bog'laning"
+    "heading": "Bizning hikoyamizning bir qismi bo'ling",
+    "text": "Sizga yordam kerak bo'lsa yoki jamoamizni qo'llab-quvvatlashni xohlasangiz, sizdan xabar eshitishni xohlaymiz.",
+    "primary": "Hozir yordam olish",
+    "secondary": "Biz bilan bog'laning"
   },
   "stories": {
-    "title": "[MT] Jamoat hikoyasi {{number}}",
-    "quote": "[MT] Afg'on hamjamiyati a'zosi o'z tajribasini baham ko'ramoqda.",
-    "name": "[MT] Jamoat a'zosi",
-    "context": "[MT] Afghan Support Phoenix — Jamoat dasturi"
+    "title": "Jamoat hikoyasi {{number}}",
+    "quote": "Afg'on hamjamiyati a'zosi o'z tajribasini baham ko'ramoqda.",
+    "name": "Jamoat a'zosi",
+    "context": "Afghan Support Phoenix — Jamoat dasturi"
   }
 }

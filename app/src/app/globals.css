@@ -58,7 +58,7 @@
   }
 
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 {
-    font-family: 'Noto Sans Arabic', 'Playfair Display', serif;
+    font-family: 'Noto Sans Arabic', 'Cormorant Garamond', serif;
   }
 
   /* Reduced motion */

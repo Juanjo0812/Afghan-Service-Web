@@ -1,20 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 import { useLanguage } from '../hooks/useLanguage'
 import { localizePath } from '../lib/navigation'
+import { formatEventDate } from '@/lib/formatDate'
 import type { EventContent } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
-
-function toPlainText(value: string): string {
-  return value
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
 
 interface HomePageProps {
   featuredEvent?: EventContent | null
@@ -66,6 +60,7 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
               loop
               muted
               playsInline
+              poster="/images/hero-home.jpg"
               className="w-full h-full object-cover object-top blur-[2px] scale-105"
             >
               <source src="/videos/Video_main.mp4" type="video/mp4" />
@@ -180,25 +175,17 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                 {t('learnMoreServices', { ns: 'about' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="relative hidden lg:block">
-              {/* Decorative Afghan-inspired geometric pattern */}
-              <svg viewBox="0 0 400 400" className="w-full max-w-md mx-auto opacity-20" aria-hidden="true">
-                <defs>
-                  <pattern id="afghan-pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                    <circle cx="40" cy="40" r="30" fill="none" stroke="#2B3A2E" strokeWidth="1.5" />
-                    <circle cx="40" cy="40" r="20" fill="none" stroke="#2B3A2E" strokeWidth="1" />
-                    <circle cx="40" cy="40" r="10" fill="none" stroke="#2B3A2E" strokeWidth="0.5" />
-                    <path d="M40 10 L40 70 M10 40 L70 40" stroke="#2B3A2E" strokeWidth="0.5" />
-                    <circle cx="40" cy="10" r="3" fill="#C68B2B" />
-                    <circle cx="40" cy="70" r="3" fill="#C68B2B" />
-                    <circle cx="10" cy="40" r="3" fill="#C68B2B" />
-                    <circle cx="70" cy="40" r="3" fill="#C68B2B" />
-                  </pattern>
-                </defs>
-                <rect width="400" height="400" fill="url(#afghan-pattern)" />
-                <circle cx="200" cy="200" r="150" fill="none" stroke="#C68B2B" strokeWidth="2" opacity="0.3" />
-                <circle cx="200" cy="200" r="120" fill="none" stroke="#2B3A2E" strokeWidth="1" opacity="0.4" />
-              </svg>
+            <div className="relative hidden lg:block h-[450px] w-full max-w-md mx-auto">
+              <FadeIn delay={400} className="absolute top-0 right-0 w-[75%] h-64 z-10">
+                <div className="w-full h-full rounded-2xl overflow-hidden shadow-card border-2 border-amber animate-float" style={{ animationDelay: '0s' }}>
+                  <img src="/images/image_home.jpg" alt="Supporting Afghan families" className="w-full h-full object-cover" />
+                </div>
+              </FadeIn>
+              <FadeIn delay={600} className="absolute bottom-0 left-0 w-[70%] h-56 z-20">
+                <div className="w-full h-full rounded-2xl overflow-hidden shadow-card border-2 border-amber animate-float" style={{ animationDelay: '2s' }}>
+                  <img src="/images/image_home2.jpg" alt="Community support" className="w-full h-full object-cover" />
+                </div>
+              </FadeIn>
             </div>
           </div>
         </div>
@@ -214,8 +201,17 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                 <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
               </div>
               <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
-                {/* Decorative blob */}
-                <div className="absolute top-0 right-0 w-36 h-36 md:w-44 md:h-44 bg-amber-light/40 rounded-bl-full" aria-hidden="true" />
+                {/* Decorative Background */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl" aria-hidden="true">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    {/* Thin wavy amber lines */}
+                    <path d="M -10 15 Q 30 -15 60 35 T 150 0" fill="none" className="stroke-amber/40" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+                    <path d="M -10 80 Q 40 130 85 50 T 180 100" fill="none" className="stroke-amber/40" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+                    
+                    {/* Top-Right Green Drop (over the lines) */}
+                    <path d="M 65 0 C 65 20, 75 30, 85 35 C 95 40, 100 45, 100 50 L 100 0 Z" fill="#1A2518" />
+                  </svg>
+                </div>
 
                 <div className="relative z-10">
                   {/* Category badge */}
@@ -233,20 +229,12 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                     {featuredEvent.title}
                   </h2>
 
-                  {/* Description */}
-                  <p className="text-body-lg text-forest-light mb-8 leading-relaxed max-w-xl">
-                    {toPlainText(featuredEvent.description)}
-                  </p>
-
-                  {/* Info rows with large icons */}
+                  {/* Info rows */}
                   <div className="space-y-4 mb-8">
                     <div className="flex items-center gap-4 text-forest-light">
                       <Calendar className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
                       <span className="text-body-lg font-medium text-forest">
-                        {new Date(featuredEvent.startDate).toLocaleDateString(
-                          pageLang === 'dari' ? 'fa' : pageLang === 'uzbek' ? 'uz' : 'en-US',
-                          { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-                        )} &bull; {featuredEvent.timeLabel}
+                        {formatEventDate(featuredEvent.startDate, pageLang)} &bull; {featuredEvent.timeLabel}
                       </span>
                     </div>
                     <div className="flex items-center gap-4 text-forest-light">
@@ -257,12 +245,12 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                     </div>
                   </div>
 
-                  {/* CTA */}
+                  {/* Single CTA link */}
                   <Link
                     href={localizePath(`/events/${featuredEvent.slug}`, lang)}
-                    className="btn-primary w-full sm:w-auto"
+                    className="text-forest font-medium hover:text-amber transition-colors underline underline-offset-4 text-body-lg"
                   >
-                    {t('registerCta', { ns: 'events' })}
+                    {t('detailsAndRegister', { ns: 'events' })}
                   </Link>
                 </div>
               </div>
@@ -274,11 +262,20 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
       {/* Bottom CTA */}
       <section className="section-padding bg-forest text-center" aria-label="Get help">
         <div className="container-main max-w-2xl">
+          <div className="flex justify-center mb-6">
+            <img src="/images/Catholic.png" alt="" aria-hidden="true" className="h-14 w-auto" />
+          </div>
           <h2 className="font-display text-heading-1 md:text-display-l text-white mb-4">
             {t('ctaText', { ns: 'hero' })}
           </h2>
           <p className="text-body-lg text-white/80 mb-8">
-            {t('ctaSubtext', { ns: 'hero' })}
+            <Trans
+              i18nKey="ctaSubtext"
+              ns="hero"
+              components={{
+                1: <a href="https://www.catholiccharitiesaz.org/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline underline-offset-4 decoration-1 transition-colors" />
+              }}
+            />
           </p>
           <Link href={localizePath('/contact', lang)} className="btn-primary text-lg px-10 py-4 inline-flex">
             {t('cta', { ns: 'hero' })}

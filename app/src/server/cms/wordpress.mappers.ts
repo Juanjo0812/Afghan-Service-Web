@@ -1,6 +1,7 @@
 import type { EventContent, PageMetadata, EventCategory } from '@/domain/content'
 import type { LangCode } from '@/domain/language'
 import type { ValidatedWPEvent, ValidatedWPPageMeta } from './wordpress.schemas'
+import { formatEventTimeLabel } from '@/lib/formatDate'
 
 const CATEGORY_LABELS: Record<EventCategory, Record<LangCode, string>> = {
   immigration: {
@@ -27,35 +28,6 @@ const CATEGORY_LABELS: Record<EventCategory, Record<LangCode, string>> = {
 
 function isValidCategory(cat: string): cat is EventCategory {
   return ['immigration', 'legal', 'cultural', 'holiday'].includes(cat)
-}
-
-function buildTimeLabel(startDate: string, endDate?: string): string {
-  try {
-    const start = new Date(startDate)
-    const startStr = start.toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    })
-    if (endDate) {
-      const end = new Date(endDate)
-      const endStr = end.toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true,
-      })
-      return `${startStr} — ${endStr}`
-    }
-    return startStr
-  } catch {
-    return startDate
-  }
 }
 
 export function mapWPEventToDomain(
@@ -89,7 +61,7 @@ export function mapWPEventToDomain(
     categoryLabel,
     startDate,
     endDate,
-    timeLabel: buildTimeLabel(startDate, endDate),
+    timeLabel: formatEventTimeLabel(startDate, endDate, lang),
     location: meta._asp_event_location || '',
     ctaLabel: meta._asp_cta_label || 'Learn More',
     ctaUrl: meta._asp_cta_url || undefined,
