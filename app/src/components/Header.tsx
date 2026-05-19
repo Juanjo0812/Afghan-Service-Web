@@ -1,26 +1,29 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Menu, X, Phone } from 'lucide-react'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const { t } = useTranslation('common')
+  const { lang } = useLanguage()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname() || '/'
 
-  const navItems = [
-    { label: t('nav.immigrationHelp'), path: '/immigration' },
-    { label: t('nav.communityResources'), path: '/resources' },
-    { label: t('nav.knowYourRights'), path: '/rights' },
-    { label: t('nav.events'), path: '/events' },
-    { label: t('nav.stories'), path: '/stories' },
-    { label: t('nav.contact'), path: '/contact' },
-  ]
+  const navItems = useMemo(() => [
+    { label: t('nav.immigrationHelp'), path: localizePath('/immigration', lang) },
+    { label: t('nav.communityResources'), path: localizePath('/resources', lang) },
+    { label: t('nav.knowYourRights'), path: localizePath('/rights', lang) },
+    { label: t('nav.events'), path: localizePath('/events', lang) },
+    { label: t('nav.stories'), path: localizePath('/stories', lang) },
+    { label: t('nav.contact'), path: localizePath('/contact', lang) },
+  ], [t, lang])
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -57,7 +60,7 @@ export default function Header() {
           >
             {/* Logo */}
             <Link
-              href="/"
+              href={localizePath('/', lang)}
               className="flex-shrink-0 flex items-center focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 rounded-md"
               aria-label="Catholic Charities AZ - Home"
             >
@@ -110,7 +113,7 @@ export default function Header() {
 
               {/* Get Help Now CTA */}
               <Link
-                href="/contact"
+                href={localizePath('/contact', lang)}
                 className={`btn-primary px-4 font-semibold hidden sm:inline-flex transition-all duration-500 ease-in-out ${
                   scrolled ? 'py-2 text-sm' : 'py-2.5 text-[15px]'
                 }`}
@@ -186,7 +189,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="/contact"
+              href={localizePath('/contact', lang)}
               className="btn-primary mt-6 text-center justify-center"
               onClick={() => setMobileOpen(false)}
             >

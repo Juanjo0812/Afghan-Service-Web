@@ -1,42 +1,67 @@
 {
-  "label": "Know Your Rights",
-  "heading": "Know Your Rights",
-  "description": "Understanding your rights is the first step to protecting yourself and your family.",
-  "scenarios": {
+  "label": "توانمندسازی",
+  "heading": "حقوق خود را بشناسید",
+  "description": "درک حقوق شما اولین گام برای محافظت از خود و خانواده‌تان است.",
+  "accordionHeading": "حقوق شما در موقعیت‌های کلیدی",
+  "accordionSubtext": "[MT] روی هر موضوع کلیک کنید تا درباره حقوق خود بیشتر بدانید",
+  "sections": {
     "police": {
-      "title": "When Interacting with Police or Immigration Agents",
-      "items": [
-        "You do not have to answer questions about your immigration status.",
-        "You may say: \"I want to remain silent.\"",
-        "You have the right to refuse a search without a warrant.",
-        "Ask for a lawyer before signing anything."
-      ]
+      "title": "هنگام تعامل با پلیس یا ماموران مهاجرت",
+      "bullet1": "شما مجبور نیستید به سوالات مربوط به وضعیت مهاجرت خود پاسخ دهید.",
+      "bullet2": "شما حق دارید از بازرسی خود، خودرو یا خانه‌تان بدون حکم خودداری کنید.",
+      "bullet3": "شما حق دارید وکیل بخواهید. بگویید: \"من می‌خواهم با یک وکیل صحبت کنم.\"",
+      "bullet4": "شما حق دارید بدون مشورت با وکیل، هیچ سندی را امضا نکنید.",
+      "bullet5": "فرار نکنید، دروغ نگویید و مدارک جعلی ارائه ندهید. آرام و مؤدب باشید.",
+      "bullet6": "اگر بازداشت شدید، شما حق دارید یک تماس تلفنی بگیرید."
     },
     "ice": {
-      "title": "If ICE Comes to Your Home",
-      "items": [
-        "Do NOT open the door without a signed warrant.",
-        "Ask to see it through the window or under the door.",
-        "You have the right to remain silent.",
-        "Have a family safety plan."
-      ]
+      "title": "اگر اداره مهاجرت (ICE) به خانه شما آمد",
+      "bullet1": "ICE نمی‌تواند بدون حکم امضا شده توسط قاضی وارد خانه شما شود. از آن‌ها بخواهید حکم را زیر در بگذارند.",
+      "bullet2": "شما حق سکوت دارید. در را باز نکنید مگر اینکه یک حکم قضایی معتبر نشان دهند.",
+      "bullet3": "بدون مشورت با وکیل، هیچ سندی را امضا نکنید.",
+      "bullet4": "اگر ICE بدون اجازه وارد شد، بگویید: \"من به این بازرسی رضایت نمی‌دهم.\"",
+      "bullet5": "یک برنامه ایمنی خانواده تهیه کنید: بدانید اگر یکی از اعضای خانواده بازداشت شود، چه کسی از فرزندان مراقبت خواهد کرد.",
+      "bullet6": "مدارک مهم را در جای امن و در دسترس نگهداری کنید.",
+      "bullet7": "شماره تلفن‌های مهم، از جمله شماره وکیل خود را حفظ کنید."
     },
     "documents": {
-      "title": "Carrying Documents Safely",
-      "items": [
-        "Carry copies, not originals.",
-        "Avoid carrying your passport unless advised.",
-        "Store important documents safely at home."
-      ]
+      "title": "حمل ایمن مدارک",
+      "bullet1": "کپی مدارک مهم خود را همراه داشته باشید، نه اصل آن‌ها را. اصل مدارک را در جای امن در خانه نگهداری کنید.",
+      "bullet2": "مدارک مهم شامل: پاسپورت، I-94، مجوز کار، گواهینامه رانندگی، اوراق دادگاه.",
+      "bullet3": "کپی‌های دیجیتال تهیه کنید و آن‌ها را به طور امن ذخیره کنید (فضای ابری، ایمیل به خانواده مورد اعتماد).",
+      "bullet4": "مدارک جعلی همراه نداشته باشید — این می‌تواند عواقب حقوقی جدی داشته باشد.",
+      "bullet5": "اگر مجوز کار یا گواهینامه رانندگی معتبر دارید، آن را همراه داشته باشید.",
+      "bullet6": "یک کارت «حقوق خود را بشناسید» (در زیر دانلود کنید) همراه داشته باشید تا به افسران بدهید."
     }
   },
-  "disclaimer": "This information is for educational purposes only and does not constitute legal advice. For legal assistance, please contact an immigration attorney or an approved legal service provider.",
-  "lastReviewed": "Last reviewed: May 2026",
+  "disclaimer": "این اطلاعات صرفاً برای اهداف آموزشی است و مشاوره حقوقی محسوب نمی‌شود. هر وضعیت متفاوت است. لطفاً برای مشاوره درباره شرایط خاص خود با یک وکیل مهاجرت واجد شرایط مشورت کنید.",
+  "lastReviewed": "آخرین بازبینی: می ۲۰۲۶",
   "downloads": {
-    "title": "Know Your Rights Cards",
-    "subtitle": "Download wallet-size cards",
-    "english": "Download (English)",
-    "dari": "Download (Dari)",
-    "uzbek": "Download (Uzbek)"
+    "heading": "کارت‌های حقوق خود را بشناسید را دانلود کنید",
+    "subtext": "[MT] کارت‌های جیبی که می‌توانید همراه داشته باشید. به زبان‌های مختلف در دسترس است.",
+    "comingSoon": "[MT] کارت‌های دانلود به زودی. لطفاً دوباره بررسی کنید یا",
+    "contactUs": "[MT] با ما تماس بگیرید",
+    "forCopy": "[MT] برای دریافت نسخه.",
+    "title": "کارت‌های حقوق خود را بشناسید",
+    "subtitle": "[MT] دانلود کارت‌های جیبی",
+    "english": "دانلود (انگلیسی)",
+    "dari": "دانلود (دری)",
+    "uzbek": "دانلود (ازبکی)"
+  },
+  "videos": {
+    "heading": "منابع ویدیویی",
+    "subtext": "[MT] از رهبران جامعه و کسانی که این روند را طی کرده‌اند بیاموزید",
+    "playCommunity": "[MT] پخش ویدیوی رهبران جامعه",
+    "pauseCommunity": "[MT] توقف ویدیو",
+    "playClients": "[MT] پخش ویدیوی داستان‌های مراجعین",
+    "pauseClients": "[MT] توقف ویدیو",
+    "community": {
+      "title": "[MT] سخنان رهبران جامعه",
+      "desc": "[MT] از رهبران جامعه افغان درباره حقوق و منابع خود در فینیکس بشنوید."
+    },
+    "clients": {
+      "title": "[MT] تجربیات مراجعین",
+      "desc": "[MT] بیاموزید چگونه درک حقوق خود به این خانواده‌ها کمک کرده تا زندگی جدیدی بسازند."
+    }
   }
 }

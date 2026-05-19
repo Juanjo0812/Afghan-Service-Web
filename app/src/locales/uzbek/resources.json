@@ -1,5 +1,32 @@
 {
-  "label": "Community Resources",
-  "heading": "Find the Support You Need",
-  "description": "Free and low-cost services available to Afghan families in the Phoenix area."
+  "label": "Resurslar",
+  "heading": "Hamjamiyat resurslari",
+  "description": "Siz va oilangizni Feniksda qo'llab-quvvatlash uchun zarur xizmatlar va dasturlar.",
+  "getHelp": "[MT] Yordam olish",
+  "contactUs": "[MT] Biz bilan bog'laning",
+  "categories": {
+    "english": {
+      "tag": "Ta'lim",
+      "title": "Ingliz tili darslari",
+      "desc": "ESL dasturlari, GED tayyorgarligi va bolalar va kattalar uchun maktabga qabul yordami.",
+      "item1": "[MT] Barcha darajalar uchun ESL dasturlari",
+      "item2": "[MT] GED tayyorgarlik darslari",
+      "item3": "[MT] Maktabga qabul yordami"
+    },
+    "mental": {
+      "tag": "Salomatlik",
+      "title": "Ruhiy salomatlik va xotirjamlik",
+      "desc": "Maslahat, qo'llab-quvvatlash guruhlari va shaxslar va oilalar uchun travmaga mos g'amxor."
+    },
+    "food": {
+      "tag": "Asosiy ehtiyojlar",
+      "title": "Oziq-ovqat banklari",
+      "desc": "Oziq-ovqat banklari joylari, SNAP ro'yxatdan o'tkazish yordami va halol oziq-ovqat resurslari."
+    },
+    "health": {
+      "tag": "Sog'liqni saqlash",
+      "title": "Tibbiy klinikalar",
+      "desc": "Bepul va arzon klinikalar, AHCCCS ro'yxatdan o'tkazish yordami va tish g'amxo'rligi yo'naltirish."
+    }
+  }
 }

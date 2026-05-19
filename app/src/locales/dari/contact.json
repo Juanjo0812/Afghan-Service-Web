@@ -1,62 +1,84 @@
 {
-  "label": "Get in Touch",
-  "heading": "We're Here to Help",
-  "description": "Reach out in Dari or English. All conversations are confidential.",
+  "label": "تماس با ما",
+  "heading": "ما اینجا برای کمک هستیم",
+  "description": "[MT] برای دریافت کمک رایگان و محرمانه با ما تماس بگیرید. تیم ما به زبان شما صحبت می‌کند.",
   "details": {
     "phone": {
-      "label": "Phone",
+      "label": "تلفن",
       "value": "480.416.2333"
     },
     "whatsapp": {
-      "label": "WhatsApp",
+      "label": "واتس‌اپ",
       "value": "+1 480.416.2333"
     },
     "email": {
-      "label": "Email",
+      "label": "ایمیل",
       "value": "Dpeshtaz@cc-az.org"
     },
     "address": {
-      "label": "Address",
+      "label": "آدرس",
       "value": "5151 N 19th Ave, Phoenix AZ 85015"
     }
   },
-  "mapCaption": "CC-AZ Office Location",
-  "mapTitle": "CC-AZ Office Location",
+  "mapCaption": "[MT] موقعیت دفتر CC-AZ",
+  "mapTitle": "[MT] موقعیت دفتر CC-AZ",
   "form": {
+    "heading": "[MT] پیامی برای ما بفرستید",
     "name": {
-      "label": "Your Name",
-      "placeholder": "Your Name"
+      "label": "نام",
+      "placeholder": "نام خود را وارد کنید"
     },
     "phone": {
-      "label": "Phone Number",
-      "placeholder": "Phone Number"
+      "label": "شماره تلفن",
+      "placeholder": "شماره تلفن خود را وارد کنید"
     },
     "email": {
-      "label": "Email Address",
-      "placeholder": "Email Address"
+      "label": "[MT] آدرس ایمیل",
+      "placeholder": "[MT] آدرس ایمیل"
     },
     "message": {
-      "label": "Your Message",
-      "placeholder": "Your Message"
+      "label": "چطور می‌توانیم کمک کنیم؟",
+      "placeholder": "[MT] سوال یا نیاز خود را توضیح دهید..."
     },
-    "submit": "Send Message",
-    "submitting": "Sending..."
+    "submit": "ارسال پیام",
+    "sending": "در حال ارسال...",
+    "errors": {
+      "name": "[MT] لطفاً نام خود را وارد کنید",
+      "phone": "[MT] لطفاً شماره تلفن خود را وارد کنید",
+      "message": "[MT] لطفاً سوال یا پیام خود را وارد کنید"
+    },
+    "rateLimited": {
+      "title": "[MT] پیام‌های بسیار زیاد ارسال شده",
+      "retry": "[MT] لطفاً {{minutes}} دقیقه صبر کنید قبل از تلاش مجدد.",
+      "wait": "[MT] لطفاً مدتی صبر کنید قبل از تلاش مجدد.",
+      "urgent": "[MT] اگر این موضوع فوری است، از طریق تلفن یا واتس‌اپ با ما تماس بگیرید."
+    },
+    "error": "[MT] مشکلی پیش آمد. لطفاً بعداً دوباره تلاش کنید.",
+    "errorFallback": "[MT] لطفاً دوباره تلاش کنید، یا از طریق گزینه‌های سمت راست با ما تماس بگیرید."
   },
   "validation": {
-    "nameMin": "Name must be at least 2 characters",
-    "phoneRequired": "Phone is required",
-    "phoneInvalid": "Please enter a valid phone number",
-    "emailInvalid": "Please enter a valid email address",
-    "messageMin": "Message must be at least 10 characters",
-    "messageMax": "Message must be at most 2000 characters"
+    "nameMin": "[MT] نام باید حداقل ۲ کاراکتر باشد",
+    "phoneRequired": "[MT] شماره تلفن الزامی است",
+    "phoneInvalid": "[MT] لطفاً یک شماره تلفن معتبر وارد کنید",
+    "emailInvalid": "[MT] لطفاً یک آدرس ایمیل معتبر وارد کنید",
+    "messageMin": "[MT] پیام باید حداقل ۱۰ کاراکتر باشد",
+    "messageMax": "[MT] پیام باید حداکثر ۲۰۰۰ کاراکتر باشد"
   },
   "toast": {
-    "rateLimit": "Too many submissions. Please try again later.",
-    "error": "Failed to send. Please try again or call us.",
-    "success": "Thank you for your message. We will get back to you soon."
+    "rateLimit": "[MT] ارسال‌های بسیار زیاد. لطفاً بعداً دوباره تلاش کنید.",
+    "error": "[MT] ارسال ناموفق بود. لطفاً دوباره تلاش کنید یا با ما تماس بگیرید.",
+    "success": "[MT] از پیام شما متشکریم. به زودی با شما تماس خواهیم گرفت."
   },
   "success": {
-    "title": "Thank You",
-    "message": "Your message has been sent. We'll get back to you soon."
+    "title": "[MT] متشکریم!",
+    "message": "[MT] ما ظرف ۲۴ ساعت با شما تماس خواهیم گرفت."
+  },
+  "info": {
+    "heading": "[MT] اطلاعات تماس",
+    "whatsapp": "[MT] پیام در واتس‌اپ",
+    "phone": "[MT] با ما تماس بگیرید",
+    "email": "[MT] ایمیل به ما",
+    "hours": "[MT] ساعات اداری",
+    "address": "[MT] به ما سر بزنید"
   }
 }

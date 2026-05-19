@@ -1,16 +1,30 @@
 {
-  "label": "Upcoming Events",
-  "heading": "Events & Gatherings",
-  "categories": {
-    "workshop": "Workshop",
-    "legal": "Legal Clinic",
-    "cultural": "Cultural",
-    "holiday": "Holiday"
+  "label": "Tadbirlar",
+  "heading": "Tadbirlar taqvimi",
+  "description": "[MT] Seminarlar, huquqiy klinikalar, madaniy uchrashuvlar va hamjamiyat tadbirlarida qatnashing.",
+  "upcomingLabel": "Kelgusi tadbir",
+  "featuredBadge": "[MT] Tavsiya etilgan tadbir",
+  "registerCta": "[MT] Seminarga ro'yxatdan o'tish",
+  "listView": "[MT] Ro'yxat ko'rinishi",
+  "calendarView": "[MT] Taqvim ko'rinishi",
+  "filters": {
+    "all": "[MT] Barcha tadbirlar",
+    "immigration": "[MT] Immigratsiya seminarlari",
+    "legal": "[MT] Huquqiy klinikalar",
+    "cultural": "[MT] Madaniy uchrashuvlar",
+    "holiday": "[MT] Afg'oniston bayramlari"
   },
-  "contactUsInfo": "Contact us for more information",
-  "details": "Details",
+  "noEvents": "[MT] Bu toifada tadbirlar topilmadi.",
+  "contactUsInfo": "Ko'proq ma'lumot uchun biz bilan bog'laning",
+  "details": "Tafsilotlar",
   "aria": {
-    "previousMonth": "Previous month",
-    "nextMonth": "Next month"
+    "previousMonth": "Oldingi oy",
+    "nextMonth": "Keyingi oy"
+  },
+  "categories": {
+    "workshop": "Seminar",
+    "legal": "Huquqiy klinika",
+    "cultural": "Madaniy",
+    "holiday": "Bayram"
   }
 }

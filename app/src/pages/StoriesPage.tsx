@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { Quote, X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 
 interface Story {
   id: number
@@ -16,20 +18,7 @@ interface Story {
   context: string
 }
 
-// Replace with the 5 approved client videos when assets are ready.
-// Each story needs: image (thumbnail), videoUrl, title, quote, name, context.
-const stories: Story[] = [
-  {
-    id: 1,
-    image: '/images/hero-stories.jpg',
-    videoUrl: '',
-    title: 'Community Stories Coming Soon',
-    quote:
-      'We are collecting video stories from Afghan families and community leaders. Check back soon.',
-    name: 'Afghan Support Phoenix',
-    context: 'Community Program — Catholic Charities',
-  },
-]
+
 
 function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) => void }) {
   return (
@@ -62,9 +51,18 @@ function StoryCard({ story, onClick }: { story: Story; onClick: (story: Story) =
 
 export default function StoriesPage() {
   const { t } = useTranslation('testimonials')
+  const { lang } = useLanguage()
   const [selectedVideo, setSelectedVideo] = useState<Story | null>(null)
 
-  const videoStories = stories
+  const videoStories: Story[] = Array.from({ length: 5 }, (_, i) => ({
+    id: i + 1,
+    image: '/images/hero-stories.jpg',
+    videoUrl: `/videos/Stories/Story_${i + 1}.mp4`,
+    title: t('stories.title', { number: i + 1 }),
+    quote: t('stories.quote'),
+    name: t('stories.name'),
+    context: t('stories.context'),
+  }))
 
   const handleNextVideo = () => {
     if (!selectedVideo) return
@@ -130,10 +128,10 @@ export default function StoriesPage() {
           </h2>
           <p className="text-body-lg text-white/80 mb-8">{t('bottomCta.text')}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn-primary">
+            <Link href={localizePath('/contact', lang)} className="btn-primary">
               {t('bottomCta.primary')}
             </Link>
-            <Link href="/contact" className="btn-white-outline">
+            <Link href={localizePath('/contact', lang)} className="btn-white-outline">
               {t('bottomCta.secondary')}
             </Link>
           </div>

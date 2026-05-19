@@ -4,9 +4,12 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Shield, Briefcase, Clock, CreditCard, Landmark, Phone, Mail, Clock3 } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 
 export default function ImmigrationPage() {
   const { t } = useTranslation('immigration-help')
+  const { lang } = useLanguage()
 
   const services = [
     {
@@ -162,7 +165,7 @@ export default function ImmigrationPage() {
                   <Clock3 className="w-5 h-5 text-olive" aria-hidden="true" />
                   <span className="text-body-sm">{t('contact.hours')}</span>
                 </div>
-                <Link href="/contact" className="btn-primary w-full text-center mt-2">
+                <Link href={localizePath('/contact', lang)} className="btn-primary w-full text-center mt-2">
                   {t('contact.cta')}
                 </Link>
               </div>

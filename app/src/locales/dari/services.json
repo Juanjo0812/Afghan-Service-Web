@@ -1,31 +1,31 @@
 {
-  "sectionLabel": "Our Services",
-  "heading": "How We Can Help",
+  "sectionLabel": "[MT] خدمات ما",
+  "heading": "[MT] چطور می‌توانیم کمک کنیم",
   "cards": {
     "immigration": {
-      "title": "Immigration Help",
-      "description": "Free legal consultations for asylum, work permits, TPS, green cards, and family reunification."
+      "title": "راهنمای مهاجرت",
+      "description": "[MT] مشاوره حقوقی رایگان برای پناهندگی، مجوز کار، TPS، گرین کارت و پیوستن خانواده."
     },
     "housing": {
-      "title": "Housing",
-      "description": "Connect with housing resources, rental assistance, and shelter referrals in the Phoenix area."
+      "title": "[MT] مسکن",
+      "description": "[MT] ارتباط با منابع مسکن، کمک اجاره و معرفی پناهگاه در منطقه فینیکس."
     },
     "healthcare": {
-      "title": "Healthcare",
-      "description": "Find low-cost clinics, mental health services, and health insurance enrollment assistance."
+      "title": "[MT] بهداشت و درمان",
+      "description": "[MT] یافتن کلینیک‌های کم‌هزینه، خدمات سلامت روان و کمک در ثبت‌نام بیمه سلامت."
     },
     "education": {
-      "title": "Education & ESL",
-      "description": "English classes, GED programs, and school enrollment support for children and adults."
+      "title": "[MT] آموزش و ESL",
+      "description": "[MT] کلاس‌های انگلیسی، برنامه‌های GED و پشتیبانی ثبت‌نام مدرسه برای کودکان و بزرگسالان."
     },
     "employment": {
-      "title": "Employment",
-      "description": "Job search assistance, resume help, interview preparation, and career training programs."
+      "title": "[MT] اشتغال",
+      "description": "[MT] کمک در جستجوی کار، رزومه، آمادگی مصاحبه و برنامه‌های آموزش شغلی."
     },
     "legal": {
-      "title": "Legal Aid",
-      "description": "Free or low-cost legal services for immigration, family law, and civil matters."
+      "title": "[MT] کمک حقوقی",
+      "description": "[MT] خدمات حقوقی رایگان یا کم‌هزینه برای مهاجرت، قوانین خانواده و امور مدنی."
     }
   },
-  "learnMore": "Learn More"
+  "learnMore": "[MT] بیشتر بدانید"
 }

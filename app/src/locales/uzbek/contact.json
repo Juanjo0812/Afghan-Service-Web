@@ -1,10 +1,10 @@
 {
-  "label": "Get in Touch",
-  "heading": "We're Here to Help",
-  "description": "Reach out in Dari or English. All conversations are confidential.",
+  "label": "Bog'lanish",
+  "heading": "Biz sizga yordam berishga tayyormiz",
+  "description": "[MT] Bepul va maxfiy yordam uchun murojaat qiling. Bizning jamoamiz sizning tilingizda gaplashadi.",
   "details": {
     "phone": {
-      "label": "Phone",
+      "label": "Telefon",
       "value": "480.416.2333"
     },
     "whatsapp": {
@@ -12,51 +12,73 @@
       "value": "+1 480.416.2333"
     },
     "email": {
-      "label": "Email",
+      "label": "Elektron pochta",
       "value": "Dpeshtaz@cc-az.org"
     },
     "address": {
-      "label": "Address",
+      "label": "Manzil",
       "value": "5151 N 19th Ave, Phoenix AZ 85015"
     }
   },
-  "mapCaption": "CC-AZ Office Location",
-  "mapTitle": "CC-AZ Office Location",
+  "mapCaption": "[MT] CC-AZ ofisi joylashuvi",
+  "mapTitle": "[MT] CC-AZ ofisi joylashuvi",
   "form": {
+    "heading": "[MT] Bizga xabar yuboring",
     "name": {
-      "label": "Your Name",
-      "placeholder": "Your Name"
+      "label": "Ism",
+      "placeholder": "To'liq ismingizni kiriting"
     },
     "phone": {
-      "label": "Phone Number",
-      "placeholder": "Phone Number"
+      "label": "Telefon raqami",
+      "placeholder": "Telefon raqamingizni kiriting"
     },
     "email": {
-      "label": "Email Address",
-      "placeholder": "Email Address"
+      "label": "[MT] Elektron pochta manzili",
+      "placeholder": "[MT] Elektron pochta manzili"
     },
     "message": {
-      "label": "Your Message",
-      "placeholder": "Your Message"
+      "label": "Qanday yordam bera olamiz?",
+      "placeholder": "[MT] Savolingiz yoki yordam kerak bo'lgan narsani tavsif eting..."
     },
-    "submit": "Send Message",
-    "submitting": "Sending..."
+    "submit": "Xabar yuborish",
+    "sending": "Yuborilmoqda...",
+    "errors": {
+      "name": "[MT] Iltimos, ismingizni kiriting",
+      "phone": "[MT] Iltimos, telefon raqamingizni kiriting",
+      "message": "[MT] Iltimos, savolingiz yoki xabaringizni kiriting"
+    },
+    "rateLimited": {
+      "title": "[MT] Juda ko'p xabar yuborildi",
+      "retry": "[MT] Iltimos, qayta urinishdan oldin {{minutes}} daqiqa kuting.",
+      "wait": "[MT] Iltimos, qayta urinishdan oldin biroz kuting.",
+      "urgent": "[MT] Agar bu shoshilinch bo'lsa, quyidagi telefon yoki WhatsApp orqali biz bilan bog'laning."
+    },
+    "error": "[MT] Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
+    "errorFallback": "[MT] Iltimos, qayta urinib ko'ring yoki o'ng tomondagi variantlar orqali biz bilan bog'laning."
   },
   "validation": {
-    "nameMin": "Name must be at least 2 characters",
-    "phoneRequired": "Phone is required",
-    "phoneInvalid": "Please enter a valid phone number",
-    "emailInvalid": "Please enter a valid email address",
-    "messageMin": "Message must be at least 10 characters",
-    "messageMax": "Message must be at most 2000 characters"
+    "nameMin": "[MT] Ism kamida 2 ta belgidan iborat bo'lishi kerak",
+    "phoneRequired": "[MT] Telefon raqami majburiy",
+    "phoneInvalid": "[MT] Iltimos, to'g'ri telefon raqamini kiriting",
+    "emailInvalid": "[MT] Iltimos, to'g'ri elektron pochta manzilini kiriting",
+    "messageMin": "[MT] Xabar kamida 10 ta belgidan iborat bo'lishi kerak",
+    "messageMax": "[MT] Xabar ko'pi bilan 2000 ta belgidan iborat bo'lishi kerak"
   },
   "toast": {
-    "rateLimit": "Too many submissions. Please try again later.",
-    "error": "Failed to send. Please try again or call us.",
-    "success": "Thank you for your message. We will get back to you soon."
+    "rateLimit": "[MT] Juda ko'p urinishlar. Iltimos, keyinroq qayta urinib ko'ring.",
+    "error": "[MT] Yuborish muvaffaqiyatsiz tugadi. Iltimos, qayta urinib ko'ring yoki biz bilan bog'laning.",
+    "success": "[MT] Xabaringiz uchun rahmat. Tez orada siz bilan bog'lanamiz."
   },
   "success": {
-    "title": "Thank You",
-    "message": "Your message has been sent. We'll get back to you soon."
+    "title": "[MT] Rahmat!",
+    "message": "[MT] Biz 24 soat ichida siz bilan bog'lanamiz."
+  },
+  "info": {
+    "heading": "[MT] Aloqa ma'lumotlari",
+    "whatsapp": "[MT] WhatsApp orqali xabar yuboring",
+    "phone": "[MT] Bizga qo'ng'iroq qiling",
+    "email": "[MT] Bizga elektron pochta yuboring",
+    "hours": "[MT] Ofis soatlari",
+    "address": "[MT] Bizga tashrif buyuring"
   }
 }

@@ -1,37 +1,43 @@
 {
-  "label": "Immigration Services",
-  "heading": "Free Immigration Assistance for Afghan Families in Phoenix",
-  "subtitle": "We provide free and confidential immigration legal support for Afghan individuals and families.",
+  "label": "Bepul xizmatlar",
+  "heading": "Feniksdagi afg'on oilalari uchun bepul immigratsiya yordami",
+  "subtitle": "Barcha xizmatlar bepul, maxfiy va dariy, o'zbek va ingliz tillarida mavjud.",
+  "servicesHeading": "[MT] Bizning xizmatlarimiz",
+  "servicesSubtext": "[MT] Ko'proq ma'lumot olish yoki yordam so'rash uchun istalgan xizmat ustiga bosing",
+  "languagesHeading": "[MT] Mavjud tillar",
+  "languagesSubtext": "[MT] Bizning xodimlarimiz sizning tilingizda gaplashadi. Tarjima xizmatlari ham mavjud.",
+  "contactHeading": "[MT] Immigratsiya jamoamiz bilan bog'laning",
   "services": {
     "asylum": {
-      "title": "Asylum Applications",
-      "description": "Help with affirmative and defensive asylum applications"
+      "title": "Boshpana so'rash bo'yicha arizalar",
+      "description": "[MT] Tasdiqlovchi va himoya boshpana arizalari bo'yicha yordam"
     },
     "workPermit": {
-      "title": "Work Permit Assistance",
-      "description": "Employment authorization document (EAD) applications and renewals"
+      "title": "Ishlash ruxsatnomasi bo'yicha yordam",
+      "description": "[MT] Bandlik uchun ruxsat hujjati (EAD) arizalari va yangilash"
     },
     "tps": {
-      "title": "TPS (Temporary Protected Status)",
-      "description": "TPS registration and re-registration assistance"
+      "title": "TPS - Vaqtinchalik himoyalangan maqom",
+      "description": "[MT] TPS ro'yxatdan o'tkazish va qayta ro'yxatdan o'tkazish yordami"
     },
     "greenCard": {
-      "title": "Green Card & Family Reunification",
-      "description": "Adjustment of status and family-based petitions"
+      "title": "Grin-karta va oilani birlashtirish",
+      "description": "[MT] Maqomni tuzatish va oilaviy da'volar"
     },
     "adjustmentAct": {
-      "title": "Afghan Adjustment Act Assistance",
-      "description": "Assistance under the Afghan Adjustment Act provisions"
+      "title": "Afg'onistonliklarni moslashtirish qonuni bo'yicha yordam",
+      "description": "[MT] Afg'onistonliklarni moslashtirish qonuni qoidalariga ko'ra yordam"
     }
   },
-  "languages": "We speak your language: English | دری | Oʻzbek",
+  "languages": "Dariy | O'zbek tili",
   "contact": {
-    "heading": "Call today — we speak your language and are ready to help",
+    "heading": "Bugunoq qo'ng'iroq qiling - biz sizning tilingizda gaplashamiz va yordam berishga tayyormiz",
     "name": "Daoud",
     "phone": "480.416.2333",
     "email": "Dpeshtaz@cc-az.org",
-    "location": "Phoenix office — in-person or phone appointments",
-    "hours": "Monday–Friday | 9 AM – 5 PM",
-    "cta": "Request a Call Back"
+    "location": "Feniks ofisi - shaxsan yoki telefon orqali qabul",
+    "hours": "Dushanba-Juma | 9:00 dan 17:00 gacha",
+    "cta": "Qayta qo'ng'iroq buyurtma qilish",
+    "role": "[MT] Immigratsiya ishlarini boshqaruvchi"
   }
 }

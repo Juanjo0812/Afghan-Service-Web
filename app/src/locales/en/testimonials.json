@@ -27,5 +27,11 @@
     "text": "Whether you need help or want to support our community, we'd love to hear from you.",
     "primary": "Get Help Now",
     "secondary": "Contact Us"
+  },
+  "stories": {
+    "title": "Community Story {{number}}",
+    "quote": "Afghan community member shares their experience.",
+    "name": "Community Member",
+    "context": "Afghan Support Phoenix — Community Program"
   }
 }

@@ -1,43 +1,61 @@
 {
   "nav": {
     "logo": "Afghan Support",
-    "home": "Home",
-    "immigrationHelp": "Immigration Help",
-    "communityResources": "Community Resources",
-    "knowYourRights": "Know Your Rights",
-    "events": "Events",
-    "contact": "Contact",
-    "getHelp": "Get Help Now",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "home": "صفحه اصلی",
+    "immigrationHelp": "راهنمای مهاجرت",
+    "communityResources": "منابع اجتماعی",
+    "knowYourRights": "حقوق خود را بشناسید",
+    "events": "رویدادها",
+    "contact": "تماس",
+    "getHelp": "اکنون کمک بگیرید",
+    "openMenu": "باز کردن منو",
+    "stories": "داستان‌ها",
+    "closeMenu": "بستن منو"
   },
+  "mobileNavigation": "[MT] ناوبری",
+  "selectLanguage": "[MT] انتخاب زبان",
   "footer": {
     "logo": "Afghan Support",
-    "tagline": "Serving Afghan families in Phoenix since 2021.",
-    "quickLinks": "Quick Links",
-    "home": "Home",
-    "immigrationHelp": "Immigration Help",
-    "resources": "Resources",
-    "events": "Events",
-    "contact": "Contact",
-    "languages": "Languages",
+    "organization": "[MT] یک برنامه از خدمات اجتماعی کاتولیک چاریتیز، آریزونا",
+    "tagline": "[MT] خدمت به خانواده‌های افغان در فینیکس از سال ۲۰۲۱.",
+    "quickLinks": "پیوندهای سریع",
+    "home": "صفحه اصلی",
+    "immigrationHelp": "راهنمای مهاجرت",
+    "resources": "منابع",
+    "events": "رویدادها",
+    "contact": "تماس",
+    "stories": "داستان‌ها",
+    "languages": "زبان‌ها",
     "english": "English",
     "dari": "دری (Dari)",
     "uzbek": "O'zbek (Uzbek)",
+    "resourcesHeading": "منابع",
     "resourceLinks": {
-      "englishClasses": "English Classes",
-      "foodBanks": "Food Banks",
-      "mentalHealth": "Mental Health",
-      "healthClinics": "Health Clinics"
+      "englishClasses": "کلاس‌های انگلیسی",
+      "foodBanks": "بانک‌های غذا",
+      "mentalHealth": "سلامت روان",
+      "healthClinics": "کلینیک‌های بهداشتی"
     },
-    "copyright": "© 2026 Afghan Support. All rights reserved."
+    "legal": "[MT] حقوقی",
+    "legalDisclaimer": "[MT] این اطلاعات صرفاً برای اهداف آموزشی است و مشاوره حقوقی محسوب نمی‌شود.",
+    "bottomText": "[MT] کاتولیک چاریتیز آریزونا — خدمت به آریزونا از سال ۱۹۳۳",
+    "copyright": "© ۲۰۲۶ Afghan Support. تمام حقوق محفوظ است."
   },
   "quickAccess": {
-    "immigrationHelp": "Immigration Help",
-    "knowYourRights": "Know Your Rights",
-    "findResources": "Find Resources",
-    "upcomingEvents": "Upcoming Events"
+    "immigrationHelp": "راهنمای مهاجرت",
+    "knowYourRights": "حقوق خود را بشناسید",
+    "findResources": "یافتن منابع",
+    "upcomingEvents": "رویدادهای پیش رو",
+    "immigrationDesc": "[MT] کمک رایگان برای پناهندگی، مجوز کار و وضعیت حقوقی",
+    "rightsDesc": "[MT] حقوق خود را هنگام تعامل با پلیس یا ICE بیاموزید",
+    "resourcesDesc": "[MT] کلاس‌های انگلیسی، بانک‌های غذا، کلینیک‌های بهداشتی و موارد دیگر",
+    "eventsDesc": "[MT] کارگاه‌ها، کلینیک‌های حقوقی و گردهمایی‌های فرهنگی"
   },
-  "skipLink": "Skip to main content",
-  "chatbotFallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170."
+  "home": {
+    "howCanWeHelp": "[MT] چطور می‌توانیم کمک کنیم؟",
+    "freeServices": "[MT] خدمات و پشتیبانی رایگان برای خانواده‌های افغان"
+  },
+  "learnMore": "[MT] بیشتر بدانید",
+  "skipLink": "[MT] پرش به محتوای اصلی",
+  "chatbotFallback": "[MT] از پیام شما متشکریم. یک کارشناس ظرف ۱ تا ۲ روز کاری با شما تماس خواهد گرفت. برای کمک فوری، لطفاً با شماره ۴۸۰.۴۱۶.۲۳۳۳ تماس بگیرید."
 }

@@ -4,9 +4,12 @@ import { BookOpen, Heart, Utensils, Stethoscope, Check, ArrowRight } from 'lucid
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 
 export default function ResourcesPage() {
   const { t } = useTranslation('resources')
+  const { lang } = useLanguage()
 
   return (
     <>
@@ -70,7 +73,7 @@ export default function ResourcesPage() {
                       <span className="text-sm">{t('categories.english.item3')}</span>
                     </div>
                   </div>
-                  <Link href="/contact" className="btn-primary w-full md:w-auto mt-auto">
+                  <Link href={localizePath('/contact', lang)} className="btn-primary w-full md:w-auto mt-auto">
                     {t('getHelp')}
                   </Link>
                 </div>
@@ -89,7 +92,7 @@ export default function ResourcesPage() {
                   {t('categories.mental.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
                     {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -108,7 +111,7 @@ export default function ResourcesPage() {
                   {t('categories.food.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
                     {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -127,7 +130,7 @@ export default function ResourcesPage() {
                   {t('categories.health.desc')}
                 </p>
                 <div className="mt-auto pt-4 border-t border-warm-sand/50">
-                  <Link href="/contact" className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
+                  <Link href={localizePath('/contact', lang)} className="text-forest font-semibold hover:text-amber transition-colors flex items-center gap-2">
                     {t('contactUs')} <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
