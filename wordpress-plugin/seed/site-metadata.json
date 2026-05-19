@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Home — English",
+    "slug": "home-en",
+    "meta": {
+      "_asp_route_key": "home",
+      "_asp_seo_title": "Afghan Support Phoenix — Free Immigration & Community Help",
+      "_asp_seo_description": "Free immigration, legal, and community support for Afghan families in Phoenix, Arizona. Asylum applications, work permits, legal rights, community resources, and events.",
+      "_asp_og_title": "Afghan Support Phoenix",
+      "_asp_og_description": "Free immigration and community support for Afghan families in Phoenix.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "en"
+    }
+  },
+  {
+    "title": "Home — Dari",
+    "slug": "home-dari",
+    "meta": {
+      "_asp_route_key": "home",
+      "_asp_seo_title": "حمایت از افغان‌ها در فینیکس — کمک رایگان مهاجرت و جامعه",
+      "_asp_seo_description": "کمک رایگان مهاجرت، حقوقی و جامعه برای خانواده‌های افغان در فینیکس، آریزونا. درخواست پناهندگی، اجازه کار، حقوق قانونی، منابع جامعه و رویدادها.",
+      "_asp_og_title": "حمایت از افغان‌ها در فینیکس",
+      "_asp_og_description": "کمک رایگان مهاجرت و جامعه برای خانواده‌های افغان در فینیکس.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "dari"
+    }
+  },
+  {
+    "title": "Home — Uzbek",
+    "slug": "home-uzbek",
+    "meta": {
+      "_asp_route_key": "home",
+      "_asp_seo_title": "Afghan Support Phoenix — Bepul immigratsiya va jamoat yordami",
+      "_asp_seo_description": "Feniks, Arizona'dagi Afg'on oilalari uchun bepul immigratsiya, huquqiy va jamoat yordami. Boshpana arizalari, ish ruxsatnomalari, huquqiy huquqlar, jamoat resurslari va tadbirlar.",
+      "_asp_og_title": "Afghan Support Phoenix",
+      "_asp_og_description": "Feniksdagi Afg'on oilalari uchun bepul immigratsiya va jamoat yordami.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "uzbek"
+    }
+  },
+  {
+    "title": "Events — English",
+    "slug": "events-en",
+    "meta": {
+      "_asp_route_key": "events",
+      "_asp_seo_title": "Upcoming Events — Afghan Support Phoenix",
+      "_asp_seo_description": "Join our free immigration workshops, legal clinics, cultural gatherings, and Afghan community events in Phoenix, Arizona.",
+      "_asp_og_title": "Upcoming Events — Afghan Support Phoenix",
+      "_asp_og_description": "Free workshops, legal clinics, and community events for Afghan families in Phoenix.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "en"
+    }
+  },
+  {
+    "title": "Events — Dari",
+    "slug": "events-dari",
+    "meta": {
+      "_asp_route_key": "events",
+      "_asp_seo_title": "رویدادهای آینده — حمایت از افغان‌ها در فینیکس",
+      "_asp_seo_description": "در کارگاه‌های رایگان مهاجرت، کلینیک‌های حقوقی، گردهمایی‌های فرهنگی و رویدادهای جامعه افغان در فینیکس، آریزونا بپیوندید.",
+      "_asp_og_title": "رویدادهای آینده — حمایت از افغان‌ها در فینیکس",
+      "_asp_og_description": "کارگاه‌های رایگان، کلینیک‌های حقوقی و رویدادهای جامعه برای خانواده‌های افغان در فینیکس.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "dari"
+    }
+  },
+  {
+    "title": "Events — Uzbek",
+    "slug": "events-uzbek",
+    "meta": {
+      "_asp_route_key": "events",
+      "_asp_seo_title": "Kelgusi tadbirlar — Afghan Support Phoenix",
+      "_asp_seo_description": "Feniks, Arizona'dagi bepul immigratsiya seminarlarimiz, yuridik klinikalarimiz, madaniy uchrashuvlarimiz va Afg'on jamoat tadbirlarimizda qatnashing.",
+      "_asp_og_title": "Kelgusi tadbirlar — Afghan Support Phoenix",
+      "_asp_og_description": "Feniksdagi Afg'on oilalari uchun bepul seminarlar, yuridik klinikalar va jamoat tadbirlari.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "uzbek"
+    }
+  }
+]
