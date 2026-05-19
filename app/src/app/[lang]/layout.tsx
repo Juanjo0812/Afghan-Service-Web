@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { headers } from 'next/headers'
-import './globals.css'
+import '../globals.css'
 import AppShell from '@/components/AppShell'
 import { isValidLang, getHtmlLang } from '@/domain/language'
 
