@@ -108,7 +108,7 @@ export default function RightsPage() {
       <section className="relative min-h-[45vh]" aria-label="Know your rights header">
         <div className="absolute inset-0">
           <img
-            src="/images/hero-rights.jpg"
+            src="/images/hero-rights.png"
             alt="Community meeting in circle discussing rights"
             className="w-full h-full object-cover object-[center-30%]"
           />

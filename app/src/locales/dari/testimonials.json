@@ -1,37 +1,37 @@
 {
   "label": "داستان‌ها",
-  "heading": "[MT] تأثیر جامعه",
-  "description": "[MT] داستان‌های واقعی از خانواده‌های افغان که در فینیکس حمایت و موفقیت یافته‌اند.",
+  "heading": "تأثیر جامعه",
+  "description": "داستان‌های واقعی از خانواده‌های افغان که در فینیکس حمایت و موفقیت یافته‌اند.",
   "filters": {
-    "all": "[MT] همه داستان‌ها",
-    "clients": "[MT] داستان‌های مراجعین",
-    "leaders": "[MT] رهبران جامعه"
+    "all": "همه داستان‌ها",
+    "clients": "داستان‌های مراجعین",
+    "leaders": "رهبران جامعه"
   },
   "storyTypes": {
-    "client": "[MT] داستان مراجع",
-    "leader": "[MT] رهبر جامعه"
+    "client": "داستان مراجع",
+    "leader": "رهبر جامعه"
   },
   "aria": {
-    "viewTestimonial": "[MT] مشاهده شهادت از {{name}}",
-    "closeTestimonial": "[MT] بستن شهادت",
-    "modalLabel": "[MT] شهادت از {{name}}",
-    "previous": "[MT] قبلی",
-    "previousTestimonial": "[MT] شهادت قبلی",
-    "next": "[MT] بعدی",
-    "nextTestimonial": "[MT] شهادت بعدی",
-    "scrollLeft": "[MT] پیمایش شهادت‌ها به چپ",
-    "scrollRight": "[MT] پیمایش شهادت‌ها به راست"
+    "viewTestimonial": "مشاهده شهادت از {{name}}",
+    "closeTestimonial": "بستن شهادت",
+    "modalLabel": "شهادت از {{name}}",
+    "previous": "قبلی",
+    "previousTestimonial": "شهادت قبلی",
+    "next": "بعدی",
+    "nextTestimonial": "شهادت بعدی",
+    "scrollLeft": "پیمایش شهادت‌ها به چپ",
+    "scrollRight": "پیمایش شهادت‌ها به راست"
   },
   "bottomCta": {
-    "heading": "[MT] بخشی از داستان ما باشید",
-    "text": "[MT] چه به کمک نیاز داشته باشید و چه بخواهید از جامعه ما حمایت کنید، دوست داریم از شما بشنویم.",
-    "primary": "[MT] اکنون کمک بگیرید",
-    "secondary": "[MT] تماس با ما"
+    "heading": "بخشی از داستان ما باشید",
+    "text": "چه به کمک نیاز داشته باشید و چه بخواهید از جامعه ما حمایت کنید، دوست داریم از شما بشنویم.",
+    "primary": "اکنون کمک بگیرید",
+    "secondary": "تماس با ما"
   },
   "stories": {
-    "title": "[MT] داستان جامعه {{number}}",
-    "quote": "[MT] عضو جامعه افغان تجربه خود را به اشتراک می‌گذارد.",
-    "name": "[MT] عضو جامعه",
-    "context": "[MT] Afghan Support Phoenix — برنامه جامعه"
+    "title": "داستان جامعه {{number}}",
+    "quote": "عضو جامعه افغان تجربه خود را به اشتراک می‌گذارد.",
+    "name": "عضو جامعه",
+    "context": "Afghan Support Phoenix — برنامه جامعه"
   }
 }

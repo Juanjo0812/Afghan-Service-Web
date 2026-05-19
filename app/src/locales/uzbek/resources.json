@@ -2,16 +2,16 @@
   "label": "Resurslar",
   "heading": "Hamjamiyat resurslari",
   "description": "Siz va oilangizni Feniksda qo'llab-quvvatlash uchun zarur xizmatlar va dasturlar.",
-  "getHelp": "[MT] Yordam olish",
-  "contactUs": "[MT] Biz bilan bog'laning",
+  "getHelp": "Yordam olish",
+  "contactUs": "Biz bilan bog'laning",
   "categories": {
     "english": {
       "tag": "Ta'lim",
       "title": "Ingliz tili darslari",
       "desc": "ESL dasturlari, GED tayyorgarligi va bolalar va kattalar uchun maktabga qabul yordami.",
-      "item1": "[MT] Barcha darajalar uchun ESL dasturlari",
-      "item2": "[MT] GED tayyorgarlik darslari",
-      "item3": "[MT] Maktabga qabul yordami"
+      "item1": "Barcha darajalar uchun ESL dasturlari",
+      "item2": "GED tayyorgarlik darslari",
+      "item3": "Maktabga qabul yordami"
     },
     "mental": {
       "tag": "Salomatlik",

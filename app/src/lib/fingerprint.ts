@@ -1,5 +1,5 @@
 export async function hashPhone(phone: string): Promise<string> {
-  const normalized = phone.trim().replace(/\s+/g, '')
+  const normalized = phone.trim().replace(/[^\d]/g, '')
   const encoder = new TextEncoder()
   const data = encoder.encode(normalized)
   const hashBuffer = await crypto.subtle.digest('SHA-256', data)

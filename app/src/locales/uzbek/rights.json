@@ -2,8 +2,8 @@
   "label": "Quvvatlantirish",
   "heading": "Huquqlaringizni biling",
   "description": "O'z huquqlaringizni tushunish o'zingiz va oilangizni himoya qilish uchun birinchi qadamdir.",
-  "accordionHeading": "[MT] Sizning kalit vaziyatlardagi huquqlaringiz",
-  "accordionSubtext": "[MT] Huquqlaringiz haqida ko'proq bilish uchun har bir mavzuni bosing",
+  "accordionHeading": "Sizning kalit vaziyatlardagi huquqlaringiz",
+  "accordionSubtext": "Huquqlaringiz haqida ko'proq bilish uchun har bir mavzuni bosing",
   "sections": {
     "police": {
       "title": "Politsiya yoki immigratsiya xodimlari bilan muloqotda",
@@ -38,30 +38,30 @@
   "lastReviewed": "So'nggi ko'rib chiqilgan: May 2026",
   "downloads": {
     "heading": "Huquqlaringizni biling kartalarini yuklab oling",
-    "subtext": "[MT] Hamyon o'lchamida olib yurish mumkin bo'lgan kartalar. Turli tillarda mavjud.",
-    "comingSoon": "[MT] Yuklab olish kartalari tez orada. Iltimos, keyinroq qayta tekshiring yoki",
-    "contactUs": "[MT] biz bilan bog'laning",
-    "forCopy": "[MT] nusxa olish uchun.",
+    "subtext": "Hamyon o'lchamida olib yurish mumkin bo'lgan kartalar. Turli tillarda mavjud.",
+    "comingSoon": "Yuklab olish kartalari tez orada. Iltimos, keyinroq qayta tekshiring yoki",
+    "contactUs": "biz bilan bog'laning",
+    "forCopy": "nusxa olish uchun.",
     "title": "Huquqlaringizni biling kartalari",
-    "subtitle": "[MT] Hamyon o'lchamida kartalarni yuklab oling",
+    "subtitle": "Hamyon o'lchamida kartalarni yuklab oling",
     "english": "Yuklab olish (Inglizcha)",
     "dari": "Yuklab olish (Dariy)",
     "uzbek": "Yuklab olish (O'zbek)"
   },
   "videos": {
     "heading": "Video resurslar",
-    "subtext": "[MT] Jamoat rahbarlari va jarayonni bosib o'tganlardan bilib oling",
-    "playCommunity": "[MT] Jamoat rahbarlari videosini ijro etish",
-    "pauseCommunity": "[MT] Videoni to'xtatish",
-    "playClients": "[MT] Mijozlar hikoyalari videosini ijro etish",
-    "pauseClients": "[MT] Videoni to'xtatish",
+    "subtext": "Jamoat rahbarlari va jarayonni bosib o'tganlardan bilib oling",
+    "playCommunity": "Jamoat rahbarlari videosini ijro etish",
+    "pauseCommunity": "Videoni to'xtatish",
+    "playClients": "Mijozlar hikoyalari videosini ijro etish",
+    "pauseClients": "Videoni to'xtatish",
     "community": {
-      "title": "[MT] Jamoat rahbarlari gapiradi",
-      "desc": "[MT] Feniksda o'z huquqlaringiz va resurslaringiz haqida afg'on jamoat rahbarlaridan eshitib oling."
+      "title": "Jamoat rahbarlari gapiradi",
+      "desc": "Feniksda o'z huquqlaringiz va resurslaringiz haqida afg'on jamoat rahbarlaridan eshitib oling."
     },
     "clients": {
-      "title": "[MT] Mijozlar tajribasi",
-      "desc": "[MT] Huquqlarini tushunish qanday qilib bu oilalarga yangi hayot qurishga yordam berganini bilib oling."
+      "title": "Mijozlar tajribasi",
+      "desc": "Huquqlarini tushunish qanday qilib bu oilalarga yangi hayot qurishga yordam berganini bilib oling."
     }
   }
 }

@@ -15,37 +15,37 @@
     "label": "Biz bilan chat qiling"
   },
   "quickTopics": "Tezkor mavzular",
-  "multiCandidate": "[MT] Sizga yordam berishi mumkin bo'lgan bir necha narsa topdim. Qaysi birini qidiryapsiz?",
+  "multiCandidate": "Sizga yordam berishi mumkin bo'lgan bir necha narsa topdim. Qaysi birini qidiryapsiz?",
   "fallback": "Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun 480.416.2333 raqamiga qo'ng'iroq qiling.",
   "actions": {
     "immigration": {
       "label": "Immigratsiya bo'yicha yordam",
-      "response": "[MT] Biz Feniksdagi afg'on oilalariga ish boshqaruvi, huquqiy yo'naltirish va hujjatlar yordami kabi immigratsiya qo'llab-quvvatlash xizmatlarini taqdim etamiz. Bizning jamoamiz immigratsiya jarayonida sizga yordam berish va ishonchli huquqiy mutaxassislar bilan bog'lashishi mumkin.",
+      "response": "Biz Feniksdagi afg'on oilalariga ish boshqaruvi, huquqiy yo'naltirish va hujjatlar yordami kabi immigratsiya qo'llab-quvvatlash xizmatlarini taqdim etamiz. Bizning jamoamiz immigratsiya jarayonida sizga yordam berish va ishonchli huquqiy mutaxassislar bilan bog'lashishi mumkin.",
       "cta": "Xizmatlarni ko'rish"
     },
     "community": {
       "label": "Hamjamiyat resurslari",
-      "response": "[MT] Mahalliy oziq-ovqat banklari, sog'liqni saqlash provayderlari, uy-joy yordami va Feniks hududidagi boshqa zarur xizmatlar bilan bog'laning. Biz afg'on oilalariga yordam berishga tayyor hamjamiyat hamkorlarining tanlangan ro'yxatini saqlaymiz.",
+      "response": "Mahalliy oziq-ovqat banklari, sog'liqni saqlash provayderlari, uy-joy yordami va Feniks hududidagi boshqa zarur xizmatlar bilan bog'laning. Biz afg'on oilalariga yordam berishga tayyor hamjamiyat hamkorlarining tanlangan ro'yxatini saqlaymiz.",
       "cta": "Resurslarni ko'rish"
     },
     "rights": {
       "label": "Huquqlaringizni biling",
-      "response": "[MT] Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy va ingliz tilidagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
+      "response": "Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy va ingliz tilidagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
       "cta": "Ko'proq o'qish"
     },
     "events": {
       "label": "Tadbirlar",
-      "response": "[MT] Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
+      "response": "Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
       "cta": "Tadbirlarni ko'rish"
     },
     "contact": {
       "label": "Aloqa ma'lumotlari",
-      "response": "[MT] Jamoamizga telefon, elektron pochta yoki WhatsApp orqali murojaat qiling. Bizning ofisimiz 5151 N 19th Ave, Phoenix AZ 85015 manzilida joylashgan. Biz barcha so'rovlarga 1-2 ish kuni ichida javob beramiz.",
+      "response": "Jamoamizga telefon, elektron pochta yoki WhatsApp orqali murojaat qiling. Bizning ofisimiz 5151 N 19th Ave, Phoenix AZ 85015 manzilida joylashgan. Biz barcha so'rovlarga 1-2 ish kuni ichida javob beramiz.",
       "cta": "Biz bilan bog'laning"
     },
     "speak": {
       "label": "Birorta bilan gaplashish",
-      "response": "[MT] Bizning kasbiy xodimlarimiz siz bilan dariy yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
+      "response": "Bizning kasbiy xodimlarimiz siz bilan dariy yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
       "cta": "Aloqa o'rnatish"
     }
   }
