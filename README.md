@@ -12,14 +12,14 @@ Built with accessibility, legal safety, and fast loading as first principles. Th
 
 | Feature | Description |
 |---|---|
-| 🌐 **Multilingual** | Full English, Dari, and Uzbek support with RTL layout for Dari |
-| 📋 **Know Your Rights** | Static, reviewed legal content with downloadable PDF cards in 3 languages |
-| 🤖 **Deterministic Chatbot** | Local JSON knowledge base with keyword/scoring matching — no AI, no LLMs |
-| 📅 **Events Calendar** | WordPress Headless-driven event listings with list/calendar views and ISR caching |
-| ✉️ **Contact Form** | Serverless email delivery via Resend with Zod validation, honeypot, and rate limiting |
-| 🔒 **Privacy-First** | No PII persistence. IPs HMAC-hashed. User data HTML-escaped. Upstash Redis for rate limiting. |
-| 📱 **Accessible** | WCAG AA target, keyboard navigation, screen-reader support, 44px tap targets |
-| 🗺️ **Community Resources** | English classes, mental health, food banks, and health clinics with curated local data |
+| **Multilingual** | Full English, Dari, and Uzbek support with RTL layout for Dari |
+| **Know Your Rights** | Static, reviewed legal content with downloadable PDF cards in 3 languages |
+| **Deterministic Chatbot** | Local JSON knowledge base with keyword/scoring matching — no AI, no LLMs |
+| **Events Calendar** | WordPress Headless-driven event listings with list/calendar views and ISR caching |
+| **Contact Form** | Serverless email delivery via Resend with Zod validation, honeypot, and rate limiting |
+| **Privacy-First** | No PII persistence. IPs HMAC-hashed. User data HTML-escaped. Upstash Redis for rate limiting. |
+| **Accessible** | WCAG AA target, keyboard navigation, screen-reader support, 44px tap targets |
+| **Community Resources** | English classes, mental health, food banks, and health clinics with curated local data |
 
 ---
 
