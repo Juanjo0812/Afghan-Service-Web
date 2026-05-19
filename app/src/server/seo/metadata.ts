@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { LangCode } from '@/domain/language'
-import { getPageMetadata, getEventBySlug } from '@/server/cms/wordpress'
+import { getPageMetadata, getEventBySlug } from '@/server/cms/cms-cache'
 import { getHtmlLang, SUPPORTED_LANGUAGES } from '@/domain/language'
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://afghansupport.org'
