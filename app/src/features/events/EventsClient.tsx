@@ -7,7 +7,9 @@ import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft,
 import { FadeIn } from '@/components/FadeIn'
 import { useLanguage } from '@/hooks/useLanguage'
 import { localizePath } from '@/lib/navigation'
+import { formatEventDate, formatEventMonth, formatEventShortMonth } from '@/lib/formatDate'
 import type { EventContent, EventCategory } from '@/domain/content'
+import type { LangCode } from '@/domain/language'
 
 type ViewMode = 'list' | 'calendar'
 
@@ -36,16 +38,11 @@ function toPlainText(value: string): string {
     .trim()
 }
 
-function toCalendarEvent(event: EventContent): CalendarEvent {
+function toCalendarEvent(event: EventContent, lang: LangCode): CalendarEvent {
   const start = new Date(event.startDate)
   const day = start.getDate()
-  const month = start.toLocaleString('en-US', { month: 'short' }).toUpperCase()
-  const date = start.toLocaleString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const month = formatEventShortMonth(start, lang)
+  const date = formatEventDate(event.startDate, lang)
 
   // Derive CTA type from category to preserve existing visual design
   let ctaType: CalendarEvent['ctaType']
@@ -172,11 +169,11 @@ function EventCard({ event }: { event: CalendarEvent }) {
   )
 }
 
-function CalendarView({ filteredEvents }: { filteredEvents: CalendarEvent[] }) {
+function CalendarView({ filteredEvents, lang }: { filteredEvents: CalendarEvent[]; lang: LangCode }) {
   const { t } = useTranslation('events')
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
-  const monthName = currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })
+  const monthName = formatEventMonth(currentMonth, lang)
   const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate()
   const firstDayOfWeek = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay()
 
@@ -186,7 +183,7 @@ function CalendarView({ filteredEvents }: { filteredEvents: CalendarEvent[] }) {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   const getEventsForDay = (day: number) =>
-    filteredEvents.filter((e) => e.month === currentMonth.toLocaleString('en-US', { month: 'short' }).toUpperCase() && e.day === day)
+    filteredEvents.filter((e) => e.month === formatEventShortMonth(currentMonth, lang) && e.day === day)
 
   return (
     <div>
@@ -239,10 +236,11 @@ interface EventsClientProps {
 
 export default function EventsClient({ events }: EventsClientProps) {
   const { t } = useTranslation('events')
+  const { lang } = useLanguage()
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [activeFilter, setActiveFilter] = useState<EventCategory | 'all'>('all')
 
-  const calendarEvents = events.map(toCalendarEvent)
+  const calendarEvents = events.map((e) => toCalendarEvent(e, lang))
 
   const filters: { label: string; value: EventCategory | 'all' }[] = [
     { label: t('filters.all'), value: 'all' },
@@ -354,7 +352,7 @@ export default function EventsClient({ events }: EventsClientProps) {
               )}
             </div>
           ) : (
-            <CalendarView filteredEvents={filteredEvents} />
+            <CalendarView filteredEvents={filteredEvents} lang={lang} />
           )}
         </div>
       </section>

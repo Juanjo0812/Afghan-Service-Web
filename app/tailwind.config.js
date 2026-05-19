@@ -70,7 +70,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'serif'],
+        display: ['"Cormorant Garamond"', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
         arabic: ['"Noto Sans Arabic"', 'Inter', 'sans-serif'],
       },
