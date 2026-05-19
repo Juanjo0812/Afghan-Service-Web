@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+'use client'
+
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 interface FadeInProps {
-  children: React.ReactNode
+  children: ReactNode
   delay?: number
   direction?: 'up' | 'down' | 'left' | 'right' | 'none'
   className?: string
@@ -9,63 +11,47 @@ interface FadeInProps {
   duration?: number
 }
 
-export function FadeIn({ 
-  children, 
-  delay = 0, 
-  direction = 'up', 
-  className = '', 
+export function FadeIn({
+  children,
+  delay = 0,
+  direction = 'up',
+  className = '',
   threshold = 0.1,
-  duration = 800
+  duration = 800,
 }: FadeInProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const domRef = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setIsVisible(true)
-            if (domRef.current) {
-              observer.unobserve(domRef.current)
-            }
+            observer.unobserve(node)
           }
-        })
+        }
       },
-      { threshold, rootMargin: '0px 0px -50px 0px' }
+      { threshold, rootMargin: '0px 0px -40px 0px' }
     )
-    
-    const currentRef = domRef.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-    
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [threshold])
 
-  const translateClasses = {
-    up: 'translate-y-12',
-    down: '-translate-y-12',
-    left: 'translate-x-12',
-    right: '-translate-x-12',
-    none: 'translate-y-0 translate-x-0'
-  }
+    observer.observe(node)
+    return () => observer.unobserve(node)
+  }, [threshold])
 
   return (
     <div
-      ref={domRef}
-      className={`transition-all ease-out ${
-        isVisible 
-          ? 'opacity-100 translate-y-0 translate-x-0' 
-          : `opacity-0 ${translateClasses[direction]}`
-      } ${className}`}
-      style={{ 
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms` 
+      ref={ref}
+      className={`${className}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible
+          ? 'translateY(0) translateX(0)'
+          : `translateY(${direction === 'down' ? '-8px' : direction === 'up' ? '8px' : '0px'}) translateX(${direction === 'right' ? '-8px' : direction === 'left' ? '8px' : '0px'})`,
+        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
       }}
     >
       {children}

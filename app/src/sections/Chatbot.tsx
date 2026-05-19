@@ -1,5 +1,7 @@
+'use client'
+
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { useNavigate } from 'react-router'
+import { useRouter } from 'next/navigation'
 import { MessageCircle, X, User, Send } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useChatbotKB } from '../hooks/useChatbotKB'
@@ -23,7 +25,7 @@ interface Message {
 export default function Chatbot() {
   const { t } = useTranslation('chatbot')
   const { lang } = useLanguage()
-  const navigate = useNavigate()
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     { text: t('welcome'), from: 'bot' },
@@ -107,7 +109,7 @@ export default function Chatbot() {
 
   const handleKBAction = (href: string) => {
     setOpen(false)
-    navigate(href)
+    router.push(href)
   }
 
   const handleCandidateSelect = (scoredEntry: ScoredEntry) => {

@@ -1,4 +1,6 @@
-import { Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -64,7 +66,7 @@ export default function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.path + link.label}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-cream/80 hover:text-amber transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 focus:ring-offset-forest-dark rounded-md"
                   >
                     {link.label}
@@ -81,7 +83,7 @@ export default function Footer() {
               {resourceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-cream/80 hover:text-amber transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 focus:ring-offset-forest-dark rounded-md"
                   >
                     {link.label}

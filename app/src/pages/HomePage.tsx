@@ -1,37 +1,12 @@
-import { Link } from 'react-router'
-import { useEffect, useRef } from 'react'
+'use client'
+
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.remove('opacity-0')
-          el.classList.add('animate-fade-in-up')
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return ref
-}
-
 export default function HomePage() {
   const { t } = useTranslation(['common', 'hero', 'about', 'events'])
-  const heroRef = useScrollReveal()
-  const cardsRef = useScrollReveal()
-  const aboutRef = useScrollReveal()
-  const eventRef = useScrollReveal()
-  const ctaRef = useScrollReveal()
 
   const quickCards = [
     {
@@ -88,7 +63,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="relative container-main z-10 flex flex-col items-center text-center pt-20" ref={heroRef}>
+        <div className="relative container-main z-10 flex flex-col items-center text-center pt-20">
           <div className="max-w-3xl flex flex-col items-center">
             <FadeIn delay={300} duration={1200}>
               <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight">
@@ -107,7 +82,7 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn delay={2400} duration={1000}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
-                <Link to="/rights" className="btn-primary text-center">
+                <Link href="/rights" className="btn-primary text-center">
                   {t('ctaRights', { ns: 'hero' })}
                 </Link>
               </div>
@@ -129,7 +104,7 @@ export default function HomePage() {
 
       {/* Quick Access Cards */}
       <section className="section-padding bg-cream" aria-labelledby="quick-access-heading">
-        <div className="container-main opacity-0" ref={cardsRef}>
+        <div className="container-main">
           <div className="text-center mb-10 md:mb-12">
             <h2 id="quick-access-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-3">
               {t('home.howCanWeHelp', { ns: 'common' })}
@@ -145,7 +120,7 @@ export default function HomePage() {
               return (
                 <FadeIn key={card.title} delay={i * 200}>
                   <Link
-                    to={card.path}
+                    href={card.path}
                     className="group bg-white rounded-2xl p-7 md:p-8 text-center transition-all duration-250 hover:bg-cream-dark hover:shadow-card-hover hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 border border-amber/40 shadow-sm block h-full"
                   >
                     <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-warm-sand/60 flex items-center justify-center transition-colors group-hover:bg-amber-light">
@@ -170,8 +145,9 @@ export default function HomePage() {
 
       {/* About Snapshot */}
       <section className="section-padding bg-warm-sand/40" aria-labelledby="about-heading">
-        <div className="container-main opacity-0" ref={aboutRef}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <FadeIn delay={200}>
+          <div className="container-main">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <span className="label-text block mb-3">{t('label', { ns: 'about' })}</span>
               <h2 id="about-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-5">
@@ -183,7 +159,7 @@ export default function HomePage() {
               <p className="text-body text-forest-light mb-6 leading-relaxed">
                 {t('body2', { ns: 'about' })}
               </p>
-              <Link to="/immigration" className="text-link inline-flex items-center gap-1">
+              <Link href="/immigration" className="text-link inline-flex items-center gap-1">
                 {t('learnMoreServices', { ns: 'about' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
@@ -209,12 +185,14 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        </FadeIn>
       </section>
 
       {/* Featured Event */}
       <section className="section-padding bg-cream" aria-labelledby="event-heading">
-        <div className="container-main max-w-3xl opacity-0" ref={eventRef}>
-          <div className="text-center mb-10">
+        <FadeIn delay={200}>
+          <div className="container-main max-w-3xl">
+            <div className="text-center mb-10">
             <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
           </div>
           <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
@@ -269,26 +247,27 @@ export default function HomePage() {
 
               {/* CTA — elegant outline button */}
               <Link
-                to="/events"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border-2 border-forest text-forest font-semibold rounded-md transition-all duration-250 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2 min-h-[48px] text-base"
+                href="/events"
+                className="btn-primary w-full sm:w-auto"
               >
                 {t('registerCta', { ns: 'events' })}
               </Link>
             </div>
           </div>
         </div>
+        </FadeIn>
       </section>
 
       {/* Bottom CTA */}
       <section className="section-padding bg-forest text-center" aria-label="Get help">
-        <div className="container-main max-w-2xl opacity-0" ref={ctaRef}>
+        <div className="container-main max-w-2xl">
           <h2 className="font-display text-heading-1 md:text-display-l text-white mb-4">
             {t('ctaText', { ns: 'hero' })}
           </h2>
           <p className="text-body-lg text-white/80 mb-8">
             {t('ctaSubtext', { ns: 'hero' })}
           </p>
-          <Link to="/contact" className="btn-primary text-lg px-10 py-4 inline-flex">
+          <Link href="/contact" className="btn-primary text-lg px-10 py-4 inline-flex">
             {t('cta', { ns: 'hero' })}
           </Link>
           <p className="mt-5 text-body text-white/70">

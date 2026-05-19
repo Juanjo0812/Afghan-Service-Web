@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Calendar as CalendarIcon, Clock, MapPin, List, LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
@@ -106,7 +108,7 @@ const categoryColors: Record<EventCategory, string> = {
 
 function EventCard({ event }: { event: Event }) {
   const { t } = useTranslation('events')
-  const navigate = useNavigate()
+  const router = useRouter()
   const colorClass = categoryColors[event.category] || 'bg-amber'
 
   return (
@@ -140,12 +142,12 @@ function EventCard({ event }: { event: Event }) {
         </div>
         <div className="flex flex-wrap items-center gap-4 mt-auto">
           {event.ctaType === 'primary' && (
-            <button onClick={() => navigate('/contact')} className="btn-primary w-full md:w-auto">
+            <button onClick={() => router.push('/contact')} className="btn-primary w-full md:w-auto">
               {event.cta}
             </button>
           )}
           {event.ctaType === 'secondary' && (
-            <button onClick={() => navigate('/contact')} className="btn-secondary w-full md:w-auto">
+            <button onClick={() => router.push('/contact')} className="btn-secondary w-full md:w-auto">
               {event.cta}
             </button>
           )}
@@ -155,7 +157,7 @@ function EventCard({ event }: { event: Event }) {
             </span>
           )}
           {event.ctaType !== 'text' && (
-            <button onClick={() => navigate('/contact')} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
+            <button onClick={() => router.push('/contact')} className="text-forest font-medium hover:text-amber transition-colors ml-auto md:ml-0 underline underline-offset-4">
               {t('details')}
             </button>
           )}
