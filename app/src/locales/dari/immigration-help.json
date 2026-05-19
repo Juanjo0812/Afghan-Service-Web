@@ -1,37 +1,43 @@
 {
-  "label": "Immigration Services",
-  "heading": "Free Immigration Assistance for Afghan Families in Phoenix",
-  "subtitle": "We provide free and confidential immigration legal support for Afghan individuals and families.",
+  "label": "خدمات رایگان",
+  "heading": "کمک مهاجرتی رایگان برای خانواده‌های افغان در فینیکس",
+  "subtitle": "تمام خدمات رایگان، محرمانه و به زبان‌های دری، ازبکی و انگلیسی در دسترس است.",
+  "servicesHeading": "[MT] خدمات ما",
+  "servicesSubtext": "[MT] برای کسب اطلاعات بیشتر یا درخواست کمک روی هر خدمت کلیک کنید",
+  "languagesHeading": "[MT] زبان‌های موجود",
+  "languagesSubtext": "[MT] کارکنان ما به زبان شما صحبت می‌کنند. خدمات ترجمه نیز موجود است.",
+  "contactHeading": "[MT] با تیم مهاجرتی ما تماس بگیرید",
   "services": {
     "asylum": {
-      "title": "Asylum Applications",
-      "description": "Help with affirmative and defensive asylum applications"
+      "title": "درخواست‌های پناهندگی",
+      "description": "[MT] کمک در درخواست‌های پناهندگی تأییدی و دفاعی"
     },
     "workPermit": {
-      "title": "Work Permit Assistance",
-      "description": "Employment authorization document (EAD) applications and renewals"
+      "title": "کمک برای مجوز کار",
+      "description": "[MT] درخواست‌ها و تمدید مجوز اشتغال (EAD)"
     },
     "tps": {
-      "title": "TPS (Temporary Protected Status)",
-      "description": "TPS registration and re-registration assistance"
+      "title": "TPS - وضعیت محافظت شده موقت",
+      "description": "[MT] کمک در ثبت‌نام و ثبت‌نام مجدد TPS"
     },
     "greenCard": {
-      "title": "Green Card & Family Reunification",
-      "description": "Adjustment of status and family-based petitions"
+      "title": "گرین کارت و پیوستن به خانواده",
+      "description": "[MT] تعدیل وضعیت و دادخواست‌های خانوادگی"
     },
     "adjustmentAct": {
-      "title": "Afghan Adjustment Act Assistance",
-      "description": "Assistance under the Afghan Adjustment Act provisions"
+      "title": "کمک برای قانون تطبیق افغان‌ها",
+      "description": "[MT] کمک بر اساس مقررات قانون تطبیق افغان‌ها"
     }
   },
-  "languages": "We speak your language: English | دری | Oʻzbek",
+  "languages": "دری | ازبکی",
   "contact": {
-    "heading": "Call today — we speak your language and are ready to help",
-    "name": "Daoud",
+    "heading": "امروز تماس بگیرید — ما به زبان شما صحبت می‌کنیم و آماده کمک هستیم",
+    "name": "داوود",
     "phone": "480.416.2333",
     "email": "Dpeshtaz@cc-az.org",
-    "location": "Phoenix office — in-person or phone appointments",
-    "hours": "Monday–Friday | 9 AM – 5 PM",
-    "cta": "Request a Call Back"
+    "location": "دفتر فینیکس — قرارهای حضوری یا تلفنی",
+    "hours": "دوشنبه–جمعه | ۹ صبح – ۵ بعدازظهر",
+    "cta": "درخواست تماس مجدد",
+    "role": "[MT] مدیر پرونده مهاجرت"
   }
 }

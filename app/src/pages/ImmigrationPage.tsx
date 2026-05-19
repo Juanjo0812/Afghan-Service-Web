@@ -1,9 +1,15 @@
-import { Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Shield, Briefcase, Clock, CreditCard, Landmark, Phone, Mail, Clock3 } from 'lucide-react'
+import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 
 export default function ImmigrationPage() {
   const { t } = useTranslation('immigration-help')
+  const { lang } = useLanguage()
 
   const services = [
     {
@@ -79,13 +85,15 @@ export default function ImmigrationPage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-5 md:gap-6">
-            {services.map((service) => {
+            {services.map((service, i) => {
               const Icon = service.icon
               return (
-                <div
-                  key={service.titleKey}
-                  className="w-full md:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)] bg-white rounded-xl p-6 md:p-8 shadow-card border border-warm-sand/50 border-l-4 border-l-amber transition-all duration-300 ease-out hover:bg-cream-dark hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] hover:border-l-8 hover:-translate-y-2 cursor-pointer"
+                <FadeIn 
+                  key={service.titleKey} 
+                  delay={i * 100}
+                  className="w-full md:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-1rem)]"
                 >
+                  <div className="h-full bg-white rounded-xl p-6 md:p-8 shadow-card border border-warm-sand/50 border-l-4 border-l-amber transition-all duration-300 ease-out hover:bg-cream-dark hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] hover:border-l-8 hover:-translate-y-2 cursor-pointer">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-13 h-10 rounded-lg bg-amber/10 flex items-center justify-center flex-shrink-0">
                       <Icon className="w-5 h-5 text-forest" aria-hidden="true" />
@@ -98,6 +106,7 @@ export default function ImmigrationPage() {
                     {t(service.descriptionKey)}
                   </p>
                 </div>
+                </FadeIn>
               )
             })}
           </div>
@@ -106,8 +115,9 @@ export default function ImmigrationPage() {
 
       {/* Languages & Contact */}
       <section className="section-padding bg-warm-sand/40" aria-labelledby="contact-heading">
-        <div className="container-main">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <FadeIn delay={200}>
+          <div className="container-main">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Languages */}
             <div>
               <h2 id="contact-heading" className="font-display text-heading-2 text-forest mb-5">
@@ -155,13 +165,14 @@ export default function ImmigrationPage() {
                   <Clock3 className="w-5 h-5 text-olive" aria-hidden="true" />
                   <span className="text-body-sm">{t('contact.hours')}</span>
                 </div>
-                <Link to="/contact" className="btn-primary w-full text-center mt-2">
+                <Link href={localizePath('/contact', lang)} className="btn-primary w-full text-center mt-2">
                   {t('contact.cta')}
                 </Link>
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </FadeIn>
       </section>
     </>
   )

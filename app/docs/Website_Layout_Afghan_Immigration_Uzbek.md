@@ -14,7 +14,7 @@
   - Huquqlaringizni biling (Know Your Rights)
   - Tadbirlar (Events)
   - Bog'lanish (Contact)
-- **Tilni tanlash (Language Toggle):** EN | Dari | Pashto
+- **Tilni tanlash (Language Toggle):** EN | Dari | Uzbek
 - **Tugma (CTA Button):** Hozir yordam olish (Get Help Now)
 
 ### Hero Section
@@ -112,7 +112,7 @@ Dariy | O'zbek tili (Dari | Uzbek)
 "Huquqlaringizni biling" kartochkalari (cho'ntakbop o'lchamda) / Know Your Rights Cards (wallet size):
 
 - Yuklab olish (Dariy) / Download (Dari)
-- Yuklab olish (Pashto) / Download (Pashto)
+- Yuklab olish (Uzbek) / Download (Uzbek)
 - Yuklab olish (inglizcha) / Download (English)
 
 ### Videolar bo'limi (Videos Section)

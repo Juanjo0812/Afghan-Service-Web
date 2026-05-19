@@ -1,9 +1,12 @@
+'use client'
+
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { useNavigate } from 'react-router'
+import { useRouter } from 'next/navigation'
 import { MessageCircle, X, User, Send } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useChatbotKB } from '../hooks/useChatbotKB'
 import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import type { ScoredEntry, KBEntry } from '../lib/matchKeywords'
 
 interface QuickActionDef {
@@ -23,7 +26,7 @@ interface Message {
 export default function Chatbot() {
   const { t } = useTranslation('chatbot')
   const { lang } = useLanguage()
-  const navigate = useNavigate()
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     { text: t('welcome'), from: 'bot' },
@@ -107,7 +110,17 @@ export default function Chatbot() {
 
   const handleKBAction = (href: string) => {
     setOpen(false)
-    navigate(href)
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      window.open(href, '_blank', 'noopener,noreferrer')
+    } else if (href.startsWith('tel:')) {
+      window.open(href, '_self')
+    } else if (href.startsWith('/') && href.endsWith('.pdf')) {
+      window.open(href, '_blank')
+    } else if (href.startsWith('/')) {
+      router.push(localizePath(href, lang))
+    } else {
+      router.push(href)
+    }
   }
 
   const handleCandidateSelect = (scoredEntry: ScoredEntry) => {
@@ -487,40 +500,56 @@ export default function Chatbot() {
                   )}
                   {msg.from === 'bot' && msg.candidates && msg.candidates.length > 0 && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 10 }}>
-                      {msg.candidates.map((scored) => {
-                        const label = scored.entry.actions?.[0]?.label ?? scored.entry.id
-                        return (
-                          <button
-                            key={scored.entry.id}
-                            onClick={() => handleCandidateSelect(scored)}
-                            style={{
-                              background: '#ffffff',
-                              color: '#1a2518',
-                              border: '1px solid #1a2518',
-                              padding: '10px 16px',
-                              borderRadius: 9999,
-                              fontFamily: "'Inter', sans-serif",
-                              fontSize: 13,
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                              transition: 'all 0.2s ease',
-                              textAlign: 'start',
-                            }}
-                            onMouseEnter={(e) => {
-                              const el = e.target as HTMLElement
-                              el.style.background = '#1a2518'
-                              el.style.color = '#ffffff'
-                            }}
-                            onMouseLeave={(e) => {
-                              const el = e.target as HTMLElement
-                              el.style.background = '#ffffff'
-                              el.style.color = '#1a2518'
-                            }}
-                          >
-                            {label}
-                          </button>
-                        )
-                      })}
+                      {(() => {
+                        const seen = new Set<string>()
+                        return msg.candidates!
+                          .filter((scored) => {
+                            const label =
+                              scored.entry.title ??
+                              scored.entry.actions?.[0]?.label ??
+                              scored.entry.id
+                            if (seen.has(label)) return false
+                            seen.add(label)
+                            return true
+                          })
+                          .map((scored) => {
+                            const label =
+                              scored.entry.title ??
+                              scored.entry.actions?.[0]?.label ??
+                              scored.entry.id
+                            return (
+                              <button
+                                key={scored.entry.id}
+                                onClick={() => handleCandidateSelect(scored)}
+                                style={{
+                                  background: '#ffffff',
+                                  color: '#1a2518',
+                                  border: '1px solid #1a2518',
+                                  padding: '10px 16px',
+                                  borderRadius: 9999,
+                                  fontFamily: "'Inter', sans-serif",
+                                  fontSize: 13,
+                                  fontWeight: 600,
+                                  cursor: 'pointer',
+                                  transition: 'all 0.2s ease',
+                                  textAlign: 'start',
+                                }}
+                                onMouseEnter={(e) => {
+                                  const el = e.target as HTMLElement
+                                  el.style.background = '#1a2518'
+                                  el.style.color = '#ffffff'
+                                }}
+                                onMouseLeave={(e) => {
+                                  const el = e.target as HTMLElement
+                                  el.style.background = '#ffffff'
+                                  el.style.color = '#1a2518'
+                                }}
+                              >
+                                {label}
+                              </button>
+                            )
+                          })
+                      })()}
                     </div>
                   )}
                 </div>

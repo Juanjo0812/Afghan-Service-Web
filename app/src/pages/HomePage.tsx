@@ -1,62 +1,54 @@
-import { Link } from 'react-router'
-import { useEffect, useRef } from 'react'
+'use client'
+
+import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
+import type { EventContent } from '@/domain/content'
+import type { LangCode } from '@/domain/language'
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.remove('opacity-0')
-          el.classList.add('animate-fade-in-up')
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return ref
+function toPlainText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
-export default function HomePage() {
+interface HomePageProps {
+  featuredEvent?: EventContent | null
+  lang?: LangCode
+}
+
+export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomePageProps) {
   const { t } = useTranslation(['common', 'hero', 'about', 'events'])
-  const heroRef = useScrollReveal()
-  const cardsRef = useScrollReveal()
-  const aboutRef = useScrollReveal()
-  const eventRef = useScrollReveal()
-  const ctaRef = useScrollReveal()
+  const { lang } = useLanguage()
 
   const quickCards = [
     {
       icon: Briefcase,
       title: t('quickAccess.immigrationHelp', { ns: 'common' }),
       description: t('quickAccess.immigrationDesc', { ns: 'common' }),
-      path: '/immigration',
+      path: localizePath('/immigration', lang),
     },
     {
       icon: Shield,
       title: t('quickAccess.knowYourRights', { ns: 'common' }),
       description: t('quickAccess.rightsDesc', { ns: 'common' }),
-      path: '/rights',
+      path: localizePath('/rights', lang),
     },
     {
       icon: Compass,
       title: t('quickAccess.findResources', { ns: 'common' }),
       description: t('quickAccess.resourcesDesc', { ns: 'common' }),
-      path: '/resources',
+      path: localizePath('/resources', lang),
     },
     {
       icon: Calendar,
       title: t('quickAccess.upcomingEvents', { ns: 'common' }),
       description: t('quickAccess.eventsDesc', { ns: 'common' }),
-      path: '/events',
+      path: localizePath('/events', lang),
     },
   ]
 
@@ -88,7 +80,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="relative container-main z-10 flex flex-col items-center text-center pt-20" ref={heroRef}>
+        <div className="relative container-main z-10 flex flex-col items-center text-center pt-20">
           <div className="max-w-3xl flex flex-col items-center">
             <FadeIn delay={300} duration={1200}>
               <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight">
@@ -107,7 +99,7 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn delay={2400} duration={1000}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
-                <Link to="/rights" className="btn-primary text-center">
+                <Link href={localizePath('/rights', lang)} className="btn-primary text-center">
                   {t('ctaRights', { ns: 'hero' })}
                 </Link>
               </div>
@@ -129,7 +121,7 @@ export default function HomePage() {
 
       {/* Quick Access Cards */}
       <section className="section-padding bg-cream" aria-labelledby="quick-access-heading">
-        <div className="container-main opacity-0" ref={cardsRef}>
+        <div className="container-main">
           <div className="text-center mb-10 md:mb-12">
             <h2 id="quick-access-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-3">
               {t('home.howCanWeHelp', { ns: 'common' })}
@@ -145,7 +137,7 @@ export default function HomePage() {
               return (
                 <FadeIn key={card.title} delay={i * 200}>
                   <Link
-                    to={card.path}
+                    href={card.path}
                     className="group bg-white rounded-2xl p-7 md:p-8 text-center transition-all duration-250 hover:bg-cream-dark hover:shadow-card-hover hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 border border-amber/40 shadow-sm block h-full"
                   >
                     <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-warm-sand/60 flex items-center justify-center transition-colors group-hover:bg-amber-light">
@@ -170,8 +162,9 @@ export default function HomePage() {
 
       {/* About Snapshot */}
       <section className="section-padding bg-warm-sand/40" aria-labelledby="about-heading">
-        <div className="container-main opacity-0" ref={aboutRef}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <FadeIn delay={200}>
+          <div className="container-main">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <span className="label-text block mb-3">{t('label', { ns: 'about' })}</span>
               <h2 id="about-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-5">
@@ -183,7 +176,7 @@ export default function HomePage() {
               <p className="text-body text-forest-light mb-6 leading-relaxed">
                 {t('body2', { ns: 'about' })}
               </p>
-              <Link to="/immigration" className="text-link inline-flex items-center gap-1">
+              <Link href={localizePath('/immigration', lang)} className="text-link inline-flex items-center gap-1">
                 {t('learnMoreServices', { ns: 'about' })} <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
@@ -209,86 +202,85 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        </FadeIn>
       </section>
 
       {/* Featured Event */}
-      <section className="section-padding bg-cream" aria-labelledby="event-heading">
-        <div className="container-main max-w-3xl opacity-0" ref={eventRef}>
-          <div className="text-center mb-10">
-            <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
-          </div>
-          <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
-            {/* Decorative blob */}
-            <div className="absolute top-0 right-0 w-36 h-36 md:w-44 md:h-44 bg-amber-light/40 rounded-bl-full" aria-hidden="true" />
-
-            <div className="relative z-10">
-              {/* Featured badge */}
-              <div className="flex items-center gap-2 mb-5">
-                <svg className="w-5 h-5 text-amber" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-                <span className="text-label font-bold uppercase tracking-wider text-amber">
-                  {t('featuredBadge', { ns: 'events' })}
-                </span>
+      {featuredEvent && (
+        <section className="section-padding bg-cream" aria-labelledby="event-heading">
+          <FadeIn delay={200}>
+            <div className="container-main max-w-3xl">
+              <div className="text-center mb-10">
+                <span className="label-text">{t('upcomingLabel', { ns: 'events' })}</span>
               </div>
+              <div className="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-amber/40 relative overflow-hidden transition-all hover:bg-cream-dark hover:shadow-card-hover">
+                {/* Decorative blob */}
+                <div className="absolute top-0 right-0 w-36 h-36 md:w-44 md:h-44 bg-amber-light/40 rounded-bl-full" aria-hidden="true" />
 
-              {/* Event title */}
-              <h2 id="event-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-3">
-                Free Citizenship Workshop
-              </h2>
+                <div className="relative z-10">
+                  {/* Category badge */}
+                  <div className="flex items-center gap-2 mb-5">
+                    <svg className="w-5 h-5 text-amber" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                    <span className="text-label font-bold uppercase tracking-wider text-amber">
+                      {featuredEvent.categoryLabel}
+                    </span>
+                  </div>
 
-              {/* Description */}
-              <p className="text-body-lg text-forest-light mb-8 leading-relaxed max-w-xl">
-                Get expert guidance on your naturalization application process with our legal team.
-              </p>
+                  {/* Event title */}
+                  <h2 id="event-heading" className="font-display text-heading-1 md:text-heading-1 text-forest mb-3">
+                    {featuredEvent.title}
+                  </h2>
 
-              {/* Info rows with large icons */}
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-4 text-forest-light">
-                  <Calendar className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
-                  <span className="text-body-lg font-medium text-forest">
-                    June 13, 2026 &bull; 9:00 AM &ndash; 2:00 PM
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-forest-light">
-                  <MapPin className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
-                  <span className="text-body text-forest">
-                    Catholic Charities Community Center &mdash; 5151 N 19th Ave, Phoenix
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-forest-light">
-                  <svg className="w-6 h-6 text-forest flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" />
-                    <path d="m22 22-5-10-5 10" /><path d="M14 18h6" />
-                  </svg>
-                  <span className="text-body text-forest">
-                    Dari interpretation provided
-                  </span>
+                  {/* Description */}
+                  <p className="text-body-lg text-forest-light mb-8 leading-relaxed max-w-xl">
+                    {toPlainText(featuredEvent.description)}
+                  </p>
+
+                  {/* Info rows with large icons */}
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center gap-4 text-forest-light">
+                      <Calendar className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
+                      <span className="text-body-lg font-medium text-forest">
+                        {new Date(featuredEvent.startDate).toLocaleDateString(
+                          pageLang === 'dari' ? 'fa' : pageLang === 'uzbek' ? 'uz' : 'en-US',
+                          { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+                        )} &bull; {featuredEvent.timeLabel}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4 text-forest-light">
+                      <MapPin className="w-6 h-6 text-forest flex-shrink-0" aria-hidden="true" />
+                      <span className="text-body text-forest">
+                        {featuredEvent.location}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <Link
+                    href={localizePath(`/events/${featuredEvent.slug}`, lang)}
+                    className="btn-primary w-full sm:w-auto"
+                  >
+                    {t('registerCta', { ns: 'events' })}
+                  </Link>
                 </div>
               </div>
-
-              {/* CTA — elegant outline button */}
-              <Link
-                to="/events"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-transparent border-2 border-forest text-forest font-semibold rounded-md transition-all duration-250 hover:bg-forest hover:text-white focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2 min-h-[48px] text-base"
-              >
-                {t('registerCta', { ns: 'events' })}
-              </Link>
             </div>
-          </div>
-        </div>
-      </section>
+          </FadeIn>
+        </section>
+      )}
 
       {/* Bottom CTA */}
       <section className="section-padding bg-forest text-center" aria-label="Get help">
-        <div className="container-main max-w-2xl opacity-0" ref={ctaRef}>
+        <div className="container-main max-w-2xl">
           <h2 className="font-display text-heading-1 md:text-display-l text-white mb-4">
             {t('ctaText', { ns: 'hero' })}
           </h2>
           <p className="text-body-lg text-white/80 mb-8">
             {t('ctaSubtext', { ns: 'hero' })}
           </p>
-          <Link to="/contact" className="btn-primary text-lg px-10 py-4 inline-flex">
+          <Link href={localizePath('/contact', lang)} className="btn-primary text-lg px-10 py-4 inline-flex">
             {t('cta', { ns: 'hero' })}
           </Link>
           <p className="mt-5 text-body text-white/70">

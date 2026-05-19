@@ -1,8 +1,8 @@
 # PRD — Afghan Support Phoenix (Realistic Production Version)
 
 **Product**: Afghan Support — Community Resource Website  
-**Version**: 3.1 — production closure alignment  
-**Date**: 2026-05-10  
+**Version**: 4.0 — Next.js + WordPress Headless alignment  
+**Date**: 2026-05-14  
 **Status**: Active PRD  
 **Source input**: `app/docs/Website_Layout_Afghan_Immigration.md`
 
@@ -32,16 +32,17 @@ JSON responses. It must not generate legal advice.
 
 | Area | Decision |
 |---|---|
-| App model | Static-first React SPA with language-aware routes |
+| App model | Next.js static/server-rendered frontend with WordPress Headless for scoped editorial content |
 | Main goal | Help users quickly find trusted support and contact staff |
-| Content model | Curated static content and local JSON files |
-| Multilingual coverage | Language toggle must update all primary visible page content, not only `html.dir` |
+| Content model | WordPress Headless for events and SEO/social metadata; curated static/local content for everything else |
+| CMS scope | WordPress is a structured content admin for events and metadata, not a page builder |
+| Multilingual coverage | Language toggle must update all primary visible page content for English, Dari, and Uzbek; Dari must render RTL |
 | Legal content | Static, reviewed, and not dynamically generated |
 | Contact data | Sent by email only; not persisted in app storage or database |
 | Chatbot | Deterministic keyword/scoring match from local JSON only |
 | AI/LLMs | Out of scope and prohibited for chatbot/legal answers |
 | Visual approach | Simple, accessible, no scroll hijacking or heavy animation |
-| Active implementation path | Run `modification_plan.md` first, then continue with `implementation_plan.md` |
+| Active implementation path | `modification_plan.md` completed (React/Vite → Next.js migration); continue with `implementation_plan.md` for remaining production work |
 
 ---
 
@@ -51,7 +52,7 @@ JSON responses. It must not generate legal advice.
 
 1. Give Afghan families a clear path to immigration help and urgent contact.
 2. Provide Know Your Rights content in a legally safe, reviewed format.
-3. Support English, Dari, Pashto, and Uzbek, including RTL for Dari/Pashto.
+3. Support English, Dari, and Uzbek, including RTL for Dari.
 4. Keep the site fast and usable on mobile devices and limited connections.
 5. Keep operations simple enough for a small team to maintain.
 
@@ -59,7 +60,7 @@ JSON responses. It must not generate legal advice.
 
 - User accounts or authentication.
 - Database persistence for contact submissions.
-- CMS/admin panel for MVP.
+- General-purpose page builder/editor is out of scope.
 - AI chatbot, embeddings, LLMs, or external chatbot APIs.
 - Online booking/reservation system.
 - Dynamic legal advice.
@@ -87,7 +88,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 | Client request | Product implementation | Priority | Status |
 |---|---|---:|---|
 | Header with logo/menu/language toggle/CTA | Navigation with page links, language switcher, Get Help Now CTA | P0 | Required |
-| Language toggle EN/Dari/Pashto/Uzbek | All active route copy, form labels, CTA text, chatbot labels, validation messages, and legal/resource/event/story content must change language; Dari/Pashto must also use RTL | P0 | Required before launch |
+| Language toggle EN/Dari/Uzbek | All active route copy, form labels, CTA text, chatbot labels, validation messages, and legal/resource/event/story content must change language; Dari must also use RTL | P0 | Required before launch |
 | Home hero | Welcome message, family image/video fallback, clear CTA | P0 | Required |
 | Quick access icons | Four large buttons: Immigration, Rights, Resources, Events | P0 | Required |
 | About snapshot | Short institutional support statement | P0 | Required |
@@ -95,7 +96,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 | Immigration Help page/section | Static service cards/list for asylum, work permit, TPS, green card/family reunification, Afghan Adjustment Act | P0 | Required |
 | Contact block for Daoud | Phone, email, hours, office, Request a Call Back | P0 | Required |
 | Know Your Rights | Police/immigration agents, ICE at home, documents | P0 | Required |
-| Rights downloads | PDF cards in English, Dari, Pashto, Uzbek | P0 | Required before launch |
+| Rights downloads | PDF cards in English, Dari, and Uzbek | P0 | Required before launch |
 | Videos section | Community leaders and client experience videos | P1 | Needed if assets are provided |
 | Community resources | English classes, mental health, food banks, health clinics | P0 | Required |
 | Events calendar | Simple upcoming events list; no heavy booking system | P1 | Required |
@@ -115,7 +116,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 - Hero with high-contrast headline and subtext.
 - Static image or single optimized video only; no parallax layers.
 - Quick access buttons for the four main tasks.
-- Short about snapshot and featured event.
+- Short about snapshot and featured event (closest upcoming event from WordPress).
 
 ### 6.2 Immigration Help
 
@@ -153,6 +154,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 
 - Simple list/card view for upcoming workshops, legal clinics, cultural events,
   and Afghan holidays.
+- Event data sourced from WordPress Headless (`asp_event` CPT), fetched server-side with ISR.
 - No booking engine in MVP.
 - If registration is needed, link to approved external registration/contact.
 
@@ -182,11 +184,11 @@ may use lower-end devices, and may be under emotional/legal stress.
 ### 6.9 Multilingual Content Coverage
 
 - The client-requested language toggle is P0 functionality, not decorative UI.
-- Every active route must support English, Dari, Pashto, and Uzbek for primary visible text:
+- Every active route must support English, Dari, and Uzbek for primary visible text:
   - navigation, footer, page headings, section body copy, CTA text, form labels, validation messages, event/resource/story labels, rights content, downloads, and chatbot UI/actions.
 - Proper names, phone numbers, addresses, organization names, URLs, and legally approved document titles may remain unchanged when appropriate.
-- Dari and Pashto must set RTL direction and remain visually usable.
-- Machine translation may be used only as a draft; launch requires fluent/native human review for Dari, Pashto, and Uzbek.
+- Dari must set RTL direction and remain visually usable.
+- Machine translation may be used only as a draft; launch requires fluent/native human review for Dari and Uzbek.
 - If any active page remains English-only, the language toggle cannot be considered complete.
 
 ---
@@ -195,7 +197,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 
 | ID | Story | Acceptance Criteria |
 |---|---|---|
-| US-01 | As an Afghan family member, I want to switch to Dari, Pashto, or Uzbek so I can understand the site. | Language switch updates all primary visible route text, chatbot labels/actions, form labels/errors, and legal/resource/event content; Dari/Pashto also set RTL direction. |
+| US-01 | As an Afghan family member, I want to switch to Dari or Uzbek so I can understand the site. | Language switch updates all primary visible route text, chatbot labels/actions, form labels/errors, and legal/resource/event content; Dari also sets RTL direction. |
 | US-02 | As a user needing immigration help, I want a clear “Get Help Now” path. | CTA scrolls/navigates to contact and contact options are visible. |
 | US-03 | As a user worried about ICE/police interaction, I want quick rights information. | Know Your Rights section is readable, static, and has downloads. |
 | US-04 | As a community volunteer, I want to share resource categories. | Resources are grouped clearly and links/contact details are easy to copy or tap. |
@@ -221,8 +223,9 @@ Events → event details → registration/contact path if required
 
 | Content | Storage | Notes |
 |---|---|---|
-| UI translations | Local locale JSON files | EN, Dari, Pashto, Uzbek; must cover all active routes, not only legacy sections |
-| Events | Local JSON or typed constants | Easy to update without touching layout |
+| UI translations | Local locale JSON files | EN, Dari, Uzbek; must cover all active routes, not only legacy sections |
+| Events | WordPress Headless (asp_event CPT) | Client-editable via WordPress admin; fetched server-side with ISR |
+| Page/event metadata | WordPress Headless (asp_page_meta CPT) | Client-editable SEO title, description, and Open Graph tags |
 | Resources | Local JSON | Include category, title, description, link/contact |
 | Testimonials | Local JSON | Only approved names/assets |
 | Chatbot KB | `src/data/chatbot-kb.json` | Curated responses only |
@@ -235,25 +238,24 @@ Events → event details → registration/contact path if required
 
 | Layer | Decision |
 |---|---|
-| Frontend | React 19 + TypeScript + Vite |
+| Frontend | Next.js 16 App Router + React 19 + TypeScript |
 | Styling | Tailwind CSS with native CSS transitions |
-| Routing | SPA section navigation / language-aware route prefix |
-| i18n | `react-i18next` with local resources |
-| RTL | Dynamic `document.documentElement.dir` for Dari/Pashto |
+| Routing | Next.js App Router with `[lang]` dynamic segments |
+| i18n | `react-i18next` with local resources + server-side lang resolution via middleware |
+| RTL | `html[dir]` set on first paint via middleware + `x-dir` header |
 | Forms | `react-hook-form` + `zod`, server-side validation too |
 | Email | Resend or approved provider through serverless endpoint |
-| Hosting | Static CDN + serverless function for contact |
+| Hosting | Vercel for the Next.js frontend and route handlers; Hostinger WordPress for CMS/admin |
 | Analytics | Privacy-first only, if approved; no PII capture |
 
-### Deployment Decision Needed
+### Deployment Decision
 
-Choose one platform before production hardening:
-
-| Option | Tradeoff |
+| Surface | Decision |
 |---|---|
-| Vercel | Easiest fit for current `app/api/contact.ts`; serverless functions are straightforward. |
-| Netlify | Good static hosting and functions; endpoint structure may need adjustment. |
-| Cloudflare Pages | Strong CDN/security posture; contact endpoint likely needs Workers adaptation. |
+| Public website | Vercel-hosted Next.js frontend |
+| Contact endpoint | Next.js Route Handler on Vercel |
+| CMS/admin | WordPress on Hostinger, exposed headlessly through approved REST endpoints |
+| Media | WordPress Media Library for event/metadata images; approved local assets for static content |
 
 ---
 
@@ -346,15 +348,15 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 
 | Priority | Item | Notes |
 |---|---|---|
-| P0 | Finish cleanup from `modification_plan.md` | Remove GSAP/Lenis/Framer path before feature work |
-| P0 | Confirm deploy platform | Needed for headers, API, rate limiting |
+| P0 | Verify Next.js + WordPress Headless migration | Confirm routes, CMS adapter, metadata, and fallback behavior |
+| P0 | Confirm production env vars | Needed for Vercel, WordPress REST, ISR, email, and rate limiting |
 | P0 | Legal disclaimer and review date | Required for rights/legal sections and chatbot |
 | P0 | Real contact email flow | Validate env vars, sender, recipient, fallback |
-| P0 | Full multilingual coverage | All active route text changes for EN/Dari/Pashto/Uzbek; RTL for Dari/Pashto |
+| P0 | Full multilingual coverage | All active route text changes for EN/Dari/Uzbek; RTL for Dari |
 | P0 | Client requirement compliance pass | Verify every original layout item is represented |
-| P1 | Rights PDFs in 4 languages | Must use approved files |
+| P1 | Rights PDFs in 3 active languages | Must use approved files |
 | P1 | Production anti-spam/rate-limit hardening | Shared store/CDN/WAF preferred |
-| P1 | Translation review | Dari/Pashto/Uzbek human review |
+| P1 | Translation review | Dari/Uzbek human review |
 | P1 | Resource/event data cleanup | Real links, phone numbers, dates |
 | P1 | Accessibility and mobile QA | RTL, keyboard, tap targets |
 | P2 | Videos/testimonials polish | Only if approved assets exist |
@@ -364,17 +366,17 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 
 ## 15. Launch Checklist
 
-- [ ] One active PRD confirmed: this file.
-- [ ] Old PRDs remain archived, not active.
-- [ ] `modification_plan.md` completed.
-- [ ] `implementation_plan.md` reflects post-cleanup reality.
+- [x] One active PRD confirmed: this file.
+- [x] Old PRDs remain archived, not active.
+- [x] `modification_plan.md` completed.
+- [x] `implementation_plan.md` reflects post-cleanup reality. _(Packets A-F complete)_
 - [ ] Legal/rights content reviewed by qualified reviewer.
-- [ ] All active route copy is wired to i18n/local JSON or an approved equivalent.
-- [ ] Translations reviewed by fluent/native speakers.
-- [ ] Contact form sends email and does not persist PII.
-- [ ] Production rate limiting/anti-spam decision implemented.
-- [ ] CSP/security headers configured for chosen host.
-- [ ] PDFs and videos are approved and optimized.
+- [x] All active route copy is wired to i18n/local JSON or an approved equivalent. _(Dari/Uzbek populated; [MT] strings pending human review)_
+- [ ] Translations reviewed by fluent/native speakers. _(Dari/Uzbek populated, pending reviewer sign-off)_
+- [x] Contact form sends email and does not persist PII. _(Resend + Zod + honeypot; no PII storage)_
+- [x] Production rate limiting/anti-spam decision implemented. _(Upstash Redis sliding window + in-memory fallback)_
+- [x] CSP/security headers configured for chosen host. _(next.config.ts dynamic CSP)_
+- [x] PDFs and videos are approved and optimized. _(3 PDFs in public/PDFs_Rights/, 5 videos in public/videos/Stories/)_
 - [ ] Mobile, keyboard, RTL, and screen-reader smoke checks completed.
 - [ ] Lighthouse/accessibility/performance checks completed.
 
@@ -386,7 +388,7 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 |---|---|
 | `Website_Layout_Afghan_Immigration.md` | Original client input |
 | `PRD_Afghan_Support_Realistic.md` | Active source of truth |
-| `modification_plan.md` | Temporary migration plan tied to current code |
-| `implementation_plan.md` | Post-cleanup execution plan |
+| `modification_plan.md` | Completed — React/Vite → Next.js migration (historical reference) |
+| `implementation_plan.md` | Completed — Packets A-F implemented; Packet G verification in progress |
 | `archive/PRD_Afghan_Support_Part1.md` | Historical reference only |
 | `archive/PRD_Afghan_Support_Part2.md` | Historical reference only |

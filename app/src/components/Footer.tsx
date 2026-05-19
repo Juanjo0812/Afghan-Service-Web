@@ -1,27 +1,33 @@
-import { Link } from 'react-router'
+'use client'
+
+import Link from 'next/link'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Phone, Mail, MapPin } from 'lucide-react'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Footer() {
   const { t } = useTranslation('common')
+  const { lang } = useLanguage()
 
-  const quickLinks = [
-    { label: t('footer.home'), path: '/' },
-    { label: t('nav.immigrationHelp'), path: '/immigration' },
-    { label: t('nav.communityResources'), path: '/resources' },
-    { label: t('nav.knowYourRights'), path: '/rights' },
-    { label: t('footer.events'), path: '/events' },
-    { label: t('footer.stories'), path: '/stories' },
-    { label: t('footer.contact'), path: '/contact' },
-  ]
+  const quickLinks = useMemo(() => [
+    { label: t('footer.home'), path: localizePath('/', lang) },
+    { label: t('nav.immigrationHelp'), path: localizePath('/immigration', lang) },
+    { label: t('nav.communityResources'), path: localizePath('/resources', lang) },
+    { label: t('nav.knowYourRights'), path: localizePath('/rights', lang) },
+    { label: t('footer.events'), path: localizePath('/events', lang) },
+    { label: t('footer.stories'), path: localizePath('/stories', lang) },
+    { label: t('footer.contact'), path: localizePath('/contact', lang) },
+  ], [t, lang])
 
-  const resourceLinks = [
-    { label: t('footer.resourceLinks.englishClasses'), path: '/resources' },
-    { label: t('footer.resourceLinks.foodBanks'), path: '/resources' },
-    { label: t('footer.resourceLinks.mentalHealth'), path: '/resources' },
-    { label: t('footer.resourceLinks.healthClinics'), path: '/resources' },
-  ]
+  const resourceLinks = useMemo(() => [
+    { label: t('footer.resourceLinks.englishClasses'), path: localizePath('/resources', lang) },
+    { label: t('footer.resourceLinks.foodBanks'), path: localizePath('/resources', lang) },
+    { label: t('footer.resourceLinks.mentalHealth'), path: localizePath('/resources', lang) },
+    { label: t('footer.resourceLinks.healthClinics'), path: localizePath('/resources', lang) },
+  ], [t, lang])
 
   return (
     <footer className="bg-forest-dark text-cream">
@@ -64,7 +70,7 @@ export default function Footer() {
               {quickLinks.map((link) => (
                 <li key={link.path + link.label}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-cream/80 hover:text-amber transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 focus:ring-offset-forest-dark rounded-md"
                   >
                     {link.label}
@@ -81,7 +87,7 @@ export default function Footer() {
               {resourceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-cream/80 hover:text-amber transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 focus:ring-offset-forest-dark rounded-md"
                   >
                     {link.label}

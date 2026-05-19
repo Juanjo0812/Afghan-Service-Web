@@ -1,5 +1,6 @@
 export interface KBEntry {
   id: string
+  title?: string
   keywords_en: string[]
   keywords_dari?: string[]
   keywords_uzbek?: string[]

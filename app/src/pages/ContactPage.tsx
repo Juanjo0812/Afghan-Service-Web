@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Phone, Mail, Clock, MapPin, MessageCircle, CheckCircle, AlertCircle } from 'lucide-react'

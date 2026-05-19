@@ -1,5 +1,9 @@
 {
-  "label": "About Us",
+  "label": "Biz haqimizda",
   "heading": "Afghan Support Phoenix",
-  "statement": "We support Afghan individuals and families through legal services, community resources, and integration support."
+  "homeHeadline": "Feniksdagi afg'on oilalariga yordam",
+  "statement": "Biz afg'onistonliklar va ularning oilalariga huquqiy xizmatlar, hamjamiyat resurslari hamda integratsiya yordami orqali ko'maklashamiz.",
+  "body1": "Biz afg'onistonliklar va ularning oilalariga huquqiy xizmatlar, hamjamiyat resurslari hamda integratsiya yordami orqali ko'maklashamiz. Bizning jamoamiz sizning tilingizda gaplashadi va sizning yo'lingizni tushunadi. Barcha xizmatlar bepul va maxfiy.",
+  "body2": "[MT] Katolik Xayriya Jamoat Xizmatlari, Arizona dasturi — 1933-yildan beri jamoamizga hurmat va rahmlilik bilan xizmat qiladi.",
+  "learnMoreServices": "[MT] Xizmatlarimiz haqida ko'proq bilib oling"
 }

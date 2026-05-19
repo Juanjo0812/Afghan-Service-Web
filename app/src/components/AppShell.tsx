@@ -1,6 +1,5 @@
 'use client'
 
-import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '@/lib/i18n'
 import Header from './Header'
@@ -18,21 +17,19 @@ interface AppShellProps {
 
 export default function AppShell({ children, initialLang = 'en' }: AppShellProps) {
   return (
-    <HelmetProvider>
-      <I18nextProvider i18n={i18n}>
-        <LanguageProvider initialLang={initialLang}>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-cream">
-            <Header />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <Chatbot />
-            <Toaster position="bottom-right" richColors />
-          </div>
-        </LanguageProvider>
-      </I18nextProvider>
-    </HelmetProvider>
+    <I18nextProvider i18n={i18n}>
+      <LanguageProvider initialLang={initialLang}>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col bg-cream">
+          <Header />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <Chatbot />
+          <Toaster position="bottom-right" richColors />
+        </div>
+      </LanguageProvider>
+    </I18nextProvider>
   )
 }

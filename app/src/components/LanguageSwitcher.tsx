@@ -49,7 +49,7 @@ export default function LanguageSwitcher({ variant = 'light' }: LanguageSwitcher
   }, [open])
 
   const handleSelect = (code: LangCode) => {
-    const segments = pathname.split('/').filter(Boolean)
+    const segments = (pathname ?? '/').split('/').filter(Boolean)
     const hasLangPrefix = supportedLanguages.includes(segments[0] as LangCode)
 
     let newPath: string

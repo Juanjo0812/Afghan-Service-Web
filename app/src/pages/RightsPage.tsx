@@ -1,7 +1,8 @@
+'use client'
+
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronDown, Download, Info, Play, Pause } from 'lucide-react'
-import { Link } from 'react-router'
 import { FadeIn } from '../components/FadeIn'
 
 function AccordionItem({
@@ -96,9 +97,9 @@ export default function RightsPage() {
   ]
 
   const downloadCards = [
-    { label: 'English', lang: 'en' },
-    { label: 'دری (Dari)', lang: 'dari', dir: 'rtl' as const },
-    { label: 'ازبکی (Uzbek)', lang: 'uzbek' },
+    { label: t('downloads.english'), lang: 'en', href: '/PDFs_Rights/Rights_EN.pdf' },
+    { label: t('downloads.dari'), lang: 'dari', dir: 'rtl' as const, href: '/PDFs_Rights/Rigths_Dari.pdf' },
+    { label: t('downloads.uzbek'), lang: 'uzbek', href: '/PDFs_Rights/Rigths_Uzbek.pdf' },
   ]
 
   return (
@@ -173,24 +174,21 @@ export default function RightsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
             {downloadCards.map((card, i) => (
               <FadeIn key={card.lang} delay={i * 150} duration={800} className="h-full">
-                <div className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50">
+                <a
+                  href={card.href}
+                  download
+                  className="bg-white w-full h-full rounded-xl p-6 md:p-8 flex flex-col items-center justify-center text-center shadow-card border border-warm-sand/50 transition-all duration-300 hover:bg-cream-dark hover:shadow-card-hover hover:border-amber"
+                >
                   <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/5 flex items-center justify-center">
                     <Download className="w-5 h-5 text-forest" aria-hidden="true" />
                   </div>
-                  <h3 className="font-semibold text-heading-4 text-forest mb-2" dir={card.dir}>
+                  <h3 className="font-semibold text-heading-4 text-forest" dir={card.dir}>
                     {card.label}
                   </h3>
-                  <p className="text-sm text-forest-light">
-                    {t('downloads.comingSoon')}{' '}
-                    <Link to="/contact" className="text-forest font-semibold hover:text-amber transition-colors underline underline-offset-4">
-                      {t('downloads.contactUs')}
-                    </Link>{' '}
-                    {t('downloads.forCopy')}
-                  </p>
-                </div>
+                </a>
               </FadeIn>
             ))}
           </div>

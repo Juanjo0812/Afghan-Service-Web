@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Community Immigration Workshop",
+    "slug": "community-immigration-workshop",
+    "content": "Join us for a free immigration workshop covering asylum applications, work permits, and family reunification. Attorneys and accredited representatives will be available for one-on-one consultations.",
+    "meta": {
+      "_asp_event_category": "immigration",
+      "_asp_event_start_date": "2026-06-15T09:00:00",
+      "_asp_event_end_date": "2026-06-15T13:00:00",
+      "_asp_event_location": "Catholic Charities Community Center, 1825 W Northern Ave, Phoenix, AZ 85021",
+      "_asp_cta_label": "Register Now",
+      "_asp_cta_url": "https://afghansupport.org/contact",
+      "_asp_event_language": "en",
+      "_asp_featured_image_id": 0
+    }
+  },
+  {
+    "title": "Legal Aid Clinic — Know Your Rights",
+    "slug": "legal-aid-clinic-know-your-rights",
+    "content": "A free legal clinic focused on tenant rights, employment law, and immigration enforcement protections. Bilingual attorneys available in Dari and English.",
+    "meta": {
+      "_asp_event_category": "legal",
+      "_asp_event_start_date": "2026-06-22T10:00:00",
+      "_asp_event_end_date": "2026-06-22T14:00:00",
+      "_asp_event_location": "Phoenix Public Library — Burton Barr, 1221 N Central Ave, Phoenix, AZ 85004",
+      "_asp_cta_label": "Reserve a Spot",
+      "_asp_cta_url": "",
+      "_asp_event_language": "en",
+      "_asp_featured_image_id": 0
+    }
+  },
+  {
+    "title": "کارگاه مهاجرت جامعه",
+    "slug": "community-immigration-workshop-dari",
+    "content": "در کارگاه رایگان مهاجرت ما بپیوندید که شامل درخواست پناهندگی، اجازه کار و reunification خانواده است. وکلا و نمایندگان معتبر برای مشاوره یک به یک در دسترس خواهند بود.",
+    "meta": {
+      "_asp_event_category": "immigration",
+      "_asp_event_start_date": "2026-06-15T09:00:00",
+      "_asp_event_end_date": "2026-06-15T13:00:00",
+      "_asp_event_location": "Catholic Charities Community Center, 1825 W Northern Ave, Phoenix, AZ 85021",
+      "_asp_cta_label": "اکنون ثبت نام کنید",
+      "_asp_cta_url": "https://afghansupport.org/contact",
+      "_asp_event_language": "dari",
+      "_asp_featured_image_id": 0
+    }
+  },
+  {
+    "title": "Yuridik yordam klinikasi — Huquqlaringizni bilib oling",
+    "slug": "legal-aid-clinic-know-your-rights-uzbek",
+    "content": "Ijara huquqlari, mehnat huquqi va immigratsiya nazorati himoyalari bo'yicha bepul yuridik klinika. Dari va ingliz tillarida ikki tilli advokatlar mavjud.",
+    "meta": {
+      "_asp_event_category": "legal",
+      "_asp_event_start_date": "2026-06-22T10:00:00",
+      "_asp_event_end_date": "2026-06-22T14:00:00",
+      "_asp_event_location": "Phoenix Public Library — Burton Barr, 1221 N Central Ave, Phoenix, AZ 85004",
+      "_asp_cta_label": "Joy band qiling",
+      "_asp_cta_url": "",
+      "_asp_event_language": "uzbek",
+      "_asp_featured_image_id": 0
+    }
+  }
+]

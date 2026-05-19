@@ -1,52 +1,52 @@
 {
-  "welcome": "Welcome to Afghan Support. Select a topic below or type your question.",
-  "title": "Kalil Assistant",
-  "status": "Online",
-  "closeChat": "Close chat",
-  "inputPlaceholder": "Type your message...",
-  "inputAriaLabel": "Type your question",
-  "sendAriaLabel": "Send message",
-  "openAssistant": "Open chat assistant",
-  "closeAssistant": "Close chat assistant",
+  "welcome": "به Afghan Support خوش آمدید. یک موضوع را در زیر انتخاب کنید یا سوال خود را تایپ کنید.",
+  "title": "دستیار کالیل",
+  "status": "آنلاین",
+  "closeChat": "بستن چت",
+  "inputPlaceholder": "پیام خود را تایپ کنید...",
+  "inputAriaLabel": "سوال خود را تایپ کنید",
+  "sendAriaLabel": "ارسال پیام",
+  "openAssistant": "باز کردن دستیار چت",
+  "closeAssistant": "بستن دستیار چت",
   "notification": {
-    "title": "Need Help?"
+    "title": "به کمک نیاز دارید؟"
   },
   "openButton": {
-    "label": "Chat with us"
+    "label": "با ما چت کنید"
   },
-  "quickTopics": "Quick topics",
-  "multiCandidate": "I found a few things that might help. Which one were you looking for?",
-  "fallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170.",
+  "quickTopics": "موضوعات سریع",
+  "multiCandidate": "[MT] چند مورد پیدا کردم که ممکن است مفید باشد. کدام یک را دنبال می‌کردید؟",
+  "fallback": "[MT] از پیام شما متشکریم. یک کارشناس ظرف ۱ تا ۲ روز کاری با شما تماس خواهد گرفت. برای کمک فوری، لطفاً با شماره ۴۸۰.۴۱۶.۲۳۳۳ تماس بگیرید.",
   "actions": {
     "immigration": {
-      "label": "Immigration Help",
-      "response": "We provide immigration support services including case management, legal referrals, and document assistance for Afghan families in Phoenix. Our team can help you navigate the immigration process and connect you with trusted legal professionals.",
-      "cta": "View Services"
+      "label": "راهنمای مهاجرت",
+      "response": "[MT] ما خدمات پشتیبانی مهاجرتی از جمله مدیریت پرونده، معرفی به وکلای حقوقی و کمک در تهیه مدارک را برای خانواده‌های افغان در فینیکس ارائه می‌دهیم. تیم ما می‌تواند به شما در navigating روند مهاجرت کمک کند و شما را با متخصصان حقوقی معتبر مرتبط سازد.",
+      "cta": "مشاهده خدمات"
     },
     "community": {
-      "label": "Community Resources",
-      "response": "Connect with local food banks, healthcare providers, housing assistance, and other essential services in the Phoenix area. We maintain a curated list of community partners ready to help Afghan families.",
-      "cta": "Explore Resources"
+      "label": "منابع اجتماعی",
+      "response": "[MT] با بانک‌های غذای محلی، ارائه‌دهندگان خدمات بهداشتی، کمک به مسکن و سایر خدمات ضروری در منطقه فینیکس ارتباط برقرار کنید. ما فهرستی از شرکای جامعه را که آماده کمک به خانواده‌های افغان هستند، نگهداری می‌کنیم.",
+      "cta": "کاوش منابع"
     },
     "rights": {
-      "label": "Know Your Rights",
-      "response": "Learn about your rights as an immigrant, refugee, or asylum seeker. Access know-your-rights materials in Dari and English. This information is for educational purposes only and does not constitute legal advice.",
-      "cta": "Read More"
+      "label": "حقوق خود را بشناسید",
+      "response": "[MT] درباره حقوق خود به‌عنوان یک مهاجر، پناهنده یا متقاضی پناهندگی بیاموزید. به مطالب آموزشی حقوق خود را بشناسید به زبان دری و انگلیسی دسترسی داشته باشید. این اطلاعات صرفاً برای اهداف آموزشی است و مشاوره حقوقی محسوب نمی‌شود.",
+      "cta": "بیشتر بخوانید"
     },
     "events": {
-      "label": "Events",
-      "response": "We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration.",
-      "cta": "See Events"
+      "label": "رویدادها",
+      "response": "[MT] ما کارگاه‌های منظم، کلینیک‌های حقوقی و رویدادهای فرهنگی برای جامعه افغان در فینیکس برگزار می‌کنیم. صفحه رویدادهای ما را برای تاریخ‌های آینده و ثبت‌نام بررسی کنید.",
+      "cta": "مشاهده رویدادها"
     },
     "contact": {
-      "label": "Contact Info",
-      "response": "Reach our team by phone, email, or WhatsApp. Our office is located at 5151 N 19th Ave, Phoenix AZ 85015. We respond to all inquiries within 1–2 business days.",
-      "cta": "Contact Us"
+      "label": "اطلاعات تماس",
+      "response": "[MT] با تیم ما از طریق تلفن، ایمیل یا واتس‌اپ تماس بگیرید. دفتر ما در آدرس ۵۱۵۱ N 19th Ave، فینیکس AZ ۸۵۰۱۵ واقع شده است. ما ظرف ۱ تا ۲ روز کاری به تمام درخواست‌ها پاسخ می‌دهیم.",
+      "cta": "تماس با ما"
     },
     "speak": {
-      "label": "Speak to Someone",
-      "response": "Our caseworkers are available to speak with you in Dari or English. Whether you need guidance, emotional support, or just someone to listen, we are here for you.",
-      "cta": "Get in Touch"
+      "label": "با کسی صحبت کنید",
+      "response": "[MT] کارشناسان ما به زبان دری یا انگلیسی آماده صحبت با شما هستند. چه به راهنمایی نیاز داشته باشید، چه حمایت عاطفی یا فقط کسی که گوش دهد، ما اینجا هستیم.",
+      "cta": "ارتباط بگیرید"
     }
   }
 }

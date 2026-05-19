@@ -31,16 +31,16 @@ The active project root is `app/`.
 
 | Current area | Current anchor |
 |---|---|
-| Runtime | Vite + React 19 + TypeScript |
-| Entry | `src/main.tsx` |
-| Routes | `src/App.tsx` with `react-router` lazy pages |
-| Shell | `src/components/Layout.tsx` with Header, Footer, Chatbot, Toaster |
-| Pages | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` |
-| i18n | `src/lib/i18n.ts`, `src/locales/**`, `LanguageProvider`, language-aware route prefixes |
-| RTL | `src/lib/direction.ts` + `document.documentElement.dir` updates |
-| SEO | `src/components/SEO.tsx` using `react-helmet-async` |
-| Contact API | `api/contact.ts` using Resend, Zod, Upstash rate limiting |
-| Deployment config | `vercel.json` with SPA fallback, headers, and API cache rules |
+| Runtime | Next.js 16 App Router + React 19 + TypeScript |
+| Entry | `src/app/layout.tsx` + `src/app/page.tsx` |
+| Routes | Next.js App Router pages under `src/app/**/page.tsx` |
+| Shell | `src/components/AppShell.tsx` with Header, Footer, Chatbot, Toaster |
+| Pages | `src/pages/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` (rendered by App Router pages) |
+| i18n | `src/lib/i18n.ts`, `src/locales/**`, `LanguageProvider`, language-aware route prefixes via `[lang]` dynamic segment |
+| RTL | Middleware `x-dir` header + `html[dir]` on first paint |
+| SEO | Next.js `generateMetadata()` with WordPress Headless fallback |
+| Contact API | `src/app/api/contact/route.ts` using Resend, Zod, Upstash rate limiting |
+| Deployment config | `next.config.ts` with security headers; App Router owns routing |
 | Editable data today | Events/stories are still component/local-data driven; no CMS integration exists yet |
 
 Do not remove working UX behavior just because the framework changes. This migration is successful only if the user-facing website feels the same or better.
@@ -165,7 +165,7 @@ Preserve current public routes:
 
 - English/default: `/`, `/events`, `/stories`, `/contact`, `/immigration`, `/rights`, `/resources`
 - Other languages: `/dari`, `/dari/events`, `/uzbek`, `/uzbek/events`, etc.
-- Pashto routes such as `/pashto` and `/pashto/events` must not be recreated. If redirects are needed for old links, redirect them to English or a client-approved fallback route.
+- Pashto routes such as `/pashto` and `/pashto/events` must not be recreated as pages. The only allowed active Pashto runtime reference is a permanent redirect from old `/pashto/*` links to the equivalent English path.
 
 Root English route files and `[lang]` route files should import the same shared route modules to avoid duplicate page logic.
 
@@ -185,14 +185,14 @@ Required changes:
   - do not run `build` unless explicitly authorized.
 - Add `next` and required Next-compatible config.
 - Remove Vite-only files after equivalent Next wiring exists:
-  - `vite.config.ts`
-  - `index.html`
-  - `src/main.tsx`
-  - Vite-specific env usage.
-- Move global CSS import from `src/main.tsx` into `src/app/layout.tsx`.
+  - `vite.config.ts` (removed)
+  - `index.html` (removed)
+  - `src/main.tsx` (removed)
+  - Vite-specific env usage (migrated).
+- Global CSS imported in `src/app/layout.tsx`.
 - Preserve existing Tailwind tokens and `src/index.css` content by moving or importing it as `src/app/globals.css`.
 - Keep current font packages unless there is a specific reason to change; do not redesign typography.
-- Replace `react-router` routes with App Router pages.
+- App Router pages replace legacy `react-router` routes; `react-router` shim remains for gradual component migration.
 - Replace `Layout.tsx` with `AppShell` used from Next layout/page composition.
 
 Acceptance criteria:
@@ -395,7 +395,7 @@ Acceptance criteria:
 
 Required changes:
 
-- Remove `react-helmet-async` after all metadata is migrated.
+- `react-helmet-async` removed; all metadata uses Next.js `generateMetadata()`.
 - Replace `SEO.tsx` usage with Next.js `generateMetadata()`.
 - Metadata resolution order:
   1. WordPress metadata record for route + language.
@@ -454,7 +454,7 @@ Required WordPress/Hostinger rules:
 
 Next/Vercel config:
 
-- Remove the old SPA rewrite to `index.html`; App Router owns routing.
+- Delete legacy `vercel.json`; App Router owns routing and `next.config.ts` supplies security headers.
 - Keep security headers either in `next.config.ts` or `vercel.json`, not duplicated in both.
 - `connect-src` must allow the WordPress API only if client-side fetches are introduced; default should be server-side fetch only.
 - `img-src` / Next image config must allow only the WordPress media host and local assets.
@@ -479,7 +479,7 @@ Manual checks:
 - [ ] Chatbot opens and routes to real pages.
 - [ ] Language switcher preserves route intent.
 - [ ] Dari renders RTL correctly.
-- [ ] Pashto has no active runtime, data, route, type, CMS schema, or documentation references except historical archive notes.
+- [ ] Pashto has no active data, page route, type, CMS schema, or supported-language references; the only active runtime reference allowed is the intentional `/pashto/*` redirect to English.
 - [ ] Contact form posts to `/api/contact` and preserves current success/error behavior.
 - [ ] WordPress Studio event edits appear on the events page.
 - [ ] WordPress Studio metadata edits appear in rendered metadata.

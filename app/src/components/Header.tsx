@@ -1,23 +1,29 @@
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router'
+'use client'
+
+import { useState, useEffect, useMemo } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Menu, X, Phone } from 'lucide-react'
+import { useLanguage } from '../hooks/useLanguage'
+import { localizePath } from '../lib/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Header() {
   const { t } = useTranslation('common')
+  const { lang } = useLanguage()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
+  const pathname = usePathname() || '/'
 
-  const navItems = [
-    { label: t('nav.immigrationHelp'), path: '/immigration' },
-    { label: t('nav.communityResources'), path: '/resources' },
-    { label: t('nav.knowYourRights'), path: '/rights' },
-    { label: t('nav.events'), path: '/events' },
-    { label: t('nav.stories'), path: '/stories' },
-    { label: t('nav.contact'), path: '/contact' },
-  ]
+  const navItems = useMemo(() => [
+    { label: t('nav.immigrationHelp'), path: localizePath('/immigration', lang) },
+    { label: t('nav.communityResources'), path: localizePath('/resources', lang) },
+    { label: t('nav.knowYourRights'), path: localizePath('/rights', lang) },
+    { label: t('nav.events'), path: localizePath('/events', lang) },
+    { label: t('nav.stories'), path: localizePath('/stories', lang) },
+    { label: t('nav.contact'), path: localizePath('/contact', lang) },
+  ], [t, lang])
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -54,7 +60,7 @@ export default function Header() {
           >
             {/* Logo */}
             <Link
-              to="/"
+              href={localizePath('/', lang)}
               className="flex-shrink-0 flex items-center focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 rounded-md"
               aria-label="Catholic Charities AZ - Home"
             >
@@ -70,7 +76,7 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className={`hidden lg:flex flex-1 justify-center items-center mx-1 lg:mx-2 xl:mx-4 transition-all duration-500 ${scrolled ? 'gap-3 xl:gap-6' : 'gap-1 xl:gap-2'}`} aria-label="Main navigation">
               {navItems.map((item) => {
-                const isActive = location.pathname === item.path
+                const isActive = pathname === item.path
                 
                 // Determine text and background styling based on scroll state
                 const activeStyle = scrolled 
@@ -84,7 +90,7 @@ export default function Header() {
                 return (
                   <Link
                     key={item.path}
-                    to={item.path}
+                    href={item.path}
                     className={`py-2 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber focus:ring-offset-2 rounded-md whitespace-nowrap ${
                       scrolled ? 'px-3 xl:px-4 text-[14px] xl:text-[15px]' : 'px-2 xl:px-3 text-[16px] xl:text-[17px]'
                     } ${
@@ -107,7 +113,7 @@ export default function Header() {
 
               {/* Get Help Now CTA */}
               <Link
-                to="/contact"
+                href={localizePath('/contact', lang)}
                 className={`btn-primary px-4 font-semibold hidden sm:inline-flex transition-all duration-500 ease-in-out ${
                   scrolled ? 'py-2 text-sm' : 'py-2.5 text-[15px]'
                 }`}
@@ -157,11 +163,11 @@ export default function Header() {
               <div className="mb-4">
                 <p className="text-cream/50 text-xs font-semibold uppercase tracking-wider mb-2 px-4">{t('mobileNavigation')}</p>
                 {navItems.map((item) => {
-                  const isActive = location.pathname === item.path
+                  const isActive = pathname === item.path
                   return (
                     <Link
                       key={item.path}
-                      to={item.path}
+                      href={item.path}
                       onClick={() => setMobileOpen(false)}
                       className={`px-4 py-3 text-lg font-semibold rounded-md transition-colors block ${
                         isActive
@@ -183,7 +189,7 @@ export default function Header() {
             </div>
 
             <Link
-              to="/contact"
+              href={localizePath('/contact', lang)}
               className="btn-primary mt-6 text-center justify-center"
               onClick={() => setMobileOpen(false)}
             >
