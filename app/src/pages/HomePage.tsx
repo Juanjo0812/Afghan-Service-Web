@@ -262,7 +262,7 @@ export default function HomePage() {
                     <path d="m22 22-5-10-5 10" /><path d="M14 18h6" />
                   </svg>
                   <span className="text-body text-forest">
-                    Dari &amp; Pashto interpretation provided
+                    Dari interpretation provided
                   </span>
                 </div>
               </div>

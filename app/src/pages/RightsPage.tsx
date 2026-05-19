@@ -98,7 +98,6 @@ export default function RightsPage() {
   const downloadCards = [
     { label: 'English', lang: 'en' },
     { label: 'دری (Dari)', lang: 'dari', dir: 'rtl' as const },
-    { label: 'پښتو (Pashto)', lang: 'pashto', dir: 'rtl' as const },
     { label: 'ازبکی (Uzbek)', lang: 'uzbek' },
   ]
 

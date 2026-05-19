@@ -33,19 +33,6 @@ import faTestimonials from '../locales/dari/testimonials.json'
 import faChatbot from '../locales/dari/chatbot.json'
 import faImmigrationHelp from '../locales/dari/immigration-help.json'
 
-/* Pashto */
-import psCommon from '../locales/pashto/common.json'
-import psHero from '../locales/pashto/hero.json'
-import psServices from '../locales/pashto/services.json'
-import psAbout from '../locales/pashto/about.json'
-import psRights from '../locales/pashto/rights.json'
-import psResources from '../locales/pashto/resources.json'
-import psEvents from '../locales/pashto/events.json'
-import psContact from '../locales/pashto/contact.json'
-import psTestimonials from '../locales/pashto/testimonials.json'
-import psChatbot from '../locales/pashto/chatbot.json'
-import psImmigrationHelp from '../locales/pashto/immigration-help.json'
-
 /* Uzbek */
 import uzCommon from '../locales/uzbek/common.json'
 import uzHero from '../locales/uzbek/hero.json'
@@ -115,19 +102,6 @@ i18n
         testimonials: faTestimonials,
         chatbot: faChatbot,
         'immigration-help': faImmigrationHelp,
-      },
-      pashto: {
-        common: psCommon,
-        hero: psHero,
-        services: psServices,
-        about: psAbout,
-        rights: psRights,
-        resources: psResources,
-        events: psEvents,
-        contact: psContact,
-        testimonials: psTestimonials,
-        chatbot: psChatbot,
-        'immigration-help': psImmigrationHelp,
       },
       uzbek: {
         common: uzCommon,

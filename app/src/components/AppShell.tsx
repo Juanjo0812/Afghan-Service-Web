@@ -9,12 +9,18 @@ import Chatbot from '@/sections/Chatbot'
 import { Toaster } from './ui/sonner'
 import { ScrollToTop } from './ScrollToTop'
 import { LanguageProvider } from './LanguageProvider'
+import type { LangCode } from '@/domain/language'
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
+interface AppShellProps {
+  children: React.ReactNode
+  initialLang?: LangCode
+}
+
+export default function AppShell({ children, initialLang = 'en' }: AppShellProps) {
   return (
     <HelmetProvider>
       <I18nextProvider i18n={i18n}>
-        <LanguageProvider>
+        <LanguageProvider initialLang={initialLang}>
           <ScrollToTop />
           <div className="min-h-screen flex flex-col bg-cream">
             <Header />

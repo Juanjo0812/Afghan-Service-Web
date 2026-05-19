@@ -1,15 +1,16 @@
-import { Resend } from 'resend';
-import { z } from 'zod';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { Resend } from 'resend'
+import { z } from 'zod'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
+import { NextResponse } from 'next/server'
 
 // In-memory fallback rate limiting
 interface RateLimitEntry {
-  count: number;
-  resetTime: number;
+  count: number
+  resetTime: number
 }
 
-const rateLimitMap = new Map<string, RateLimitEntry>();
+const rateLimitMap = new Map<string, RateLimitEntry>()
 
 const contactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -18,19 +19,19 @@ const contactSchema = z.object({
   message: z.string().min(1).max(2000),
   website_url: z.string().optional(),
   submissionId: z.string().min(1).optional(),
-});
+})
 
 function sanitizeInput(input: string, maxLength: number): string {
-  const stripped = input.replace(/<[^>]*>/g, '');
-  return stripped.slice(0, maxLength);
+  const stripped = input.replace(/<[^>]*>/g, '')
+  return stripped.slice(0, maxLength)
 }
 
 function getClientIP(req: Request): string {
-  const forwarded = req.headers.get('x-forwarded-for');
+  const forwarded = req.headers.get('x-forwarded-for')
   if (forwarded) {
-    return forwarded.split(',')[0].trim();
+    return forwarded.split(',')[0].trim()
   }
-  return req.headers.get('x-real-ip') ?? 'unknown';
+  return req.headers.get('x-real-ip') ?? 'unknown'
 }
 
 function checkInMemoryRateLimit(
@@ -38,90 +39,78 @@ function checkInMemoryRateLimit(
   limit: number,
   windowMs: number
 ): { success: boolean; retryAfterSeconds?: number } {
-  const now = Date.now();
-  const entry = rateLimitMap.get(key);
+  const now = Date.now()
+  const entry = rateLimitMap.get(key)
 
   if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(key, { count: 1, resetTime: now + windowMs });
-    return { success: true };
+    rateLimitMap.set(key, { count: 1, resetTime: now + windowMs })
+    return { success: true }
   }
 
   if (entry.count >= limit) {
     return {
       success: false,
       retryAfterSeconds: Math.ceil((entry.resetTime - now) / 1000),
-    };
+    }
   }
 
-  entry.count += 1;
-  return { success: true };
+  entry.count += 1
+  return { success: true }
 }
 
 // Upstash Redis setup
-const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
-const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
-const useUpstash = Boolean(upstashUrl && upstashToken);
+const upstashUrl = process.env.UPSTASH_REDIS_REST_URL
+const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN
+const useUpstash = Boolean(upstashUrl && upstashToken)
 
-let ipRatelimit: Ratelimit | null = null;
-let phoneRatelimit: Ratelimit | null = null;
+let ipRatelimit: Ratelimit | null = null
+let phoneRatelimit: Ratelimit | null = null
 
 if (useUpstash) {
-  const redis = new Redis({ url: upstashUrl, token: upstashToken });
+  const redis = new Redis({ url: upstashUrl, token: upstashToken })
   ipRatelimit = new Ratelimit({
     redis,
     limiter: Ratelimit.slidingWindow(5, '1 h'),
     analytics: true,
-  });
+  })
   phoneRatelimit = new Ratelimit({
     redis,
     limiter: Ratelimit.slidingWindow(3, '1 h'),
     analytics: true,
-  });
+  })
 }
 
 function jsonResponse(
   body: unknown,
   status: number,
   extraHeaders?: Record<string, string>
-): Response {
-  const headers = new Headers({
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-store',
-    ...extraHeaders,
-  });
-  return new Response(JSON.stringify(body), { status, headers });
+): NextResponse {
+  return NextResponse.json(body, {
+    status,
+    headers: {
+      'Cache-Control': 'no-store',
+      ...extraHeaders,
+    },
+  })
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export default async function handler(req: Request): Promise<Response> {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Cache-Control': 'no-store',
-      },
-    });
-  }
-
-  if (req.method !== 'POST') {
-    return jsonResponse({ success: false, error: 'Method not allowed' }, 405);
-  }
-
-  const ip = getClientIP(req);
+export async function POST(request: Request): Promise<NextResponse> {
+  const ip = getClientIP(request)
 
   // IP-based rate limiting
-  let ipLimitResult: { success: boolean; retryAfterSeconds?: number };
+  let ipLimitResult: { success: boolean; retryAfterSeconds?: number }
   if (useUpstash && ipRatelimit) {
-    const result = await ipRatelimit.limit(ip);
+    const result = await ipRatelimit.limit(ip)
     ipLimitResult = {
       success: result.success,
       retryAfterSeconds: result.reset
         ? Math.ceil((result.reset - Date.now()) / 1000)
         : undefined,
-    };
+    }
   } else {
-    ipLimitResult = checkInMemoryRateLimit(ip, 5, 60 * 60 * 1000);
+    ipLimitResult = checkInMemoryRateLimit(ip, 5, 60 * 60 * 1000)
   }
 
   if (!ipLimitResult.success) {
@@ -132,48 +121,48 @@ export default async function handler(req: Request): Promise<Response> {
         retryAfterSeconds: ipLimitResult.retryAfterSeconds,
       },
       429
-    );
+    )
   }
 
-  let body: unknown;
+  let body: unknown
   try {
-    body = await req.json();
+    body = await request.json()
   } catch {
-    return jsonResponse({ success: false, error: 'Invalid JSON body' }, 400);
+    return jsonResponse({ success: false, error: 'Invalid JSON body' }, 400)
   }
 
-  const parseResult = contactSchema.safeParse(body);
+  const parseResult = contactSchema.safeParse(body)
   if (!parseResult.success) {
-    const fieldErrors: Record<string, string> = {};
+    const fieldErrors: Record<string, string> = {}
     for (const issue of parseResult.error.issues) {
-      const path = issue.path.join('.');
+      const path = issue.path.join('.')
       if (path && !(path in fieldErrors)) {
-        fieldErrors[path] = issue.message;
+        fieldErrors[path] = issue.message
       }
     }
     return jsonResponse(
       { success: false, error: 'Validation failed', fields: fieldErrors },
       400
-    );
+    )
   }
 
   const { name, phone, email, message, website_url, submissionId } =
-    parseResult.data;
+    parseResult.data
 
   // Fingerprint-based rate limiting (phone)
   if (phone) {
-    const phoneKey = `phone:${phone.trim().replace(/\s+/g, '')}`;
-    let phoneLimitResult: { success: boolean; retryAfterSeconds?: number };
+    const phoneKey = `phone:${phone.trim().replace(/\s+/g, '')}`
+    let phoneLimitResult: { success: boolean; retryAfterSeconds?: number }
     if (useUpstash && phoneRatelimit) {
-      const result = await phoneRatelimit.limit(phoneKey);
+      const result = await phoneRatelimit.limit(phoneKey)
       phoneLimitResult = {
         success: result.success,
         retryAfterSeconds: result.reset
           ? Math.ceil((result.reset - Date.now()) / 1000)
           : undefined,
-      };
+      }
     } else {
-      phoneLimitResult = checkInMemoryRateLimit(phoneKey, 3, 60 * 60 * 1000);
+      phoneLimitResult = checkInMemoryRateLimit(phoneKey, 3, 60 * 60 * 1000)
     }
 
     if (!phoneLimitResult.success) {
@@ -184,7 +173,7 @@ export default async function handler(req: Request): Promise<Response> {
           retryAfterSeconds: phoneLimitResult.retryAfterSeconds,
         },
         429
-      );
+      )
     }
   }
 
@@ -195,24 +184,24 @@ export default async function handler(req: Request): Promise<Response> {
         message: 'Thank you for your message. We will get back to you soon.',
       },
       200
-    );
+    )
   }
 
-  const safeName = sanitizeInput(name, 100);
-  const safePhone = sanitizeInput(phone, 50);
-  const safeEmail = email ? sanitizeInput(email, 254) : '';
-  const safeMessage = sanitizeInput(message, 2000);
+  const safeName = sanitizeInput(name, 100)
+  const safePhone = sanitizeInput(phone, 50)
+  const safeEmail = email ? sanitizeInput(email, 254) : ''
+  const safeMessage = sanitizeInput(message, 2000)
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const fromEmail = process.env.RESEND_FROM_EMAIL
   if (!fromEmail) {
     return jsonResponse(
       { success: false, error: 'Failed to send message. Please try again later.' },
       500
-    );
+    )
   }
 
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org';
-  const idempotencyKey = submissionId || crypto.randomUUID();
+  const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org'
+  const idempotencyKey = submissionId || crypto.randomUUID()
 
   try {
     const result = await resend.emails.send({
@@ -230,13 +219,13 @@ export default async function handler(req: Request): Promise<Response> {
       headers: {
         'Idempotency-Key': idempotencyKey,
       },
-    });
+    })
 
     if (result.error) {
       return jsonResponse(
         { success: false, error: 'Failed to send message. Please try again later.' },
         500
-      );
+      )
     }
 
     return jsonResponse(
@@ -245,11 +234,11 @@ export default async function handler(req: Request): Promise<Response> {
         message: 'Thank you for your message. We will get back to you soon.',
       },
       200
-    );
+    )
   } catch {
     return jsonResponse(
       { success: false, error: 'Failed to send message. Please try again later.' },
       500
-    );
+    )
   }
 }
