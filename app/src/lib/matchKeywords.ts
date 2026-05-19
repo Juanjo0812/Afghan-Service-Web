@@ -2,11 +2,9 @@ export interface KBEntry {
   id: string
   keywords_en: string[]
   keywords_dari?: string[]
-  keywords_pashto?: string[]
   keywords_uzbek?: string[]
   response_en: string
   response_dari?: string
-  response_pashto?: string
   response_uzbek?: string
   section?: string
   actions?: { label: string; href: string }[]
@@ -25,7 +23,7 @@ export interface MatchResult {
   multiCandidate: boolean
 }
 
-export type LangCode = 'en' | 'dari' | 'pashto' | 'uzbek'
+export type LangCode = 'en' | 'dari' | 'uzbek'
 
 const stopWords = new Set([
   'a', 'an', 'the',

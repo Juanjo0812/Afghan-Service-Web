@@ -33,7 +33,7 @@ export default function ImmigrationPage() {
     },
   ]
 
-  const languages = ['English', 'پښتو (Pashto)', 'دری (Dari)', 'ازبکی (Uzbek)']
+  const languages = ['English', 'دری (Dari)', 'ازبکی (Uzbek)']
 
   return (
     <>
