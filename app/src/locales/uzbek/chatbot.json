@@ -16,7 +16,7 @@
   },
   "quickTopics": "Tezkor mavzular",
   "multiCandidate": "[MT] Sizga yordam berishi mumkin bo'lgan bir necha narsa topdim. Qaysi birini qidiryapsiz?",
-  "fallback": "[MT] Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun 480.416.2333 raqamiga qo'ng'iroq qiling.",
+  "fallback": "Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun 480.416.2333 raqamiga qo'ng'iroq qiling.",
   "actions": {
     "immigration": {
       "label": "Immigratsiya bo'yicha yordam",

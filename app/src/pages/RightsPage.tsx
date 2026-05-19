@@ -284,6 +284,9 @@ export default function RightsPage() {
               <p className="text-body-sm text-forest-light leading-relaxed">
                 {t('disclaimer')}
               </p>
+              <p className="text-body-sm text-forest-light mt-2">
+                {t('lastReviewed')}
+              </p>
             </div>
           </div>
         </div>

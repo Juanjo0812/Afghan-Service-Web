@@ -2,6 +2,8 @@
   {
     "id": "asylum",
     "title": "Asylum Application Help",
+    "title_dari": "کمک درخواست پناهندگی",
+    "title_uzbek": "Boshpana so'rovi bo'yicha yordam",
     "keywords_en": ["asylum", "refugee", "political asylum", "persecution", "afraid to return"],
     "keywords_dari": ["پناهندگی", "پناهنده", "سیاسی", "بازگشت", "ترس"],
     "keywords_uzbek": ["boshpana", "qochoq", "siyosiy", "qochish"],
@@ -12,11 +14,21 @@
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "منابع حقوقی", "href": "/immigration" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqiy manbalar", "href": "/immigration" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "work-permit",
     "title": "Work Permit Assistance",
+    "title_dari": "کمک مجوز کار",
+    "title_uzbek": "Ishlash ruxsatnomasi bo'yicha yordam",
     "keywords_en": ["work permit", "employment authorization", "EAD", "job", "work legally"],
     "keywords_dari": ["مجوز کار", "کار", "شغل", "استخدام"],
     "keywords_uzbek": ["ishlash ruxsatnomasi", "ish", "xodim", "EAD"],
@@ -27,11 +39,21 @@
     "actions": [
       { "label": "Immigration Help", "href": "/immigration" },
       { "label": "Employment Resources", "href": "/resources" }
+    ],
+    "actions_dari": [
+      { "label": "راهنمای مهاجرت", "href": "/immigration" },
+      { "label": "منابع اشتغال", "href": "/resources" }
+    ],
+    "actions_uzbek": [
+      { "label": "Immigratsiya bo'yicha yordam", "href": "/immigration" },
+      { "label": "Bandlik resurslari", "href": "/resources" }
     ]
   },
   {
     "id": "tps",
     "title": "Temporary Protected Status (TPS)",
+    "title_dari": "وضعیت محافظت شده موقت (TPS)",
+    "title_uzbek": "Vaqtinchalik himoyalangan maqom (TPS)",
     "keywords_en": ["TPS", "temporary protected status", "protection"],
     "keywords_dari": ["TPS", "وضعیت محافظت شده موقت", "حفاظت"],
     "keywords_uzbek": ["TPS", "vaqtinchalik himoya", "maqom"],
@@ -41,11 +63,19 @@
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" }
+    ],
+    "actions_dari": [
+      { "label": "منابع حقوقی", "href": "/immigration" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqiy manbalar", "href": "/immigration" }
     ]
   },
   {
     "id": "green-card",
     "title": "Green Card & Family Reunification",
+    "title_dari": "گرین کارت و پیوستن خانواده",
+    "title_uzbek": "Grin-karta va oilani birlashtirish",
     "keywords_en": ["green card", "permanent residence", "LPR", "family reunification", "petition"],
     "keywords_dari": ["گرین کارت", "اقامت دائم", "خانواده", "حمایت"],
     "keywords_uzbek": ["grin-karta", "doimiy yashash", "oilani birlashtirish"],
@@ -56,11 +86,21 @@
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "منابع حقوقی", "href": "/immigration" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqiy manbalar", "href": "/immigration" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "afghan-adjustment-act",
     "title": "Afghan Adjustment Act",
+    "title_dari": "قانون تطبیق افغان‌ها",
+    "title_uzbek": "Afg'onistonliklarni moslashtirish qonuni",
     "keywords_en": ["Afghan Adjustment Act", "AAA", "adjustment of status"],
     "keywords_dari": ["قانون تطبیق افغان‌ها", "AAA", "تطبیق وضعیت"],
     "keywords_uzbek": ["Afg'onistonliklarni moslashtirish qonuni", "AAA", "tuzatish"],
@@ -71,11 +111,21 @@
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
       { "label": "Events", "href": "/events" }
+    ],
+    "actions_dari": [
+      { "label": "منابع حقوقی", "href": "/immigration" },
+      { "label": "رویدادها", "href": "/events" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqiy manbalar", "href": "/immigration" },
+      { "label": "Tadbirlar", "href": "/events" }
     ]
   },
   {
     "id": "know-your-rights-police",
     "title": "Your Rights with Police",
+    "title_dari": "حقوق شما با پلیس",
+    "title_uzbek": "Huquqlaringiz politsiya bilan",
     "keywords_en": ["police", "stopped by police", "rights", "remain silent", "warrant"],
     "keywords_dari": ["پلیس", "حقوق", "سکوت", "حکم", "بازرسی"],
     "keywords_uzbek": ["politsiya", "huquqlar", "sukut", "ruxsatnoma"],
@@ -86,11 +136,21 @@
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "حقوق خود را بشناسید", "href": "/rights" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqlaringizni biling", "href": "/rights" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "know-your-rights-ice",
     "title": "If ICE Comes to Your Home",
+    "title_dari": "اگر اداره مهاجرت به خانه شما آمد",
+    "title_uzbek": "Agar ICE uyingizga kelsa",
     "keywords_en": ["ICE", "immigration", "immigration agent", "ICE at home", "deportation"],
     "keywords_dari": ["ICE", "مهاجرت", "مامور مهاجرت", "در", "اخراج"],
     "keywords_uzbek": ["ICE", "immigratsiya", "mamur", "uy", "deportatsiya"],
@@ -101,11 +161,21 @@
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "حقوق خود را بشناسید", "href": "/rights" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqlaringizni biling", "href": "/rights" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "documents",
     "title": "Carrying Documents Safely",
+    "title_dari": "حمل ایمن مدارک",
+    "title_uzbek": "Hujjatlarni xavfsiz olib yurish",
     "keywords_en": ["documents", "passport", "papers", "carry documents", "copies"],
     "keywords_dari": ["مدارک", "پاسپورت", "کپی", "حمل"],
     "keywords_uzbek": ["hujjatlar", "pasport", "nusxa", "olib yurish"],
@@ -115,11 +185,19 @@
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" }
+    ],
+    "actions_dari": [
+      { "label": "حقوق خود را بشناسید", "href": "/rights" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqlaringizni biling", "href": "/rights" }
     ]
   },
   {
     "id": "esl",
     "title": "English Classes (ESL)",
+    "title_dari": "کلاس‌های انگلیسی (ESL)",
+    "title_uzbek": "Ingliz tili darslari (ESL)",
     "keywords_en": ["ESL", "English", "English classes", "learn English", "language"],
     "keywords_dari": ["انگلیسی", "کلاس", "زبان", "آموزش"],
     "keywords_uzbek": ["ingliz tili", "dars", "til", "o'rganish"],
@@ -129,11 +207,19 @@
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
+    ],
+    "actions_dari": [
+      { "label": "منابع اجتماعی", "href": "/resources" }
+    ],
+    "actions_uzbek": [
+      { "label": "Hamjamiyat resurslari", "href": "/resources" }
     ]
   },
   {
     "id": "healthcare",
     "title": "Health Clinics & Medical Care",
+    "title_dari": "کلینیک‌های بهداشتی و مراقبت پزشکی",
+    "title_uzbek": "Tibbiy klinikalar va tibbiy yordam",
     "keywords_en": ["healthcare", "doctor", "medical", "clinic", "health insurance"],
     "keywords_dari": ["سلامت", "دکتر", "پزشکی", "درمان", "بیمه"],
     "keywords_uzbek": ["tibbiy", "doktor", "klinika", "sog'liq"],
@@ -144,11 +230,21 @@
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "منابع اجتماعی", "href": "/resources" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Hamjamiyat resurslari", "href": "/resources" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "food",
     "title": "Food Banks & Meal Programs",
+    "title_dari": "بانک‌های غذا و برنامه‌های وعده غذایی",
+    "title_uzbek": "Oziq-ovqat banklari va ovqat dasturlari",
     "keywords_en": ["food", "food bank", "hungry", "meals", "groceries"],
     "keywords_dari": ["غذا", "بانک غذا", "گرسنه", "وعده"],
     "keywords_uzbek": ["oziq-ovqat", "bank", "ochlik", "taom"],
@@ -158,11 +254,19 @@
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
+    ],
+    "actions_dari": [
+      { "label": "منابع اجتماعی", "href": "/resources" }
+    ],
+    "actions_uzbek": [
+      { "label": "Hamjamiyat resurslari", "href": "/resources" }
     ]
   },
   {
     "id": "housing",
     "title": "Housing & Shelter Assistance",
+    "title_dari": "کمک مسکن و سرپناه",
+    "title_uzbek": "Uy-joy va turar joy yordami",
     "keywords_en": ["housing", "shelter", "rent", "apartment", "homeless"],
     "keywords_dari": ["مسکن", "پناهگاه", "اجاره", "خانه"],
     "keywords_uzbek": ["uy-joy", "uy", "ijara", "turar joy"],
@@ -173,11 +277,21 @@
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "منابع اجتماعی", "href": "/resources" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Hamjamiyat resurslari", "href": "/resources" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "employment",
     "title": "Job Training & Employment",
+    "title_dari": "آموزش شغلی و استخدام",
+    "title_uzbek": "Ish o'rganish va bandlik",
     "keywords_en": ["employment", "job", "work", "career", "resume"],
     "keywords_dari": ["استخدام", "کار", "شغل", "رزومه", "آموزش"],
     "keywords_uzbek": ["bandlik", "ish", "kasb", "rezyume"],
@@ -187,11 +301,19 @@
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
+    ],
+    "actions_dari": [
+      { "label": "منابع اجتماعی", "href": "/resources" }
+    ],
+    "actions_uzbek": [
+      { "label": "Hamjamiyat resurslari", "href": "/resources" }
     ]
   },
   {
     "id": "events",
     "title": "Upcoming Workshops & Events",
+    "title_dari": "کارگاه‌ها و رویدادهای پیش رو",
+    "title_uzbek": "Kelgusi seminarlar va tadbirlar",
     "keywords_en": ["events", "workshop", "clinic legal", "citizenship", "cultural"],
     "keywords_dari": ["رویداد", "کارگاه", "کلینیک", "فرهنگی", "برنامه"],
     "keywords_uzbek": ["tadbir", "seminar", "klinika", "madaniy", "taqvim"],
@@ -202,11 +324,21 @@
     "actions": [
       { "label": "Events", "href": "/events" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "رویدادها", "href": "/events" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Tadbirlar", "href": "/events" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "contact",
     "title": "Contact Us",
+    "title_dari": "تماس با ما",
+    "title_uzbek": "Biz bilan bog'laning",
     "keywords_en": ["contact", "phone", "call", "email", "help", "speak to someone"],
     "keywords_dari": ["تماس", "تلفن", "ایمیل", "کمک", "صحبت"],
     "keywords_uzbek": ["aloqa", "telefon", "qo'ng'iroq", "yordam"],
@@ -217,11 +349,21 @@
     "actions": [
       { "label": "Contact Us", "href": "/contact" },
       { "label": "Speak to Someone", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "تماس با ما", "href": "/contact" },
+      { "label": "با کسی صحبت کنید", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Biz bilan bog'laning", "href": "/contact" },
+      { "label": "Birortasi bilan gaplashish", "href": "/contact" }
     ]
   },
   {
     "id": "legal-aid",
     "title": "Free & Low-Cost Legal Aid",
+    "title_dari": "کمک حقوقی رایگان و کم‌هزینه",
+    "title_uzbek": "Bepul va arzon huquqiy yordam",
     "keywords_en": ["legal aid", "lawyer", "attorney", "legal help", "immigration lawyer"],
     "keywords_dari": ["حقوقی", "وکیل", "مشاوره", "مهاجرت", "کمک حقوقی"],
     "keywords_uzbek": ["huquqiy yordam", "advokat", "immigratsiya advokati"],
@@ -232,11 +374,21 @@
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "منابع حقوقی", "href": "/immigration" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Huquqiy manbalar", "href": "/immigration" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "general-help",
     "title": "General Help & Information",
+    "title_dari": "کمک و اطلاعات عمومی",
+    "title_uzbek": "Umumiy yordam va ma'lumot",
     "keywords_en": ["help", "general", "information", "support", "assistance"],
     "keywords_dari": ["کمک", "عمومی", "اطلاعات", "پشتیبانی"],
     "keywords_uzbek": ["yordam", "umumiy", "ma'lumot", "qo'llab-quvvatlash"],
@@ -247,11 +399,21 @@
     "actions": [
       { "label": "Quick Access", "href": "/immigration" },
       { "label": "Contact Us", "href": "/contact" }
+    ],
+    "actions_dari": [
+      { "label": "دسترسی سریع", "href": "/immigration" },
+      { "label": "تماس با ما", "href": "/contact" }
+    ],
+    "actions_uzbek": [
+      { "label": "Tezkor kirish", "href": "/immigration" },
+      { "label": "Biz bilan bog'laning", "href": "/contact" }
     ]
   },
   {
     "id": "download-rights-en",
     "title": "Download Rights Card (English)",
+    "title_dari": "دانلود کارت حقوق (انگلیسی)",
+    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (inglizcha)",
     "keywords_en": ["download", "rights card", "English card", "print rights"],
     "keywords_dari": ["دانلود", "کارت حقوق", "انگلیسی"],
     "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "inglizcha"],
@@ -261,11 +423,19 @@
     "section": "rights",
     "actions": [
       { "label": "Download (English)", "href": "/PDFs_Rights/Rights_EN.pdf" }
+    ],
+    "actions_dari": [
+      { "label": "دانلود (انگلیسی)", "href": "/PDFs_Rights/Rights_EN.pdf" }
+    ],
+    "actions_uzbek": [
+      { "label": "Yuklab olish (inglizcha)", "href": "/PDFs_Rights/Rights_EN.pdf" }
     ]
   },
   {
     "id": "download-rights-dari",
     "title": "Download Rights Card (Dari)",
+    "title_dari": "دانلود کارت حقوق (دری)",
+    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (dariy)",
     "keywords_en": ["download Dari", "rights card Dari", "Dari card"],
     "keywords_dari": ["دانلود", "کارت حقوق", "دری"],
     "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "dariy"],
@@ -275,11 +445,19 @@
     "section": "rights",
     "actions": [
       { "label": "Download (Dari)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
+    ],
+    "actions_dari": [
+      { "label": "دانلود (دری)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
+    ],
+    "actions_uzbek": [
+      { "label": "Yuklab olish (dariy)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
     ]
   },
   {
     "id": "download-rights-uzbek",
     "title": "Download Rights Card (Uzbek)",
+    "title_dari": "دانلود کارت حقوق (ازبکی)",
+    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (o'zbekcha)",
     "keywords_en": ["download Uzbek", "rights card Uzbek", "Uzbek card"],
     "keywords_dari": ["دانلود", "کارت حقوق", "ازبکی"],
     "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "o'zbek"],
@@ -289,11 +467,19 @@
     "section": "rights",
     "actions": [
       { "label": "Download (Uzbek)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
+    ],
+    "actions_dari": [
+      { "label": "دانلود (ازبکی)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
+    ],
+    "actions_uzbek": [
+      { "label": "Yuklab olish (o'zbekcha)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
     ]
   },
   {
     "id": "upcoming-events",
     "title": "Upcoming Events & Workshops",
+    "title_dari": "رویدادها و کارگاه‌های پیش رو",
+    "title_uzbek": "Kelgusi tadbirlar va seminarlar",
     "keywords_en": ["next event", "upcoming", "workshop", "what's happening", "schedule", "calendar"],
     "keywords_dari": ["رویداد بعدی", "آینده", "کارگاه", "برنامه"],
     "keywords_uzbek": ["kelgusi tadbir", "seminar", "taqvim"],
@@ -303,11 +489,19 @@
     "section": "events",
     "actions": [
       { "label": "View Events", "href": "/events" }
+    ],
+    "actions_dari": [
+      { "label": "مشاهده رویدادها", "href": "/events" }
+    ],
+    "actions_uzbek": [
+      { "label": "Tadbirlarni ko'rish", "href": "/events" }
     ]
   },
   {
     "id": "call-daoud",
     "title": "Call Daoud",
+    "title_dari": "تماس با داوود",
+    "title_uzbek": "Daoud bilan qo'ng'iroq qilish",
     "keywords_en": ["call", "phone", "Daoud", "speak to someone", "talk"],
     "keywords_dari": ["تماس", "تلفن", "داوود", "صحبت"],
     "keywords_uzbek": ["qo'ng'iroq", "telefon", "Daoud", "suhbat"],
@@ -317,11 +511,19 @@
     "section": "contact",
     "actions": [
       { "label": "Call 480.416.2333", "href": "tel:4804162333" }
+    ],
+    "actions_dari": [
+      { "label": "تماس ۴۸۰.۴۱۶.۲۳۳۳", "href": "tel:4804162333" }
+    ],
+    "actions_uzbek": [
+      { "label": "Qo'ng'iroq qilish 480.416.2333", "href": "tel:4804162333" }
     ]
   },
   {
     "id": "whatsapp",
     "title": "Message on WhatsApp",
+    "title_dari": "پیام در واتس‌اپ",
+    "title_uzbek": "WhatsApp orqali xabar yuborish",
     "keywords_en": ["whatsapp", "message", "text", "chat"],
     "keywords_dari": ["واتس‌اپ", "پیام", "متن", "چت"],
     "keywords_uzbek": ["whatsapp", "xabar", "matn", "chat"],
@@ -331,6 +533,12 @@
     "section": "contact",
     "actions": [
       { "label": "Open WhatsApp", "href": "https://wa.me/14804162333" }
+    ],
+    "actions_dari": [
+      { "label": "باز کردن واتس‌اپ", "href": "https://wa.me/14804162333" }
+    ],
+    "actions_uzbek": [
+      { "label": "WhatsApp-ni ochish", "href": "https://wa.me/14804162333" }
     ]
   }
 ]

@@ -125,9 +125,11 @@ export default function Chatbot() {
 
   const handleCandidateSelect = (scoredEntry: ScoredEntry) => {
     const entry = scoredEntry.entry
+    const actionsKey = `actions_${lang}` as keyof KBEntry
+    const localizedActions = (entry[actionsKey] as KBEntry['actions']) || entry.actions
     setMessages((prev) => [
       ...prev,
-      { text: getEntryResponse(entry), from: 'bot', actions: entry.actions },
+      { text: getEntryResponse(entry), from: 'bot', actions: localizedActions },
     ])
   }
 
@@ -155,9 +157,11 @@ export default function Chatbot() {
         ])
       } else if (result.matched && result.entry) {
         const entry = result.entry
+        const actionsKey = `actions_${lang}` as keyof KBEntry
+        const localizedActions = (entry[actionsKey] as KBEntry['actions']) || entry.actions
         setMessages((prev) => [
           ...prev,
-          { text: getEntryResponse(entry), from: 'bot', actions: entry.actions },
+          { text: getEntryResponse(entry), from: 'bot', actions: localizedActions },
         ])
       } else {
         setMessages((prev) => [
@@ -504,8 +508,10 @@ export default function Chatbot() {
                         const seen = new Set<string>()
                         return msg.candidates!
                           .filter((scored) => {
+                            const titleKey = `title_${lang}` as keyof KBEntry
+                            const localizedTitle = (scored.entry[titleKey] as string) || scored.entry.title
                             const label =
-                              scored.entry.title ??
+                              localizedTitle ??
                               scored.entry.actions?.[0]?.label ??
                               scored.entry.id
                             if (seen.has(label)) return false
@@ -513,8 +519,10 @@ export default function Chatbot() {
                             return true
                           })
                           .map((scored) => {
+                            const titleKey = `title_${lang}` as keyof KBEntry
+                            const localizedTitle = (scored.entry[titleKey] as string) || scored.entry.title
                             const label =
-                              scored.entry.title ??
+                              localizedTitle ??
                               scored.entry.actions?.[0]?.label ??
                               scored.entry.id
                             return (
