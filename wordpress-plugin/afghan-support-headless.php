@@ -263,6 +263,10 @@ class Afghan_Support_Headless_Plugin {
             return;
         }
 
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
         $post_type = get_post_type($post_id);
 
         if ($post_type === 'asp_event') {
