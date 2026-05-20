@@ -11,6 +11,7 @@ import { localizePath } from '../lib/navigation'
 interface Story {
   id: number
   image: string
+  profileImage?: string
   videoUrl: string
   title: string
   quote: string
@@ -78,6 +79,7 @@ export default function StoriesPage() {
     {
       id: 2,
       image: '/images/front_4.png',
+      profileImage: '/images/front_4_photo.png',
       videoUrl: '/videos/Stories/Story_3.mp4',
       title: t('stories.story4.name'),
       quote: t('stories.story4.quote'),
@@ -87,6 +89,7 @@ export default function StoriesPage() {
     {
       id: 3,
       image: '/images/front_3.png',
+      profileImage: '/images/front_3_photo.png',
       videoUrl: '/videos/Stories/Story_4.mp4',
       title: t('stories.story3.name'),
       quote: t('stories.story3.quote'),
@@ -240,7 +243,7 @@ export default function StoriesPage() {
 
               <div className="flex items-center gap-4 border-b border-warm-sand/40 pb-6 mb-6">
                 <img
-                  src={selectedVideo.image}
+                  src={selectedVideo.profileImage || selectedVideo.image}
                   alt={selectedVideo.name}
                   className="w-14 h-14 rounded-full object-cover bg-warm-sand/20"
                 />
