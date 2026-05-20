@@ -171,7 +171,6 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const toEmail = process.env.CONTACT_TO_EMAIL || 'Dpeshtaz@cc-az.org'
-  const contactLabel = contactMethod === 'phone' ? 'phone' : 'email'
 
   const host = request.headers.get('host') || 'localhost:3000'
   const protocol = host.includes('localhost') ? 'http' : 'https'

@@ -19,10 +19,10 @@ export function FadeIn({
   threshold = 0.1,
   duration = 800,
 }: FadeInProps) {
-  // Progressive enhancement: content must be readable even if mobile Safari
-  // fails hydration/IntersectionObserver. Animations are decoration, not layout.
-  const [isVisible, setIsVisible] = useState(true)
-  const [canAnimate, setCanAnimate] = useState(false)
+  // Start invisible — the IO callback handles reveal.
+  // Elements already in viewport trigger IO immediately, so the
+  // opacity 0→1 transition is imperceptible on first paint.
+  const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -35,20 +35,10 @@ export function FadeIn({
       prefersReducedMotion ||
       typeof IntersectionObserver === 'undefined'
     ) {
-      return
+      // Show content immediately without animation
+      const immediateTimer = setTimeout(() => setIsVisible(true), 0)
+      return () => clearTimeout(immediateTimer)
     }
-
-    const rect = node.getBoundingClientRect()
-    const alreadyInView = rect.top < window.innerHeight && rect.bottom > 0
-
-    if (alreadyInView) {
-      return
-    }
-
-    const animationFrame = requestAnimationFrame(() => {
-      setCanAnimate(true)
-      setIsVisible(false)
-    })
 
     // Safety timeout: force visibility if IO never fires.
     // Handles old Android WebViews, slow JS init, or IO edge cases.
@@ -67,10 +57,21 @@ export function FadeIn({
       { threshold, rootMargin: '0px 0px 80px 0px' }
     )
 
-    observer.observe(node)
+    let observerStarted = false
+    // Defer observation to the next event loop tick. This ensures
+    // that ScrollToTop (running in useLayoutEffect at the layout level)
+    // has already reset the window scroll to 0, preventing elements
+    // at the bottom of the new page from animating prematurely.
+    const deferTimer = setTimeout(() => {
+      observer.observe(node)
+      observerStarted = true
+    }, 0)
+
     return () => {
-      cancelAnimationFrame(animationFrame)
-      observer.unobserve(node)
+      clearTimeout(deferTimer)
+      if (observerStarted) {
+        observer.unobserve(node)
+      }
       clearTimeout(fallbackTimer)
     }
   }, [threshold])
@@ -81,13 +82,10 @@ export function FadeIn({
       className={`${className}`}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible || !canAnimate
+        transform: isVisible
           ? 'translateY(0) translateX(0)'
           : `translateY(${direction === 'down' ? '-6px' : direction === 'up' ? '6px' : '0px'}) translateX(${direction === 'right' ? '-6px' : direction === 'left' ? '6px' : '0px'})`,
-        transition: canAnimate
-          ? `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`
-          : 'none',
-        willChange: canAnimate && !isVisible ? 'opacity, transform' : 'auto',
+        transition: `opacity ${duration}ms ease-out ${delay}ms, transform ${duration}ms ease-out ${delay}ms`,
       }}
     >
       {children}

@@ -39,7 +39,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Let the browser handle route transition scroll instantly. 
+       Specific page components can still use smooth scrolling programmatically. */
   }
 
   body {

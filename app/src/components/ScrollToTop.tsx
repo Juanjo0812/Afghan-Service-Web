@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
 export function ScrollToTop() {
   const pathname = usePathname() || '/'
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const previousRestoration = window.history.scrollRestoration
     try {
       window.history.scrollRestoration = 'manual'
@@ -14,10 +14,11 @@ export function ScrollToTop() {
       // Ignore errors in older browsers
     }
 
-    // Step 1: Reset scroll immediately
+    // Step 1: Reset scroll synchronously before paint
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
 
-    // Step 2: Reset scroll in the next animation frame to ensure the layout settles
+    // Step 2: Backup reset in the next frame for mobile browsers
+    // where the synchronous scroll may not stick
     const frameId = requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     })

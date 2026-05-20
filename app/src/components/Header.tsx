@@ -42,7 +42,8 @@ export default function Header() {
 
   // Close mobile menu on any route change (e.g. language switch)
   useEffect(() => {
-    setMobileOpen(false)
+    const timer = setTimeout(() => setMobileOpen(false), 0)
+    return () => clearTimeout(timer)
   }, [pathname])
 
   return (
