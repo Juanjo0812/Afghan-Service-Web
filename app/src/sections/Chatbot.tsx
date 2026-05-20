@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
-import { MessageCircle, X, User, Send } from 'lucide-react'
+import { MessageCircle, X, User, Send, ChevronDown, ChevronUp } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useChatbotKB } from '../hooks/useChatbotKB'
 import { useLanguage } from '../hooks/useLanguage'
@@ -41,6 +41,7 @@ export default function Chatbot() {
 
   const [isMobile, setIsMobile] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false)
 
   // Track viewport width for mobile breakpoint (768px)
   useEffect(() => {
@@ -65,25 +66,35 @@ export default function Chatbot() {
     // the page layout never shifts.
     if (!open || isMobile || !isHovered) return
 
-    const panel = panelRef.current
-
     // Block background page scroll by preventing wheel at window level
     const blockWheel = (e: WheelEvent) => {
+      // Find the messages scroll container inside the panel
+      const scrollContainer = panelRef.current?.querySelector('[data-chat-scroll-area]')
+      
+      if (scrollContainer && scrollContainer.contains(e.target as Node)) {
+        // We are inside the scrollable messages area!
+        const { scrollTop, scrollHeight, clientHeight } = scrollContainer as HTMLElement
+        const delta = e.deltaY
+        
+        // Block page scrolling at scroll boundaries (overscroll)
+        if (delta < 0 && scrollTop <= 0) {
+          e.preventDefault()
+        } else if (delta > 0 && scrollTop + clientHeight >= scrollHeight) {
+          e.preventDefault()
+        }
+        // Otherwise, allow normal scrolling inside the container
+        return
+      }
+      
+      // If we are over any other part of the chatbot (header, quick actions, input area),
+      // block the page scroll completely!
       e.preventDefault()
     }
 
-    // Allow chatbot's own scroll by stopping propagation before it
-    // reaches the window-level blocker
-    const allowPanelWheel = (e: WheelEvent) => {
-      e.stopPropagation()
-    }
-
     window.addEventListener('wheel', blockWheel, { passive: false })
-    panel?.addEventListener('wheel', allowPanelWheel)
 
     return () => {
       window.removeEventListener('wheel', blockWheel)
-      panel?.removeEventListener('wheel', allowPanelWheel)
       document.body.style.overflow = ''
     }
   }, [open, isMobile, isHovered])
@@ -236,14 +247,14 @@ export default function Chatbot() {
           width: 28,
           height: 28,
           borderRadius: '50%',
-          background: 'var(--color-accent)',
+          background: 'rgba(150, 89, 42, 0.1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexShrink: 0,
         }}
       >
-        <MessageCircle size={14} color="#faf5ef" />
+        <MessageCircle size={14} color="#96592a" />
       </div>
       <div
         style={{
@@ -378,13 +389,13 @@ export default function Chatbot() {
           {/* Header */}
           <div
             style={{
-              background: 'linear-gradient(135deg, #1a2518 0%, #2a3a28 100%)',
+              background: '#ffffff',
               padding: isMobile ? '24px 20px 20px' : '20px 24px',
               display: 'flex',
               alignItems: 'center',
               gap: 12,
               flexShrink: 0,
-              borderBottom: '1px solid rgba(250,245,239,0.1)',
+              borderBottom: '1px solid rgba(26, 37, 24, 0.08)',
               borderTopLeftRadius: isMobile ? 0 : 24,
               borderTopRightRadius: isMobile ? 0 : 24,
             }}
@@ -394,14 +405,15 @@ export default function Chatbot() {
                 width: 36,
                 height: 36,
                 borderRadius: '50%',
-                background: 'var(--color-accent)',
+                background: 'rgba(150, 89, 42, 0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
+                animation: 'headerIconPulse 2s infinite',
               }}
             >
-              <MessageCircle size={18} color="#faf5ef" />
+              <MessageCircle size={18} color="#96592a" />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div
@@ -409,7 +421,7 @@ export default function Chatbot() {
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 600,
                   fontSize: 16,
-                  color: '#faf5ef',
+                  color: '#1a2518',
                   lineHeight: 1.3,
                 }}
               >
@@ -429,7 +441,7 @@ export default function Chatbot() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: 11,
-                    color: 'rgba(250,245,239,0.6)',
+                    color: 'rgba(26, 37, 24, 0.6)',
                   }}
                 >
                   {t('status')}
@@ -442,7 +454,7 @@ export default function Chatbot() {
               style={{
                 background: 'none',
                 border: 'none',
-                color: 'rgba(250,245,239,0.5)',
+                color: 'rgba(26, 37, 24, 0.5)',
                 cursor: 'pointer',
                 fontSize: 20,
                 lineHeight: 1,
@@ -452,12 +464,12 @@ export default function Chatbot() {
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = '#faf5ef'
-                el.style.background = 'rgba(250,245,239,0.1)'
+                el.style.color = '#1a2518'
+                el.style.background = 'rgba(26, 37, 24, 0.05)'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement
-                el.style.color = 'rgba(250,245,239,0.5)'
+                el.style.color = 'rgba(26, 37, 24, 0.5)'
                 el.style.background = 'transparent'
               }}
             >
@@ -467,6 +479,7 @@ export default function Chatbot() {
 
           {/* Messages scroll area */}
           <div
+            data-chat-scroll-area="true"
             style={{
               flex: 1,
               overflowY: 'auto',
@@ -494,7 +507,7 @@ export default function Chatbot() {
                     width: 32,
                     height: 32,
                     borderRadius: '50%',
-                    background: msg.from === 'user' ? '#96592a' : '#1a2518',
+                    background: msg.from === 'user' ? '#96592a' : 'rgba(150, 89, 42, 0.1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -504,7 +517,7 @@ export default function Chatbot() {
                   {msg.from === 'user' ? (
                     <User size={14} color="#faf5ef" />
                   ) : (
-                    <MessageCircle size={14} color="#faf5ef" />
+                    <MessageCircle size={14} color="#96592a" />
                   )}
                 </div>
 
@@ -633,65 +646,169 @@ export default function Chatbot() {
           {showQuickActions && (
             <div
               style={{
-                padding: '12px 20px 8px',
-                borderTop: '1px solid rgba(26,37,24,0.06)',
+                padding: '8px 20px',
                 flexShrink: 0,
                 background: '#faf5ef',
+                transition: 'all 0.3s ease',
               }}
             >
+              {/* Suggestions Panel (Collapsible with smooth transitions) */}
               <div
                 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: 11,
-                  fontWeight: 500,
-                  textTransform: 'uppercase' as const,
-                  letterSpacing: '0.06em',
-                  color: 'rgba(22,45,90,0.45)',
-                  marginBottom: 8,
-                }}
-              >
-                {t('quickTopics')}
-              </div>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
+                  maxHeight: suggestionsOpen ? '280px' : '0px',
+                  opacity: suggestionsOpen ? 1 : 0,
+                  visibility: suggestionsOpen ? 'visible' : 'hidden',
+                  overflow: 'hidden',
+                  background: '#f3ebe1', // warm beige background
+                  border: suggestionsOpen ? '1.5px solid rgba(26, 37, 24, 0.15)' : '1.5px solid transparent',
+                  borderRadius: 16,
+                  padding: suggestionsOpen ? '12px' : '0px 12px',
+                  display: 'flex',
+                  flexDirection: 'column',
                   gap: 8,
+                  boxShadow: suggestionsOpen ? '0 4px 12px rgba(26,37,24,0.04)' : 'none',
+                  transition: 'max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.16, 1, 0.3, 1), border 0.4s, visibility 0.4s',
                 }}
               >
-                {quickActions.map((action) => (
-                  <button
-                    key={action.label}
-                    onClick={() => handleActionClick(action)}
+                {/* Header */}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '0 4px',
+                  }}
+                >
+                  <span
                     style={{
-                      background: '#ffffff',
-                      border: '1.5px solid rgba(26, 37, 24, 0.25)',
-                      padding: '10px 14px',
                       fontFamily: "'Inter', sans-serif",
+                      fontSize: 11,
                       fontWeight: 600,
-                      fontSize: 13,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.06em',
                       color: '#1a2518',
-                      cursor: 'pointer',
-                      borderRadius: 9999,
-                      transition: 'all 0.2s ease',
-                      textAlign: 'center',
-                    }}
-                    onMouseEnter={(e) => {
-                      const el = e.target as HTMLElement
-                      el.style.background = '#1a2518'
-                      el.style.borderColor = '#1a2518'
-                      el.style.color = '#ffffff'
-                    }}
-                    onMouseLeave={(e) => {
-                      const el = e.target as HTMLElement
-                      el.style.background = '#ffffff'
-                      el.style.borderColor = 'rgba(26, 37, 24, 0.25)'
-                      el.style.color = '#1a2518'
                     }}
                   >
-                    {action.label}
+                    {t('quickTopics')}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSuggestionsOpen(false)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'rgba(26, 37, 24, 0.5)',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: 4,
+                      borderRadius: '50%',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = 'rgba(26, 37, 24, 0.05)'
+                      el.style.color = '#1a2518'
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = 'none'
+                      el.style.color = 'rgba(26, 37, 24, 0.5)'
+                    }}
+                  >
+                    <ChevronDown size={16} />
                   </button>
-                ))}
+                </div>
+                {/* Body / Chips */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 6,
+                  }}
+                >
+                  {quickActions.map((action) => (
+                    <button
+                      key={action.label}
+                      onClick={() => handleActionClick(action)}
+                      style={{
+                        background: '#ffffff',
+                        border: 'none',
+                        padding: '8px 14px',
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 600,
+                        fontSize: 13,
+                        color: '#1a2518',
+                        cursor: 'pointer',
+                        borderRadius: 8,
+                        transition: 'all 0.2s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.target as HTMLElement
+                        el.style.background = '#96592a'
+                        el.style.color = '#ffffff'
+                        el.style.boxShadow = '0 2px 8px rgba(150, 89, 42, 0.2)'
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.target as HTMLElement
+                        el.style.background = '#ffffff'
+                        el.style.color = '#1a2518'
+                        el.style.boxShadow = 'none'
+                      }}
+                    >
+                      {action.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Collapsed Button */}
+              <div
+                style={{
+                  maxHeight: !suggestionsOpen ? '40px' : '0px',
+                  opacity: !suggestionsOpen ? 1 : 0,
+                  visibility: !suggestionsOpen ? 'visible' : 'hidden',
+                  overflow: 'hidden',
+                  transition: 'max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setSuggestionsOpen(true)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    margin: '0 auto',
+                    padding: '6px 14px',
+                    background: '#ffffff',
+                    border: '1.5px solid rgba(26, 37, 24, 0.15)',
+                    borderRadius: 9999,
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: '#1a2518',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.background = '#faf5ef'
+                    el.style.borderColor = 'rgba(26, 37, 24, 0.25)'
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.background = '#ffffff'
+                    el.style.borderColor = 'rgba(26, 37, 24, 0.15)'
+                  }}
+                >
+                  <span>{t('quickTopics')}</span>
+                  <ChevronUp size={14} />
+                </button>
               </div>
             </div>
           )}
@@ -734,7 +851,7 @@ export default function Chatbot() {
                 width: 36,
                 height: 36,
                 borderRadius: '50%',
-                background: input.trim() ? 'var(--color-accent)' : 'rgba(150,89,42,0.25)',
+                background: input.trim() ? '#96592a' : 'rgba(150, 89, 42, 0.15)',
                 border: 'none',
                 cursor: input.trim() ? 'pointer' : 'not-allowed',
                 display: 'flex',
@@ -747,15 +864,15 @@ export default function Chatbot() {
                 if (!input.trim()) return
                 const el = e.currentTarget as HTMLElement
                 el.style.transform = 'scale(1.08)'
-                el.style.background = '#a6683a'
+                el.style.background = '#804a22'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement
                 el.style.transform = 'scale(1)'
-                el.style.background = input.trim() ? 'var(--color-accent)' : 'rgba(150,89,42,0.25)'
+                el.style.background = input.trim() ? '#96592a' : 'rgba(150, 89, 42, 0.15)'
               }}
             >
-              <Send size={16} color="#faf5ef" />
+              <Send size={16} color={input.trim() ? '#ffffff' : 'rgba(150, 89, 42, 0.4)'} />
             </button>
           </form>
         </div>
@@ -768,6 +885,11 @@ export default function Chatbot() {
         @keyframes chatFloat {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-8px); }
+        }
+        @keyframes headerIconPulse {
+          0% { box-shadow: 0 0 0 0 rgba(150, 89, 42, 0.4); }
+          70% { box-shadow: 0 0 0 8px rgba(150, 89, 42, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(150, 89, 42, 0); }
         }
       `}</style>
     </>

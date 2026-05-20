@@ -14,7 +14,7 @@
   "openButton": {
     "label": "Chat with us"
   },
-  "quickTopics": "Quick topics",
+  "quickTopics": "Suggested Actions",
   "multiCandidate": "I found a few things that might help. Which one were you looking for?",
   "fallback": "Thank you for your message. A caseworker will follow up with you within 1–2 business days. For immediate help, please call +1 (602) 666-6170.",
   "actions": {
