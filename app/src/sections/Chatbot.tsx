@@ -29,7 +29,7 @@ export default function Chatbot() {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { text: t('welcome'), from: 'bot' },
+    { text: 'welcome', from: 'bot' },
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -38,6 +38,55 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const [hasInteracted, setHasInteracted] = useState(false)
   const { findResponse } = useChatbotKB(lang)
+
+  const [isMobile, setIsMobile] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+
+  // Track viewport width for mobile breakpoint (768px)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize() // check on mount
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Sync scroll lock of the body
+  useEffect(() => {
+    // Mobile: full lock via overflow hidden (no visible scrollbar on mobile)
+    if (open && isMobile) {
+      document.body.style.overflow = 'hidden'
+      return () => { document.body.style.overflow = '' }
+    }
+
+    // Desktop: only lock when chat is open AND cursor hovers the panel.
+    // We intercept wheel events instead of hiding the scrollbar so
+    // the page layout never shifts.
+    if (!open || isMobile || !isHovered) return
+
+    const panel = panelRef.current
+
+    // Block background page scroll by preventing wheel at window level
+    const blockWheel = (e: WheelEvent) => {
+      e.preventDefault()
+    }
+
+    // Allow chatbot's own scroll by stopping propagation before it
+    // reaches the window-level blocker
+    const allowPanelWheel = (e: WheelEvent) => {
+      e.stopPropagation()
+    }
+
+    window.addEventListener('wheel', blockWheel, { passive: false })
+    panel?.addEventListener('wheel', allowPanelWheel)
+
+    return () => {
+      window.removeEventListener('wheel', blockWheel)
+      panel?.removeEventListener('wheel', allowPanelWheel)
+      document.body.style.overflow = ''
+    }
+  }, [open, isMobile, isHovered])
 
   const quickActions: QuickActionDef[] = useMemo(
     () => [
@@ -84,6 +133,8 @@ export default function Chatbot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
+
+
 
   const getEntryResponse = (entry: KBEntry): string => {
     const key = `response_${lang}` as keyof KBEntry
@@ -290,25 +341,34 @@ export default function Chatbot() {
           ref={panelRef}
           role="dialog"
           aria-modal="true"
+          onMouseEnter={() => {
+            if (!isMobile) setIsHovered(true)
+          }}
+          onMouseLeave={() => {
+            if (!isMobile) setIsHovered(false)
+          }}
           style={{
             position: 'fixed',
-            bottom: 108,
-            insetInlineEnd: 28,
-            width: 'clamp(320px, 92vw, 400px)',
-            maxHeight: 560,
+            bottom: isMobile ? 0 : 108,
+            insetInlineEnd: isMobile ? 0 : 28,
+            width: isMobile ? '100vw' : 'clamp(320px, 92vw, 400px)',
+            height: isMobile ? '100%' : 'auto',
+            maxHeight: isMobile ? '100%' : 560,
             background: '#faf5ef',
-            borderRadius: 24,
+            borderRadius: isMobile ? 0 : 24,
             boxShadow: open 
               ? '0 24px 64px rgba(26,37,24,0.18), 0 0 0 1px rgba(26,37,24,0.06)' 
               : '0 4px 16px rgba(26,37,24,0), 0 0 0 1px rgba(26,37,24,0)',
-            zIndex: 30,
+            zIndex: 50,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
             
             // Premium Organic Animation
-            transformOrigin: 'calc(100% - 20px) calc(100% + 40px)',
-            transform: open ? 'scale(1) translateY(0)' : 'scale(0.3) translateY(60px)',
+            transformOrigin: isMobile ? 'bottom center' : 'calc(100% - 20px) calc(100% + 40px)',
+            transform: open 
+              ? 'translateY(0) scale(1)' 
+              : isMobile ? 'translateY(100%)' : 'scale(0.3) translateY(60px)',
             opacity: open ? 1 : 0,
             pointerEvents: open ? 'auto' : 'none',
             visibility: open ? 'visible' : 'hidden',
@@ -319,14 +379,14 @@ export default function Chatbot() {
           <div
             style={{
               background: 'linear-gradient(135deg, #1a2518 0%, #2a3a28 100%)',
-              padding: '20px 24px',
+              padding: isMobile ? '24px 20px 20px' : '20px 24px',
               display: 'flex',
               alignItems: 'center',
               gap: 12,
               flexShrink: 0,
               borderBottom: '1px solid rgba(250,245,239,0.1)',
-              borderTopLeftRadius: 24,
-              borderTopRightRadius: 24,
+              borderTopLeftRadius: isMobile ? 0 : 24,
+              borderTopRightRadius: isMobile ? 0 : 24,
             }}
           >
             <div
@@ -410,6 +470,7 @@ export default function Chatbot() {
             style={{
               flex: 1,
               overflowY: 'auto',
+              overscrollBehavior: 'contain',
               padding: '20px 16px',
               display: 'flex',
               flexDirection: 'column',
@@ -466,7 +527,7 @@ export default function Chatbot() {
                   }}
                 >
                   <span>
-                    {msg.text}
+                    {i === 0 && msg.from === 'bot' && msg.text === 'welcome' ? t('welcome') : msg.text}
                   </span>
                   {msg.from === 'bot' && msg.actions && msg.actions.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
@@ -640,7 +701,7 @@ export default function Chatbot() {
             onSubmit={handleSend}
             style={{
               borderTop: '1px solid rgba(26,37,24,0.08)',
-              padding: '16px 20px',
+              padding: isMobile ? '16px 20px 24px' : '16px 20px',
               display: 'flex',
               alignItems: 'center',
               gap: 12,

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useTranslation, Trans } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
@@ -18,6 +19,19 @@ interface HomePageProps {
 export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomePageProps) {
   const { t } = useTranslation(['common', 'hero', 'about', 'events'])
   const { lang } = useLanguage()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Force muted property on the DOM element. React has a known hydration issue
+    // where the muted attribute is not correctly set on initial SSR render,
+    // which causes mobile browsers to block the autoplay.
+    if (videoRef.current) {
+      videoRef.current.muted = true
+      videoRef.current.play().catch((err) => {
+        console.warn('Video autoplay was prevented on initial load:', err)
+      })
+    }
+  }, [])
 
   const quickCards = [
     {
@@ -59,11 +73,12 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
                 next/image requires known width/height; video poster uses string path.
                 Migration path: preload hero with next/image and reference the src in poster. */}
             <video
+              ref={videoRef}
               autoPlay
               loop
               muted
               playsInline
-              poster="/images/hero-home.jpg"
+              poster="/images/Hero-image.png"
               className="w-full h-full object-cover object-top blur-[2px] scale-105"
             >
               <source src="/videos/Video_main.mp4" type="video/mp4" />
