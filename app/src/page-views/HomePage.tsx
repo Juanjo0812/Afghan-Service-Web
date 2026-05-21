@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useTranslation, Trans } from 'react-i18next'
 import { Briefcase, Shield, Compass, Calendar, ChevronRight, ChevronDown, MapPin } from 'lucide-react'
@@ -18,6 +19,21 @@ interface HomePageProps {
 export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomePageProps) {
   const { t } = useTranslation(['common', 'hero', 'about', 'events'])
   const { lang } = useLanguage()
+  const [isClient, setIsClient] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    if (isClient && videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.warn("Autoplay was prevented:", err)
+      })
+    }
+  }, [isClient])
 
   const quickCards = [
     {
@@ -55,19 +71,25 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
       >
         <div className="absolute inset-0 overflow-hidden z-0">
           <div className="sticky top-0 w-full h-[85vh]">
-            {/*
-              Render via dangerouslySetInnerHTML so the 'muted' attribute is present
-              in the server-rendered HTML. React does not serialize 'muted' as an HTML
-              attribute during SSR — it sets it as a JS property during hydration.
-              iOS Safari checks autoplay eligibility on the initial HTML parse, before
-              hydration runs, so without the raw attribute it blocks playback.
-            */}
-            <div
-              className="w-full h-full"
-              dangerouslySetInnerHTML={{
-                __html: `<video autoplay loop muted playsinline poster="/images/Hero-image.png" class="w-full h-full object-cover object-top blur-[2px] scale-105"><source src="/videos/Video_main.mp4" type="video/mp4" /></video>`
-              }}
-            />
+            {isClient ? (
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/images/Hero-image.png"
+                className="w-full h-full object-cover object-top blur-[2px] scale-105"
+              >
+                <source src="/videos/Video_main.mp4" type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src="/images/Hero-image.png"
+                alt="Welcome Background"
+                className="w-full h-full object-cover object-top blur-[2px] scale-105"
+              />
+            )}
             <div
               className="absolute inset-0"
               style={{
