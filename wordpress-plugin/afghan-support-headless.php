@@ -18,6 +18,7 @@ class Afghan_Support_Headless_Plugin {
         add_action('init', [$this, 'register_meta_fields']);
         add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
         add_action('save_post', [$this, 'save_meta_boxes']);
+        add_action('save_post', [$this, 'trigger_revalidation'], 10, 2);
         add_action('rest_api_init', [$this, 'register_rest_fields']);
         add_filter('rest_asp_event_query', [$this, 'filter_event_rest_query'], 10, 2);
         add_filter('rest_asp_page_meta_query', [$this, 'filter_page_meta_rest_query'], 10, 2);
@@ -309,6 +310,65 @@ class Afghan_Support_Headless_Plugin {
                 }
             }
         }
+    }
+
+    public function trigger_revalidation(int $post_id, \WP_Post $post): void {
+        // Ignore autosaves and revisions
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+
+        if (wp_is_post_revision($post_id)) {
+            return;
+        }
+
+        // Only trigger for our CPTs
+        if ($post->post_type !== 'asp_event' && $post->post_type !== 'asp_page_meta') {
+            return;
+        }
+
+        // Only revalidate if the post is actually published!
+        if (get_post_status($post_id) !== 'publish') {
+            return;
+        }
+
+        // Check configured URL and secret
+        $url = defined('ASP_REVALIDATE_URL') ? ASP_REVALIDATE_URL : get_option('asp_revalidate_url', '');
+        $secret = defined('ASP_REVALIDATE_SECRET') ? ASP_REVALIDATE_SECRET : get_option('asp_revalidate_secret', '');
+
+        if (empty($url) || empty($secret)) {
+            return;
+        }
+
+        // Define paths to revalidate
+        $paths = [
+            '/',
+            '/events',
+            '/events/[slug]',
+            '/dari',
+            '/dari/events',
+            '/dari/events/[slug]',
+            '/uzbek',
+            '/uzbek/events',
+            '/uzbek/events/[slug]',
+        ];
+
+        // Send non-blocking remote post request to Next.js API
+        wp_remote_post($url, [
+            'method'      => 'POST',
+            'timeout'     => 5,
+            'redirection' => 5,
+            'httpversion' => '1.0',
+            'blocking'    => false, // Non-blocking!
+            'headers'     => [
+                'Content-Type' => 'application/json',
+            ],
+            'body'        => wp_json_encode([
+                'secret' => $secret,
+                'paths'  => $paths,
+            ]),
+            'cookies'     => [],
+        ]);
     }
 
     public function register_rest_fields(): void {

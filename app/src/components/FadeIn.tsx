@@ -9,6 +9,7 @@ interface FadeInProps {
   className?: string
   threshold?: number
   duration?: number
+  priority?: boolean
 }
 
 export function FadeIn({
@@ -18,14 +19,16 @@ export function FadeIn({
   className = '',
   threshold = 0.1,
   duration = 1000,
+  priority = false,
 }: FadeInProps) {
-  // Start invisible — the IO callback handles reveal.
-  // Elements already in viewport trigger IO immediately, so the
-  // opacity 0→1 transition is imperceptible on first paint.
-  const [isVisible, setIsVisible] = useState(false)
+  // Start visible if priority is true to prevent blank page during SSR/hydration.
+  // Otherwise, start invisible and let the IO callback handle reveal.
+  const [isVisible, setIsVisible] = useState(priority)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (priority) return
+
     const node = ref.current
     if (!node) return
 
@@ -40,11 +43,17 @@ export function FadeIn({
       return () => clearTimeout(immediateTimer)
     }
 
+    // Safety fallback: if IntersectionObserver never fires, ensure content becomes visible after 3s
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true)
+    }, 3000)
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setIsVisible(true)
+            clearTimeout(fallbackTimer)
             observer.unobserve(node)
           }
         }
@@ -64,11 +73,12 @@ export function FadeIn({
 
     return () => {
       clearTimeout(deferTimer)
+      clearTimeout(fallbackTimer)
       if (observerStarted) {
         observer.unobserve(node)
       }
     }
-  }, [threshold])
+  }, [threshold, priority])
 
   return (
     <div

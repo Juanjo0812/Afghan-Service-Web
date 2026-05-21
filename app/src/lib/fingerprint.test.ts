@@ -21,6 +21,15 @@ describe('hashPhone', () => {
     const b = await hashPhone('480.416.2334')
     expect(a).not.toBe(b)
   })
+
+  it('depends on the secret key', async () => {
+    const phone = '480.416.2333'
+    const a = await hashPhone(phone)
+    process.env.RATE_LIMIT_HASH_SECRET = 'another-secret'
+    const b = await hashPhone(phone)
+    expect(a).not.toBe(b)
+    process.env.RATE_LIMIT_HASH_SECRET = 'test-secret' // restore
+  })
 })
 
 describe('hashIP', () => {

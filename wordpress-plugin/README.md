@@ -81,6 +81,28 @@ Set the language field on each event or metadata record so the Next.js frontend 
 | OG Image ID | `_asp_og_image_id` | integer |
 | Language | `_asp_page_meta_language` | string |
 
+## Webhook Configuration (Next.js Revalidation)
+
+To enable automatic revalidation (ISR clear) on the Next.js frontend when events or metadata are created, updated, or published, you need to configure the webhook target URL and secret.
+
+You can configure these in one of two ways:
+
+### Option A: Defining constants in `wp-config.php` (Recommended for production)
+
+Add the following lines to your WordPress `wp-config.php` file:
+
+```php
+define('ASP_REVALIDATE_URL', 'https://your-nextjs-site.vercel.app/api/revalidate');
+define('ASP_REVALIDATE_SECRET', 'your_secure_revalidation_secret_here');
+```
+
+### Option B: WordPress Options database
+
+If you cannot edit `wp-config.php`, you can set these values as WordPress options in your database (e.g., via WP-CLI or a database manager):
+
+- Option name `asp_revalidate_url` with your Next.js webhook URL.
+- Option name `asp_revalidate_secret` with your secure revalidation secret.
+
 ## Seed Data
 
 Import the JSON files in `seed/` using your preferred method (WP CLI, admin import, or a custom script) to populate initial events and metadata for testing.

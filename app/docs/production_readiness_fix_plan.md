@@ -1,165 +1,216 @@
-# Production readiness fix plan — verificación 2026-05-17
+# Plan de Preparación para Producción — Estado y Pasos Faltantes
 
-**Veredicto directo:** ya no estamos en el estado crítico del primer audit. La mayoría de P0 técnicos fueron corregidos y los checks locales permitidos pasan. Pero **todavía no lo marcaría production-ready sin resolver/validar la revalidación WordPress**, completar QA manual real y cerrar decisiones operativas de privacidad/proveedores.
+**Veredicto directo:** el plan correcto NO es revertir los fixes móviles ni buscar “pureza” arquitectónica a costa de romper UX. La web debe pulirse con cambios quirúrgicos: mantener lo que estabilizó móvil/RTL, corregir la pantalla vacía con una solución opt-in, endurecer PII con HMAC, regenerar el ZIP real de WordPress y agregar revalidación segura.
 
-> No se ejecutó `pnpm run build`, respetando la regla del repo. El build debe correr en el hosting/deploy pipeline.
+> Esta actualización es documental. No se ejecutó app, tests ni build. La intención es preservar lo que ya funciona y dejar claro qué tocar —y qué NO tocar— antes de producción.
 
 ---
 
-## 1. Evidencia verificada
+## 1. Áreas protegidas — no cambiar de forma amplia
 
-| Check | Estado | Evidencia |
+Estas piezas ya resolvieron bugs reales. No se deben reescribir ni “limpiar” de forma global sin una razón fuerte y QA móvil/RTL posterior.
+
+| Área | Estado | Regla de protección |
 |---|---:|---|
-| `pnpm lint` | ✅ | Pasa. |
-| `pnpm exec tsc --noEmit --incremental false` | ✅ | Pasa. |
-| `pnpm test` | ✅ | Pasa. |
-| `pnpm audit --prod --audit-level moderate` | ✅ | Sin vulnerabilidades conocidas. |
-| `pnpm audit --audit-level moderate` | ✅ | Sin vulnerabilidades conocidas. |
-| `git status` | ✅/⚠️ | Estaba limpio antes de actualizar este documento; ahora este archivo queda modificado por esta verificación. |
-| WordPress REST directo | ✅ | La API configurada devuelve eventos con fechas actuales. El síntoma de fechas lentas apunta a cache/revalidación Next.js, no a WordPress como fuente. |
+| Animaciones con `FadeIn` + `IntersectionObserver` | Estabilizado | No cambiar el comportamiento default para todo el sitio. Agregar mejoras opt-in solamente. |
+| Menú móvil | Estabilizado | Mantener cierre por cambio de ruta y no volver a meter el selector de idioma dentro del drawer si eso reabre bugs. |
+| `AppShell` | Estabilizado | Mantener el guard contra AppShell anidado para evitar header/footer/chatbot duplicados. |
+| `headers()` en root layout | Tradeoff aceptado | Mantener mientras sea necesario para SSR correcto de `html lang` / `dir` y evitar flash LTR/RTL en Dari. |
+| Chatbot | Estabilizado | Mantener determinístico: JSON local + keywords/scoring. No LLM, no embeddings, no API externa. |
+| Formularios | Parcialmente protegido | No persistir submissions. Enviar por proveedor aprobado, escapar HTML y endurecer fingerprints con HMAC. |
+
+**Principio:** arreglar con bisturí, no con martillo. Si una solución rompe móvil, RTL o el menú, NO es una solución aceptable para este proyecto.
 
 ---
 
-## 2. P0 originales — estado actual
+## 2. Decisiones de arquitectura aceptadas
 
-| Ítem | Estado | Conclusión |
-|---|---:|---|
-| Lint rojo | ✅ Corregido | Ya no bloquea deploy. |
-| Archivos críticos sin trackear | ✅ Corregido | No se detectaron archivos nuevos críticos fuera de Git antes de este doc update. |
-| `pnpm audit --prod` fallaba por `postcss` | ✅ Corregido | Audit productivo pasa. |
-| IP cruda en Upstash | ✅/⚠️ Parcialmente corregido | Upstash usa hash/HMAC y `analytics: false`; el fallback en memoria todavía usa IP cruda como key efímera. Producción debe tener Upstash configurado para no depender del fallback. |
-| `analytics: true` en Upstash | ✅ Corregido | APIs usan `analytics: false`. |
-| Registro interno a eventos sin aprobación | ✅ Resuelto por PRD | La PRD actual marca el modal interno como aprobado por cliente el 2026-05-17. No borrarlo. |
-| HTML sin escapar en emails | ✅ Corregido | Inputs se escapan antes de interpolar HTML. |
-| `headers()` en root layout | ✅ Corregido | `app/src/app/layout.tsx` ya no usa `headers()`. Queda en `[lang]/layout.tsx`, acotado a rutas localizadas. |
-| Cache CMS manual huérfana | ⚠️ Todavía débil | Las páginas importan `cms-cache`, pero la invalidación por tags no está conectada a fetches etiquetados. Ver sección WordPress. |
+### 2.1 Mantener `headers()` en `app/src/app/layout.tsx`
 
----
+**Decisión:** se acepta que el root layout lea `x-lang` y `x-dir` para renderizar desde servidor:
 
-## 3. WordPress: por qué las fechas tardan más
+- `html lang="fa" dir="rtl"` en Dari.
+- `html lang="uz" dir="ltr"` en Uzbek.
+- `html lang="en" dir="ltr"` en inglés.
 
-**Diagnóstico:** no parece un problema de WordPress devolviendo datos viejos. El REST configurado devuelve fechas actuales. Lo que cambió es la arquitectura de cache: al sacar `headers()` del root layout, el sitio vuelve a comportarse más como estático/ISR. Eso es correcto para producción, pero significa que los cambios de WordPress pueden tardar hasta `revalidate = 3600` segundos si el webhook de revalidación no corre bien.
+**Tradeoff:** esto puede reducir pureza estática/ISR del root, pero evita el flash visual donde Dari aparece primero como LTR y luego cambia a RTL. Para esta web, la UX multilingüe y accesible pesa más.
 
-### Hallazgos técnicos
+**Guardrail:** no volver a mover esto sin una alternativa probada que preserve SSR correcto de `lang/dir` y no duplique HTML/chrome.
 
-- [x] Las páginas de home/eventos tienen `export const revalidate = 3600`.
-- [x] Existe `/api/revalidate` y llama `revalidatePath()` para rutas principales.
-- [ ] `clearCmsCache()` llama `revalidateTag('events')` y `revalidateTag('metadata')`, pero los `fetch()` a WordPress no tienen `next.tags`; entonces esa parte de la invalidación es prácticamente placebo.
-- [ ] Si WordPress cambia una fecha y el webhook no llama `/api/revalidate` con el secreto correcto, el usuario puede ver cache viejo hasta 1 hora.
+### 2.2 Mantener el scroll reveal default, pero agregar `priority`
 
-### Checklist para cerrar el problema de fechas
+**Decisión:** no se debe convertir todo `FadeIn` a visible por defecto porque eso mata la experiencia de scroll reveal que ya se afinó. La solución correcta es agregar una prop opt-in:
 
-- [ ] Confirmar en WordPress/Hostinger que el webhook se dispara al crear/editar/publicar eventos.
-- [ ] Confirmar que el webhook llama `https://<dominio>/api/revalidate` con `WORDPRESS_REVALIDATE_SECRET` correcto.
-- [ ] Probar manualmente el endpoint con secreto válido después de cambiar una fecha.
-- [ ] Etiquetar los fetches de WordPress con `next: { tags: [...] }` y usar `revalidateTag(tag, { expire: 0 })` en el webhook, o eliminar tags y depender solo de `revalidatePath()`.
-- [ ] Considerar bajar el TTL de eventos de `3600` a `60` si el cliente necesita ver cambios casi inmediatos sin depender tanto del webhook.
+```tsx
+<FadeIn priority>
+  ...contenido crítico above-the-fold...
+</FadeIn>
+```
 
-**Recomendación de arquitectura:** webhook + tags reales. Si el cliente edita fechas seguido, `3600` está bien solo si el webhook funciona perfecto; si no, es demasiado lento para operación diaria.
+- `priority={true}`: visible desde SSR, sin pantalla vacía en home/hero/secciones iniciales.
+- default: mantiene `IntersectionObserver` y animación al scrollear.
 
 ---
 
-## 4. P1 que siguen importando
+## 3. P0 — cambios obligatorios antes de producción
 
-- [ ] **Allowlist para `event.ctaUrl`.** Hoy `EventDetail.tsx` renderiza la URL de WordPress como link externo. No es XSS, pero sí riesgo de confianza/phishing si un editor o plugin mete una URL no aprobada.
-- [ ] **Doble fetch posible en metadata + page.** Next memoiza algunos fetches iguales durante render, pero conviene revisar event detail y metadata para no duplicar llamadas innecesarias.
-- [ ] **Videos pesados.** Hay assets locales grandes; falta QA de performance móvil real/Lighthouse.
-- [ ] **CSP con `'unsafe-inline'`.** Puede ser aceptable para este release si queda documentado, pero no es el ideal de seguridad.
-- [ ] **Fallback de eventos.** Si WordPress cae, el sitio puede quedar sin eventos en vez de mostrar contenido estático aprobado o un mensaje operacional claro.
-- [ ] **Aprobaciones manuales.** Falta cierre formal de traducciones Dari/Uzbek, contenido legal, derechos de imagen/video y proveedores Resend/Upstash.
+### P0-1 — Corregir pantalla vacía sin romper animaciones móviles
 
----
+- [x] Agregar prop `priority?: boolean` a `app/src/components/FadeIn.tsx`.
+- [x] Si `priority` es `true`, renderizar con `opacity: 1` desde SSR.
+- [x] Aplicar `priority` solo a contenido crítico above-the-fold: hero del home, título principal y primeras secciones visibles al cargar.
+- [x] Mantener el comportamiento actual de `IntersectionObserver` para el resto del sitio.
+- [x] Agregar fallback defensivo para que, si `IntersectionObserver` no dispara, el contenido no quede invisible indefinidamente.
+- [x] Validar manualmente en iPhone Safari / Android Chrome: home, resources, rights, stories y events.
 
-## 5. Comparación contra `Website_Layout_Afghan_Immigration.md`
+**Por qué:** hoy `FadeIn` inicia con `isVisible=false`, por lo que SSR puede servir `opacity: 0`. En móviles lentos o Safari, eso puede verse como home vacío hasta que hidrata React.
 
-| Sección acordada | Estado | Brecha real |
-|---|---:|---|
-| Header con logo, menú, idiomas, CTA | ✅/⚠️ | Implementado; falta QA final móvil/RTL. |
-| Home hero con bienvenida, subtexto y CTA | ✅/⚠️ | Implementado con dirección visual propia; confirmar que CTA “Get Help Now” sea suficientemente visible. |
-| Quick access: Immigration/Rights/Resources/Events | ✅ | Cumple. |
-| About snapshot | ✅ | Cumple. |
-| Announcements/events preview | ⚠️ | Funciona, pero depende de cerrar cache/revalidación WordPress. |
-| Immigration Help | ✅ | Cumple base. |
-| Know Your Rights + downloads/videos | ✅/⚠️ | Cumple técnico; falta sign-off legal y QA de archivos aprobados. |
-| Community Resources | ✅ | Cumple base. |
-| Events calendar/list | ✅/⚠️ | Cumple; registro interno ahora está aprobado en PRD, pero la cache de fechas sigue pendiente. |
-| Contact page | ✅/⚠️ | Cumple técnico; falta cierre de proveedor/privacidad. |
-| Stories / Community Impact | ✅/⚠️ | Cumple si assets están aprobados; falta QA performance/autorización. |
+**No hacer:** no eliminar todas las animaciones, no cambiar globalmente todos los `FadeIn` a visible, no tocar el menú móvil para resolver esto.
 
 ---
 
-## 6. Checklist manual de deploy
+### P0-2 — Proteger teléfono con HMAC
 
-### Repo / release
+- [x] Cambiar `hashPhone()` en `app/src/lib/fingerprint.ts` para usar HMAC-SHA-256 con `RATE_LIMIT_HASH_SECRET`, igual que `hashIP()`.
+- [x] Mantener normalización del teléfono antes de firmar: solo dígitos.
+- [x] Actualizar tests de `fingerprint.test.ts`.
+- [ ] Confirmar que `RATE_LIMIT_HASH_SECRET` existe en Vercel Production y Preview.
 
-- [ ] Dejar `git status` limpio con este documento committeado o descartado.
-- [ ] Confirmar que no se suben `.env.local`, `.next/`, `dist/`, `node_modules/`, `*.tsbuildinfo`.
-- [ ] Verificar otra vez antes del release: `pnpm lint`, `pnpm exec tsc --noEmit --incremental false`, `pnpm test`, `pnpm audit --prod --audit-level moderate`.
-- [ ] No correr build local salvo override explícito; el hosting debe correrlo.
+**Por qué:** SHA-256 simple no alcanza para teléfonos. Los números son enumerables; alguien puede generar hashes de posibles números y comparar. HMAC evita eso porque requiere el secreto server-side.
 
-### Vercel / hosting Next.js
-
-- [ ] Project root: `app/`.
-- [ ] Package manager: `pnpm`.
-- [ ] Install command: `pnpm install --frozen-lockfile`.
-- [ ] Build command en hosting: `pnpm build`.
-- [ ] Framework preset: Next.js.
-- [ ] Node version compatible con Next 16 / React 19.
-- [ ] Dominio canónico definido: apex o `www`, no ambos compitiendo.
-- [ ] HTTPS activo.
-- [ ] Revisar headers reales en producción: CSP, `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`.
-
-### Variables de entorno producción
-
-- [ ] `NEXT_PUBLIC_SITE_URL=https://<dominio-final>`.
-- [ ] `WORDPRESS_API_BASE_URL=https://<cms-domain>/wp-json/wp/v2`.
-- [ ] `WORDPRESS_MEDIA_HOSTNAME=<cms-domain>`.
-- [ ] `WORDPRESS_REVALIDATE_SECRET=<secreto largo random>`.
-- [ ] `RESEND_API_KEY=<production key>`.
-- [ ] `RESEND_FROM_EMAIL=<sender verificado>`.
-- [ ] `CONTACT_TO_EMAIL=<inbox aprobada>`.
-- [ ] `UPSTASH_REDIS_REST_URL=<production redis>`.
-- [ ] `UPSTASH_REDIS_REST_TOKEN=<production token>`.
-- [ ] `RATE_LIMIT_HASH_SECRET=<secreto largo random>`.
-
-### WordPress / Hostinger
-
-- [ ] Instalar/actualizar plugin `afghan-support-headless` generado desde el PHP actual.
-- [ ] Guardar permalinks después de activar/actualizar plugin.
-- [ ] Probar REST público: `/wp-json/wp/v2/events?lang=en` y metadata por idioma/ruta.
-- [ ] Configurar webhook WordPress → `/api/revalidate` con secreto correcto.
-- [ ] Probar edición de fecha en WordPress y verificar cuánto tarda en `/events` producción.
-- [ ] Proteger `/wp-admin`: usuarios mínimos, password fuerte, 2FA si está disponible.
-- [ ] Noindex para CMS si no debe indexarse públicamente.
-
-### Privacidad / legal / contenido
-
-- [ ] Aprobar Resend como procesador de datos.
-- [ ] Aprobar Upstash como procesador de datos o documentar retención compatible con no PII.
-- [ ] Confirmar que no se persiste PII en DB, localStorage, analytics, logs o WordPress.
-- [ ] Revisar contenido legal/rights con reviewer calificado.
-- [ ] Revisar traducciones Dari/Uzbek con hablantes fluidos/nativos.
-- [ ] Confirmar autorizaciones de imágenes, videos y testimonios.
-- [ ] Confirmar que chatbot/rights no generan consejo legal dinámico.
-
-### QA final
-
-- [ ] Navegación completa EN.
-- [ ] Navegación completa Dari con RTL desde primer render.
-- [ ] Navegación completa Uzbek.
-- [ ] Contact form: éxito, validación, rate limit, honeypot y error Resend.
-- [ ] Event registration modal: éxito, validación, rate limit, honeypot y error Resend.
-- [ ] Eventos: list view, calendar view, detalle, CTA externo y modal interno aprobado.
-- [ ] Rights PDFs: EN/Dari/Uzbek abren/descargan.
-- [ ] Chatbot: respuestas determinísticas, links internos localizados, PDF/teléfono/WhatsApp.
-- [ ] Keyboard-only nav: header, main, forms, chatbot, modals, footer.
-- [ ] Lighthouse/performance/accessibility/SEO según PRD.
-- [ ] Sitemap y robots usan dominio final.
+**No hacer:** no guardar teléfonos en DB, localStorage, WordPress ni analytics. Esto es solo fingerprint transitorio para rate limiting.
 
 ---
 
-## 7. Referencias técnicas
+### P0-3 — Regenerar el ZIP del plugin WordPress
 
-- Next.js `fetch`: `next.revalidate` y `next.tags` definen cache y tags de datos.
-- Next.js `revalidateTag`: los tags deben existir primero en `fetch(..., { next: { tags } })`; para webhooks con expiración inmediata se puede usar `{ expire: 0 }`.
-- Next.js `revalidatePath`: en Route Handlers marca la ruta para regenerarse en la próxima visita; en rutas dinámicas requiere el parámetro `type`.
+- [x] Regenerar `wordpress-plugin/afghan-support-headless.zip` desde el código actual.
+- [x] Confirmar que el ZIP contiene `afghan-support-headless/afghan-support-headless.php` actualizado.
+- [x] Comparar hash del PHP dentro del ZIP contra `wordpress-plugin/afghan-support-headless.php`.
+- [x] No subir a Hostinger un ZIP viejo.
+
+**Por qué:** el ZIP es lo que se instala en Hostinger. Si el ZIP no coincide con el PHP fuente, podés creer que subiste un fix de seguridad y en realidad instalar código anterior.
+
+---
+
+### P0-4 — Agregar webhook seguro de revalidación WordPress → Next.js
+
+- [x] Agregar en el plugin un hook controlado sobre `save_post` para `asp_event` y `asp_page_meta`.
+- [x] Ignorar autosaves, revisions y post types no relacionados.
+- [x] Enviar un `wp_remote_post()` a `https://<dominio-vercel>/api/revalidate`.
+- [x] El body debe ser JSON compatible con la route actual:
+
+```json
+{
+  "secret": "<WORDPRESS_REVALIDATE_SECRET>",
+  "paths": ["/", "/events", "/dari", "/dari/events", "/uzbek", "/uzbek/events"]
+}
+```
+
+- [x] Usar headers `Content-Type: application/json`.
+- [x] Usar timeout corto y preferiblemente modo no bloqueante para no hacer lenta la edición en wp-admin.
+- [x] Guardar URL/secreto como constantes/option del plugin o documentar claramente dónde se configuran.
+- [x] Probar edición de fecha en WordPress y confirmar que Vercel refleja el cambio sin esperar 1 hora.
+
+**Por qué:** sin webhook, Next depende de `revalidate = 3600`. Eso explica cambios de fechas lentos.
+
+**No hacer:** no exponer el secreto en frontend, no aceptar revalidación sin secret, no hacer webhook para cualquier post si no hace falta.
+
+---
+
+### P0-5 — Configuración final de dominio, CMS y variables
+
+- [ ] Definir dominio público final: `https://<dominio-final>`.
+- [ ] Definir subdominio CMS recomendado: `https://cms.<dominio-final>`.
+- [ ] Configurar en Vercel:
+  - `NEXT_PUBLIC_SITE_URL=https://<dominio-final>`
+  - `WORDPRESS_API_BASE_URL=https://cms.<dominio-final>/wp-json/wp/v2`
+  - `WORDPRESS_MEDIA_HOSTNAME=cms.<dominio-final>`
+  - `WORDPRESS_REVALIDATE_SECRET=<secreto largo>`
+  - `RATE_LIMIT_HASH_SECRET=<secreto largo>`
+  - `RESEND_API_KEY`
+  - `RESEND_FROM_EMAIL`
+  - `CONTACT_TO_EMAIL`
+  - `UPSTASH_REDIS_REST_URL`
+  - `UPSTASH_REDIS_REST_TOKEN`
+- [ ] Probar REST público de Hostinger antes de asumir que Vercel está fallando:
+  - `/wp-json/wp/v2/events?lang=en`
+  - `/wp-json/wp/v2/events?lang=dari`
+  - `/wp-json/wp/v2/events?lang=uzbek`
+  - `/wp-json/wp/v2/site-metadata?route_key=home&lang=en`
+
+---
+
+## 4. P1 — mejoras recomendadas antes del lanzamiento público
+
+- [ ] **Optimización de videos:** `Video_main.mp4` y stories son pesados para móvil. Mantener poster instantáneo y comprimir videos con HandBrake/FFmpeg o moverlos a CDN/streaming si Lighthouse móvil sufre.
+- [ ] **Chatbot móvil:** validar panel con teclado abierto en iOS Safari. Si se corta por barras dinámicas, usar `100dvh`/safe-area o estrategia con `visualViewport`.
+- [ ] **Allowlist de `event.ctaUrl`:** permitir solo dominios aprobados para CTAs de WordPress. No es XSS directo, pero sí riesgo de phishing/confianza si alguien mete una URL externa maliciosa.
+- [ ] **Cache tags de detalle:** `getEvents()` y metadata usan tags, pero `getEventBySlug()` debe quedar alineado si se quiere invalidación por tags consistente.
+- [ ] **QA accesibilidad:** validar navegación por teclado en menú, chatbot, modal de registro y formularios.
+- [ ] **Legal/traducciones:** contenido de derechos y traducciones Dari/Uzbek requieren revisión humana/aprobada antes del launch.
+
+---
+
+## 5. Checklist Hostinger — WordPress CMS
+
+1. Instalar WordPress en `cms.<dominio-final>`.
+2. Subir el ZIP regenerado del plugin.
+3. Activar **Afghan Support Headless**.
+4. Guardar permalinks en “Post name”.
+5. Crear eventos reales y metadata mínima por idioma.
+6. Verificar REST público.
+7. Configurar/probar webhook de revalidación.
+8. Proteger `/wp-admin`:
+   - contraseña fuerte,
+   - usuarios mínimos,
+   - 2FA si Hostinger/plugin aprobado lo permite,
+   - registro público desactivado,
+   - plugins innecesarios evitados.
+9. Confirmar que WordPress no almacena submissions de contacto/event registration.
+
+---
+
+## 6. Checklist Vercel — Frontend Next.js
+
+1. Project root: `app/`.
+2. Package manager: `pnpm`.
+3. Install command: `pnpm install --frozen-lockfile`.
+4. Build command en hosting: `pnpm build`.
+5. Configurar todas las variables de entorno P0.
+6. Configurar dominio final y redirección canónica (`www` o apex, uno solo como principal).
+7. Validar headers en producción:
+   - CSP,
+   - `frame-ancestors`,
+   - `X-Frame-Options`,
+   - `nosniff`,
+   - `Referrer-Policy`,
+   - `Permissions-Policy`.
+8. Probar forms reales con Resend productivo.
+9. Probar rate limit con Upstash productivo.
+10. Probar webhook de WordPress contra producción.
+
+---
+
+## 7. Definition of Done para producción
+
+No marcar como production-ready hasta que esto esté cerrado:
+
+- [ ] `FadeIn priority` implementado sin romper scroll reveal móvil.
+- [ ] `hashPhone()` usa HMAC.
+- [ ] ZIP WordPress regenerado y verificado contra PHP fuente.
+- [ ] Plugin/webhook revalida Next.js al editar eventos/metadata.
+- [ ] Variables Vercel production configuradas.
+- [ ] REST de Hostinger responde correctamente.
+- [ ] QA móvil real en iPhone Safari y Android Chrome.
+- [ ] QA Dari RTL sin flash visual ni duplicación de chrome.
+- [ ] Contact/event forms no persisten PII y envían email correctamente.
+- [ ] Contenido legal y traducciones revisadas por humanos/aprobadas.
+
+---
+
+## 8. Resumen ejecutivo
+
+La dirección actual es correcta: **preservar los fixes móviles/RTL y pulir con cambios puntuales**. Los cambios que sí valen la pena ahora son pequeños pero críticos: `FadeIn priority`, HMAC para teléfono, ZIP WordPress sincronizado, webhook de revalidación y checklist de dominio/Vercel/Hostinger.
+
+No necesitamos romper la arquitectura para mejorarla. Necesitamos disciplina: tocar poco, probar bien, y no volver a abrir bugs que ya costó cerrar.

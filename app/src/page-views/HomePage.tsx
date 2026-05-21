@@ -95,22 +95,22 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
 
         <div className="relative container-main z-10 flex flex-col items-center text-center pt-20">
           <div className="max-w-3xl flex flex-col items-center">
-            <FadeIn delay={300} duration={1200}>
+            <FadeIn priority delay={300} duration={1200}>
               <h1 className="font-display text-4xl md:text-5xl lg:text-display-xl text-white mb-3 leading-tight">
                 {t('title', { ns: 'hero' })}
               </h1>
             </FadeIn>
-            <FadeIn delay={1000} duration={1000}>
+            <FadeIn priority delay={1000} duration={1000}>
               <p className="text-lg md:text-xl text-white/90 mb-2 font-arabic" dir="rtl">
                 {t('dariTitle', { ns: 'hero' })} — خوش آمدید به فینکس
               </p>
             </FadeIn>
-            <FadeIn delay={1700} duration={1000}>
+            <FadeIn priority delay={1700} duration={1000}>
               <p className="text-body-lg text-white/80 mb-8 max-w-lg">
                 {t('subtitle', { ns: 'hero' })}
               </p>
             </FadeIn>
-            <FadeIn delay={2400} duration={1000}>
+            <FadeIn priority delay={2400} duration={1000}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
                 <Link href={localizePath('/rights', lang)} className="btn-primary text-center">
                   {t('ctaRights', { ns: 'hero' })}
