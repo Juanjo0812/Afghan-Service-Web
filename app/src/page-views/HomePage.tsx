@@ -55,16 +55,19 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
       >
         <div className="absolute inset-0 overflow-hidden z-0">
           <div className="sticky top-0 w-full h-[85vh]">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/images/Hero-image.png"
-              className="w-full h-full object-cover object-top blur-[2px] scale-105"
-            >
-              <source src="/videos/Video_main.mp4" type="video/mp4" />
-            </video>
+            {/*
+              Render via dangerouslySetInnerHTML so the 'muted' attribute is present
+              in the server-rendered HTML. React does not serialize 'muted' as an HTML
+              attribute during SSR — it sets it as a JS property during hydration.
+              iOS Safari checks autoplay eligibility on the initial HTML parse, before
+              hydration runs, so without the raw attribute it blocks playback.
+            */}
+            <div
+              className="w-full h-full"
+              dangerouslySetInnerHTML={{
+                __html: `<video autoplay loop muted playsinline poster="/images/Hero-image.png" class="w-full h-full object-cover object-top blur-[2px] scale-105"><source src="/videos/Video_main.mp4" type="video/mp4" /></video>`
+              }}
+            />
             <div
               className="absolute inset-0"
               style={{
