@@ -43,17 +43,11 @@ export function FadeIn({
       return () => clearTimeout(immediateTimer)
     }
 
-    // Safety fallback: if IntersectionObserver never fires, ensure content becomes visible after 3s
-    const fallbackTimer = setTimeout(() => {
-      setIsVisible(true)
-    }, 3000)
-
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             setIsVisible(true)
-            clearTimeout(fallbackTimer)
             observer.unobserve(node)
           }
         }
@@ -73,7 +67,6 @@ export function FadeIn({
 
     return () => {
       clearTimeout(deferTimer)
-      clearTimeout(fallbackTimer)
       if (observerStarted) {
         observer.unobserve(node)
       }
