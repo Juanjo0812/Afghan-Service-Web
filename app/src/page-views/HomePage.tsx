@@ -55,28 +55,16 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
       >
         <div className="absolute inset-0 overflow-hidden z-0">
           <div className="sticky top-0 w-full h-[85vh]">
-            {/* 
-              We use dangerouslySetInnerHTML to render the video element. This forces the 'muted' 
-              attribute to be present in the server-rendered HTML output, which fixes React's 
-              hydration bug and ensures modern browsers (Chrome/Safari) autoplay the video on first load.
-            */}
-            <div
-              className="w-full h-full"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  <video
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                    poster="/images/Hero-image.png"
-                    class="w-full h-full object-cover object-top blur-[2px] scale-105"
-                  >
-                    <source src="/videos/Video_main.mp4" type="video/mp4" />
-                  </video>
-                `
-              }}
-            />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/images/Hero-image.png"
+              className="w-full h-full object-cover object-top blur-[2px] scale-105"
+            >
+              <source src="/videos/Video_main.mp4" type="video/mp4" />
+            </video>
             <div
               className="absolute inset-0"
               style={{
