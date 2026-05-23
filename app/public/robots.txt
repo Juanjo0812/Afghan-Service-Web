@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://afghansupport.org/sitemap.xml
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+Sitemap: https://immigrationhelpforafghan.org/sitemap.xml
