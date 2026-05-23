@@ -29,7 +29,10 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
 
   useEffect(() => {
     if (isClient && videoRef.current) {
-      videoRef.current.play().catch(err => {
+      const video = videoRef.current
+      video.muted = true
+      video.playsInline = true
+      video.play().catch(err => {
         console.warn("Autoplay was prevented:", err)
       })
     }
@@ -70,25 +73,35 @@ export default function HomePage({ featuredEvent, lang: pageLang = 'en' }: HomeP
         aria-label="Welcome"
       >
         <div className="absolute inset-0 overflow-hidden z-0">
-          <div className="sticky top-0 w-full h-[85vh]">
+          <div className="relative w-full h-full">
             {isClient ? (
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/images/Hero-image.png"
-                className="w-full h-full object-cover object-top blur-[2px] scale-105"
+              <div 
+                className="w-full h-full overflow-hidden blur-[2px] scale-105"
+                style={{ transform: 'scale(1.05) translateZ(0)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
               >
-                <source src="/videos/Video_main.mp4" type="video/mp4" />
-              </video>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/Hero-image.png"
+                  className="w-full h-full object-cover object-top"
+                >
+                  <source src="/videos/Video_main.mp4" type="video/mp4" />
+                </video>
+              </div>
             ) : (
-              <img
-                src="/images/Hero-image.png"
-                alt="Welcome Background"
-                className="w-full h-full object-cover object-top blur-[2px] scale-105"
-              />
+              <div 
+                className="w-full h-full overflow-hidden blur-[2px] scale-105"
+                style={{ transform: 'scale(1.05) translateZ(0)', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+              >
+                <img
+                  src="/images/Hero-image.png"
+                  alt="Welcome Background"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
             )}
             <div
               className="absolute inset-0"
