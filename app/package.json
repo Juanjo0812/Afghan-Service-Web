@@ -18,6 +18,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.38.0",
+    "@vercel/analytics": "^2.0.1",
     "i18next": "^26.2.0",
     "i18next-browser-languagedetector": "^8.2.1",
     "lucide-react": "^0.562.0",

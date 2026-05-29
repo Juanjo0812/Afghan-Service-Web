@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import AppShell from '@/components/AppShell'
+import { Analytics } from '@vercel/analytics/next'
 
 import { headers } from 'next/headers'
 import { isValidLang, getHtmlLang, getDirection } from '@/domain/language'
@@ -28,6 +29,7 @@ export default async function RootLayout({
     <html lang={htmlLang} dir={dir}>
       <body>
         <AppShell initialLang={validatedLang}>{children}</AppShell>
+        <Analytics />
       </body>
     </html>
   )
