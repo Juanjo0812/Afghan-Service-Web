@@ -12,8 +12,8 @@ Built with accessibility, legal safety, and fast loading as first principles. Th
 
 | Feature | Description |
 |---|---|
-| **Multilingual** | Full English, Dari, and Uzbek support with RTL layout for Dari |
-| **Know Your Rights** | Static, reviewed legal content with downloadable PDF cards in 3 languages |
+| **Multilingual** | Dari-default support plus English, Afghan Uzbek (Arabic script), and Pashto; RTL for Dari, Afghan Uzbek, and Pashto |
+| **Know Your Rights** | Static, reviewed legal content with downloadable PDF cards in approved languages |
 | **Deterministic Chatbot** | Local JSON knowledge base with keyword/scoring matching — no AI, no LLMs |
 | **Events Calendar** | WordPress Headless-driven event listings with list/calendar views and ISR caching |
 | **Contact Form** | Serverless email delivery via Resend with Zod validation, honeypot, and rate limiting |
@@ -33,7 +33,7 @@ Built with accessibility, legal safety, and fast loading as first principles. Th
 | **CMS** | WordPress Headless on Hostinger (events + SEO metadata) |
 | **Email** | Resend (contact form + event registration) |
 | **Rate Limiting** | Upstash Redis (sliding window + HMAC-hashed identifiers) |
-| **Testing** | Vitest (15 tests across 4 suites) |
+| **Testing** | Vitest (18 tests across 4 suites) |
 | **Hosting** | Vercel (frontend) + Hostinger (WordPress admin) |
 
 ---
@@ -53,7 +53,7 @@ pnpm run dev        # http://localhost:3000
 |---|---|
 | `pnpm run dev` | Development server with Turbopack HMR |
 | `pnpm lint` | ESLint (flat config) |
-| `pnpm tsc --noEmit` | TypeScript type checking |
+| `pnpm exec tsc --noEmit --incremental false` | TypeScript type checking |
 | `pnpm test` | Vitest unit tests |
 | `pnpm audit --prod` | Production dependency audit |
 
@@ -67,9 +67,9 @@ pnpm run dev        # http://localhost:3000
 app/
 ├── src/
 │   ├── app/                    # Next.js App Router routes
-│   │   ├── layout.tsx          # Root layout (static English)
+│   │   ├── layout.tsx          # Root layout (Dari default, lang/dir headers)
 │   │   ├── page.tsx            # Home (async, fetches WP events)
-│   │   ├── [lang]/             # Dari/Uzbek localized routes
+│   │   ├── [lang]/             # English/Afghan Uzbek/Pashto localized routes
 │   │   │   ├── layout.tsx      # Segment layout (dynamic lang/dir)
 │   │   │   └── **/page.tsx     # Localized pages
 │   │   ├── api/contact/        # Contact form endpoint
@@ -79,7 +79,7 @@ app/
 │   ├── features/events/        # Events client, detail, registration modal
 │   ├── page-views/             # Page views (Home, Immigration, Rights, etc.)
 │   ├── sections/               # Chatbot widget
-│   ├── locales/                # i18n JSON (en, dari, uzbek)
+│   ├── locales/                # i18n JSON (dari, en, uzbek, pashto)
 │   ├── data/                   # Chatbot KB, local JSON
 │   ├── lib/                    # Utilities (navigation, fingerprint, sanitize, etc.)
 │   ├── hooks/                  # React hooks (useLanguage, useChatbotKB)
@@ -89,15 +89,15 @@ app/
 ├── public/
 │   ├── images/                 # Static images
 │   ├── videos/Stories/         # Community story videos
-│   └── PDFs_Rights/            # Know Your Rights PDFs (EN/Dari/Uzbek)
+│   └── PDFs_Rights/            # Know Your Rights PDFs (EN/Dari/Afghan Uzbek approved assets)
 └── docs/                       # PRD, implementation plan, client input
 ```
 
 ### Key Design Decisions
 
-- **English at root**: Canonical English routes live at `/`, `/immigration`, etc. — no `/en` prefix. `/en/*` returns 404.
-- **Localized at `[lang]`**: Dari at `/dari/*`, Uzbek at `/uzbek/*`. `assertValidLang()` guards reject invalid params.
-- **Static root layout**: English routes are fully static/ISR. Only `[lang]/layout.tsx` calls `headers()` for dynamic lang/dir detection.
+- **Dari at root**: Canonical Dari routes live at `/`, `/immigration`, etc. — no `/dari` prefix. `/dari/*` is rejected by the route guard.
+- **Localized at `[lang]`**: English at `/en/*`, Afghan Uzbek at `/uzbek/*`, and Pashto at `/pashto/*`. `assertValidLang()` guards reject invalid params.
+- **First-paint language/dir**: `src/proxy.ts` sets `x-lang`/`x-dir`; the root layout uses those headers so Dari, Afghan Uzbek, and Pashto render RTL immediately.
 - **WordPress Headless scope**: Events and SEO metadata only. All other content is local (locale JSON, static pages).
 - **ISR with tag-based cache**: `fetch()` uses `next: { tags: ['events', 'metadata'] }`. Webhook calls `revalidateTag()` + `revalidatePath()`.
 - **Deterministic chatbot**: 23 curated KB entries with keyword scoring. Local JSON only. No external APIs.

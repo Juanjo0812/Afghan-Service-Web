@@ -30,7 +30,7 @@
     },
     "rights": {
       "label": "Know Your Rights",
-      "response": "Learn about your rights as an immigrant, refugee, or asylum seeker. Access know-your-rights materials in Dari, Uzbek, and English. This information is for educational purposes only and does not constitute legal advice.",
+      "response": "Learn about your rights as an immigrant, refugee, or asylum seeker. Access know-your-rights materials in Dari, English, Afghan Uzbek, and Pashto. This information is for educational purposes only and does not constitute legal advice.",
       "cta": "Read More"
     },
     "events": {
@@ -45,7 +45,7 @@
     },
     "speak": {
       "label": "Speak to Someone",
-      "response": "Our caseworkers are available to speak with you in Dari, Uzbek, or English. Whether you need guidance, emotional support, or just someone to listen, we are here for you.",
+      "response": "Contact our caseworkers for guidance, emotional support, or someone who can listen. Site information is available in Dari, English, Afghan Uzbek, and Pashto.",
       "cta": "Get in Touch"
     }
   }

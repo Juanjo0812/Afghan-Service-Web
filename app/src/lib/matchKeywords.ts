@@ -3,16 +3,20 @@ export interface KBEntry {
   title?: string
   title_dari?: string
   title_uzbek?: string
+  title_pashto?: string
   keywords_en: string[]
   keywords_dari?: string[]
   keywords_uzbek?: string[]
+  keywords_pashto?: string[]
   response_en: string
   response_dari?: string
   response_uzbek?: string
+  response_pashto?: string
   section?: string
   actions?: { label: string; href: string }[]
   actions_dari?: { label: string; href: string }[]
   actions_uzbek?: { label: string; href: string }[]
+  actions_pashto?: { label: string; href: string }[]
 }
 
 export interface ScoredEntry {
@@ -28,7 +32,7 @@ export interface MatchResult {
   multiCandidate: boolean
 }
 
-export type LangCode = 'en' | 'dari' | 'uzbek'
+export type LangCode = 'en' | 'dari' | 'uzbek' | 'pashto'
 
 const stopWords = new Set([
   'a', 'an', 'the',

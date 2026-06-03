@@ -45,17 +45,32 @@
     }
   },
   {
-    "title": "Yuridik yordam klinikasi — Huquqlaringizni bilib oling",
+    "title": "حقوقی یاردام کلینیکه‌سی — حقوقلرینگیزنی بیلینگ",
     "slug": "legal-aid-clinic-know-your-rights-uzbek",
-    "content": "Ijara huquqlari, mehnat huquqi va immigratsiya nazorati himoyalari bo'yicha bepul yuridik klinika. Dari va ingliz tillarida ikki tilli advokatlar mavjud.",
+    "content": "اجاره حقوقلری، محنت حقوقی و مهاجرت نظارتی حمایه‌لری بویچه بیپول حقوقی کلینیکه. دری و انگلیسی تیللریده ایکی تیللی ادووکاتلر موجود.",
     "meta": {
       "_asp_event_category": "legal",
       "_asp_event_start_date": "2026-06-22T10:00:00",
       "_asp_event_end_date": "2026-06-22T14:00:00",
       "_asp_event_location": "Phoenix Public Library — Burton Barr, 1221 N Central Ave, Phoenix, AZ 85004",
-      "_asp_cta_label": "Joy band qiling",
+      "_asp_cta_label": "جای رزرو قیلینگ",
       "_asp_cta_url": "",
       "_asp_event_language": "uzbek",
+      "_asp_featured_image_id": 0
+    }
+  },
+  {
+    "title": "د حقوقي مرستې کلینیک — خپل حقوق وپېژنئ",
+    "slug": "legal-aid-clinic-know-your-rights-pashto",
+    "content": "د کرایه کوونکو حقونو، د کار قانون، او د مهاجرت د پلي کېدو د خوندیتوبونو په اړه وړیا حقوقي کلینیک. په دري او انګلیسي ژبو دوه ژبي وکیلان شتون لري.",
+    "meta": {
+      "_asp_event_category": "legal",
+      "_asp_event_start_date": "2026-06-22T10:00:00",
+      "_asp_event_end_date": "2026-06-22T14:00:00",
+      "_asp_event_location": "Phoenix Public Library — Burton Barr, 1221 N Central Ave, Phoenix, AZ 85004",
+      "_asp_cta_label": "ځای خوندي کړئ",
+      "_asp_cta_url": "",
+      "_asp_event_language": "pashto",
       "_asp_featured_image_id": 0
     }
   }

@@ -14,7 +14,7 @@
   - Know Your Rights
   - Events
   - Contact
-- **Language Toggle:** EN | Dari | Uzbek
+- **Language Toggle:** Dari | EN | Afghan Uzbek | Pashto
 - **CTA Button:** Get Help Now
 
 ### Hero Section
@@ -67,7 +67,7 @@ We provide free and confidential immigration legal support for Afghan individual
 
 ### Languages
 
-EN | Dari | Uzbek
+Dari | EN | Afghan Uzbek | Pashto
 
 ### Contact Block
 
@@ -112,6 +112,7 @@ Know Your Rights Cards (wallet size):
 - Download (Dari)
 - Download (Uzbek)
 - Download (English)
+- Download (Pashto) — pending approved PDF asset
 
 ### Videos Section
 

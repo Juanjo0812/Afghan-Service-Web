@@ -7,22 +7,26 @@ const CATEGORY_LABELS: Record<EventCategory, Record<LangCode, string>> = {
   immigration: {
     en: 'Immigration Workshop',
     dari: 'کارگاه مهاجرت',
-    uzbek: 'Immigratsiya seminar',
+    uzbek: 'مهاجرت کارگاهی',
+    pashto: 'د مهاجرت ورکشاپ',
   },
   legal: {
     en: 'Legal Clinic',
     dari: 'کلینیک حقوقی',
-    uzbek: 'Yuridik klinika',
+    uzbek: 'حقوقی کلینیکه',
+    pashto: 'حقوقي کلینیک',
   },
   cultural: {
     en: 'Cultural Gathering',
     dari: 'گردهمایی فرهنگی',
-    uzbek: 'Madaniy uchrashuv',
+    uzbek: 'مدنی یغین',
+    pashto: 'کلتوري غونډه',
   },
   holiday: {
     en: 'Afghan Holiday',
     dari: 'عید افغان',
-    uzbek: 'Afg\'on bayrami',
+    uzbek: 'افغانستان بیرامی',
+    pashto: 'د افغانستان رخصتي',
   },
 }
 

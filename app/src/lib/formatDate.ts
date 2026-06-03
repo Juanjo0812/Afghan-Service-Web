@@ -3,7 +3,8 @@ import type { LangCode } from '@/domain/language'
 const LOCALE_MAP: Record<LangCode, string> = {
   en: 'en-US',
   dari: 'fa-AF',
-  uzbek: 'uz-UZ',
+  uzbek: 'uz-Arab-AF',
+  pashto: 'ps-AF',
 }
 
 export function formatEventDate(dateStr: string, lang: LangCode): string {

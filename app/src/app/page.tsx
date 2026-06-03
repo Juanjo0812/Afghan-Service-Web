@@ -6,13 +6,13 @@ import HomePage from '@/page-views/HomePage'
 export const revalidate = 3600
 
 export async function generateMetadata() {
-  return generatePageMetadata('home', 'en')
+  return generatePageMetadata('home', 'dari')
 }
 
 export default async function Home() {
   let featuredEvent: EventContent | null = null
   try {
-    const events = await getEvents('en')
+    const events = await getEvents('dari')
     const now = new Date()
     const upcoming = events
       .filter(e => new Date(e.startDate) > now)
@@ -21,5 +21,5 @@ export default async function Home() {
   } catch {
     // WordPress unavailable — featuredEvent remains null (graceful degradation)
   }
-  return <HomePage featuredEvent={featuredEvent} lang="en" />
+  return <HomePage featuredEvent={featuredEvent} lang="dari" />
 }

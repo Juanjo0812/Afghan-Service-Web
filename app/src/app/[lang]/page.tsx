@@ -8,7 +8,7 @@ import HomePage from '@/page-views/HomePage'
 export const revalidate = 3600
 
 export function generateStaticParams() {
-  return [{ lang: 'dari' }, { lang: 'uzbek' }]
+  return [{ lang: 'en' }, { lang: 'uzbek' }, { lang: 'pashto' }]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {

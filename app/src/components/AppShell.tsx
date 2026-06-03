@@ -19,8 +19,12 @@ interface AppShellProps {
   initialLang?: LangCode
 }
 
-export default function AppShell({ children, initialLang = 'en' }: AppShellProps) {
+export default function AppShell({ children, initialLang = 'dari' }: AppShellProps) {
   const isNested = useContext(AppShellContext)
+
+  if (i18n.language !== initialLang) {
+    void i18n.changeLanguage(initialLang)
+  }
 
   // If this is a nested AppShell inside another AppShell, bypass rendering duplicate chrome
   if (isNested) {

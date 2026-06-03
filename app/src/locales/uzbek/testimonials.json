@@ -1,50 +1,50 @@
 {
-  "label": "Hikoyalar",
-  "heading": "Jamoaviy ta'sir",
-  "description": "Feniksda qo'llab-quvvatlash va muvaffaqiyat topgan afg'on oilalarining haqiqiy hikoyalari.",
+  "label": "حکایه‌لر",
+  "heading": "جامعه‌وی تأثیر",
+  "description": "فینیکس‌ده کومک و موفقیت قازانگن افغان عائله‌لری نینگ حقیقی حکایه‌لری.",
   "filters": {
-    "all": "Barcha hikoyalar",
-    "clients": "Mijozlar hikoyalari",
-    "leaders": "Jamoat rahbarlari"
+    "all": "برچه حکایه‌لر",
+    "clients": "مراجعه‌چیلر حکایه‌لری",
+    "leaders": "جامعه باشلیقلری"
   },
   "storyTypes": {
-    "client": "Mijoz hikoyasi",
-    "leader": "Jamoat rahbari"
+    "client": "مراجعه‌چی حکایه‌سی",
+    "leader": "جامعه باشلیغی"
   },
   "aria": {
-    "viewTestimonial": "{{name}} dan guvohnomani ko'rish",
-    "closeTestimonial": "Guvohnomani yopish",
-    "modalLabel": "{{name}} dan guvohnoma",
-    "previous": "Oldingi",
-    "previousTestimonial": "Oldingi guvohnoma",
-    "next": "Keyingi",
-    "nextTestimonial": "Keyingi guvohnoma",
-    "scrollLeft": "Guvohnomalarni chapga aylantirish",
-    "scrollRight": "Guvohnomalarni o'ngga aylantirish"
+    "viewTestimonial": "{{name}} نینگ فکرینی کوریش",
+    "closeTestimonial": "فکرنی یاپیش",
+    "modalLabel": "{{name}} نینگ فکری",
+    "previous": "آلدینگی",
+    "previousTestimonial": "آلدینگی فکر",
+    "next": "کیینگی",
+    "nextTestimonial": "کیینگی فکر",
+    "scrollLeft": "فکرلرنی چپگه ایله‌نتیرش",
+    "scrollRight": "فکرلرنی اونگگه ایله‌نتیرش"
   },
   "bottomCta": {
-    "heading": "Bizning hikoyamizning bir qismi bo'ling",
-    "text": "Sizga yordam kerak bo'lsa yoki jamoamizni qo'llab-quvvatlashni xohlasangiz, <1>Catholic Charities</1> da sizdan xabar eshitishni xohlaymiz.",
-    "primary": "Hozir yordam olish",
-    "secondary": "Biz bilan bog'laning"
+    "heading": "بیزنینگ حکایه‌میز نینگ بیر قسمی بولینگ",
+    "text": "سیزگه یاردام کیره‌ک بولسه یاکه بیزنینگ جامعه‌میزنی کومک‌لشماقچی بولسنگیز، بیز <1>Catholic Charities</1> ده سیزدن خبر آلیشنی خوش کوره‌میز.",
+    "primary": "حاضر یاردام آلینگ",
+    "secondary": "بیز بیلن باغلنیش قیلینگ"
   },
   "stories": {
-    "context": "Afg'on hamjamiyati a'zosi",
+    "context": "افغان جامعه‌سی نینگ اعضاسی",
     "story1": {
-      "quote": "Men Catholic Charities bilan juda yaxshi tajribaga ega bo'ldim.",
-      "name": "Bahram Jailani"
+      "quote": "من کیثولیک چریتیز بیلن جوده یخش تجربه قازاندیم.",
+      "name": "بهرام جیلانی"
     },
     "story2": {
-      "quote": "Ular bolalarimning muammolari bilan menga juda ko'p yordam berishdi.",
-      "name": "Sulaiman"
+      "quote": "اولر بالالریمنینگ قینچیلیک‌لری بویینچه مِنگه کوپ یاردام بیردیلر.",
+      "name": "سلیمان"
     },
     "story3": {
-      "quote": "Men ushbu ofisdagi ishlaridan juda mamnunman.",
-      "name": "Mushtaba Patang"
+      "quote": "من اوشبو دفترده قیلیاتگن ایشلریدن جوده خرسندمن.",
+      "name": "مجتبی پتنګ"
     },
     "story4": {
-      "quote": "Ular bizga ish ruxsatnomasi, Medicaid va Ijtimoiy ta'minot kartasini olishda yordam berishdi.",
-      "name": "Faizullah Safi"
+      "quote": "اولر بیزگه ایش رخصتنامه‌سی، Medicaid و ایجتماعی تأمینات (Social Security) کارتی بویینچه یاردام بیردیلر.",
+      "name": "فیض الله صافی"
     }
   }
 }

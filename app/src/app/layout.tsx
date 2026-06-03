@@ -20,8 +20,8 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const headersList = await headers()
-  const rawLang = headersList.get('x-lang') || 'en'
-  const validatedLang = isValidLang(rawLang) ? rawLang : 'en'
+  const rawLang = headersList.get('x-lang') || 'dari'
+  const validatedLang = isValidLang(rawLang) ? rawLang : 'dari'
   const dir = headersList.get('x-dir') || getDirection(validatedLang)
   const htmlLang = getHtmlLang(validatedLang)
 

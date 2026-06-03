@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react'
+import type { LangCode } from '../domain/language'
 
-export type LangCode = 'en' | 'dari' | 'uzbek'
+export type { LangCode }
 
-export const SUPPORTED_LANGUAGES: LangCode[] = ['en', 'dari', 'uzbek']
 
 export interface LanguageContextValue {
   lang: LangCode

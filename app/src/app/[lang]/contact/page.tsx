@@ -4,7 +4,7 @@ import { assertValidLang } from '@/lib/routeGuard'
 import ContactPage from '@/page-views/ContactPage'
 
 export function generateStaticParams() {
-  return [{ lang: 'dari' }, { lang: 'uzbek' }]
+  return [{ lang: 'en' }, { lang: 'uzbek' }, { lang: 'pashto' }]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {

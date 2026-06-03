@@ -39,18 +39,19 @@ Once activated, the following endpoints are available (assuming pretty permalink
 | Endpoint | Description |
 |----------|-------------|
 | `/wp-json/wp/v2/events` | List all events |
-| `/wp-json/wp/v2/events?lang=en` | Filter by language |
+| `/wp-json/wp/v2/events?lang=en` | Filter by language (`dari`, `en`, `uzbek`, `pashto`) |
 | `/wp-json/wp/v2/events?slug=my-event` | Get a single event by slug |
 | `/wp-json/wp/v2/site-metadata` | List all page metadata records |
-| `/wp-json/wp/v2/site-metadata?route_key=events&lang=en` | Filter by route and language |
+| `/wp-json/wp/v2/site-metadata?route_key=events&lang=en` | Filter by route and language (`dari`, `en`, `uzbek`, `pashto`) |
 
 ## Language Support
 
-Both post types support three languages:
+Both post types support four languages:
 
 - `en` — English
 - `dari` — Dari (RTL)
-- `uzbek` — Uzbek
+- `uzbek` — Afghan Uzbek (Arabic script, RTL)
+- `pashto` — Pashto (RTL)
 
 Set the language field on each event or metadata record so the Next.js frontend can fetch the correct content per route.
 

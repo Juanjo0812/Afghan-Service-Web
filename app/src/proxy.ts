@@ -1,26 +1,16 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
-const SUPPORTED_LANGS = ['en', 'dari', 'uzbek']
-const LANG_DIR: Record<string, string> = {
-  en: 'ltr',
-  dari: 'rtl',
-  uzbek: 'ltr',
-}
+import { getDirection, LOCALIZED_LANGUAGES, type LangCode } from './domain/language'
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Permanent redirect: /pashto/* → equivalent English path
-  if (pathname.startsWith('/pashto')) {
-    const newPath = pathname.replace(/^\/pashto/, '') || '/'
-    return NextResponse.redirect(new URL(newPath, request.url), 301)
-  }
-
   // Detect language from first path segment
   const firstSegment = pathname.split('/')[1]
-  const lang = SUPPORTED_LANGS.includes(firstSegment) ? firstSegment : 'en'
-  const dir = LANG_DIR[lang] || 'ltr'
+  const lang: LangCode = (LOCALIZED_LANGUAGES as readonly string[]).includes(firstSegment)
+    ? (firstSegment as LangCode)
+    : 'dari'
+  const dir = getDirection(lang)
 
   const response = NextResponse.next()
   response.headers.set('x-lang', lang)

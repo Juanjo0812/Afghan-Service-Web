@@ -78,7 +78,7 @@ class Afghan_Support_Headless_Plugin {
             '_asp_event_location'      => ['type' => 'string',  'description' => 'Event location'],
             '_asp_cta_label'           => ['type' => 'string',  'description' => 'Call-to-action button label'],
             '_asp_cta_url'             => ['type' => 'string',  'description' => 'Call-to-action URL'],
-            '_asp_event_language'      => ['type' => 'string',  'description' => 'Language code: en, dari, or uzbek'],
+            '_asp_event_language'      => ['type' => 'string',  'description' => 'Language code: en, dari, uzbek, or pashto'],
             '_asp_featured_image_id'   => ['type' => 'integer', 'description' => 'Featured image attachment ID'],
         ];
 
@@ -98,7 +98,7 @@ class Afghan_Support_Headless_Plugin {
             '_asp_og_title'            => ['type' => 'string',  'description' => 'Open Graph title'],
             '_asp_og_description'      => ['type' => 'string',  'description' => 'Open Graph description'],
             '_asp_og_image_id'         => ['type' => 'integer', 'description' => 'Open Graph image attachment ID'],
-            '_asp_page_meta_language'  => ['type' => 'string',  'description' => 'Language code: en, dari, or uzbek'],
+            '_asp_page_meta_language'  => ['type' => 'string',  'description' => 'Language code: en, dari, uzbek, or pashto'],
         ];
 
         foreach ($page_meta as $key => $config) {
@@ -185,7 +185,8 @@ class Afghan_Support_Headless_Plugin {
             <select name="_asp_event_language" id="_asp_event_language" style="width:100%">
                 <option value="en" <?php selected($language, 'en'); ?>>English</option>
                 <option value="dari" <?php selected($language, 'dari'); ?>>Dari</option>
-                <option value="uzbek" <?php selected($language, 'uzbek'); ?>>Uzbek</option>
+                <option value="uzbek" <?php selected($language, 'uzbek'); ?>>Afghan Uzbek</option>
+                <option value="pashto" <?php selected($language, 'pashto'); ?>>Pashto</option>
             </select>
         </p>
         <p>
@@ -253,7 +254,8 @@ class Afghan_Support_Headless_Plugin {
             <select name="_asp_page_meta_language" id="_asp_page_meta_language" style="width:100%">
                 <option value="en" <?php selected($language, 'en'); ?>>English</option>
                 <option value="dari" <?php selected($language, 'dari'); ?>>Dari</option>
-                <option value="uzbek" <?php selected($language, 'uzbek'); ?>>Uzbek</option>
+                <option value="uzbek" <?php selected($language, 'uzbek'); ?>>Afghan Uzbek</option>
+                <option value="pashto" <?php selected($language, 'pashto'); ?>>Pashto</option>
             </select>
         </p>
         <?php
@@ -345,12 +347,35 @@ class Afghan_Support_Headless_Plugin {
             '/',
             '/events',
             '/events/[slug]',
-            '/dari',
-            '/dari/events',
-            '/dari/events/[slug]',
+            '/contact',
+            '/immigration',
+            '/resources',
+            '/rights',
+            '/stories',
+            '/en',
+            '/en/events',
+            '/en/events/[slug]',
+            '/en/contact',
+            '/en/immigration',
+            '/en/resources',
+            '/en/rights',
+            '/en/stories',
             '/uzbek',
             '/uzbek/events',
             '/uzbek/events/[slug]',
+            '/uzbek/contact',
+            '/uzbek/immigration',
+            '/uzbek/resources',
+            '/uzbek/rights',
+            '/uzbek/stories',
+            '/pashto',
+            '/pashto/events',
+            '/pashto/events/[slug]',
+            '/pashto/contact',
+            '/pashto/immigration',
+            '/pashto/resources',
+            '/pashto/rights',
+            '/pashto/stories',
         ];
 
         // Send non-blocking remote post request to Next.js API

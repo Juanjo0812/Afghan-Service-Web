@@ -1,34 +1,38 @@
-export type LangCode = 'en' | 'dari' | 'uzbek'
+export type LangCode = 'en' | 'dari' | 'uzbek' | 'pashto'
 
-export const SUPPORTED_LANGUAGES: LangCode[] = ['en', 'dari', 'uzbek']
+export const SUPPORTED_LANGUAGES: LangCode[] = ['dari', 'en', 'uzbek', 'pashto']
 
-/** Languages accepted in `[lang]` route params — English lives at the root. */
-export type LocalizedLangCode = 'dari' | 'uzbek'
+/** Languages accepted in `[lang]` route params — Dari lives at the root. */
+export type LocalizedLangCode = 'en' | 'uzbek' | 'pashto'
 
-export const LOCALIZED_LANGUAGES: LocalizedLangCode[] = ['dari', 'uzbek']
+export const LOCALIZED_LANGUAGES: LocalizedLangCode[] = ['en', 'uzbek', 'pashto']
 
 export const LANG_LABELS: Record<LangCode, string> = {
   en: 'English',
   dari: 'دری',
-  uzbek: "Oʻzbek",
+  uzbek: 'اوزبیکی',
+  pashto: 'پښتو',
 }
 
 export const LANG_SUBLABELS: Record<LangCode, string> = {
   en: 'EN',
   dari: 'Dari',
-  uzbek: 'Uzbek',
+  uzbek: 'Uzbek (AF)',
+  pashto: 'Pashto',
 }
 
 export function getDirection(lang: LangCode): 'ltr' | 'rtl' {
-  return lang === 'dari' ? 'rtl' : 'ltr'
+  return lang === 'en' ? 'ltr' : 'rtl'
 }
 
 export function getHtmlLang(lang: LangCode): string {
   switch (lang) {
     case 'dari':
-      return 'fa'
+      return 'fa-AF'
     case 'uzbek':
-      return 'uz'
+      return 'uz-Arab-AF'
+    case 'pashto':
+      return 'ps-AF'
     default:
       return 'en'
   }

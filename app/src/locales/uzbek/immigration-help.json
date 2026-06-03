@@ -1,43 +1,43 @@
 {
-  "label": "Bepul xizmatlar",
-  "heading": "Feniksdagi afg'on oilalari uchun bepul immigratsiya yordami",
-  "subtitle": "Barcha xizmatlar bepul, maxfiy va dariy, o'zbek va ingliz tillarida mavjud.",
-  "servicesHeading": "Bizning xizmatlarimiz",
-  "servicesSubtext": "Ko'proq ma'lumot olish yoki yordam so'rash uchun istalgan xizmat ustiga bosing",
-  "languagesHeading": "Mavjud tillar",
-  "languagesSubtext": "Bizning xodimlarimiz sizning tilingizda gaplashadi. Tarjima xizmatlari ham mavjud.",
-  "contactHeading": "Immigratsiya jamoamiz bilan bog'laning",
+  "label": "بیپول خدمات‌لر",
+  "heading": "فینیکس‌ده‌گی افغان عائله‌لری اوچون بیپول مهاجرت کومگی",
+  "subtitle": "برچه خدمات‌لر بیپول، محرم و دری، پښتو، اوزبیکي و انگلیسی تیللریده دیر.",
+  "servicesHeading": "بیزنینگ خدمات‌لریمیز",
+  "servicesSubtext": "کوپراق معلومات اولیش یاکه کومک سورش اوچون هر قندای خدمت اوستیگه باسینگ",
+  "languagesHeading": "موجود تیللر",
+  "languagesSubtext": "بیزنینگ خادملریمیز سیزنینگ تیلیگیزده گپیره‌دیلر. ترجمه خدمات‌لری هم موجود.",
+  "contactHeading": "بیزنینگ مهاجرت گروه‌میز بیلن باغلنیش قیلینگ",
   "services": {
     "asylum": {
-      "title": "Boshpana so'rash bo'yicha arizalar",
-      "description": "Tasdiqlovchi va himoya boshpana arizalari bo'yicha yordam"
+      "title": "پناهنده‌لیک رویخط‌لری",
+      "description": "تأیید بولگن و مدافعه‌وی پناهنده‌لیک رویخط‌لری بویینچه یاردام"
     },
     "workPermit": {
-      "title": "Ishlash ruxsatnomasi bo'yicha yordam",
-      "description": "Bandlik uchun ruxsat hujjati (EAD) arizalari va yangilash"
+      "title": "ایش رخصتنامه‌سی بویینچه یاردام",
+      "description": "ایشگه کریش رویخطی (EAD) و اونی ینگیلش"
     },
     "tps": {
-      "title": "TPS - Vaqtinchalik himoyalangan maqom",
-      "description": "TPS ro'yxatdan o'tkazish va qayta ro'yxatdan o'tkazish yordami"
+      "title": "TPS - وقتینچه‌لیک حمایه‌لنگن مقوم",
+      "description": "TPS رویخطگه آلیش و قیتادن رویخطگه آلیش کومگی"
     },
     "greenCard": {
-      "title": "Grin-karta va oilani birlashtirish",
-      "description": "Maqomni tuzatish va oilaviy da'volar"
+      "title": "گرین کارت و عائله‌نی بیرلشتریش",
+      "description": "حالتنی توغریلیش و عائله‌وی عریضه‌لر"
     },
     "adjustmentAct": {
-      "title": "Afg'onistonliklarni moslashtirish qonuni bo'yicha yordam",
-      "description": "Afg'onistonliklarni moslashtirish qonuni qoidalariga ko'ra yordam"
+      "title": "افغانلرنی توغریلیش قانونی بویینچه کومک",
+      "description": "افغانلرنی توغریلیش قانونی مقرراتیگه اساساً یاردام"
     }
   },
-  "languages": "Dariy | O'zbek tili",
+  "languages": "بیز سیزنینگ تیلیگیزده گپیره‌میز: انگلیسی | دری | پښتو | اوزبیکي",
   "contact": {
-    "heading": "Bugunoq qo'ng'iroq qiling - biz sizning tilingizda gaplashamiz va yordam berishga tayyormiz",
-    "name": "Daoud",
+    "heading": "بوگون قو‌نغیروق قیلینگ — بیز سیزنینگ تیلیگیزده گپیره‌میز و یاردام بیرشگه طیارمِز",
+    "name": "داود",
     "phone": "480.416.2333",
     "email": "Dpeshtaz@cc-az.org",
-    "location": "Feniks ofisi - shaxsan yoki telefon orqali qabul",
-    "hours": "Dushanba-Juma | 9:00 dan 17:00 gacha",
-    "cta": "Qayta qo'ng'iroq buyurtma qilish",
-    "role": "Immigratsiya ishlarini boshqaruvchi"
+    "location": "فینیکس دفتری — حضوری یاکه تیلفون آرقه لی ملاقات‌لر",
+    "hours": "دوشنبه–جمعه | ۹ صبح – ۵ بعد از ظهر",
+    "cta": "قیتادن قو‌نغیروق سورش",
+    "role": "مهاجرت ایشلری نینگ مدیری"
   }
 }

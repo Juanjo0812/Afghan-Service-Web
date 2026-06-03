@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "logo": "Afghan Support",
+    "home": "کورپاڼه",
+    "immigrationHelp": "د مهاجرت مرسته",
+    "communityResources": "ټولنیزې سرچینې",
+    "knowYourRights": "خپل حقوق وپېژنئ",
+    "events": "پیښې",
+    "contact": "اړیکه",
+    "getHelp": "همدا اوس مرسته ترلاسه کړئ",
+    "openMenu": "مینو خلاصول",
+    "stories": "کیسې",
+    "closeMenu": "مینو تړل"
+  },
+  "mobileNavigation": "ناوبري",
+  "selectLanguage": "ژبه غوره کړئ",
+  "footer": {
+    "logo": "Afghan Support",
+    "organization": "د کاتولیک چاریټیز ټولنیزو خدماتو، اریزونا یو پروګرام",
+    "tagline": "له ۲۰۲۱ کال راهیسې په فینیکس کې افغان کورنیو ته خدمت کوي.",
+    "quickLinks": "ګړندۍ لینکونه",
+    "home": "کورپاڼه",
+    "immigrationHelp": "د مهاجرت مرسته",
+    "resources": "سرچینې",
+    "events": "پیښې",
+    "contact": "اړیکه",
+    "stories": "کیسې",
+    "languages": "ژبې",
+    "english": "English",
+    "dari": "دری (Dari)",
+    "uzbek": "اوزبیکي (Uzbek)",
+    "pashto": "پښتو (Pashto)",
+    "resourcesHeading": "سرچینې",
+    "resourceLinks": {
+      "englishClasses": "د انګلیسي ژبې ټولګي",
+      "foodBanks": "د خوړو بانکونه",
+      "mentalHealth": "رواني روغتیا",
+      "healthClinics": "روغتیايي کلینیکونه"
+    },
+    "legal": "حقوقي",
+    "legalDisclaimer": "دا معلومات یوازې د تعلیمي موخو لپاره دي او حقوقي مشوره نه ګڼل کیږي.",
+    "bottomText": "کاتولیک چاریټیز اریزونا — له ۱۹۳۳ کال راهیسې اریزونا ته خدمت کوي",
+    "copyright": "© ۲۰۲۶ Afghan Support. ټول حقونه خوندي دي."
+  },
+  "quickAccess": {
+    "immigrationHelp": "د مهاجرت مرسته",
+    "knowYourRights": "خپل حقوق وپېژنئ",
+    "findResources": "سرچینې ومومئ",
+    "upcomingEvents": "راتلونکې پیښې",
+    "immigrationDesc": "د پناه غوښتنې، کاري اجازې، او قانوني وضعیت په اړه وړیا مرسته",
+    "rightsDesc": "کله چې له پولیسو یا ICE سره مخ کیږئ، خپل حقوق زده کړئ",
+    "resourcesDesc": "د انګلیسي ژبې ټولګي، د خوړو بانکونه، روغتیايي کلینیکونه، او نور ډیر څه",
+    "eventsDesc": "روزنیز ورکشاپونه، حقوقي کلینیکونه، او کلتوري غونډې"
+  },
+  "home": {
+    "howCanWeHelp": "موږ څنګه مرسته کولی شو؟",
+    "freeServices": "د افغان کورنیو لپاره وړیا خدمتونه او ملاتړ"
+  },
+  "learnMore": "نور معلومات",
+  "skipLink": "اصلي منځپانګې ته تلل",
+  "chatbotFallback": "ستاسو د پیغام څخه مننه. د قضیې کارکوونکی به په ۱-۲ کاري ورځو کې له تاسو سره اړیکه ونیسي. د بیړنۍ مرستې لپاره، مهرباني وکړئ ۴۸۰.۴۱۶.۲۳۳۳ ته زنګ ووهئ."
+}

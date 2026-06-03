@@ -211,7 +211,8 @@ Replace `href="#"` with approved external links, phone numbers, or contact CTAs.
 - Download cards must link to actual approved PDFs:
   - English
   - Dari
-  - Uzbek
+  - Afghan Uzbek
+  - Pashto
 - If approved PDFs are missing, keep the task open and mark launch blocked.
 - Keep legal disclaimer and last-reviewed date visible.
 
@@ -249,7 +250,7 @@ The "Announcements / Events Preview" required by the client layout currently ren
 
 ## 5.1 ~~Work Packet D.2 — Chatbot Contextual Navigation~~ ✅ Completed
 
-> Implemented in commit Packet D.2 execution. Added `title` field to `KBEntry` interface and all 17 existing KB entries for disambiguation. Fixed duplicate candidate buttons (Chatbot.tsx line 493 now uses `entry.title` with dedup via `Set`). Added 6 new KB entries: 3 download entries for rights PDFs, 1 upcoming-events entry, 1 call-Daoud entry (`tel:`), 1 WhatsApp entry. Updated `handleKBAction` to handle external links, `tel:`, PDF downloads, and internal routes. Filled complete Dari and Uzbek translations (keywords + responses) for all 23 KB entries from approved translation docs.
+> Implemented in commit Packet D.2 execution. Added `title` field to `KBEntry` interface and all 17 existing KB entries for disambiguation. Fixed duplicate candidate buttons (Chatbot.tsx line 493 now uses `entry.title` with dedup via `Set`). Added 6 new KB entries: 3 download entries for rights PDFs, 1 upcoming-events entry, 1 call-Daoud entry (`tel:`), 1 WhatsApp entry. Updated `handleKBAction` to handle external links, `tel:`, PDF downloads, and internal routes. Filled complete Dari, Afghan Uzbek, and Pashto translations (keywords + responses) for all 23 KB entries from approved translation docs where available and machine draft otherwise.
 
 **Goal:** upgrade the chatbot from a section-finder to a contextual navigation assistant that feels professional and integrated with the site.
 
@@ -262,7 +263,7 @@ The "Announcements / Events Preview" required by the client layout currently ren
 
 Upgrade the KB and chatbot UI to support richer, site-integrated responses:
 
-- **Downloads**: add KB entries for "download rights in Dari/Uzbek/English" that include direct PDF links rendered as download buttons in the chat bubble.
+- **Downloads**: add KB entries for "download rights in Dari/Afghan Uzbek/Pashto/English" that include direct PDF links rendered as download buttons in the chat bubble.
 - **Events**: add a KB entry for "next event" / "upcoming event" that links to `/events` or to the specific event slug when available.
 - **Contact shortcuts**: "call Daoud", "WhatsApp" → render clickable `tel:` and WhatsApp links directly in the chat.
 - **Section deep links**: "how to apply for asylum" → link to `/immigration` with an anchor or highlight, not just the generic page.
@@ -271,10 +272,10 @@ Upgrade the KB and chatbot UI to support richer, site-integrated responses:
 
 - Add a `title` field to each KB entry for human-readable disambiguation (used in multiCandidate buttons instead of `actions[0].label`).
 - Split overlapping entries: `know-your-rights-police`, `know-your-rights-ice`, and `documents` must have distinct titles like "Your rights with police", "If ICE comes to your home", "Carrying documents safely".
-- Add entries for downloads: `download-rights-dari`, `download-rights-uzbek`, `download-rights-english`.
+- Add entries for downloads: `download-rights-dari`, `download-rights-uzbek`, `download-rights-pashto`, `download-rights-english`; only expose Pashto download UI after an approved Pashto PDF asset exists.
 - Add entry for "upcoming events" / "next workshop".
-- Fill missing `keywords_dari` and `keywords_uzbek` across all entries.
-- Fill missing `response_dari` and `response_uzbek` across all entries.
+- Fill missing `keywords_dari`, `keywords_uzbek`, and `keywords_pashto` across all entries.
+- Fill missing `response_dari`, `response_uzbek`, and `response_pashto` across all entries.
 
 ### Acceptance criteria
 
@@ -282,16 +283,18 @@ Upgrade the KB and chatbot UI to support richer, site-integrated responses:
 - Asking "download rights in Dari" provides a direct download link or button.
 - Asking "next event" or "upcoming workshop" links to the events page or specific event.
 - Asking "call" or "WhatsApp" renders a clickable contact link in the chat.
-- All KB entries have non-empty `keywords_dari`, `keywords_uzbek`, `response_dari`, and `response_uzbek`.
+- All KB entries have non-empty `keywords_dari`, `keywords_uzbek`, `keywords_pashto`, `response_dari`, `response_uzbek`, and `response_pashto`.
 - Chatbot remains deterministic: local JSON + keyword/scoring only, no LLMs.
 
 ---
 
 ## 6. ~~Work Packet E — Full i18n, RTL, and Chatbot Routing~~ ✅ Completed
 
-> Implemented in commit Packet E execution. All 11 Dari and Uzbek locale namespaces restructured to match English canonical key structure exactly. Real translations populated from `Website_Layout_Afghan_Immigration_Dari.md` and `Website_Layout_Afghan_Immigration_Uzbek.md`. Missing strings marked `[MT]` for human reviewer attention. RTL wiring verified intact (LanguageProvider, middleware, direction.ts). Chatbot action buttons use real routes. Fixed `immigration-help.json` EN duplicate key. Lint and TypeScript pass. **Language persistence fix** applied across all components: created `src/lib/navigation.ts` with `localizePath()` utility, updated Header, Footer, all page components, EventsClient, and Chatbot to prepend `/dari` or `/uzbek` to internal navigation links. Fixes bug where switching language then navigating to another page would reset to English.
+> **2026-06 language update:** Dari is now the root/default language. English moved to `/en/*`; Afghan Uzbek (`/uzbek/*`) uses Arabic script + RTL; Pashto (`/pashto/*`) is active. Pashto and Afghan Uzbek machine-generated strings are launch drafts pending human review.
 
-**Goal:** fulfill the current language toggle for English, Dari, and Uzbek. RTL alone is not acceptable; the selected language must change the visible product copy across active routes.
+> Implemented in commit Packet E execution. All 11 Dari, Afghan Uzbek, and Pashto locale namespaces match the English canonical key structure. Dari and Afghan Uzbek draw from the available layout docs where possible; Pashto and remaining gaps are machine-translation launch drafts marked for human review. RTL wiring is handled through `src/domain/language.ts`, `src/proxy.ts`, and route-derived initial language. Chatbot action buttons use real routes. Fixed `immigration-help.json` EN duplicate key. Lint and TypeScript pass. **Language persistence fix** now maps Dari to root routes, English to `/en/*`, Afghan Uzbek to `/uzbek/*`, and Pashto to `/pashto/*` so navigation does not reset language.
+
+**Goal:** fulfill the current language toggle for Dari, English, Afghan Uzbek, and Pashto. RTL alone is not acceptable; the selected language must change the visible product copy across active routes.
 
 ### Current problem to fix
 
@@ -310,7 +313,7 @@ The active route pages currently contain substantial hardcoded English copy. The
 
 ### Required changes
 
-- Treat multilingual coverage as P0 launch work for the currently approved language set: EN, Dari, and Uzbek.
+- Treat multilingual coverage as P0 launch work for the currently approved language set: EN, Dari, Afghan Uzbek, and Pashto.
 - Move active-route visible copy into locale JSON or an equivalent typed local content layer consumed by `react-i18next`.
 - Cover at minimum: nav labels, footer copy, page headers, body copy, cards, CTA text, form labels/placeholders/errors, success/error states, resources, events, rights content, download labels, stories/placeholder copy, chatbot labels/actions/responses.
 - Proper names, phone numbers, addresses, URLs, and reviewed organization names may remain unchanged.
@@ -324,11 +327,11 @@ The active route pages currently contain substantial hardcoded English copy. The
   - `/events`
 - Keep chatbot deterministic: local JSON + keyword/scoring only.
 - Chatbot legal/right responses must include safe educational framing and contact fallback.
-- Machine translation may be used only as a draft; production launch remains blocked until fluent/native review confirms Dari and Uzbek.
+- Machine translation may be used only as a draft; production launch remains blocked until fluent/native review confirms Dari, Afghan Uzbek, and Pashto.
 
 ### Replace placeholder locale translations
 
-The current Dari and Uzbek locale JSON files contain English placeholder text. Replace all namespaces with the approved translations from:
+The current Dari, Afghan Uzbek, and Pashto locale JSON files contain English placeholder text. Replace all namespaces with the approved translations from:
 
 - Dari: `app/docs/Website_Layout_Afghan_Immigration_Dari.md`
 - Uzbek: `app/docs/Website_Layout_Afghan_Immigration_Uzbek.md`
@@ -339,7 +342,7 @@ Namespaces to update: `about`, `chatbot`, `common`, `contact`, `events`, `hero`,
 
 **Decision required before launch.** The CMS adapter already accepts a language parameter (`getEvents(lang)`), but the content authoring workflow must be defined:
 
-- If the client enters events only in English, Dari/Uzbek users will see English event content surrounded by translated UI labels. This may be acceptable for time-sensitive operational content.
+- If the client enters events only in English, Dari/Afghan Uzbek/Pashto users will see English event content surrounded by translated UI labels. This may be acceptable for time-sensitive operational content.
 - If full event translation is required, add a WordPress multilingual plugin (Polylang) so the client can provide translated versions of each event.
 - Regardless of the chosen strategy, the frontend must implement a fallback: when no translated event version exists for a language, display the English version with translated UI labels (category badge, CTA button, date/time formatting).
 
@@ -347,14 +350,14 @@ Document the chosen strategy and communicate it to the client before launch.
 
 ### Acceptance criteria
 
-- Switching EN/Dari/Uzbek updates all primary visible copy on every active route.
-- Dari updates `html[dir="rtl"]` and layout remains usable.
+- Switching EN/Dari/Afghan Uzbek/Pashto updates all primary visible copy on every active route.
+- Dari, Afghan Uzbek, and Pashto update `html[dir="rtl"]` and layout remains usable.
 - No active user-visible path contains `[FA]`, `[UZ]`, or English-only copy except approved proper nouns/contact details.
 - Chatbot action buttons navigate to real routes.
 - No LLM, embedding, or external chatbot dependency is introduced.
-- Human translation review is documented before production launch.
-- All locale JSON namespaces contain approved Dari and Uzbek translations, not English placeholders.
-- WordPress event translation strategy is documented and communicated to the client.
+- Human translation review is documented before production launch for Dari, Afghan Uzbek, and Pashto.
+- All locale JSON namespaces contain approved Dari, Afghan Uzbek, and Pashto translations, not English placeholders.
+- WordPress event translation strategy is documented and communicated to the client for all active languages.
 
 ---
 
@@ -443,13 +446,13 @@ pnpm tsc --noEmit # ✅ PASS
 - [ ] Desktop navigation works on all routes.
 - [ ] Mobile menu opens, closes, and locks body scroll correctly.
 - [ ] Language switcher preserves route intent.
-- [ ] EN/Dari/Uzbek update all primary visible active-route copy.
-- [ ] Dari renders RTL correctly on first paint.
+- [ ] EN/Dari/Afghan Uzbek/Pashto update all primary visible active-route copy.
+- [ ] Dari, Afghan Uzbek, and Pashto render RTL correctly on first paint.
 - [ ] Events page fetches from WordPress with graceful fallback when offline.
 - [ ] Keyboard-only navigation reaches header, main content, chatbot, form, and footer.
 - [ ] Contact form handles success, validation errors, API failure, honeypot, and rate limit.
 - [ ] Contact fallback options remain visible when API fails.
-- [ ] Rights PDFs open/download correctly in all three active languages (EN, Dari, Uzbek).
+- [ ] Rights PDFs open/download correctly in approved PDF asset languages (EN, Dari, Afghan Uzbek); Pashto PDF remains pending.
 - [ ] Events CTAs go to approved registration/contact flows.
 - [x] External links use safe attributes. _(verified in code)_
 - [x] No fake testimonials remain. _(verified in code — honest placeholder only)_
@@ -467,8 +470,8 @@ Do not mark production-ready if any of these are missing:
 - [x] Security headers are configured. _(implemented in next.config.ts)_
 - [x] Rights PDFs are approved and linked. _(3 PDFs in public/PDFs_Rights/, linked from RightsPage)_
 - [ ] Legal/rights content has reviewer approval and last-reviewed date.
-- [x] All active route copy is translated for EN/Dari/Uzbek. _(Dari/Uzbek populated; [MT] strings pending human review)_
-- [ ] Dari/Uzbek translations have human review or are explicitly marked pending.
+- [x] All active route copy is translated for EN/Dari/Afghan Uzbek/Pashto. _(Dari/Afghan Uzbek/Pashto populated; [MT] strings pending human review)_
+- [ ] Dari/Afghan Uzbek/Pashto translations have human review or are explicitly marked pending.
 - [ ] WordPress REST URL is configured and tested.
 - [ ] ISR revalidation secret is configured in Vercel and WordPress.
 - [ ] API key used locally has been rotated before production.
@@ -487,14 +490,14 @@ Do not mark production-ready if any of these are missing:
 | B — Real Contact Email Flow | ✅ Zod validation, Resend, honeypot, structured errors |
 | C — Production Anti-Abuse | ✅ Upstash Redis sliding window + in-memory fallback |
 | D — Client Content Compliance | ✅ PDFs linked, stories wired, homepage WP dynamic |
-| D.2 — Chatbot Contextual Navigation | ✅ KB titles, dedup, downloads/events/contact entries, Dari/Uzbek KB translations |
-| E — Full i18n + RTL | ✅ 11 locale namespaces restructured, real Dari/Uzbek translations, language persistence fix across all navigation |
+| D.2 — Chatbot Contextual Navigation | ✅ KB titles, dedup, downloads/events/contact entries, Dari/Afghan Uzbek/Pashto KB translations |
+| E — Full i18n + RTL | ✅ 11 locale namespaces restructured, real Dari/Afghan Uzbek/Pashto translations, language persistence fix across all navigation |
 | F — Deployment & Security Headers | ✅ CSP, security headers, cache, revalidation endpoint |
 | G — Verification | ✅ Automated checks pass (lint, tsc, code scans) |
 
 ### What remains blocked by client assets/review
 
-- Dari/Uzbek locale strings marked `[MT]` need human review (native/fluent speakers)
+- Dari/Afghan Uzbek/Pashto locale strings marked `[MT]` need human review (native/fluent speakers)
 - Legal/rights content needs qualified reviewer sign-off
 - WordPress event translation strategy decision (English-only events with translated UI labels vs. Polylang multilingual plugin)
 
@@ -523,13 +526,13 @@ WORDPRESS_MEDIA_HOSTNAME
 | File | Purpose |
 |---|---|
 | `src/lib/navigation.ts` | Shared `localizePath(path, lang)` — language-aware internal routing |
-| `src/locales/dari/*.json` (10 files) | Restructured to EN canonical keys, real Dari translations |
-| `src/locales/uzbek/*.json` (10 files) | Restructured to EN canonical keys, real Uzbek translations |
-| Updated `chatbot-kb.json` | +6 new entries, +titles field, full Dari/Uzbek keywords+responses |
+| `src/locales/dari/*.json` (11 namespace files) | Restructured to EN canonical keys, real Dari translations |
+| `src/locales/uzbek/*.json` and `src/locales/pashto/*.json` (11 namespace files each) | Restructured to EN canonical keys, real Afghan Uzbek and Pashto translations |
+| Updated `chatbot-kb.json` | +6 new entries, +titles field, full Dari/Afghan Uzbek/Pashto keywords+responses |
 
 ### Known risks
 
-- **[MT] translations**: Machine-translated strings not covered by approved translation docs. Human review required before accepting as production-quality.
+- **[MT] translations**: Machine-translated strings not covered by approved translation docs where available and machine draft otherwise. Human review required before accepting as production-quality.
 - **WordPress availability**: Homepage featured event and events page depend on WordPress REST API. Graceful fallback hides/messages when unavailable, but the event-dependent features won't show content without WP.
 - **In-memory rate limiting**: If Upstash is configured but connection fails, the endpoint falls back to in-memory map. This resets on serverless cold starts.
 

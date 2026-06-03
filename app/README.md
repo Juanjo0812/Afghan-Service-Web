@@ -5,7 +5,7 @@ Public, mostly-static, multilingual website for Afghan families in Phoenix, Ariz
 ## Stack
 - **Frontend**: Next.js 16 App Router + React 19 + TypeScript
 - **Styling**: Tailwind CSS
-- **i18n**: react-i18next (English, Dari, Uzbek)
+- **i18n**: react-i18next (Dari default, English, Afghan Uzbek, Pashto)
 - **CMS**: WordPress Headless (events and SEO metadata)
 - **Email**: Resend (contact form)
 - **Rate limiting**: Upstash Redis
@@ -18,7 +18,7 @@ pnpm run dev
 ## Scripts
 - `pnpm run dev` — development server
 - `pnpm lint` — ESLint
-- `pnpm tsc --noEmit` — TypeScript check
+- `pnpm exec tsc --noEmit --incremental false` — TypeScript check
 - `pnpm test` — Vitest (unit tests)
 
 ## Env vars

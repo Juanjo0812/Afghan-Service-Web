@@ -14,7 +14,7 @@
   - حقوق خود را بشناسید (Know Your Rights)
   - رویدادها (Events)
   - تماس (Contact)
-- **تغییر زبان (Language Toggle):** EN | Dari | Uzbek
+- **تغییر زبان (Language Toggle):** Dari | EN | Afghan Uzbek | Pashto
 - **دکمه (CTA Button):** اکنون کمک بگیرید (Get Help Now)
 
 ### Hero Section
@@ -69,7 +69,7 @@
 
 ### زبان‌ها (Languages)
 
-دری | ازبکی (Dari | Uzbek)
+دری | انگلیسی | ازبکی افغانستان | پشتو (Dari | English | Afghan Uzbek | Pashto)
 
 ### بخش تماس (Contact Block)
 
@@ -112,8 +112,9 @@
 کارت‌های "حقوق خود را بشناسید" (اندازه کیف پول) / Know Your Rights Cards (wallet size):
 
 - دانلود (دری) / Download (Dari)
-- دانلود (پشتو) / Download (Uzbek)
+- دانلود (ازبکی افغانستان) / Download (Afghan Uzbek)
 - دانلود (انگلیسی) / Download (English)
+- دانلود (پشتو) / Download (Pashto) — در انتظار فایل تأییدشده
 
 ### بخش ویدیوها (Videos Section)
 

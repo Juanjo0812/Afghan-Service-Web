@@ -14,8 +14,8 @@ The migration must preserve the current frontend design, multilingual behavior, 
 | CMS target | WordPress Headless, first via WordPress Studio locally, then Hostinger WordPress |
 | Editable by client | Events and SEO/Open Graph metadata only |
 | Not editable by client yet | Layout, navigation, legal content, chatbot KB, contact flow, resources, global design |
-| Supported languages | English, Dari, and Uzbek only |
-| Removed language | Pashto must be fully deleted from code, data, routes, types, docs, and CMS schemas |
+| Supported languages | Dari default/root, English, Afghan Uzbek, and Pashto |
+| Restored language | Pashto is active in code, data, routes, types, docs, and CMS language fields |
 | Current design | Preserve as-is; this is an architecture migration, not a redesign |
 | Current public URLs | Preserve `/`, `/events`, `/stories`, `/contact`, etc., plus existing language-prefixed variants |
 | Contact backend | Preserve behavior by moving `api/contact.ts` to a Next.js Route Handler |
@@ -37,7 +37,7 @@ The active project root is `app/`.
 | Shell | `src/components/AppShell.tsx` with Header, Footer, Chatbot, Toaster |
 | Pages | `src/page-views/HomePage.tsx`, `ImmigrationPage.tsx`, `RightsPage.tsx`, `ResourcesPage.tsx`, `EventsPage.tsx`, `StoriesPage.tsx`, `ContactPage.tsx` (rendered by App Router pages) |
 | i18n | `src/lib/i18n.ts`, `src/locales/**`, `LanguageProvider`, language-aware route prefixes via `[lang]` dynamic segment |
-| RTL | Middleware `x-dir` header + `html[dir]` on first paint |
+| RTL | Proxy `x-dir` header + `html[dir]` on first paint |
 | SEO | Next.js `generateMetadata()` with WordPress Headless fallback |
 | Contact API | `src/app/api/contact/route.ts` using Resend, Zod, Upstash rate limiting |
 | Deployment config | `next.config.ts` with security headers; App Router owns routing |
@@ -163,9 +163,9 @@ app/
 
 Preserve current public routes:
 
-- English/default: `/`, `/events`, `/stories`, `/contact`, `/immigration`, `/rights`, `/resources`
-- Other languages: `/dari`, `/dari/events`, `/uzbek`, `/uzbek/events`, etc.
-- Pashto routes such as `/pashto` and `/pashto/events` must not be recreated as pages. The only allowed active Pashto runtime reference is a permanent redirect from old `/pashto/*` links to the equivalent English path.
+- Dari/default: `/`, `/events`, `/stories`, `/contact`, `/immigration`, `/rights`, `/resources`
+- Other languages: `/en`, `/en/events`, `/uzbek`, `/uzbek/events`, `/pashto`, `/pashto/events`, etc.
+- Dari must not be duplicated under `/dari/*`; root paths are canonical for Dari. English, Afghan Uzbek, and Pashto live under `[lang]` route prefixes.
 
 Root English route files and `[lang]` route files should import the same shared route modules to avoid duplicate page logic.
 
@@ -203,30 +203,28 @@ Acceptance criteria:
 
 ---
 
-### Packet B — i18n, RTL, and Pashto Removal
+### Packet B — i18n, RTL, and Pashto Addition
 
-**Goal:** preserve language-aware routing for English, Dari, and Uzbek while deleting every Pashto trace.
+**Goal:** preserve language-aware routing with Dari as the root/default language and active English, Afghan Uzbek, and Pashto route prefixes.
 
 Required changes:
 
-- Keep `LangCode`: `en | dari | uzbek`.
+- Keep `LangCode`: `en | dari | uzbek | pashto`.
 - Move shared language constants to `src/domain/language.ts`.
 - Replace browser-path detection with explicit route-derived language resolution.
-- Root layout reads language from middleware-provided request headers and sets initial `<html lang>` and `<html dir>`.
+- Root layout reads language from `src/proxy.ts` request headers and sets initial `<html lang>` and `<html dir>`.
 - Client `LanguageProvider` still exists for interactive components, but it receives initial language from the route/server instead of guessing from `window.location`.
 - `LanguageSwitcher` uses `next/navigation` and a single route helper to preserve the current page while swapping language prefix.
-- Keep existing English, Dari, and Uzbek locale JSON files; expose them through a dictionary loader rather than rewriting all translations during the framework migration.
-- Delete Pashto locale/data files and imports, including `src/locales/pashto/**`, `src/data/*.pashto.json`, and any Pashto-only references in `src/lib/i18n.ts`.
-- Delete Pashto fields from chatbot/data models, including `keywords_pashto`, `response_pashto`, `ps` locale maps, and Pashto language labels.
-- Delete Pashto route handling, switcher options, tests/checks, docs references, and CMS schema fields.
-- Do not leave dead compatibility types such as `pashto?: string` unless a verified external API still requires them.
+- Keep existing English, Dari, Afghan Uzbek, and Pashto locale JSON files; expose them through the i18n loader rather than rewriting all translations during framework work.
+- Keep Pashto fields in chatbot/data models, including Pashto keywords/responses, locale maps, language labels, switcher options, tests/checks, docs references, and CMS language fields.
+- Do not leave language-specific drift: Pashto and Afghan Uzbek fields must be supported deliberately, not as accidental compatibility leftovers.
 
 Acceptance criteria:
 
-- `/events` renders English.
-- `/dari/events` renders RTL after first paint, not only after user interaction.
-- `/uzbek/events` renders LTR and remains available from the language switcher.
-- Searching the codebase for `pashto`, `Pashto`, `پښتو`, `keywords_pashto`, `response_pashto`, and `/pashto` returns no active runtime references.
+- `/events` renders Dari.
+- `/en/events` renders English without changing the canonical Dari root.
+- `/uzbek/events` renders Afghan Uzbek in RTL and remains available from the language switcher.
+- `/pashto/events` renders Pashto in RTL and remains available from the language switcher.
 - Switching language preserves route intent.
 - Existing translation namespaces remain available to client components.
 
@@ -305,7 +303,7 @@ Acceptance demo:
 Required internal types:
 
 ```ts
-type LangCode = 'en' | 'dari' | 'uzbek'
+type LangCode = 'en' | 'dari' | 'uzbek' | 'pashto'
 
 type EventCategory = 'immigration' | 'legal' | 'cultural' | 'holiday'
 
@@ -463,13 +461,13 @@ Next/Vercel config:
 
 ## 6. Verification Plan
 
-Do not run `npm run build` unless the maintainer explicitly authorizes it.
+Do not run `pnpm run build` unless the maintainer explicitly authorizes it.
 
 Allowed checks:
 
 ```bash
-npm run lint
-npx tsc --noEmit
+pnpm lint
+pnpm exec tsc --noEmit --incremental false
 ```
 
 Manual checks:
@@ -478,8 +476,8 @@ Manual checks:
 - [ ] Header scroll behavior and mobile menu still work.
 - [ ] Chatbot opens and routes to real pages.
 - [ ] Language switcher preserves route intent.
-- [ ] Dari renders RTL correctly.
-- [ ] Pashto has no active data, page route, type, CMS schema, or supported-language references; the only active runtime reference allowed is the intentional `/pashto/*` redirect to English.
+- [ ] Dari, Afghan Uzbek, and Pashto render RTL correctly.
+- [ ] Pashto has active locale JSON, page route, type, chatbot KB fields, CMS language option, and docs references.
 - [ ] Contact form posts to `/api/contact` and preserves current success/error behavior.
 - [ ] WordPress Studio event edits appear on the events page.
 - [ ] WordPress Studio metadata edits appear in rendered metadata.
@@ -518,7 +516,7 @@ Required `implementation_plan.md` changes:
 - Add WordPress Studio proof packet.
 - Add Hostinger WordPress setup packet.
 - Add CMS adapter and metadata packets.
-- Preserve contact API, i18n, chatbot, and security requirements.
+- Preserve contact API, i18n for all four active languages, chatbot, and security requirements.
 
 ---
 

@@ -1,52 +1,52 @@
 {
-  "welcome": "Afghan Supportga xush kelibsiz. Quyidagi mavzulardan birini tanlang yoki savolingizni yozing.",
-  "title": "Kalil yordamchisi",
-  "status": "Onlayn",
-  "closeChat": "Chatni yopish",
-  "inputPlaceholder": "Xabaringizni yozing...",
-  "inputAriaLabel": "Savolingizni yozing",
-  "sendAriaLabel": "Xabar yuborish",
-  "openAssistant": "Chat yordamchisini ochish",
-  "closeAssistant": "Chat yordamchisini yopish",
+  "welcome": "Afghan Supportگه خوش کیلیبسیز. قوییده‌گی موضوع‌لردن بیرینی تنلنگ یاکه سوا‌لینگیزni یازینگ.",
+  "title": "خلیل کومکچیسی",
+  "status": "آنلاین",
+  "closeChat": "چتنی یاپیش",
+  "inputPlaceholder": "خطینگیزنی یازینگ...",
+  "inputAriaLabel": "سوا‌لینگیزنی یازینگ",
+  "sendAriaLabel": "خطنی یوباریش",
+  "openAssistant": "چت کومکچیسینی آچیش",
+  "closeAssistant": "چت کومکچیسینی یاپیش",
   "notification": {
-    "title": "Yordam kerakmi?"
+    "title": "یاردام کیره‌ک‌می؟"
   },
   "openButton": {
-    "label": "Biz bilan chat qiling"
+    "label": "بیز بیلن چت قیلینگ"
   },
-  "quickTopics": "Tezkor mavzular",
-  "multiCandidate": "Sizga yordam berishi mumkin bo'lgan bir necha narsa topdim. Qaysi birini qidiryapsiz?",
-  "fallback": "Xabaringiz uchun rahmat. Kasbiy xodim 1-2 ish kuni ichida siz bilan bog'lanadi. Shoshilinch yordam uchun 480.416.2333 raqamiga qo'ng'iroq qiling.",
+  "quickTopics": "حاضرگی موضوع‌لر",
+  "multiCandidate": "سیزگه کومک بیره آله‌دیگن برچه نرسه‌لرنی تاپدیم. قیسی بیرینی قیدیره‌یاپسیز؟",
+  "fallback": "خطینگیز اوچون تشکر. بیزنینگ کومکچی‌میز ۱-۲ ایش کونی ایچیده سیز بیلن باغلنه‌دی. تیزلیکده یاردام کیره‌ک بولسه، لطفاً ۴۸۰.۴۱۶.۲۳۳۳ راقمیگه قو‌نغیروق قیلینگ.",
   "actions": {
     "immigration": {
-      "label": "Immigratsiya bo'yicha yordam",
-      "response": "Biz Feniksdagi afg'on oilalariga ish boshqaruvi, huquqiy yo'naltirish va hujjatlar yordami kabi immigratsiya qo'llab-quvvatlash xizmatlarini taqdim etamiz. Bizning jamoamiz immigratsiya jarayonida sizga yordam berish va ishonchli huquqiy mutaxassislar bilan bog'lashishi mumkin.",
-      "cta": "Xizmatlarni ko'rish"
+      "label": "مهاجرت یاردامی",
+      "response": "بیز فینیکس‌ده‌گی افغان عائله‌لری اوچون دوسیه باشقریش، حقوقی یوباریش و حجت‌لر بویینچه کومک کبی مهاجرت خدمات‌لرینی تقدیم ایته‌میز. بیزنینگ گروه‌میز مهاجرت پروسه‌سیده سیزگه کومک بیرش و اشانچلی حقوقی متخصصلر بیلن باغلش اوچون طیار دیر.",
+      "cta": "خدمات‌لرنی کوریش"
     },
     "community": {
-      "label": "Hamjamiyat resurslari",
-      "response": "Mahalliy oziq-ovqat banklari, sog'liqni saqlash provayderlari, uy-joy yordami va Feniks hududidagi boshqa zarur xizmatlar bilan bog'laning. Biz afg'on oilalariga yordam berishga tayyor hamjamiyat hamkorlarining tanlangan ro'yxatini saqlaymiz.",
-      "cta": "Resurslarni ko'rish"
+      "label": "جامعه منبع‌لری",
+      "response": "محلی آذیق-آوقت بانکلری، ساغلیقنی سقلش خادملری، اوی-جای یاردامی و فینیکس حدودیده اساسی خدمات‌لر بیلن باغلنیش قیلینگ. بیز افغان عائله‌لریگه کومک بیریشگه طیار بولگن جامعه همکارلری نینگ تنلنگن رویخطینی سقلایمیز.",
+      "cta": "منبع‌لرنی کوریش"
     },
     "rights": {
-      "label": "Huquqlaringizni biling",
-      "response": "Muhojir, qochqin yoki boshpana izlovchi sifatida o'z huquqlaringiz haqida bilib oling. Dariy, o'zbek va ingliz tillaridagi huquqlaringizni biling materiallariga kirish. Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi.",
-      "cta": "Ko'proq o'qish"
+      "label": "حقوق‌لرینگیزنی بیلیب آلینگ",
+      "response": "مهاجر، پناهنده یا پناهجویی سوراوچی سیفاتیده حقوقلرینگیز حقیده بیلیب آلینگ. حقوقلرینگیزنی بیلیش ماتریاللری دری، انگلیسی، افغانستان اوزبیکی و پشتو تیللریده موجود. بو معلومات فقط تعلیمی مقصدلر اوچون و حقوقی مسلحت ایمس.",
+      "cta": "کوپراق اوقیش"
     },
     "events": {
-      "label": "Tadbirlar",
-      "response": "Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
-      "cta": "Tadbirlarni ko'rish"
+      "label": "تدبیرلر",
+      "response": "بیز فینیکس‌ده‌گی افغان جامعه‌سی اوچون منظم کارگاه‌لر، حقوقی کلینیکالر و مدنی تدبیرلر اوتکازه‌میز. کیینگی توقنیش‌لر و رویخطگه آلینیش اوچون تدبیرلر صحیفه‌میزنی تفتیش قیلینگ.",
+      "cta": "تدبیرلرنی کوریش"
     },
     "contact": {
-      "label": "Aloqa ma'lumotlari",
-      "response": "Jamoamizga telefon, elektron pochta yoki WhatsApp orqali murojaat qiling. Bizning ofisimiz 5151 N 19th Ave, Phoenix AZ 85015 manzilida joylashgan. Biz barcha so'rovlarga 1-2 ish kuni ichida javob beramiz.",
-      "cta": "Biz bilan bog'laning"
+      "label": "باغلنیش معلومات‌لری",
+      "response": "بیزنینگ گروه‌میز بیلن تیلفون، ایمیل یاکه واتس‌اپ آرقه لی باغلنیش قیلینگ. دفتریمیز 5151 N 19th Ave, Phoenix AZ 85015 manzilide jayliishgen. بیز برچه سولا‌للرگه ۱-۲ ایش کونی ایچیده جواب بیره میز.",
+      "cta": "بیز بیلن باغلنیش قیلینگ"
     },
     "speak": {
-      "label": "Birorta bilan gaplashish",
-      "response": "Bizning kasbiy xodimlarimiz siz bilan dariy, o'zbek yoki ingliz tilida gaplashishga tayyor. Sizga yo'naltirish, hissiy qo'llab-quvvatlash yoki faqat eshitish uchun kimdir kerak bo'lsa, biz shu yerda.",
-      "cta": "Aloqa o'rnatish"
+      "label": "بیرو بیلن گپیرش",
+      "response": "یول‌یوریق، روحی حمایه یا تینگله‌یدیگن بیر киши کرک بولسه، بیزنینگ کیس‌ورکرلریمیز بیلن باغلنیش قیلینگ. سایت معلوماتی دری، انگلیسی، افغانستان اوزبیکی و پشتو تیللریده موجود.",
+      "cta": "باغلنیش قیلینگ"
     }
   }
 }

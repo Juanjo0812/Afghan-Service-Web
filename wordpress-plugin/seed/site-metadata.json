@@ -30,10 +30,10 @@
     "slug": "home-uzbek",
     "meta": {
       "_asp_route_key": "home",
-      "_asp_seo_title": "Afghan Support Phoenix — Bepul immigratsiya va jamoat yordami",
-      "_asp_seo_description": "Feniks, Arizona'dagi Afg'on oilalari uchun bepul immigratsiya, huquqiy va jamoat yordami. Boshpana arizalari, ish ruxsatnomalari, huquqiy huquqlar, jamoat resurslari va tadbirlar.",
+      "_asp_seo_title": "Afghan Support Phoenix — بیپول مهاجرت و جماعت یاردامی",
+      "_asp_seo_description": "فینیکس، آریزوناده‌گی افغان عائله‌لر اوچون بیپول مهاجرت، حقوقی و جماعت یاردامی. پناهجویی اریزه‌لری، ایش رخصتنامه‌لری، قانونی حقوقلر، جماعت منبعلری و تدبیرلر.",
       "_asp_og_title": "Afghan Support Phoenix",
-      "_asp_og_description": "Feniksdagi Afg'on oilalari uchun bepul immigratsiya va jamoat yordami.",
+      "_asp_og_description": "فینیکسده‌گی افغان عائله‌لر اوچون بیپول مهاجرت و جماعت یاردامی.",
       "_asp_og_image_id": 0,
       "_asp_page_meta_language": "uzbek"
     }
@@ -69,12 +69,38 @@
     "slug": "events-uzbek",
     "meta": {
       "_asp_route_key": "events",
-      "_asp_seo_title": "Kelgusi tadbirlar — Afghan Support Phoenix",
-      "_asp_seo_description": "Feniks, Arizona'dagi bepul immigratsiya seminarlarimiz, yuridik klinikalarimiz, madaniy uchrashuvlarimiz va Afg'on jamoat tadbirlarimizda qatnashing.",
-      "_asp_og_title": "Kelgusi tadbirlar — Afghan Support Phoenix",
-      "_asp_og_description": "Feniksdagi Afg'on oilalari uchun bepul seminarlar, yuridik klinikalar va jamoat tadbirlari.",
+      "_asp_seo_title": "کیلگوسی تدبیرلر — Afghan Support Phoenix",
+      "_asp_seo_description": "فینیکس، آریزوناده‌گی بیپول مهاجرت سیمینارلری، حقوقی کلینیکه‌لر، مدنی یغینلر و افغان جماعت تدبیرلریده قاتنینگ.",
+      "_asp_og_title": "کیلگوسی تدبیرلر — Afghan Support Phoenix",
+      "_asp_og_description": "فینیکسده‌گی افغان عائله‌لر اوچون بیپول سیمینارلر، حقوقی کلینیکه‌لر و جماعت تدبیرلری.",
       "_asp_og_image_id": 0,
       "_asp_page_meta_language": "uzbek"
+    }
+  },
+  {
+    "title": "Home — Pashto",
+    "slug": "home-pashto",
+    "meta": {
+      "_asp_route_key": "home",
+      "_asp_seo_title": "Afghan Support Phoenix — وړیا د مهاجرت او ټولنې مرسته",
+      "_asp_seo_description": "په فینکس، اریزونا کې افغان کورنیو لپاره وړیا د مهاجرت، حقوقي او ټولنیزې مرستې. د پناه غوښتنلیکونه، د کار اجازې، قانوني حقوق، ټولنیزې سرچینې او پېښې.",
+      "_asp_og_title": "Afghan Support Phoenix",
+      "_asp_og_description": "په فینکس کې افغان کورنیو لپاره وړیا د مهاجرت او ټولنې مرسته.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "pashto"
+    }
+  },
+  {
+    "title": "Events — Pashto",
+    "slug": "events-pashto",
+    "meta": {
+      "_asp_route_key": "events",
+      "_asp_seo_title": "راتلونکې پېښې — Afghan Support Phoenix",
+      "_asp_seo_description": "په فینکس، اریزونا کې زموږ وړیا د مهاجرت کارګاهونو، حقوقي کلینیکونو، فرهنګي غونډو او افغان ټولنې پېښو کې ګډون وکړئ.",
+      "_asp_og_title": "راتلونکې پېښې — Afghan Support Phoenix",
+      "_asp_og_description": "په فینکس کې افغان کورنیو لپاره وړیا کارګاهونه، حقوقي کلینیکونه او ټولنیزې پېښې.",
+      "_asp_og_image_id": 0,
+      "_asp_page_meta_language": "pashto"
     }
   }
 ]

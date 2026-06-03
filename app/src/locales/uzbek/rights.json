@@ -1,74 +1,75 @@
 {
-  "label": "Quvvatlantirish",
-  "heading": "Huquqlaringizni biling",
-  "description": "O'z huquqlaringizni tushunish o'zingiz va oilangizni himoya qilish uchun birinchi qadamdir.",
-  "accordionHeading": "Sizning kalit vaziyatlardagi huquqlaringiz",
-  "accordionSubtext": "Huquqlaringiz haqida ko'proq bilish uchun har bir mavzuni bosing",
+  "label": "کومک‌لشیش",
+  "heading": "حقوق‌لرینگیزدن خبردار بولینگ",
+  "description": "حقوق‌لرینگیزنی توشونیش — اوزینگیز بیلن عائله‌ننگیزی حمایه قیلیش اوچون بیرینچی قدم دیر.",
+  "accordionHeading": "موافق شرافت‌لرده حقوق‌لرینگیز",
+  "accordionSubtext": "حقوق‌لرینگیز حقیده کوپراق معلومات اولیش اوچون هر بیر موضوع اوستیگه باسینگ",
   "sections": {
     "police": {
-      "title": "Politsiya yoki immigratsiya xodimlari bilan muloqotda",
-      "bullet1": "Siz immigratsiya maqomingiz haqidagi savollarga javob berishga majbur emassiz.",
-      "bullet2": "Siz o'zingizga, avtomobilingizga yoki uyingizga ruxsatnomasiz qidiruvdan bosh tortish huquqiga egasiz.",
-      "bullet3": "Siz advokat talab qilish huquqiga egasiz. Ayting: \"Men advokat bilan gaplashishni xohlayman.\"",
-      "bullet4": "Siz advokat bilan gaplashmasdan hech qanday hujjatni imzolash huquqiga egasiz.",
-      "bullet5": "Qochmang, yolg'on gapirmang yoki soxta hujjatlarni taqdim etmang. Tinch va odobli bo'ling.",
-      "bullet6": "Agar siz qo'lga olingan bo'lsangiz, telefon qilish huquqiga egasiz."
+      "title": "پلیس یاکه مهاجرت خادmlری بیلن توقنه‌شگنده",
+      "bullet1": "سیز سکوت سقلش حقوقیگه ایگه‌سیز. مهاجرت مقومینگیز حقیده‌گی سوا‌للرگه جواب بیریش ضروری ایمس.",
+      "bullet2": "سیز اوزینگیزنی، موترینگیزنی یاکه اویینگیزنی رخصتنامه‌سیز تفتیش قیلیشلرینی ردد ایتیش حقوقیگه ایگه‌سیز.",
+      "bullet3": "سیز وکیل سورش حقوقیگه ایگه‌سیز. بگویید: \"من وکیل بیلن گپیرماقچیمن.\"",
+      "bullet4": "سیز وکیل بیلن گپیرمسدن هیچ قندای حجتنی امضا قیلمسلیک حقوقیگه ایگه‌سیز.",
+      "bullet5": "قاچمنگ، یلغان گپیرمنگ یاکه یلغان حجت تاپشیرمنگ. آرام و مؤدب بولینگ.",
+      "bullet6": "اگر سیز قولگه آلینگن بولسنگیز، تیلفون قیلیش حقوقیگه ایگه‌سیز."
     },
     "ice": {
-      "title": "Agar immigratsiya xizmati (ICE) uyingizga kelsa",
-      "bullet1": "ICE sudya tomonidan imzolangan ruxsatnomasiz uyingizga kira olmaydi. Ular ruxsatnomani eshik ostidan sildirishlarini so'rang.",
-      "bullet2": "Siz sukut saqlash huquqiga egasiz. Ular amaldagi sud ruxsatnomasini ko'rsatmasa, eshikni ochmang.",
-      "bullet3": "Advokat bilan gaplashmasdan hech qanday hujjatni imzolamang.",
-      "bullet4": "Agar ICE ruxsatsiz kirsaydi, ayting: \"Men bu qidiruvga rozilik bermayman.\"",
-      "bullet5": "Oilaviy xavfsizlik rejasini tayyorlang: Agar oila a'zosi qo'lga olingan bo'lsa, kim bolalarga g'amxo'rlik qilishini bilib oling.",
-      "bullet6": "Muhim hujjatlarni xavfsiz va oson yetib boradigan joyda saqlang.",
-      "bullet7": "Advokatingizning raqami ham bo'lsa, muhim telefon raqamlarni yodlang."
+      "title": "اگر اداره مهاجرت (ICE) اویینگیزگه کیلسه",
+      "bullet1": "ICE قاضی امضا قیلگن رخصتنامه‌سیز اویینگیزگه کیره آلمیدی. اولردن رخصتنامه‌نی ایشیک تگیدن یوبارishلرینی سورنگ.",
+      "bullet2": "سیز سکوت سقلش حقوقیگه ایگه‌سیز. اولer قانونی حکم کورستمه‌گونچه ایشیکنی آچمنگ.",
+      "bullet3": "وکیل بیلن گپیرمسدن هیچ قندای حجتنی امضا قیلمنگ.",
+      "bullet4": "اگر ICE رخصتسیز کیرسه، ایتیڭ: \"من بو تفتیشگه راضی ایمسمن.\"",
+      "bullet5": "عائله خوفسیزلیک ریجه‌سینی طیارلنگ: اگر عائله اعضاسی قولگه آلینسه، بالالرگه کیم غمهورلیک قیلیشینی بیلیب آلینگ.",
+      "bullet6": "مهم حجت‌لرنی خوفسیز و آسان قولیگر ییته‌دیگن اورنده سقلنگ.",
+      "bullet7": "وکیلینگیز نینگ راقمی بیلن بیرگه، مهم تیلفون راقملرینی یادلب آلینگ."
     },
     "documents": {
-      "title": "Hujjatlarni xavfsiz saqlash va olib yurish",
-      "bullet1": "Muhim hujjatlaringizning nusxalarini olib yuring, asllarini emas. Asllarini uyingizdagi xavfsiz joyda saqlang.",
-      "bullet2": "Muhim hujjatlar qatoriga: pasport, I-94, ish ruxsatnomasi, haydash guvohnomasi, sud hujjatlari kiradi.",
-      "bullet3": "Raqamli nusxalar yarating va ularni xavfsiz saqlang (bulutli saqlash, ishonchli oilaga elektron pochta).",
-      "bullet4": "Soxta hujjatlarni olib yurmang — bu jiddiy huquqiy oqibatlarga olib kelishi mumkin.",
-      "bullet5": "Agar sizda amaldagi ish ruxsatnomasi yoki haydash guvohnomasi bo'lsa, uni olib yuring.",
-      "bullet6": "Ofitserlarga berish uchun \"Huquqlaringizni biling\" kartasini (quyida yuklab oling) olib yurishni o'ylab ko'ring."
+      "title": "حجت‌لرنی خوفسیز آلیب یورییش",
+      "bullet1": "مهم حجت‌لرینگیز نینگ کپیه‌لرینی آلیب یورینگ، اصلینی ایمس. اصلینی اویینگیزده‌گی خوفسیز اورنده سقلنگ.",
+      "bullet2": "مهم حجت‌لر قوییده‌گیلردن عبارت: پاسپورت، I-94، ایش رخصتنامه‌سی، موتر هیدش گواهنمه‌سی، محکمه حجت‌لری.",
+      "bullet3": "دیجیتال کپیه‌لر یره تینگ و اولرنی خوفسیز سقلنگ (فضای ابری یاکه ایمیل آرقه لی اشانچلی عائله اعضالریگه).",
+      "bullet4": "یلغان حجت آلیب یورمنگ — بو جدی قانونی خاتالیک‌لرگه آلیب کیلیشی ممکن.",
+      "bullet5": "اگر سیزده قانونی ایش رخصتنامه‌سی یاکه موتر هیدش گواهنمه‌سی بولسه، اونی آلیب یورینگ.",
+      "bullet6": "افسرلرگه بیریش اوچون \"حقوق‌لرینگیزنی بیلیب آلینگ\" کارتی (قوییده یوک لب آلینگ) آلیب یورییشنی اویلب کورینگ."
     }
   },
-  "disclaimer": "Bu ma'lumotlar faqat ta'lim maqsadlarida va huquqiy maslahat hisoblanmaydi. Har bir vaziyat turlicha. Iltimos, o'z sharoitingiz bo'yicha maslahat olish uchun malakali immigratsiya advokati bilan maslahatlashing.",
-  "lastReviewed": "So'nggi ko'rib chiqilgan: May 2026",
+  "disclaimer": "اوشبو معلومات‌لر فقط تعلیمی مقصدلر اوچون دیر و قانونی مصلحت سنلمیدی. هر بیر شرایط فرقی بار. لطفاً سیزنینگ مشخص شرایطینگیز بویینچه مصلحت اولیش اوچون مالیک مهاجرت وکیلی بیلن مصلحت‌لشینگ.",
+  "lastReviewed": "آخری تفتیش: می ۲۰۲۶",
   "downloads": {
-    "heading": "Huquqlaringizni biling kartalarini yuklab oling",
-    "subtext": "Hamyon o'lchamida olib yurish mumkin bo'lgan kartalar. Turli tillarda mavjud.",
-    "comingSoon": "Yuklab olish kartalari tez orada. Iltimos, keyinroq qayta tekshiring yoki",
-    "contactUs": "biz bilan bog'laning",
-    "forCopy": "nusxa olish uchun.",
-    "title": "Huquqlaringizni biling kartalari",
-    "subtitle": "Hamyon o'lchamida kartalarni yuklab oling",
-    "english": "Yuklab olish (Inglizcha)",
-    "dari": "Yuklab olish (Dariy)",
-    "uzbek": "Yuklab olish (O'zbek)"
+    "heading": "کارت‌لرینگیزنی یوک لب آلینگ",
+    "subtext": "حمبون اولچامیده آلیب یورییش ممکن بولگن کارت‌لر. برچه تیللرده موجود.",
+    "comingSoon": "یوک لب اولیش کارت‌لری تیزکونده. لطفاً کیینراق قیتادن تفتیش قیلینگ یاکه",
+    "contactUs": "بیز بیلن باغلنیش قیلینگ",
+    "forCopy": "نسخه اولیش اوچون.",
+    "title": "حقوق‌لرینگیزنی بیلیب آلینگ کارت‌لری",
+    "subtitle": "حمبون اولچامیده کارت‌لرنی یوک لب آلینگ",
+    "english": "دانلود (English)",
+    "dari": "دانلود (دری)",
+    "uzbek": "دانلود (اوزبیکي)",
+    "pashto": "دانلود (پښتو)"
   },
   "videos": {
-    "heading": "Video resurslar",
-    "subtext": "Jamoat rahbarlari va jarayonni bosib o'tganlardan bilib oling",
-    "playCommunity": "Jamoat rahbarlari videosini ijro etish",
-    "pauseCommunity": "Videoni to'xtatish",
-    "playClients": "Mijozlar hikoyalari videosini ijro etish",
-    "pauseClients": "Videoni to'xtatish",
+    "heading": "ویدیو منبع‌لری",
+    "subtext": "جامعه باشلیقلری و بو پروسه‌نی باسیب اوتگن کیشیلردن بیلیب آلینگ",
+    "playCommunity": "جامعه باشلیقلری ویدیوینی پخش قیلیش",
+    "pauseCommunity": "ویدیوینی توخته تیش",
+    "playClients": "مراجعه‌چیلر حکایه‌لری ویدیوینی پخش قیلیش",
+    "pauseClients": "ویدیوینی توخته تیش",
     "community": {
-      "title": "Jamoat rahbarlari gapiradi",
+      "title": "جامعه باشلیقلری سوزله یدیلر",
       "speaker1": {
-        "name": "Dawood Peshtaz",
-        "role": "Ish yurituvchi va aloqa koordinatori"
+        "name": "داود پشتاز",
+        "role": "دوسیه باشقروچی و جامعه اوچون فعالیت بیروچی"
       },
       "speaker2": {
-        "name": "Amir-e-Saheb",
-        "role": "Immigratsiya xizmati xodimi"
+        "name": "امیر صاحب",
+        "role": "مهاجرت خدمات‌لری نینگ خادمی"
       }
     },
     "clients": {
-      "title": "Mijozlar tajribasi",
-      "desc": "Huquqlarini tushunish qanday qilib bu oilalarga yangi hayot qurishga yordam berganini bilib oling."
+      "title": "مراجعه‌چیلر تجربه لری",
+      "desc": "حقوق‌لرینی توشونیش اوشبو عائله‌لرگه قندای قلیب ینگی حیات قوریشگه یاردام بیرگنینی بیلیب آلینگ."
     }
   }
 }

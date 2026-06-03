@@ -29,8 +29,8 @@ Estas piezas ya resolvieron bugs reales. No se deben reescribir ni “limpiar”
 
 **Decisión:** se acepta que el root layout lea `x-lang` y `x-dir` para renderizar desde servidor:
 
-- `html lang="fa" dir="rtl"` en Dari.
-- `html lang="uz" dir="ltr"` en Uzbek.
+- `html lang="fa-AF" dir="rtl"` en Dari raíz.
+- `html lang="uz-Arab-AF" dir="rtl"` en Afghan Uzbek y `html lang="ps-AF" dir="rtl"` en Pashto.
 - `html lang="en" dir="ltr"` en inglés.
 
 **Tradeoff:** esto puede reducir pureza estática/ISR del root, pero evita el flash visual donde Dari aparece primero como LTR y luego cambia a RTL. Para esta web, la UX multilingüe y accesible pesa más.
@@ -103,7 +103,40 @@ Estas piezas ya resolvieron bugs reales. No se deben reescribir ni “limpiar”
 ```json
 {
   "secret": "<WORDPRESS_REVALIDATE_SECRET>",
-  "paths": ["/", "/events", "/dari", "/dari/events", "/uzbek", "/uzbek/events"]
+  "paths": [
+    "/",
+    "/events",
+    "/events/[slug]",
+    "/contact",
+    "/immigration",
+    "/resources",
+    "/rights",
+    "/stories",
+    "/en",
+    "/en/events",
+    "/en/events/[slug]",
+    "/en/contact",
+    "/en/immigration",
+    "/en/resources",
+    "/en/rights",
+    "/en/stories",
+    "/uzbek",
+    "/uzbek/events",
+    "/uzbek/events/[slug]",
+    "/uzbek/contact",
+    "/uzbek/immigration",
+    "/uzbek/resources",
+    "/uzbek/rights",
+    "/uzbek/stories",
+    "/pashto",
+    "/pashto/events",
+    "/pashto/events/[slug]",
+    "/pashto/contact",
+    "/pashto/immigration",
+    "/pashto/resources",
+    "/pashto/rights",
+    "/pashto/stories"
+  ]
 }
 ```
 
@@ -137,6 +170,7 @@ Estas piezas ya resolvieron bugs reales. No se deben reescribir ni “limpiar”
   - `/wp-json/wp/v2/events?lang=en`
   - `/wp-json/wp/v2/events?lang=dari`
   - `/wp-json/wp/v2/events?lang=uzbek`
+  - `/wp-json/wp/v2/events?lang=pashto`
   - `/wp-json/wp/v2/site-metadata?route_key=home&lang=en`
 
 ---
@@ -148,7 +182,7 @@ Estas piezas ya resolvieron bugs reales. No se deben reescribir ni “limpiar”
 - [ ] **Allowlist de `event.ctaUrl`:** permitir solo dominios aprobados para CTAs de WordPress. No es XSS directo, pero sí riesgo de phishing/confianza si alguien mete una URL externa maliciosa.
 - [ ] **Cache tags de detalle:** `getEvents()` y metadata usan tags, pero `getEventBySlug()` debe quedar alineado si se quiere invalidación por tags consistente.
 - [ ] **QA accesibilidad:** validar navegación por teclado en menú, chatbot, modal de registro y formularios.
-- [ ] **Legal/traducciones:** contenido de derechos y traducciones Dari/Uzbek requieren revisión humana/aprobada antes del launch.
+- [ ] **Legal/traducciones:** contenido de derechos y traducciones Dari/Afghan Uzbek/Pashto requieren revisión humana/aprobada antes del launch.
 
 ---
 
@@ -203,7 +237,7 @@ No marcar como production-ready hasta que esto esté cerrado:
 - [ ] Variables Vercel production configuradas.
 - [ ] REST de Hostinger responde correctamente.
 - [ ] QA móvil real en iPhone Safari y Android Chrome.
-- [ ] QA Dari RTL sin flash visual ni duplicación de chrome.
+- [ ] QA Dari/Afghan Uzbek/Pashto RTL sin flash visual ni duplicación de chrome.
 - [ ] Contact/event forms no persisten PII y envían email correctamente.
 - [ ] Contenido legal y traducciones revisadas por humanos/aprobadas.
 

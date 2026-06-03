@@ -45,6 +45,19 @@ import uzTestimonials from '../locales/uzbek/testimonials.json'
 import uzChatbot from '../locales/uzbek/chatbot.json'
 import uzImmigrationHelp from '../locales/uzbek/immigration-help.json'
 
+/* Pashto */
+import psCommon from '../locales/pashto/common.json'
+import psHero from '../locales/pashto/hero.json'
+import psServices from '../locales/pashto/services.json'
+import psAbout from '../locales/pashto/about.json'
+import psRights from '../locales/pashto/rights.json'
+import psResources from '../locales/pashto/resources.json'
+import psEvents from '../locales/pashto/events.json'
+import psContact from '../locales/pashto/contact.json'
+import psTestimonials from '../locales/pashto/testimonials.json'
+import psChatbot from '../locales/pashto/chatbot.json'
+import psImmigrationHelp from '../locales/pashto/immigration-help.json'
+
 export const NAMESPACES = [
   'common',
   'hero',
@@ -71,8 +84,8 @@ export type Namespace = (typeof NAMESPACES)[number]
 i18n
   .use(initReactI18next)
   .init({
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'dari',
+    fallbackLng: 'dari',
     debug: process.env.NODE_ENV === 'development',
     interpolation: { escapeValue: false },
     ns: NAMESPACES,
@@ -116,6 +129,19 @@ i18n
         testimonials: uzTestimonials,
         chatbot: uzChatbot,
         'immigration-help': uzImmigrationHelp,
+      },
+      pashto: {
+        common: psCommon,
+        hero: psHero,
+        services: psServices,
+        about: psAbout,
+        rights: psRights,
+        resources: psResources,
+        events: psEvents,
+        contact: psContact,
+        testimonials: psTestimonials,
+        chatbot: psChatbot,
+        'immigration-help': psImmigrationHelp,
       },
     },
   })

@@ -5,14 +5,14 @@ import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  return generateEventDetailMetadata(slug, 'en')
+  return generateEventDetailMetadata(slug, 'dari')
 }
 
 export const revalidate = 3600
 
 export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const event = await getEventBySlug(slug, 'en')
+  const event = await getEventBySlug(slug, 'dari')
 
   if (!event) {
     notFound()

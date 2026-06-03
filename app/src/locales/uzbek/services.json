@@ -1,31 +1,31 @@
 {
-  "sectionLabel": "Bizning xizmatlarimiz",
-  "heading": "Qanday yordam bera olamiz",
+  "sectionLabel": "بیزنینگ خدمات‌لریمیز",
+  "heading": "قندای یاردام بیره آله‌میز",
   "cards": {
     "immigration": {
-      "title": "Immigratsiya bo'yicha yordam",
-      "description": "Boshpana, ish ruxsatnomasi, TPS, grin-karta va oilani birlashtirish uchun bepul huquqiy maslahat."
+      "title": "مهاجرت یاردامی",
+      "description": "پناهنده‌لیک، ایش رخصتنامه‌سی، TPS، گرین کارت و عائله‌نی بیرلشتریش اوچون بیپول حقوقی مصلحت‌لر."
     },
     "housing": {
-      "title": "Uy-joy",
-      "description": "Feniks hududida uy-joy resurslari, ijaraga yordam va boshpana yo'naltirish bilan bog'laning."
+      "title": "اوی-جای",
+      "description": "فینیکس حدودیده اوی-جای منبع‌لری، کرایه تولش یاردامی و پناه‌جای یوباریش خدمات‌لری بیلن باغلنیش قیلینگ."
     },
     "healthcare": {
-      "title": "Sog'liqni saqlash",
-      "description": "Arzon klinikalar, ruhiy salomatlik xizmatlari va sog'liqni saqlash sug'urtasini ro'yxatdan o'tkazish yordamini toping."
+      "title": "ساغلیقنی سقلش",
+      "description": "ارزان کلینیکالر، روحی ساغلیق خدمات‌لری و ساغلیقنی سقلش سوغورته‌سیگه یازیلیش یاردامینی تاپینگ."
     },
     "education": {
-      "title": "Ta'lim va ESL",
-      "description": "Ingliz tili darslari, GED dasturlari va bolalar va kattalar uchun maktabga qabul yordami."
+      "title": "تعلیم و ESL",
+      "description": "انگلیسی تلی درس‌لری، GED پروگراملری و بالالر بیلن کاته‌لر اوچون مکتبگه شامل بولیش کومگی."
     },
     "employment": {
-      "title": "Bandlik",
-      "description": "Ish qidirish yordami, rezyume yordami, suhbatga tayyorgarlik va kasbiy trening dasturlari."
+      "title": "بندلیک",
+      "description": "ایش قیدیریش کومگی، خلاصه‌نامه (ریزیومه) طیارلش یاردامی، سوحبتگه طیارگرلیک و کسبی تألیم پروگراملری."
     },
     "legal": {
-      "title": "Huquqiy yordam",
-      "description": "Immigratsiya, oila huquqi va fuqarolik ishlarida bepul yoki arzon huquqiy xizmatlar."
+      "title": "حقوقی کومک",
+      "description": "مهاجرت، عائله حقوقی و مدنی ایشلر بویینچه بیپول یاکه ارزان حقوقی خدمات‌لر."
     }
   },
-  "learnMore": "Ko'proq bilish"
+  "learnMore": "کوپراق بیلیش"
 }

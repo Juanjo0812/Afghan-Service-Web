@@ -1,84 +1,84 @@
 {
-  "label": "Bog'lanish",
-  "heading": "Biz sizga yordam berishga tayyormiz",
-  "description": "Bepul va maxfiy yordam uchun murojaat qiling. Bizning jamoamiz sizning tilingizda gaplashadi.",
+  "label": "باغلنیش",
+  "heading": "بیز سیزگه یاردام بیریشگه طیارمِز",
+  "description": "بیپول و محرم یاردام اوچون بیز بیلن باغلنیش قیلینگ. بیزنینگ گروه‌میز سیزنینگ تیلیگیزده گپیره‌دی.",
   "details": {
     "phone": {
-      "label": "Telefon",
+      "label": "تیلفون",
       "value": "480.416.2333"
     },
     "whatsapp": {
-      "label": "WhatsApp",
+      "label": "واتس‌اپ",
       "value": "+1 480.416.2333"
     },
     "email": {
-      "label": "Elektron pochta",
+      "label": "ایمیل",
       "value": "Dpeshtaz@cc-az.org"
     },
     "address": {
-      "label": "Manzil",
+      "label": "منزیل",
       "value": "5151 N 19th Ave, Phoenix AZ 85015"
     }
   },
-  "mapCaption": "CC-AZ ofisi joylashuvi",
-  "mapTitle": "CC-AZ ofisi joylashuvi",
+  "mapCaption": "کیثولیک چریتیز دفتری نینگ اورنی",
+  "mapTitle": "کیثولیک چریتیز دفتری نینگ اورنی",
   "form": {
-    "heading": "Bizga xabar yuboring",
+    "heading": "بیزگه خط یوبارینگ",
     "name": {
-      "label": "Ism",
-      "placeholder": "To'liq ismingizni kiriting"
+      "label": "سیزنینگ نامینگیز",
+      "placeholder": "تولق نامینگیزنی یازینگ"
     },
     "phone": {
-      "label": "Telefon raqami",
-      "placeholder": "Telefon raqamingizni kiriting"
+      "label": "تیلفون راقمی",
+      "placeholder": "تیلفون راقمینگیزنی یازینگ"
     },
     "email": {
-      "label": "Elektron pochta manzili",
-      "placeholder": "Elektron pochta manzili"
+      "label": "ایمیل آدریسی",
+      "placeholder": "ایمیل آدریسی"
     },
     "message": {
-      "label": "Qanday yordam bera olamiz?",
-      "placeholder": "Savolingiz yoki yordam kerak bo'lgan narsani tavsif eting..."
+      "label": "قندای یاردام بیره آله‌میز؟",
+      "placeholder": "سوا‌لینگیز یاکه یاردام کیره‌ک بولگن نرسه حقیده یازینگ..."
     },
-    "submit": "Xabar yuborish",
-    "sending": "Yuborilmoqda...",
+    "submit": "خطنی یوباریش",
+    "sending": "یوباریلماقده...",
     "errors": {
-      "name": "Iltimos, ismingizni kiriting",
-      "phone": "Iltimos, telefon raqamingizni kiriting",
-      "message": "Iltimos, savolingiz yoki xabaringizni kiriting"
+      "name": "لطفاً نامینگیزنی یازینگ",
+      "phone": "لطفاً تیلفون راقمینگیزنی یازینگ",
+      "message": "لطفاً سولا‌لینگیز یاکه خطینگیزنی یازینگ"
     },
     "rateLimited": {
-      "title": "Juda ko'p xabar yuborildi",
-      "retry": "Iltimos, qayta urinishdan oldin {{minutes}} daqiqa kuting.",
-      "wait": "Iltimos, qayta urinishdan oldin biroz kuting.",
-      "urgent": "Agar bu shoshilinch bo'lsa, quyidagi telefon yoki WhatsApp orqali biz bilan bog'laning."
+      "title": "جوده کوپ خط یوباریلدی",
+      "retry": "لطفاً قیتادن اورینیشدن آلدین {{minutes}} دقیقه کّوتیب تّورینگ.",
+      "wait": "لطفاً قیتادن اورینیشدن آلدین بیر آز کّوتیب تّورینگ.",
+      "urgent": "Agar bu jude kerak bolse, quyidagi telefon yoki WhatsApp orqali biz bilan bog'laning."
     },
-    "error": "Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
-    "errorFallback": "Iltimos, qayta urinib ko'ring yoki o'ng tomondagi variantlar orqali biz bilan bog'laning."
+    "error": "خاتالیک یوز بیردی. لطفاً کیینراق قیتادن اورینیب کورینگ.",
+    "errorFallback": "لطفاً قیتادن اورینیب کورینگ، یاکه اونگ تامونده‌گی یوللر آرقه لی بیز بیلن باغلنیش قیلینگ."
   },
   "validation": {
-    "nameMin": "Ism kamida 2 ta belgidan iborat bo'lishi kerak",
-    "phoneRequired": "Telefon raqami majburiy",
-    "phoneInvalid": "Iltimos, to'g'ri telefon raqamini kiriting",
-    "emailInvalid": "Iltimos, to'g'ri elektron pochta manzilini kiriting",
-    "messageMin": "Xabar kamida 10 ta belgidan iborat bo'lishi kerak",
-    "messageMax": "Xabar ko'pi bilan 2000 ta belgidan iborat bo'lishi kerak"
+    "nameMin": "نام باید کمیده ۲ حرفدن عبارت بولسین",
+    "phoneRequired": "تیلفون راqمی ضروری دیر",
+    "phoneInvalid": "لطفاً توغری تیلفون راقمی یازینگ",
+    "emailInvalid": "لطفاً توغری ایمیل یازینگ",
+    "messageMin": "خط کمیده ۱۰ حرفدن عبارت بولسین",
+    "messageMax": "خط کوپیده ۲۰۰۰ حرفدن عبارت بولسین"
   },
   "toast": {
-    "rateLimit": "Juda ko'p urinishlar. Iltimos, keyinroq qayta urinib ko'ring.",
-    "error": "Yuborish muvaffaqiyatsiz tugadi. Iltimos, qayta urinib ko'ring yoki biz bilan bog'laning.",
-    "success": "Xabaringiz uchun rahmat. Tez orada siz bilan bog'lanamiz."
+    "rateLimit": "کوپ مروجه قیلیندی. لطفاً کیینراق قیتادن اورینینگ.",
+    "error": "یوباریش ممکن بولمادی. لطفاً قیتادن اورینیب کورینگ یاکه بیز بیلن باغلنیش قیلینگ.",
+    "success": "خطینگیز اوچون تشکر. تیزکونده سیز بیلن باغلنه‌میز."
   },
   "success": {
-    "title": "Rahmat!",
-    "message": "Biz 24 soat ichida siz bilan bog'lanamiz."
+    "title": "تشکر!",
+    "message": "بیز ۲۴ ساعت ایچیده سیز بیلن باغلنه‌میز."
   },
   "info": {
-    "heading": "Aloqa ma'lumotlari",
-    "whatsapp": "WhatsApp orqali xabar yuboring",
-    "phone": "Bizga qo'ng'iroq qiling",
-    "email": "Bizga elektron pochta yuboring",
-    "hours": "Ofis soatlari",
-    "address": "Bizga tashrif buyuring"
+    "heading": "باغلنیش معلومات‌لری",
+    "whatsapp": "واتس‌اپ بویینچه خط یازینگ",
+    "phone": "بیزگه قو‌نغیروق قیلینگ",
+    "email": "بیزگه ایمیل یازینگ",
+    "hours": "ایش ساعت‌لری",
+    "address": "بیزگه کیلیب کورینگ"
   }
 }

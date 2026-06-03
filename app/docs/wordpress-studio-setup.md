@@ -64,7 +64,7 @@ Seed data lives in `wordpress-plugin/seed/`. You can import it manually or via a
    - Enter the **Title**.
    - Paste the `content` into the editor.
    - Fill in the **Event Details** metabox fields (category, start date, location, etc.).
-   - Set the **Language** field.
+   - Set the **Language** field (`dari`, `en`, `uzbek`, or `pashto`).
    - Publish.
 3. Repeat for all events in the file.
 
@@ -73,7 +73,7 @@ Seed data lives in `wordpress-plugin/seed/`. You can import it manually or via a
 1. Go to **Site Metadata > Add New**.
 2. Create each record from `seed/site-metadata.json`:
    - Enter the **Title** (for admin reference only).
-   - Fill in the **Page Metadata** metabox fields (route key, SEO title, description, OG fields, language).
+   - Fill in the **Page Metadata** metabox fields (route key, SEO title, description, OG fields, language: `dari`, `en`, `uzbek`, or `pashto`).
    - Publish.
 3. Repeat for all metadata records.
 

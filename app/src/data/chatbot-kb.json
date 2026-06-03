@@ -3,13 +3,16 @@
     "id": "asylum",
     "title": "Asylum Application Help",
     "title_dari": "کمک درخواست پناهندگی",
-    "title_uzbek": "Boshpana so'rovi bo'yicha yordam",
+    "title_uzbek": "کمک درخواست پناهجویی",
+    "title_pashto": "د پناه غوښتنلیک کې مرسته",
     "keywords_en": ["asylum", "refugee", "political asylum", "persecution", "afraid to return"],
     "keywords_dari": ["پناهندگی", "پناهنده", "سیاسی", "بازگشت", "ترس"],
-    "keywords_uzbek": ["boshpana", "qochoq", "siyosiy", "qochish"],
+    "keywords_uzbek": ["پناهجویی", "مهاجر", "سیاسی", "قېچیش"],
+    "keywords_pashto": ["پناه", "کډوال", "سیاسی پناه", "تېښته", "د بېرته تلو ویره"],
     "response_en": "Asylum may be available if you fear persecution in your home country. Our legal partners can help you understand the process and prepare your application. This information is for educational purposes only.",
     "response_dari": "اگر از بازگشت به کشور خود می‌ترسید، ممکن است واجد شرایط پناهندگی باشید. شرکای حقوقی ما می‌توانند به شما در درک روند کار و آماده‌سازی درخواست کمک کنند. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Agar vataningizga qaytishdan qo'rqsangiz, boshpana huquqiga ega bo'lishingiz mumkin. Huquqiy hamkorlarimiz jarayonni tushunish va arizangizni tayyorlashda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "اگه وطنینگیزگه قیتیشدن قورقسنگیز، پناهجویی حقیگه ایگه بولیشینگیز ممکن. حقوقی همکارلریمیز جریاننی تُشُنیش و اریزینگیزنی تیارلشده یاردم بیره‌لیدی. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "که تاسو د خپل هېواد ته د بېرته تلو ویره لرئ، نو ممکن د پناه غوښتنې وړ وئ. زموږ قانوني ملګري کولی شي تاسو ته د پروسې د پوهېدلو او غوښتنلیک چمتو کولو کې مرسته وکړي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -20,21 +23,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqiy manbalar", "href": "/immigration" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "حقوقی منبعلر", "href": "/immigration" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "قانوني سرچینې", "href": "/immigration" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "work-permit",
     "title": "Work Permit Assistance",
     "title_dari": "کمک مجوز کار",
-    "title_uzbek": "Ishlash ruxsatnomasi bo'yicha yordam",
+    "title_uzbek": "ایش رخصتنامه‌سی بویینچه یاردم",
+    "title_pashto": "د کار اجازې کې مرسته",
     "keywords_en": ["work permit", "employment authorization", "EAD", "job", "work legally"],
     "keywords_dari": ["مجوز کار", "کار", "شغل", "استخدام"],
-    "keywords_uzbek": ["ishlash ruxsatnomasi", "ish", "xodim", "EAD"],
+    "keywords_uzbek": ["ایش رخصتنامه‌سی", "ایش", "خادم", "EAD"],
+    "keywords_pashto": ["د کار اجازه", "کار", "دنده", "EAD", "قانوني کار"],
     "response_en": "Employment Authorization Documents (EAD) allow you to work legally in the United States. We can connect you with organizations that help with work permit applications. This information is for educational purposes only.",
     "response_dari": "اسناد مجوز اشتغال (EAD) به شما اجازه می‌دهد به طور قانونی در ایالات متحده کار کنید. ما می‌توانیم شما را با سازمان‌هایی که در درخواست مجوز کار کمک می‌کنند، مرتبط سازیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Ishlash ruxsatnomasi hujjatlari (EAD) sizga AQShda qonuniy ishlish imkonini beradi. Biz sizni ish ruxsatnomasi arizalari bilan yordam beradigan tashkilotlar bilan bog'lashimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "ایش رخصتنامه حجتلری (EAD) سیزگه آمریکاده قانونی ایشلش امکانینی بیره‌دی. بیز سیزنی ایش رخصتنامه‌سی اریزه‌لری بیلن یاردم بیره‌دیگن تشکیلاتلر بیلن باغلشیمیز ممکن. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "د کار اجازې اسناد (EAD) تاسو ته اجازه درکوي چې په متحده ایالاتو کې قانوني کار وکړئ. موږ کولی شو تاسو د هغو سازمانونو سره ونښلوو چې د کار اجازې غوښتنلیکونو کې مرسته کوي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Immigration Help", "href": "/immigration" },
@@ -45,21 +55,28 @@
       { "label": "منابع اشتغال", "href": "/resources" }
     ],
     "actions_uzbek": [
-      { "label": "Immigratsiya bo'yicha yordam", "href": "/immigration" },
-      { "label": "Bandlik resurslari", "href": "/resources" }
+      { "label": "مهاجرت بویینچه یاردم", "href": "/immigration" },
+      { "label": "بندلیک منبعلری", "href": "/resources" }
+    ],
+    "actions_pashto": [
+      { "label": "د مهاجرت لارښود", "href": "/immigration" },
+      { "label": "د کار سرچینې", "href": "/resources" }
     ]
   },
   {
     "id": "tps",
     "title": "Temporary Protected Status (TPS)",
     "title_dari": "وضعیت محافظت شده موقت (TPS)",
-    "title_uzbek": "Vaqtinchalik himoyalangan maqom (TPS)",
+    "title_uzbek": "وقتینچلیک حمایه‌لنگن مقام (TPS)",
+    "title_pashto": "موقتي ساتنې حالت (TPS)",
     "keywords_en": ["TPS", "temporary protected status", "protection"],
     "keywords_dari": ["TPS", "وضعیت محافظت شده موقت", "حفاظت"],
-    "keywords_uzbek": ["TPS", "vaqtinchalik himoya", "maqom"],
+    "keywords_uzbek": ["TPS", "وقتینچلیک حمایه", "مقام"],
+    "keywords_pashto": ["TPS", "موقتي ساتنه", "حفاظت"],
     "response_en": "Temporary Protected Status (TPS) provides protection from deportation and work authorization for eligible individuals. Our team can help you check if you qualify and guide you through renewal deadlines. This information is for educational purposes only.",
     "response_dari": "وضعیت محافظت شده موقت (TPS) از اخراج محافظت می‌کند و برای افراد واجد شرایط اجازه کار می‌دهد. تیم ما می‌تواند به شما در بررسی صلاحیت و راهنمایی در مورد مهلت‌های تمدید کمک کند. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Vaqtinchalik himoyalangan maqom (TPS) vajib shaxslar uchun deportatsiyadan himoya qiladi va ish ruxsatini beradi. Jamoamiz sizning sazovorligingizni tekshirish va yangilash muddatlarida yo'l-yo'riq berishda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "وقتینچلیک حمایه‌لنگن مقام (TPS) لایق شخصلرنی دیپورتاتسیه‌دن حمایه قیله‌دی و ایش رخصتی بیره‌دی. جموعه‌میز سیزنینگ لایقلیگینگیزنی تکشیریش و ینگیلش مدتلریده یول-یوریق بیریشده یاردم بیره‌لیدی. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "موقتي ساتنې حالت (TPS) وړو کسانو ته د اخراج څخه ساتنه او د کار اجازه ورکوي. زموږ ډله کولی شي تاسو ته ستاسو وړتیا وپلټي او د تمدید مهلتونو کې لارښوونه درکړي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" }
@@ -68,20 +85,26 @@
       { "label": "منابع حقوقی", "href": "/immigration" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqiy manbalar", "href": "/immigration" }
+      { "label": "حقوقی منبعلر", "href": "/immigration" }
+    ],
+    "actions_pashto": [
+      { "label": "قانوني سرچینې", "href": "/immigration" }
     ]
   },
   {
     "id": "green-card",
     "title": "Green Card & Family Reunification",
     "title_dari": "گرین کارت و پیوستن خانواده",
-    "title_uzbek": "Grin-karta va oilani birlashtirish",
+    "title_uzbek": "گرین‌کارته و عائله‌نی بیرلشتیریش",
+    "title_pashto": "ګرین کارت او د کورنۍ یوځای کېدل",
     "keywords_en": ["green card", "permanent residence", "LPR", "family reunification", "petition"],
     "keywords_dari": ["گرین کارت", "اقامت دائم", "خانواده", "حمایت"],
-    "keywords_uzbek": ["grin-karta", "doimiy yashash", "oilani birlashtirish"],
+    "keywords_uzbek": ["گرین‌کارته", "دائمی یشش", "عائله‌نی بیرلشتیریش"],
+    "keywords_pashto": ["ګرین کارت", "دائمي اوسېدنه", "کورنۍ", "غوښتنلیک"],
     "response_en": "Lawful Permanent Residence (green card) can be obtained through family sponsorship, employment, or other pathways. We can help you explore your options and connect you with trusted legal assistance. This information is for educational purposes only.",
     "response_dari": "اقامت قانونی دائم (گرین کارت) می‌تواند از طریق حمایت خانواده، کار یا سایر مسیرها به دست آید. ما می‌توانیم به شما در بررسی گزینه‌ها و ارتباط با کمک حقوقی مورد اعتماد کمک کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Qonuniy doimiy yashash (grin-karta) oilaviy homiylik, bandlik yoki boshqa yo'llar orqali olinishi mumkin. Biz sizga variantlarni ko'rib chiqish va ishonchli huquqiy yordam bilan bog'lashda yordam berishimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "قانونی دائمی یشش (گرین‌کارته) عائله‌وی حامیلیک، بندلیک یا باشقه یوللر ارقلی آلینیشی ممکن. بیز سیزگه وریانتلرنی کوریب چیقیش و ایشانچلی حقوقی یاردم بیلن باغلشده یاردم بیریشیمیز ممکن. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "قانوني دائمي اوسېدنه (ګرین کارت) د کورنۍ ملاتړ، کار یا نورو لارو له لارې ترلاسه کېدای شي. موږ کولی شو تاسو ته ستاسو انتخابونه وپلټو او د باوري قانوني مرستې سره ونښلوو. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -92,21 +115,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqiy manbalar", "href": "/immigration" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "حقوقی منبعلر", "href": "/immigration" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "قانوني سرچینې", "href": "/immigration" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "afghan-adjustment-act",
     "title": "Afghan Adjustment Act",
     "title_dari": "قانون تطبیق افغان‌ها",
-    "title_uzbek": "Afg'onistonliklarni moslashtirish qonuni",
+    "title_uzbek": "افغانستانلیلرنی موافقلشتیریش قانونی",
+    "title_pashto": "د افغانانو د تنظیم قانون",
     "keywords_en": ["Afghan Adjustment Act", "AAA", "adjustment of status"],
     "keywords_dari": ["قانون تطبیق افغان‌ها", "AAA", "تطبیق وضعیت"],
-    "keywords_uzbek": ["Afg'onistonliklarni moslashtirish qonuni", "AAA", "tuzatish"],
+    "keywords_uzbek": ["افغانستانلیلرنی موافقلشتیریش قانونی", "AAA", "تُزتیش"],
+    "keywords_pashto": ["د افغانانو تنظیم قانون", "AAA", "د حالت تنظیم"],
     "response_en": "The Afghan Adjustment Act aims to provide a pathway to permanent residence for certain Afghan evacuees. Stay informed about legislative updates and how they may affect your case. This information is for educational purposes only.",
     "response_dari": "قانون تطبیق افغان‌ها هدفش ایجاد مسیر اقامت دائم برای برخی آوارگان افغان است. از به‌روزرسانی‌های قانونی و تأثیر آن بر پرونده خود مطلع شوید. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Afg'onistonliklarni moslashtirish qonuni ma'lum afg'on muhojirlariga doimiy yashash yo'lini yaratishga qaratilgan. Qonunchilik yangilanishlari va ularning ishingizga ta'siri haqida xabardor bo'ling. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "افغانستانلیلرنی موافقلشتیریش قانونی معلوم افغان مهاجرلرگه دائمی یشش یولینی یره‌تیشگه قره‌تیلگن. قانونچیلیک ینگیلنیشلری و اولرنینگ ایشینگیزگه تاثیری حقیده خبردار بولینگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "د افغانانو د تنظیم قانون هدف د ځینو افغان لېږدول شویو کسانو لپاره دائمي اوسېدنې ته لار چمتو کول دي. د قانوني نویو خبرونو او ستاسو قضیې باندې اغیزو په اړه خبر اوسئ. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -117,21 +147,28 @@
       { "label": "رویدادها", "href": "/events" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqiy manbalar", "href": "/immigration" },
-      { "label": "Tadbirlar", "href": "/events" }
+      { "label": "حقوقی منبعلر", "href": "/immigration" },
+      { "label": "تدبیرلر", "href": "/events" }
+    ],
+    "actions_pashto": [
+      { "label": "قانوني سرچینې", "href": "/immigration" },
+      { "label": "پېښې", "href": "/events" }
     ]
   },
   {
     "id": "know-your-rights-police",
     "title": "Your Rights with Police",
     "title_dari": "حقوق شما با پلیس",
-    "title_uzbek": "Huquqlaringiz politsiya bilan",
+    "title_uzbek": "پولیسیه بیلن حقوقلرینگیز",
+    "title_pashto": "د پولیسو سره ستاسو حقونه",
     "keywords_en": ["police", "stopped by police", "rights", "remain silent", "warrant"],
     "keywords_dari": ["پلیس", "حقوق", "سکوت", "حکم", "بازرسی"],
-    "keywords_uzbek": ["politsiya", "huquqlar", "sukut", "ruxsatnoma"],
+    "keywords_uzbek": ["پولیسیه", "حقوقلر", "سکوت", "رخصتنامه"],
+    "keywords_pashto": ["پولیس", "حقونه", "چوپتیا", "وارنټ", "تلاشي"],
     "response_en": "You have the right to remain silent and the right to refuse consent to a search without a warrant. Keep a know-your-rights card with you at all times. This information is for educational purposes only.",
     "response_dari": "شما حق سکوت و حق امتناع از بازرسی بدون حکم را دارید. همیشه کارت حقوق خود را همراه داشته باشید. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Siz sukut saqlash va ruxsatnomasiz qidiruvni rad etish huquqiga egasiz. Har doim huquqlaringizni bilish kartochkasini o'zingiz bilan olib yuring. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "سیز سکوت ساقلش و رخصتنامه‌سیز تینتیشنی رد ایتیش حقیگه ایگه‌سیز. هر دایم حقوقلرینگیزنی بیلیش کارته‌سینی اوزینگیز بیلن الیب یورینگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "تاسو حق لرئ چې چوپ پاتې شئ او حق لرئ چې پرته له وارنټ تلاشي ورکولو څخه انکار وکړئ. تل د خپلو حقونو کارت له ځان سره ولرئ. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
@@ -142,21 +179,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqlaringizni biling", "href": "/rights" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "حقوقلرینگیزنی بیلینگ", "href": "/rights" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "خپل حقونه وپېژنئ", "href": "/rights" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "know-your-rights-ice",
     "title": "If ICE Comes to Your Home",
     "title_dari": "اگر اداره مهاجرت به خانه شما آمد",
-    "title_uzbek": "Agar ICE uyingizga kelsa",
+    "title_uzbek": "اگه ICE اویینگیزگه کیلسه",
+    "title_pashto": "که ICE ستاسو کور ته راغلل",
     "keywords_en": ["ICE", "immigration", "immigration agent", "ICE at home", "deportation"],
     "keywords_dari": ["ICE", "مهاجرت", "مامور مهاجرت", "در", "اخراج"],
-    "keywords_uzbek": ["ICE", "immigratsiya", "mamur", "uy", "deportatsiya"],
+    "keywords_uzbek": ["ICE", "مهاجرت", "مأمور", "اوی", "دیپورتاتسیه"],
+    "keywords_pashto": ["ICE", "مهاجرت", "مأمور", "کور", "اخراج"],
     "response_en": "You have the right to remain silent, the right to refuse entry without a warrant, and the right to speak with an attorney. Do not open the door unless ICE shows a judicial warrant. This information is for educational purposes only.",
     "response_dari": "شما حق سکوت، حق امتناع از باز کردن در بدون حکم قضایی و حق صحبت با وکیل را دارید. در را باز نکنید مگر اینکه ICE حکم قضایی نشان دهد. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Siz sukut saqlash, sud ruxsatnomasisiz eshikni ochishni rad etish va advokat bilan gaplashish huquqiga egasiz. Agar ICE sud ruxsatnomasini ko'rsatmasa, eshikni ochmang. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "سیز سکوت ساقلش، محکمه رخصتنامه‌سیسیز ایشیکنی آچیشنی رد ایتیش و ادووکات بیلن گپلشیش حقیگه ایگه‌سیز. اگه ICE محکمه رخصتنامه‌سینی کورستمسه، ایشیکنی آچمنگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "تاسو حق لرئ چوپ پاتې شئ، حق لرئ پرته له قضایي وارنټ دروازه مه خلاصوئ، او حق لرئ له وکیل سره خبرې وکړئ. دروازه مه خلاصوئ تر هغه چې ICE قضایي وارنټ وښیي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" },
@@ -167,21 +211,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqlaringizni biling", "href": "/rights" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "حقوقلرینگیزنی بیلینگ", "href": "/rights" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "خپل حقونه وپېژنئ", "href": "/rights" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "documents",
     "title": "Carrying Documents Safely",
     "title_dari": "حمل ایمن مدارک",
-    "title_uzbek": "Hujjatlarni xavfsiz olib yurish",
+    "title_uzbek": "حجتلرنی خاوفسیز الیب یوریش",
+    "title_pashto": "د اسنادو خوندي لېږدول",
     "keywords_en": ["documents", "passport", "papers", "carry documents", "copies"],
     "keywords_dari": ["مدارک", "پاسپورت", "کپی", "حمل"],
-    "keywords_uzbek": ["hujjatlar", "pasport", "nusxa", "olib yurish"],
+    "keywords_uzbek": ["حجتلر", "پاسپورت", "نسخه", "الیب یوریش"],
+    "keywords_pashto": ["اسناد", "پاسپورټ", "کاپي", "لېږدول"],
     "response_en": "Always carry copies of important documents, not originals. Keep a folder with your passport, immigration papers, and emergency contacts in a safe place. This information is for educational purposes only.",
     "response_dari": "همیشه کپی مدارک مهم را حمل کنید، نه اصل آن‌ها را. یک پوشه با پاسپورت، اسناد مهاجرتی و مخاطبین اضطراری را در جای امن نگهداری کنید. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Muhim hujjatlarning aslini emas, nusxalarini olib yuring. Pasport, immigratsiya hujjatlari va favqulodda aloqa ma'lumotlari bilan jildni xavfsiz joyda saqlang. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "مهم حجتلرنینگ اصلینی ایمس، نسخه‌لرینی الیب یورینگ. پاسپورت، مهاجرت حجتلری و فوق‌العاده آلاقه معلوماتلری بیلن جیلدنی خاوفسیز جایده ساقلنگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "تل مهمو اسنادو کاپیانې له ځان سره ولرئ، اصلي نه. یوه پوشه چې پکې پاسپورټ، د مهاجرت کاغذونه او بیړني اړیکې وي په خوندي ځای کې وساتئ. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "rights",
     "actions": [
       { "label": "Know Your Rights", "href": "/rights" }
@@ -190,20 +241,26 @@
       { "label": "حقوق خود را بشناسید", "href": "/rights" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqlaringizni biling", "href": "/rights" }
+      { "label": "حقوقلرینگیزنی بیلینگ", "href": "/rights" }
+    ],
+    "actions_pashto": [
+      { "label": "خپل حقونه وپېژنئ", "href": "/rights" }
     ]
   },
   {
     "id": "esl",
     "title": "English Classes (ESL)",
     "title_dari": "کلاس‌های انگلیسی (ESL)",
-    "title_uzbek": "Ingliz tili darslari (ESL)",
+    "title_uzbek": "انگلیس تیلی درسلری (ESL)",
+    "title_pashto": "د انګلیسي ټولګي (ESL)",
     "keywords_en": ["ESL", "English", "English classes", "learn English", "language"],
     "keywords_dari": ["انگلیسی", "کلاس", "زبان", "آموزش"],
-    "keywords_uzbek": ["ingliz tili", "dars", "til", "o'rganish"],
+    "keywords_uzbek": ["انگلیس تیلی", "درس", "تیل", "اورگنیش"],
+    "keywords_pashto": ["انګلیسي", "ټولګي", "ژبه", "زده کړه"],
     "response_en": "Free and low-cost English classes are available through local community colleges, libraries, and nonprofit organizations. Learning English can help with employment and daily life. This information is for educational purposes only.",
     "response_dari": "کلاس‌های رایگان و کم‌هزینه انگلیسی از طریق کالج‌های جامعه، کتابخانه‌ها و سازمان‌های غیرانتفاعی در دسترس است. یادگیری انگلیسی می‌تواند در کار و زندگی روزمره کمک کند. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Mahalliy jamoat kollejlari, kutubxonalar va notijorat tashkilotlar orqali bepul va arzon ingliz tili darslari mavjud. Ingliz tilini o'rganish bandlik va kundalik hayotda yordam berishi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "محلی جماعت کالجلری، کتابخانه‌لر و نفع کوزلمیدیگن تشکیلاتلر ارقلی بیپول و ارزان انگلیس تیلی درسلری موجود. انگلیس تیلینی اورگنیش بندلیک و کوندلیک حیاتده یاردم بیره‌لیدی. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "وړیا او ارزانه انګلیسي ټولګي د سیمه ایزو پوهنتونونو، کتابتونونو او ناګټه سازمانونو له لارې شتون لري. د انګلیسي زده کړه د کار او ورځني ژوند کې مرسته کولی شي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -212,20 +269,26 @@
       { "label": "منابع اجتماعی", "href": "/resources" }
     ],
     "actions_uzbek": [
-      { "label": "Hamjamiyat resurslari", "href": "/resources" }
+      { "label": "جماعت منبعلری", "href": "/resources" }
+    ],
+    "actions_pashto": [
+      { "label": "ټولنیزې سرچینې", "href": "/resources" }
     ]
   },
   {
     "id": "healthcare",
     "title": "Health Clinics & Medical Care",
     "title_dari": "کلینیک‌های بهداشتی و مراقبت پزشکی",
-    "title_uzbek": "Tibbiy klinikalar va tibbiy yordam",
+    "title_uzbek": "طبی کلینیکه‌لر و طبی یاردم",
+    "title_pashto": "روغتیایي کلینیکونه او طبي پاملرنه",
     "keywords_en": ["healthcare", "doctor", "medical", "clinic", "health insurance"],
     "keywords_dari": ["سلامت", "دکتر", "پزشکی", "درمان", "بیمه"],
-    "keywords_uzbek": ["tibbiy", "doktor", "klinika", "sog'liq"],
+    "keywords_uzbek": ["طبی", "داکتر", "کلینیکه", "صاغلیق"],
+    "keywords_pashto": ["روغتیا", "ډاکټر", "طبي", "کلینیک", "بیمه"],
     "response_en": "Several community health centers in Phoenix provide care regardless of immigration status or ability to pay. We can help you find a clinic near you. This information is for educational purposes only.",
     "response_dari": "چندین مرکز بهداشت جامعه در فینیکس مراقبت ارائه می‌دهند بدون توجه به وضعیت مهاجرتی یا توانایی پرداخت. ما می‌توانیم به شما در یافتن کلینیک نزدیک کمک کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Feniksdagi bir nechta jamoat salomatligi markazlari immigratsiya holatiga yoki to'lov qilish qobiliyatiga qarab tibbiy yordam ko'rsatadi. Biz sizga yaqin klinika topishda yordam berishimiz mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "فینیکسدگی بیر نیچه جماعت صاغلیق مرکزلری مهاجرت حالتیگه یا تولو قابلیتیگه قره‌ب طبی یاردم کورسته‌دی. بیز سیزگه یقین کلینیکه تاپیشده یاردم بیریشیمیز ممکن. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "په فینکس کې ډېری ټولنیزې روغتیایي مرکزونه پرته له مهاجرت حالت یا تادیې وړتیا پاملرنه وړاندې کوي. موږ کولی شو تاسو ته نژدې کلینیک موندلو کې مرسته وکړو. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
@@ -236,21 +299,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Hamjamiyat resurslari", "href": "/resources" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "جماعت منبعلری", "href": "/resources" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "ټولنیزې سرچینې", "href": "/resources" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "food",
     "title": "Food Banks & Meal Programs",
     "title_dari": "بانک‌های غذا و برنامه‌های وعده غذایی",
-    "title_uzbek": "Oziq-ovqat banklari va ovqat dasturlari",
+    "title_uzbek": "اوزیق-اووقت بانکلری و تاعام برنامه‌لری",
+    "title_pashto": "د خوراکي بانکونه او د خوراک پروګرامونه",
     "keywords_en": ["food", "food bank", "hungry", "meals", "groceries"],
     "keywords_dari": ["غذا", "بانک غذا", "گرسنه", "وعده"],
-    "keywords_uzbek": ["oziq-ovqat", "bank", "ochlik", "taom"],
+    "keywords_uzbek": ["اوزیق-اووقت", "بانک", "آچلیک", "تاعام"],
+    "keywords_pashto": ["خوراک", "د خوراکي بانک", "وږی", "ډوډۍ"],
     "response_en": "Food banks and meal programs throughout Phoenix offer free groceries and hot meals. No ID or proof of income is required at most locations. This information is for educational purposes only.",
     "response_dari": "بانک‌های غذا و برنامه‌های وعده غذایی در سراسر فینیکس مواد غذایی و وعده‌های گرم رایگان ارائه می‌دهند. در اکثر مکان‌ها نیاز به شناسنامه یا اثبات درآمد نیست. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Feniks bo'ylab oziq-ovqat banklari va ovqat dasturlari bepul oziq-ovqat va issiq taomlar taklif qiladi. Ko'pchilik joylarda ID yoki daromad dalili talab qilinmaydi. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "فینیکس بویلب اوزیق-اووقت بانکلری و تاعام برنامه‌لری بیپول اوزیق-اووقت و ایسیق تاعاملر تقدیم قیله‌دی. کوپچیلیک جایلرده هویت یا داخل دلیلی طلب قیلینمیدی. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "په فینکس کې د خوراکي بانکونه او د خوراک پروګرامونه وړیا خوراکي توکي او ګرم ډوډۍ وړاندې کوي. په ډېرو ځایونو کې هویت یا عاید ثابتول اړین ندي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -259,20 +329,26 @@
       { "label": "منابع اجتماعی", "href": "/resources" }
     ],
     "actions_uzbek": [
-      { "label": "Hamjamiyat resurslari", "href": "/resources" }
+      { "label": "جماعت منبعلری", "href": "/resources" }
+    ],
+    "actions_pashto": [
+      { "label": "ټولنیزې سرچینې", "href": "/resources" }
     ]
   },
   {
     "id": "housing",
     "title": "Housing & Shelter Assistance",
     "title_dari": "کمک مسکن و سرپناه",
-    "title_uzbek": "Uy-joy va turar joy yordami",
+    "title_uzbek": "اوی-جای و تورر جای یاردمی",
+    "title_pashto": "د استوګنې او سرپناه مرسته",
     "keywords_en": ["housing", "shelter", "rent", "apartment", "homeless"],
     "keywords_dari": ["مسکن", "پناهگاه", "اجاره", "خانه"],
-    "keywords_uzbek": ["uy-joy", "uy", "ijara", "turar joy"],
+    "keywords_uzbek": ["اوی-جای", "اوی", "ایجاره", "تورر جای"],
+    "keywords_pashto": ["استوګنه", "سرپناه", "کرایه", "کور"],
     "response_en": "Emergency shelter, transitional housing, and rental assistance programs are available in Maricopa County. Our team can connect you with housing navigators. This information is for educational purposes only.",
     "response_dari": "برنامه‌های سرپناه اضطراری، مسکن انتقالی و کمک اجاره در شهرستان ماریکوپا در دسترس است. تیم ما می‌تواند شما را با راهنمایان مسکن مرتبط سازد. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Marikopa okrugida favqulodda turar joy, o'tish davri uy-joyi va ijara yordami dasturlari mavjud. Bizning jamoamiz sizni uy-joy yo'lboshchilari bilan bog'lashi mumkin. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "ماریکوپا اوکروگیده فوق‌العاده تورر جای، اوتیش دوری اوی-جایی و ایجاره یاردمی برنامه‌لری موجود. بیزنینگ جموعه‌میز سیزنی اوی-جای یولباشچیلری بیلن باغلشی ممکن. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "په مارېکوپا کاونټي کې بیړنۍ سرپناه، لنډمهاله استوګنه او د کرایې مرستې پروګرامونه شتون لري. زموږ ډله کولی شي تاسو د استوګنې لارښودونو سره ونښلوي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" },
@@ -283,21 +359,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Hamjamiyat resurslari", "href": "/resources" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "جماعت منبعلری", "href": "/resources" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "ټولنیزې سرچینې", "href": "/resources" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "employment",
     "title": "Job Training & Employment",
     "title_dari": "آموزش شغلی و استخدام",
-    "title_uzbek": "Ish o'rganish va bandlik",
+    "title_uzbek": "ایش اورگنیش و بندلیک",
+    "title_pashto": "د دندې روزنه او استخدام",
     "keywords_en": ["employment", "job", "work", "career", "resume"],
     "keywords_dari": ["استخدام", "کار", "شغل", "رزومه", "آموزش"],
-    "keywords_uzbek": ["bandlik", "ish", "kasb", "rezyume"],
+    "keywords_uzbek": ["بندلیک", "ایش", "کسب", "ریزیومه"],
+    "keywords_pashto": ["استخدام", "دنده", "کار", "سیوه نامه"],
     "response_en": "Local workforce development centers offer job training, resume assistance, and interview preparation. Many programs are free and open to all. This information is for educational purposes only.",
     "response_dari": "مراکز توسعه نیروی کار محلی آموزش شغلی، کمک رزومه و آمادگی مصاحبه ارائه می‌دهند. بسیاری از برنامه‌ها رایگان و برای همه باز هستند. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Mahalliy mehnat bozori rivojlanish markazlari ish o'rganish, rezyume yordami va suhbatga tayyorgarlik taklif qiladi. Ko'pgina dasturlar bepul va barcha uchun ochiq. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "محلی مهنت بازاری ریوجلنیش مرکزلری ایش اورگنیش، ریزیومه یاردمی و سوحبتگه تیارگرلیک تقدیم قیله‌دی. کوپگینه برنامه‌لر بیپول و همه اوچون آچیق. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "د سیمه ایزو کار ځواک پراختیا مرکزونه د دندې روزنه، سیوه نامې مرسته او د مرکې چمتووالی وړاندې کوي. ډېری پروګرامونه وړیا او ټولو لپاره خلاص دي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "resources",
     "actions": [
       { "label": "Community Resources", "href": "/resources" }
@@ -306,20 +389,26 @@
       { "label": "منابع اجتماعی", "href": "/resources" }
     ],
     "actions_uzbek": [
-      { "label": "Hamjamiyat resurslari", "href": "/resources" }
+      { "label": "جماعت منبعلری", "href": "/resources" }
+    ],
+    "actions_pashto": [
+      { "label": "ټولنیزې سرچینې", "href": "/resources" }
     ]
   },
   {
     "id": "events",
     "title": "Upcoming Workshops & Events",
     "title_dari": "کارگاه‌ها و رویدادهای پیش رو",
-    "title_uzbek": "Kelgusi seminarlar va tadbirlar",
+    "title_uzbek": "کیلگوسی سیمینارلر و تدبیرلر",
+    "title_pashto": "راتلونکي کارګاهونه او پېښې",
     "keywords_en": ["events", "workshop", "clinic legal", "citizenship", "cultural"],
     "keywords_dari": ["رویداد", "کارگاه", "کلینیک", "فرهنگی", "برنامه"],
-    "keywords_uzbek": ["tadbir", "seminar", "klinika", "madaniy", "taqvim"],
+    "keywords_uzbek": ["تدبیر", "سیمینار", "کلینیکه", "مدنی", "تقویم"],
+    "keywords_pashto": ["پېښې", "کارګاه", "کلینیک", "فرهنګي", "پروګرام"],
     "response_en": "We host regular workshops, legal clinics, and cultural events for the Afghan community in Phoenix. Check our events page for upcoming dates and registration. This information is for educational purposes only.",
     "response_dari": "ما کارگاه‌ها، کلینیک‌های حقوقی و رویدادهای فرهنگی منظم برای جامعه افغان در فینیکس برگزار می‌کنیم. برای تاریخ‌های پیش رو و ثبت‌نام، صفحه رویدادهای ما را بررسی کنید. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Biz Feniksdagi afg'on hamjamiyati uchun muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "بیز فینیکسدگی افغان جماعتی اوچون منتظم سیمینارلر، حقوقی کلینیکه‌لر و مدنی تدبیرلر اوتکزه‌میز. کیلگوسی سنه‌لر و رویخطدن اوتیش اوچون تدبیرلر صحیفه‌میزنی تکشیرینگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "موږ د فینکس افغان ټولنې لپاره منظمې کارګاهونه، حقوقي کلینیکونه او فرهنګي پېښې جوړوو. د راتلونکو نېټو او ثبت نام لپاره زموږ د پېښو پاڼه وګورئ. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "events",
     "actions": [
       { "label": "Events", "href": "/events" },
@@ -330,21 +419,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Tadbirlar", "href": "/events" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "تدبیرلر", "href": "/events" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "پېښې", "href": "/events" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "contact",
     "title": "Contact Us",
     "title_dari": "تماس با ما",
-    "title_uzbek": "Biz bilan bog'laning",
+    "title_uzbek": "بیز بیلن باغلنینگ",
+    "title_pashto": "موږ سره اړیکه",
     "keywords_en": ["contact", "phone", "call", "email", "help", "speak to someone"],
     "keywords_dari": ["تماس", "تلفن", "ایمیل", "کمک", "صحبت"],
-    "keywords_uzbek": ["aloqa", "telefon", "qo'ng'iroq", "yordam"],
+    "keywords_uzbek": ["آلاقه", "تلفون", "قونگیروق", "یاردم"],
+    "keywords_pashto": ["اړیکه", "تلیفون", "زنګ", "بریښنالیک", "مرسته"],
     "response_en": "You can reach us by phone at 480.416.2333, by email, or by visiting our office. Our team is here to help connect you with the resources you need. This information is for educational purposes only.",
     "response_dari": "می‌توانید با ما از طریق تلفن یا ایمیل تماس بگیرید. تیم ما برای کمک به شما در دسترس است. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Biz bilan telefon orqali yoki elektron pochta orqali bog'lanishingiz mumkin. Jamoamiz sizga kerakli resurslarni topishda yordam berish uchun shu yerda. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "بیز بیلن تلفون ارقلی یا ایلکترون پوچته ارقلی باغلنیشینگیز ممکن. جموعه‌میز سیزگه کیرکلی منبعلرنی تاپیشده یاردم بیریش اوچون شو ییرده. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "تاسو کولی شئ موږ سره په تلیفون 480.416.2333، بریښنالیک یا زموږ دفتر ته د راتلو له لارې اړیکه ونیسئ. زموږ ډله دلته ده چې تاسو ته اړینو سرچینو سره مرسته وکړي. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "contact",
     "actions": [
       { "label": "Contact Us", "href": "/contact" },
@@ -355,21 +451,28 @@
       { "label": "با کسی صحبت کنید", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Biz bilan bog'laning", "href": "/contact" },
-      { "label": "Birortasi bilan gaplashish", "href": "/contact" }
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" },
+      { "label": "بیراوته بیلن گپلشیش", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "موږ سره اړیکه", "href": "/contact" },
+      { "label": "له چا سره خبرې وکړئ", "href": "/contact" }
     ]
   },
   {
     "id": "legal-aid",
     "title": "Free & Low-Cost Legal Aid",
     "title_dari": "کمک حقوقی رایگان و کم‌هزینه",
-    "title_uzbek": "Bepul va arzon huquqiy yordam",
+    "title_uzbek": "بیپول و ارزان حقوقی یاردم",
+    "title_pashto": "وړیا او ارزانه قانوني مرسته",
     "keywords_en": ["legal aid", "lawyer", "attorney", "legal help", "immigration lawyer"],
     "keywords_dari": ["حقوقی", "وکیل", "مشاوره", "مهاجرت", "کمک حقوقی"],
-    "keywords_uzbek": ["huquqiy yordam", "advokat", "immigratsiya advokati"],
+    "keywords_uzbek": ["حقوقی یاردم", "ادووکات", "مهاجرت ادووکاتی"],
+    "keywords_pashto": ["قانوني مرسته", "وکیل", "قانوني لارښود", "د مهاجرت وکیل"],
     "response_en": "Free and low-cost legal aid is available for immigration matters, family law, and tenant rights. We partner with trusted attorneys who understand the Afghan community's needs. This information is for educational purposes only.",
     "response_dari": "کمک حقوقی رایگان و کم‌هزینه برای مسائل مهاجرتی، قانون خانواده و حقوق مستاجران در دسترس است. ما با وکلای مورد اعتمادی که نیازهای جامعه افغان را درک می‌کنند، همکاری می‌کنیم. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Immigratsiya masalalari, oilaviy huquq va ijarachi huquqlari uchun bepul va arzon huquqiy yordam mavjud. Biz afg'on hamjamiyatining ehtiyojlarini tushunuvchi ishonchli advokatlar bilan hamkorlik qilamiz. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "مهاجرت مسئله‌لری، عائله‌وی حقوق و ایجاره‌چی حقوقلری اوچون بیپول و ارزان حقوقی یاردم موجود. بیز افغان جماعتینینگ ایحتیاجلرینی تُشُنه‌دیگن ایشانچلی ادووکاتلر بیلن همکارلیک قیله‌میز. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "د مهاجرت مسلو، کورنیز قانون او کرایه ناستو حقونو لپاره وړیا او ارزانه قانوني مرسته شتون لري. موږ د باوري وکیلانو سره چې د افغان ټولنې اړتیاوې پوهیږي همکاري کوو. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "services",
     "actions": [
       { "label": "Legal Resources", "href": "/immigration" },
@@ -380,21 +483,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Huquqiy manbalar", "href": "/immigration" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "حقوقی منبعلر", "href": "/immigration" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "قانوني سرچینې", "href": "/immigration" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "general-help",
     "title": "General Help & Information",
     "title_dari": "کمک و اطلاعات عمومی",
-    "title_uzbek": "Umumiy yordam va ma'lumot",
+    "title_uzbek": "عمومی یاردم و معلومات",
+    "title_pashto": "عمومي مرسته او معلومات",
     "keywords_en": ["help", "general", "information", "support", "assistance"],
     "keywords_dari": ["کمک", "عمومی", "اطلاعات", "پشتیبانی"],
-    "keywords_uzbek": ["yordam", "umumiy", "ma'lumot", "qo'llab-quvvatlash"],
+    "keywords_uzbek": ["یاردم", "عمومی", "معلومات", "قوللب-قوووتلش"],
+    "keywords_pashto": ["مرسته", "عمومي", "معلومات", "ملاتړ"],
     "response_en": "We are here to support Afghan families in Phoenix with immigration resources, community connections, and cultural programs. Please explore the topics below or contact us directly. This information is for educational purposes only.",
     "response_dari": "ما برای حمایت از خانواده‌های افغان در فینیکس با منابع مهاجرتی، ارتباطات جامعه و برنامه‌های فرهنگی اینجا هستیم. لطفاً موضوعات زیر را بررسی کنید یا مستقیماً با ما تماس بگیرید. این اطلاعات صرفاً برای اهداف آموزشی است.",
-    "response_uzbek": "Biz Feniksdagi afg'on oilalarni immigratsiya resurslari, hamjamiyat aloqalari va madaniy dasturlar bilan qo'llab-quvvatlash uchun shu yerda. Quyidagi mavzularni ko'rib chiqing yoki biz bilan to'g'ridan-to'g'ri bog'laning. Bu ma'lumotlar faqat ta'lim maqsadlaridir.",
+    "response_uzbek": "بیز فینیکسدگی افغان عائله‌لرنی مهاجرت منبعلری، جماعت آلاقه‌لری و مدنی برنامه‌لر بیلن قوللب-قوووتلش اوچون شو ییرده‌میز. قوییدگی موضوعلرنی کوریب چیقینگ یا بیز بیلن توغریدن-توغری باغلنینگ. بو معلومات فقط تعلیمی مقصدلریدیر.",
+    "response_pashto": "موږ دلته یو چې د فینکس افغان کورنیو ته د مهاجرت سرچینو، ټولنیزو اړیکو او فرهنګي پروګرامونو سره مرسته وکړو. مهرباني وکړئ لاندې موضوعات وپلټئ یا مستقیماً موږ سره اړیکه ونیسئ. دا معلومات یوازې د زده کړې لپاره دي.",
     "section": "contact",
     "actions": [
       { "label": "Quick Access", "href": "/immigration" },
@@ -405,21 +515,28 @@
       { "label": "تماس با ما", "href": "/contact" }
     ],
     "actions_uzbek": [
-      { "label": "Tezkor kirish", "href": "/immigration" },
-      { "label": "Biz bilan bog'laning", "href": "/contact" }
+      { "label": "تیزکور کیریش", "href": "/immigration" },
+      { "label": "بیز بیلن باغلنینگ", "href": "/contact" }
+    ],
+    "actions_pashto": [
+      { "label": "چټک لاسرسی", "href": "/immigration" },
+      { "label": "موږ سره اړیکه", "href": "/contact" }
     ]
   },
   {
     "id": "download-rights-en",
     "title": "Download Rights Card (English)",
     "title_dari": "دانلود کارت حقوق (انگلیسی)",
-    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (inglizcha)",
+    "title_uzbek": "حقوقلرنی بیلیش کارته‌سینی یوکلب آلیش (انگلیسچه)",
+    "title_pashto": "د حقونو کارت ډاونلوډ (انګلیسي)",
     "keywords_en": ["download", "rights card", "English card", "print rights"],
     "keywords_dari": ["دانلود", "کارت حقوق", "انگلیسی"],
-    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "inglizcha"],
+    "keywords_uzbek": ["یوکلب آلیش", "حقوقلر کارته‌سی", "انگلیسچه"],
+    "keywords_pashto": ["ډاونلوډ", "د حقونو کارت", "انګلیسي"],
     "response_en": "Download the Know Your Rights card in English to keep with you.",
     "response_dari": "کارت حقوق خود را به زبان انگلیسی دانلود کنید تا همیشه همراه داشته باشید.",
-    "response_uzbek": "Huquqlaringizni bilish kartochkasini ingliz tilida yuklab oling va o'zingiz bilan saqlang.",
+    "response_uzbek": "حقوقلرینگیزنی بیلیش کارته‌سینی انگلیس تیلیده یوکلب آلینگ و اوزینگیز بیلن ساقلنگ.",
+    "response_pashto": "د خپلو حقونو کارت په انګلیسي ډاونلوډ کړئ ترڅو تل له ځان سره ولرئ.",
     "section": "rights",
     "actions": [
       { "label": "Download (English)", "href": "/PDFs_Rights/Rights_EN.pdf" }
@@ -428,20 +545,26 @@
       { "label": "دانلود (انگلیسی)", "href": "/PDFs_Rights/Rights_EN.pdf" }
     ],
     "actions_uzbek": [
-      { "label": "Yuklab olish (inglizcha)", "href": "/PDFs_Rights/Rights_EN.pdf" }
+      { "label": "یوکلب آلیش (انگلیسچه)", "href": "/PDFs_Rights/Rights_EN.pdf" }
+    ],
+    "actions_pashto": [
+      { "label": "ډاونلوډ (انګلیسي)", "href": "/PDFs_Rights/Rights_EN.pdf" }
     ]
   },
   {
     "id": "download-rights-dari",
     "title": "Download Rights Card (Dari)",
     "title_dari": "دانلود کارت حقوق (دری)",
-    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (dariy)",
+    "title_uzbek": "حقوقلرنی بیلیش کارته‌سینی یوکلب آلیش (دریچه)",
+    "title_pashto": "د حقونو کارت ډاونلوډ (دري)",
     "keywords_en": ["download Dari", "rights card Dari", "Dari card"],
     "keywords_dari": ["دانلود", "کارت حقوق", "دری"],
-    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "dariy"],
+    "keywords_uzbek": ["یوکلب آلیش", "حقوقلر کارته‌سی", "دریچه"],
+    "keywords_pashto": ["ډاونلوډ", "د حقونو کارت", "دري"],
     "response_en": "Download the Know Your Rights card in Dari to keep with you.",
     "response_dari": "کارت حقوق خود را به زبان دری دانلود کنید تا همیشه همراه داشته باشید.",
-    "response_uzbek": "Huquqlaringizni bilish kartochkasini dariy tilida yuklab oling va o'zingiz bilan saqlang.",
+    "response_uzbek": "حقوقلرینگیزنی بیلیش کارته‌سینی دری تیلیده یوکلب آلینگ و اوزینگیز بیلن ساقلنگ.",
+    "response_pashto": "د خپلو حقونو کارت په دري ډاونلوډ کړئ ترڅو تل له ځان سره ولرئ.",
     "section": "rights",
     "actions": [
       { "label": "Download (Dari)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
@@ -450,20 +573,26 @@
       { "label": "دانلود (دری)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
     ],
     "actions_uzbek": [
-      { "label": "Yuklab olish (dariy)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
+      { "label": "یوکلب آلیش (دریچه)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
+    ],
+    "actions_pashto": [
+      { "label": "ډاونلوډ (دري)", "href": "/PDFs_Rights/Rigths_Dari.pdf" }
     ]
   },
   {
     "id": "download-rights-uzbek",
     "title": "Download Rights Card (Uzbek)",
     "title_dari": "دانلود کارت حقوق (ازبکی)",
-    "title_uzbek": "Huquqlarni bilish kartochkasini yuklab olish (o'zbekcha)",
+    "title_uzbek": "حقوقلرنی بیلیش کارته‌سینی یوکلب آلیش (اوزبیکچه)",
+    "title_pashto": "د حقونو کارت ډاونلوډ (ازبکي)",
     "keywords_en": ["download Uzbek", "rights card Uzbek", "Uzbek card"],
     "keywords_dari": ["دانلود", "کارت حقوق", "ازبکی"],
-    "keywords_uzbek": ["yuklab olish", "huquqlar kartochkasi", "o'zbek"],
+    "keywords_uzbek": ["یوکلب آلیش", "حقوقلر کارته‌سی", "اوزبیک"],
+    "keywords_pashto": ["ډاونلوډ", "د حقونو کارت", "ازبکي"],
     "response_en": "Download the Know Your Rights card in Uzbek to keep with you.",
     "response_dari": "کارت حقوق خود را به زبان ازبکی دانلود کنید تا همیشه همراه داشته باشید.",
-    "response_uzbek": "Huquqlaringizni bilish kartochkasini o'zbek tilida yuklab oling va o'zingiz bilan saqlang.",
+    "response_uzbek": "حقوقلرینگیزنی بیلیش کارته‌سینی اوزبیک تیلیده یوکلب آلینگ و اوزینگیز بیلن ساقلنگ.",
+    "response_pashto": "د خپلو حقونو کارت په ازبکي ډاونلوډ کړئ ترڅو تل له ځان سره ولرئ.",
     "section": "rights",
     "actions": [
       { "label": "Download (Uzbek)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
@@ -472,20 +601,26 @@
       { "label": "دانلود (ازبکی)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
     ],
     "actions_uzbek": [
-      { "label": "Yuklab olish (o'zbekcha)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
+      { "label": "یوکلب آلیش (اوزبیکچه)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
+    ],
+    "actions_pashto": [
+      { "label": "ډاونلوډ (ازبکي)", "href": "/PDFs_Rights/Rigths_Uzbek.pdf" }
     ]
   },
   {
     "id": "upcoming-events",
     "title": "Upcoming Events & Workshops",
     "title_dari": "رویدادها و کارگاه‌های پیش رو",
-    "title_uzbek": "Kelgusi tadbirlar va seminarlar",
+    "title_uzbek": "کیلگوسی تدبیرلر و سیمینارلر",
+    "title_pashto": "راتلونکې پېښې او کارګاهونه",
     "keywords_en": ["next event", "upcoming", "workshop", "what's happening", "schedule", "calendar"],
     "keywords_dari": ["رویداد بعدی", "آینده", "کارگاه", "برنامه"],
-    "keywords_uzbek": ["kelgusi tadbir", "seminar", "taqvim"],
+    "keywords_uzbek": ["کیلگوسی تدبیر", "سیمینار", "تقویم"],
+    "keywords_pashto": ["راتلونکې پېښې", "کارګاه", "تقویم", "مهال ویش"],
     "response_en": "We host regular workshops, legal clinics, and cultural events. Check our events page for upcoming dates and registration.",
     "response_dari": "ما کارگاه‌ها، کلینیک‌های حقوقی و رویدادهای فرهنگی منظم برگزار می‌کنیم. برای تاریخ‌های پیش رو و ثبت‌نام، صفحه رویدادهای ما را بررسی کنید.",
-    "response_uzbek": "Biz muntazam seminarlar, huquqiy klinikalar va madaniy tadbirlar o'tkazamiz. Kelgusi sanalar va ro'yxatdan o'tish uchun tadbirlar sahifamizni tekshiring.",
+    "response_uzbek": "بیز منتظم سیمینارلر، حقوقی کلینیکه‌لر و مدنی تدبیرلر اوتکزه‌میز. کیلگوسی سنه‌لر و رویخطدن اوتیش اوچون تدبیرلر صحیفه‌میزنی تکشیرینگ.",
+    "response_pashto": "موږ منظمې کارګاهونه، حقوقي کلینیکونه او فرهنګي پېښې جوړوو. د راتلونکو نېټو او ثبت نام لپاره زموږ پېښو پاڼه وګورئ.",
     "section": "events",
     "actions": [
       { "label": "View Events", "href": "/events" }
@@ -494,20 +629,26 @@
       { "label": "مشاهده رویدادها", "href": "/events" }
     ],
     "actions_uzbek": [
-      { "label": "Tadbirlarni ko'rish", "href": "/events" }
+      { "label": "تدبیرلرنی کوریش", "href": "/events" }
+    ],
+    "actions_pashto": [
+      { "label": "پېښې وګورئ", "href": "/events" }
     ]
   },
   {
     "id": "call-daoud",
     "title": "Call Daoud",
     "title_dari": "تماس با داوود",
-    "title_uzbek": "Daoud bilan qo'ng'iroq qilish",
+    "title_uzbek": "داوود بیلن قونگیروق قیلیش",
+    "title_pashto": "داوود ته زنګ ووهئ",
     "keywords_en": ["call", "phone", "Daoud", "speak to someone", "talk"],
     "keywords_dari": ["تماس", "تلفن", "داوود", "صحبت"],
-    "keywords_uzbek": ["qo'ng'iroq", "telefon", "Daoud", "suhbat"],
+    "keywords_uzbek": ["قونگیروق", "تلفون", "داوود", "سوحبت"],
+    "keywords_pashto": ["زنګ", "تلیفون", "داوود", "خبرې"],
     "response_en": "You can call Daoud directly for immigration assistance.",
     "response_dari": "می‌توانید برای کمک مهاجرتی مستقیماً با داوود تماس بگیرید.",
-    "response_uzbek": "Immigratsiya yordami uchun Daoud bilan to'g'ridan-to'g'ri qo'ng'iroq qilishingiz mumkin.",
+    "response_uzbek": "مهاجرت یاردمی اوچون داوود بیلن توغریدن-توغری قونگیروق قیلیشینگیز ممکن.",
+    "response_pashto": "تاسو کولی شئ د مهاجرت مرستې لپاره مستقیماً داوود ته زنګ ووهئ.",
     "section": "contact",
     "actions": [
       { "label": "Call 480.416.2333", "href": "tel:4804162333" }
@@ -516,20 +657,26 @@
       { "label": "تماس ۴۸۰.۴۱۶.۲۳۳۳", "href": "tel:4804162333" }
     ],
     "actions_uzbek": [
-      { "label": "Qo'ng'iroq qilish 480.416.2333", "href": "tel:4804162333" }
+      { "label": "قونگیروق قیلیش 480.416.2333", "href": "tel:4804162333" }
+    ],
+    "actions_pashto": [
+      { "label": "زنګ ووهئ 480.416.2333", "href": "tel:4804162333" }
     ]
   },
   {
     "id": "whatsapp",
     "title": "Message on WhatsApp",
     "title_dari": "پیام در واتس‌اپ",
-    "title_uzbek": "WhatsApp orqali xabar yuborish",
+    "title_uzbek": "واتساپ ارقلی خبر یوبوریش",
+    "title_pashto": "په واتساپ پیغام",
     "keywords_en": ["whatsapp", "message", "text", "chat"],
     "keywords_dari": ["واتس‌اپ", "پیام", "متن", "چت"],
-    "keywords_uzbek": ["whatsapp", "xabar", "matn", "chat"],
+    "keywords_uzbek": ["واتساپ", "خبر", "متن", "چت"],
+    "keywords_pashto": ["واتساپ", "پیغام", "متن", "چت"],
     "response_en": "Send us a message on WhatsApp for quick assistance.",
     "response_dari": "برای کمک سریع، پیامی در واتس‌اپ برای ما ارسال کنید.",
-    "response_uzbek": "Tezkor yordam uchun bizga WhatsApp orqali xabar yuboring.",
+    "response_uzbek": "تیزکور یاردم اوچون بیزگه واتساپ ارقلی خبر یوبورینگ.",
+    "response_pashto": "د چټکې مرستې لپاره موږ ته په واتساپ پیغام ولېږئ.",
     "section": "contact",
     "actions": [
       { "label": "Open WhatsApp", "href": "https://wa.me/14804162333" }
@@ -538,7 +685,10 @@
       { "label": "باز کردن واتس‌اپ", "href": "https://wa.me/14804162333" }
     ],
     "actions_uzbek": [
-      { "label": "WhatsApp-ni ochish", "href": "https://wa.me/14804162333" }
+      { "label": "واتساپنی آچیش", "href": "https://wa.me/14804162333" }
+    ],
+    "actions_pashto": [
+      { "label": "واتساپ خلاص کړئ", "href": "https://wa.me/14804162333" }
     ]
   }
 ]

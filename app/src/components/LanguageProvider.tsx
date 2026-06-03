@@ -8,6 +8,7 @@ import {
   getHtmlLang,
   type LangCode,
   SUPPORTED_LANGUAGES,
+  LOCALIZED_LANGUAGES,
 } from '../lib/direction'
 import { LanguageContext } from '../hooks/useLanguage'
 
@@ -16,16 +17,16 @@ interface LanguageProviderProps {
   initialLang?: LangCode
 }
 
-export function LanguageProvider({ children, initialLang = 'en' }: LanguageProviderProps) {
+export function LanguageProvider({ children, initialLang = 'dari' }: LanguageProviderProps) {
   const pathname = usePathname() || '/'
   const router = useRouter()
   const [lang, setLang] = useState<LangCode>(initialLang)
 
   const detectLangFromPath = useCallback((): LangCode => {
     const firstSegment = pathname.split('/')[1]
-    return SUPPORTED_LANGUAGES.includes(firstSegment as LangCode)
+    return (LOCALIZED_LANGUAGES as readonly string[]).includes(firstSegment)
       ? (firstSegment as LangCode)
-      : 'en'
+      : 'dari'
   }, [pathname])
 
   useEffect(() => {
@@ -64,14 +65,14 @@ export function LanguageProvider({ children, initialLang = 'en' }: LanguageProvi
   const changeLanguage = useCallback(
     (newLang: LangCode) => {
       const segments = pathname.split('/').filter(Boolean)
-      const hasLangPrefix = SUPPORTED_LANGUAGES.includes(segments[0] as LangCode)
+      const hasLangPrefix = (LOCALIZED_LANGUAGES as readonly string[]).includes(segments[0])
       const suffix = typeof window !== 'undefined'
         ? `${window.location.search}${window.location.hash}`
         : ''
 
       let newPath: string
 
-      if (newLang === 'en') {
+      if (newLang === 'dari') {
         if (hasLangPrefix) {
           segments.shift()
         }

@@ -36,7 +36,7 @@ JSON responses. It must not generate legal advice.
 | Main goal | Help users quickly find trusted support and contact staff |
 | Content model | WordPress Headless for events and SEO/social metadata; curated static/local content for everything else |
 | CMS scope | WordPress is a structured content admin for events and metadata, not a page builder |
-| Multilingual coverage | Language toggle must update all primary visible page content for English, Dari, and Uzbek; Dari must render RTL |
+| Multilingual coverage | Language toggle must update all primary visible page content for Dari, English, Afghan Uzbek, and Pashto; Dari, Afghan Uzbek, and Pashto must render RTL |
 | Legal content | Static, reviewed, and not dynamically generated |
 | Contact data | Sent by email only; not persisted in app storage or database |
 | Chatbot | Deterministic keyword/scoring match from local JSON only |
@@ -52,7 +52,7 @@ JSON responses. It must not generate legal advice.
 
 1. Give Afghan families a clear path to immigration help and urgent contact.
 2. Provide Know Your Rights content in a legally safe, reviewed format.
-3. Support English, Dari, and Uzbek, including RTL for Dari.
+3. Use Dari as the default/root language while supporting English, Afghan Uzbek, and Pashto; Dari, Afghan Uzbek, and Pashto render RTL.
 4. Keep the site fast and usable on mobile devices and limited connections.
 5. Keep operations simple enough for a small team to maintain.
 
@@ -88,7 +88,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 | Client request | Product implementation | Priority | Status |
 |---|---|---:|---|
 | Header with logo/menu/language toggle/CTA | Navigation with page links, language switcher, Get Help Now CTA | P0 | Required |
-| Language toggle EN/Dari/Uzbek | All active route copy, form labels, CTA text, chatbot labels, validation messages, and legal/resource/event/story content must change language; Dari must also use RTL | P0 | Required before launch |
+| Language toggle Dari/EN/Afghan Uzbek/Pashto | All active route copy, form labels, CTA text, chatbot labels, validation messages, and legal/resource/event/story content must change language; Dari, Afghan Uzbek, and Pashto must also use RTL | P0 | Required before launch |
 | Home hero | Welcome message, family image/video fallback, clear CTA | P0 | Required |
 | Quick access icons | Four large buttons: Immigration, Rights, Resources, Events | P0 | Required |
 | About snapshot | Short institutional support statement | P0 | Required |
@@ -96,7 +96,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 | Immigration Help page/section | Static service cards/list for asylum, work permit, TPS, green card/family reunification, Afghan Adjustment Act | P0 | Required |
 | Contact block for Daoud | Phone, email, hours, office, Request a Call Back | P0 | Required |
 | Know Your Rights | Police/immigration agents, ICE at home, documents | P0 | Required |
-| Rights downloads | PDF cards in English, Dari, and Uzbek | P0 | Required before launch |
+| Rights downloads | PDF cards in the currently approved asset languages: English, Dari, and Afghan Uzbek; Pashto PDF requires a reviewed asset before being listed | P0 | Required before launch |
 | Videos section | Community leaders and client experience videos | P1 | Needed if assets are provided |
 | Community resources | English classes, mental health, food banks, health clinics | P0 | Required |
 | Events calendar | Simple upcoming events list with internal registration modal for events without external URL; no heavy booking system | P1 | Implemented |
@@ -137,7 +137,7 @@ may use lower-end devices, and may be under emotional/legal stress.
   - Interacting with police or immigration agents
   - If ICE comes to your home
   - Carrying/storing documents safely
-- PDF downloads in all target languages.
+- PDF downloads only for reviewed/approved card assets; Pashto PDF must not be listed until an approved file exists.
 - Legal disclaimer and “last reviewed” date.
 
 ### 6.4 Community Resources
@@ -187,11 +187,11 @@ may use lower-end devices, and may be under emotional/legal stress.
 ### 6.9 Multilingual Content Coverage
 
 - The client-requested language toggle is P0 functionality, not decorative UI.
-- Every active route must support English, Dari, and Uzbek for primary visible text:
+- Every active route must support Dari, English, Afghan Uzbek, and Pashto for primary visible text:
   - navigation, footer, page headings, section body copy, CTA text, form labels, validation messages, event/resource/story labels, rights content, downloads, and chatbot UI/actions.
 - Proper names, phone numbers, addresses, organization names, URLs, and legally approved document titles may remain unchanged when appropriate.
-- Dari must set RTL direction and remain visually usable.
-- Machine translation may be used only as a draft; launch requires fluent/native human review for Dari and Uzbek.
+- Dari, Afghan Uzbek, and Pashto must set RTL direction and remain visually usable.
+- Machine translation may be used as a draft when client-approved, but launch requires fluent/native human review for Dari, Afghan Uzbek, and Pashto.
 - If any active page remains English-only, the language toggle cannot be considered complete.
 
 ---
@@ -200,7 +200,7 @@ may use lower-end devices, and may be under emotional/legal stress.
 
 | ID | Story | Acceptance Criteria |
 |---|---|---|
-| US-01 | As an Afghan family member, I want to switch to Dari or Uzbek so I can understand the site. | Language switch updates all primary visible route text, chatbot labels/actions, form labels/errors, and legal/resource/event content; Dari also sets RTL direction. |
+| US-01 | As an Afghan family member, I want to use Dari, English, Afghan Uzbek, or Pashto so I can understand the site. | Language switch updates all primary visible route text, chatbot labels/actions, form labels/errors, and legal/resource/event content; Dari, Afghan Uzbek, and Pashto also set RTL direction. |
 | US-02 | As a user needing immigration help, I want a clear “Get Help Now” path. | CTA scrolls/navigates to contact and contact options are visible. |
 | US-03 | As a user worried about ICE/police interaction, I want quick rights information. | Know Your Rights section is readable, static, and has downloads. |
 | US-04 | As a community volunteer, I want to share resource categories. | Resources are grouped clearly and links/contact details are easy to copy or tap. |
@@ -226,7 +226,7 @@ Events → event details → registration/contact path if required
 
 | Content | Storage | Notes |
 |---|---|---|
-| UI translations | Local locale JSON files | EN, Dari, Uzbek; must cover all active routes, not only legacy sections |
+| UI translations | Local locale JSON files | Dari, EN, Afghan Uzbek, Pashto; must cover all active routes, not only legacy sections |
 | Events | WordPress Headless (asp_event CPT) | Client-editable via WordPress admin; fetched server-side with ISR |
 | Page/event metadata | WordPress Headless (asp_page_meta CPT) | Client-editable SEO title, description, and Open Graph tags |
 | Resources | Local JSON | Include category, title, description, link/contact |
@@ -244,8 +244,8 @@ Events → event details → registration/contact path if required
 | Frontend | Next.js 16 App Router + React 19 + TypeScript |
 | Styling | Tailwind CSS with native CSS transitions |
 | Routing | Next.js App Router with `[lang]` dynamic segments |
-| i18n | `react-i18next` with local resources + server-side lang resolution via middleware |
-| RTL | `html[dir]` set on first paint via middleware + `x-dir` header |
+| i18n | `react-i18next` with local resources + server-side lang resolution via `src/proxy.ts` |
+| RTL | `html[dir]` set on first paint via proxy + `x-dir` header |
 | Forms | `react-hook-form` + `zod`, server-side validation too |
 | Email | Resend or approved provider through serverless endpoint |
 | Hosting | Vercel for the Next.js frontend and route handlers; Hostinger WordPress for CMS/admin |
@@ -355,11 +355,11 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 | P0 | Confirm production env vars | Needed for Vercel, WordPress REST, ISR, email, and rate limiting |
 | P0 | Legal disclaimer and review date | Required for rights/legal sections and chatbot |
 | P0 | Real contact email flow | Validate env vars, sender, recipient, fallback |
-| P0 | Full multilingual coverage | All active route text changes for EN/Dari/Uzbek; RTL for Dari |
+| P0 | Full multilingual coverage | All active route text changes for Dari/EN/Afghan Uzbek/Pashto; RTL for Dari, Afghan Uzbek, and Pashto |
 | P0 | Client requirement compliance pass | Verify every original layout item is represented |
-| P1 | Rights PDFs in 3 active languages | Must use approved files |
+| P1 | Rights PDFs in approved asset languages | EN/Dari/Afghan Uzbek files exist; Pashto requires approved PDF before listing |
 | P1 | Production anti-spam/rate-limit hardening | Shared store/CDN/WAF preferred |
-| P1 | Translation review | Dari/Uzbek human review |
+| P1 | Translation review | Dari/Afghan Uzbek/Pashto human review |
 | P1 | Resource/event data cleanup | Real links, phone numbers, dates |
 | P1 | Accessibility and mobile QA | RTL, keyboard, tap targets |
 | P2 | Videos/testimonials polish | Only if approved assets exist |
@@ -374,8 +374,8 @@ provider/CDN-level rate limiting or shared storage for rate-limit state.
 - [x] `modification_plan.md` completed.
 - [x] `implementation_plan.md` reflects post-cleanup reality. _(Packets A-F complete)_
 - [ ] Legal/rights content reviewed by qualified reviewer.
-- [x] All active route copy is wired to i18n/local JSON or an approved equivalent. _(Dari/Uzbek populated; [MT] strings pending human review)_
-- [ ] Translations reviewed by fluent/native speakers. _(Dari/Uzbek populated, pending reviewer sign-off)_
+- [x] All active route copy is wired to i18n/local JSON or an approved equivalent. _(Dari, Afghan Uzbek, and Pashto populated; machine-generated strings pending human review)_
+- [ ] Translations reviewed by fluent/native speakers. _(Dari, Afghan Uzbek, and Pashto populated, pending reviewer sign-off)_
 - [x] Contact form sends email and does not persist PII. _(Resend + Zod + honeypot; no PII storage)_
 - [x] Production rate limiting/anti-spam decision implemented. _(Upstash Redis sliding window + in-memory fallback)_
 - [x] CSP/security headers configured for chosen host. _(next.config.ts dynamic CSP)_

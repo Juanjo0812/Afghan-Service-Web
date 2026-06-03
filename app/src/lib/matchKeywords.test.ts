@@ -17,7 +17,9 @@ const entries: KBEntry[] = [
   {
     id: 'food',
     keywords_en: ['food', 'hungry', 'meals'],
+    keywords_pashto: ['خوراک', 'وږی'],
     response_en: 'Food banks available.',
+    response_pashto: 'د خوړو بانکونه شتون لري.',
     section: 'resources',
   },
 ]
@@ -27,6 +29,12 @@ describe('matchKeywords', () => {
     const result = matchKeywords('asylum', entries, 'en')
     expect(result.matched).toBe(true)
     expect(result.entry?.id).toBe('asylum')
+  })
+
+  it('matches Pashto keywords', () => {
+    const result = matchKeywords('خوراک', entries, 'pashto')
+    expect(result.matched).toBe(true)
+    expect(result.entry?.id).toBe('food')
   })
 
   it('returns multiCandidate for ambiguous queries', () => {
