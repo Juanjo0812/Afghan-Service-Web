@@ -104,6 +104,37 @@ If you cannot edit `wp-config.php`, you can set these values as WordPress option
 - Option name `asp_revalidate_url` with your Next.js webhook URL.
 - Option name `asp_revalidate_secret` with your secure revalidation secret.
 
+## OpenRouter Configuration (Event Translation Button)
+
+The **Generate Translations** button runs from WordPress admin and calls OpenRouter server-side. Configure the API key in WordPress/Hostinger, not in Vercel and never in frontend code.
+
+### Option A: Defining constant in `wp-config.php` (Recommended for production)
+
+Add this line to your WordPress `wp-config.php` file, above the line that says `/* That's all, stop editing! */`:
+
+```php
+define('OPENROUTER_API_KEY', 'your_openrouter_api_key_here');
+```
+
+### Option B: WordPress Options database
+
+If you cannot edit `wp-config.php`, set this WordPress option via WP-CLI, a database manager, or a secure admin-only helper:
+
+- Option name `openrouter_api_key` with your OpenRouter API key.
+
+Recommended WP-CLI command:
+
+```bash
+wp option update openrouter_api_key 'your_openrouter_api_key_here'
+```
+
+After configuring the key:
+
+1. Open an English event in WordPress admin.
+2. Click **Generate Translations**.
+3. Confirm Dari, Pashto, and Afghan Uzbek statuses become `draft`.
+4. Review/edit generated translations before marking them as production-ready.
+
 ## Seed Data
 
 Import the JSON files in `seed/` using your preferred method (WP CLI, admin import, or a custom script) to populate initial events and metadata for testing.

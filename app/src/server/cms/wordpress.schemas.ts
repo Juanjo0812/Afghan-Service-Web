@@ -13,6 +13,32 @@ const eventMetaSchema = z.object({
   _asp_cta_url: z.string().optional(),
   _asp_event_language: z.string().optional(),
   _asp_featured_image_id: z.union([z.string(), z.number()]).optional(),
+  // Translation content fields
+  _asp_event_title_dari: z.string().optional(),
+  _asp_event_title_pashto: z.string().optional(),
+  _asp_event_title_uzbek: z.string().optional(),
+  _asp_event_description_dari: z.string().optional(),
+  _asp_event_description_pashto: z.string().optional(),
+  _asp_event_description_uzbek: z.string().optional(),
+  _asp_event_location_dari: z.string().optional(),
+  _asp_event_location_pashto: z.string().optional(),
+  _asp_event_location_uzbek: z.string().optional(),
+  _asp_cta_label_dari: z.string().optional(),
+  _asp_cta_label_pashto: z.string().optional(),
+  _asp_cta_label_uzbek: z.string().optional(),
+  // Translation control fields
+  _asp_translation_status_dari: z.string().optional(),
+  _asp_translation_status_pashto: z.string().optional(),
+  _asp_translation_status_uzbek: z.string().optional(),
+  _asp_translation_model_dari: z.string().optional(),
+  _asp_translation_model_pashto: z.string().optional(),
+  _asp_translation_model_uzbek: z.string().optional(),
+  _asp_translation_generated_at_dari: z.string().optional(),
+  _asp_translation_generated_at_pashto: z.string().optional(),
+  _asp_translation_generated_at_uzbek: z.string().optional(),
+  // Shared translation fields
+  _asp_translation_source_hash: z.string().optional(),
+  _asp_translation_error: z.string().optional(),
 })
 
 const pageMetaSchema = z.object({

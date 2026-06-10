@@ -15,6 +15,9 @@ export interface EventContent {
   ctaUrl?: string
   imageUrl?: string
   seo?: PageMetadata
+  translationStatus?: 'empty' | 'draft' | 'reviewed' | 'stale' | 'failed'
+  translationModel?: string
+  translationGeneratedAt?: string
 }
 
 export interface PageMetadata {

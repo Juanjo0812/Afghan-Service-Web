@@ -57,7 +57,7 @@ async function fetchFromWP(
 
 export async function getEvents(lang: LangCode): Promise<EventContent[]> {
   const result = await fetchFromWP(
-    `/events?_embed&per_page=100&orderby=date&order=desc&lang=${getLanguageParam(lang)}`,
+    `/events?_embed&per_page=100&orderby=date&order=desc&lang=en`,
     undefined,
     ['events']
   )
@@ -93,7 +93,7 @@ export async function getEventBySlug(
   lang: LangCode
 ): Promise<EventContent | null> {
   const result = await fetchFromWP(
-    `/events?_embed&slug=${encodeURIComponent(slug)}&lang=${getLanguageParam(lang)}`
+    `/events?_embed&slug=${encodeURIComponent(slug)}&lang=en`
   )
 
   if (!result.ok) {
