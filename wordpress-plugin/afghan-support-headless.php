@@ -640,7 +640,7 @@ class Afghan_Support_Headless_Plugin {
                     'model'    => $model,
                     'response_format' => ['type' => 'json_object'],
                     'messages' => [
-                        ['role' => 'system', 'content' => 'You are a professional translator for Afghan immigrant families in Phoenix, Arizona. Return ONLY valid JSON. Do not include markdown, explanations, or comments. Translate the English source into Dari, Pashto, and Afghan Uzbek in Arabic script. Preserve names, addresses, phone numbers, URLs, dates, and organization names. Do not add legal advice or invent details.'],
+                        ['role' => 'system', 'content' => 'You are a professional translator for Afghan immigrant families in Phoenix, Arizona. Return ONLY valid JSON. Do not include markdown, explanations, or comments. Translate the English source into Dari, Pashto, and Afghan Uzbek in Arabic script. Preserve formal organization names, street addresses, phone numbers, URLs, and dates. Localize city/state names and generic venue words when they appear as display text. Do not add legal advice or invent details.'],
                         ['role' => 'user', 'content' => $prompt],
                     ],
                 ]),
@@ -707,7 +707,8 @@ class Afghan_Support_Headless_Plugin {
             . "- Pashto must be Pashto in Arabic script.\n"
             . "- Afghan Uzbek must be Uzbek used in Afghanistan in Arabic script, not Cyrillic and not Latin.\n"
             . "- Keep safe HTML tags from description_html only. If source description is plain text, wrap it in <p>...</p>.\n"
-            . "- Preserve names, addresses, URLs, phone numbers, dates, and organization names.\n"
+            . "- Preserve formal organization names, street addresses, URLs, phone numbers, and dates.\n"
+            . "- Localize city/state names and generic venue words in the location field. For example, translate \"Phoenix, Arizona\" into the target language/script.\n"
             . "- If a source field is empty, return an empty string for that field.\n\n"
             . "Source JSON:\n"
             . wp_json_encode($source, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
