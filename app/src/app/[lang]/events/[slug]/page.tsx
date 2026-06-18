@@ -6,7 +6,7 @@ import type { LangCode } from '@/domain/language'
 import { assertValidLang } from '@/lib/routeGuard'
 
 export function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'uzbek' }, { lang: 'pashto' }]
+  return []
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }) {
@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 export const revalidate = 3600
+export const dynamicParams = true
 
 export default async function EventDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params
