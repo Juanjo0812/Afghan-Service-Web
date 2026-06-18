@@ -5,17 +5,13 @@ import { notFound } from 'next/navigation'
 import type { LangCode } from '@/domain/language'
 import { assertValidLang } from '@/lib/routeGuard'
 
-export function generateStaticParams() {
-  return []
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const { lang, slug } = await params
   assertValidLang(lang)
   return generateEventDetailMetadata(slug, lang as LangCode)
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 export default async function EventDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {

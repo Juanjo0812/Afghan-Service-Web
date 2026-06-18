@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return generateEventDetailMetadata(slug, 'dari')
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

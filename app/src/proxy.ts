@@ -12,7 +12,15 @@ export function proxy(request: NextRequest) {
     : 'dari'
   const dir = getDirection(lang)
 
-  const response = NextResponse.next()
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-lang', lang)
+  requestHeaders.set('x-dir', dir)
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  })
   response.headers.set('x-lang', lang)
   response.headers.set('x-dir', dir)
 
